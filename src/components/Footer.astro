@@ -1,0 +1,37 @@
+---
+import { Icon } from "astro-icon"
+import type { HTMLAttributes } from "astro/types"
+import { SOCIALS } from "../data/config"
+
+interface Props extends HTMLAttributes<"footer"> {}
+
+const { ...attrs } = Astro.props as Props
+---
+
+<footer {...attrs}>
+	<div class="h-px w-full bg-gradient-to-r from-gray-6 via-gray-6 to-gray-1"></div>
+	<div class="max-w-[700px] mx-auto px-4 flex flex-col gap-8 mt-8">
+		<p class="text-gray-11 text-sm">
+			&copy; <span id="year"></span> John Eatmon. I create, therefore I am.
+		</p>
+		<ul role="list" class="flex items-center -ml-3">
+			{
+				SOCIALS.map(({ href, rel, label, icon }) => (
+					<li>
+						<a
+							href={href}
+							rel={rel}
+							class="text-gray-11 hover:text-gray-12 transition-colors duration-300 ease-in-out inline-block p-3"
+						>
+							<Icon name={icon} title={label} class="w-5 h-5" />
+						</a>
+					</li>
+				))
+			}
+		</ul>
+	</div>
+</footer>
+
+<script is:inline>
+	const year = (document.querySelector("#year").innerHTML = new Date().getFullYear())
+</script>

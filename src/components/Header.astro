@@ -1,0 +1,23 @@
+---
+import { Image } from "@astrojs/image/components"
+import type { HTMLAttributes } from "astro/types"
+import Button from "../components/Button"
+
+interface Props extends HTMLAttributes<"header"> {}
+
+const { ...attrs } = Astro.props as Props
+---
+
+<header {...attrs}>
+	<Image
+		src="https://imagedelivery.net/le40TwFDWUdIvXckEp8FBw/5966de80-8db7-449d-80f7-fd1260e76e00/public"
+		width={64}
+		aspectRatio={1}
+		alt="A selfie of me hiking on snowy Mt. Rainier. I am smiling while wearing my hat and sunglasses. Behind my head, in the distance, you can see the looming peak of Mt. Adams."
+		class="w-16 aspect-square object-cover rounded-full mb-8"
+		loading="eager"
+	/>
+	<h1 class="font-medium font-display text-3xl">John Eatmon</h1>
+	<p class="text-gray-11 mb-6">Multidisciplinary designer, developer, and creative.</p>
+	<Button href="/resume" client:idle>View résumé</Button>
+</header>

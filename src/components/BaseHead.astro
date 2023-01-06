@@ -1,0 +1,102 @@
+---
+import smartypants from "smartypants"
+import { SITE,TWITTER } from "../data/config"
+
+export interface Props {
+	title?: string
+	description?: string
+	image?: {
+		src: string | URL
+		alt: string
+	}
+	canonicalURL?: URL
+	type?: "website" | "article"
+	section?: string
+	tags?: string[]
+	datePublished?: string
+	dateModified?: string
+	prev?: string
+	next?: string
+}
+
+const {
+	description,
+	image,
+	canonicalURL = new URL(Astro.request.url, Astro.site),
+	type = "website",
+	section,
+	tags,
+	dateModified,
+	datePublished,
+	prev,
+	next,
+} = Astro.props as Props
+const title = [Astro.props.title, SITE.name].filter(Boolean).join(" · ")
+---
+
+<meta charset="utf-8" />
+<meta name="viewport" content="width=device-width, initial-scale=1" />
+
+<title set:html={smartypants(title, 1)} />
+
+<meta name="description" content={description} />
+<meta name="generator" content={Astro.generator} />
+{
+	import.meta.env.PROD ? (
+		<meta
+			name="robots"
+			content="follow, index, max-snippet:-1, max-video-preview:-1, max-image-preview:large"
+		/>
+	) : (
+		<meta name="robots" content="follow, noindex" />
+	)
+}
+
+<meta name="copyright" content={SITE.name} />
+{type === "article" && <meta name="author" content={SITE.name} />}
+
+<meta property="og:locale" content="en_US" />
+<meta property="og:type" content={type} />
+<meta property="og:title" content={Astro.props.title} />
+<meta property="og:description" content={description} />
+<meta property="og:url" content={new URL(Astro.url.pathname, Astro.site).href} />
+<meta property="og:site_name" content={SITE.name} />
+{dateModified && <meta property="og:updated_time" content={dateModified} />}
+{image && (
+	<meta property="og:image" content={image.src} />
+	<meta property="og:image:alt" content={image.alt} />
+	<meta property="og:image:width" content="1200" />
+	<meta property="og:image:height" content="630" />
+	<meta property="og:image:type" content="image/png" />
+)}
+
+{(type === "article") && <meta property="article:publisher" content={Astro.site} />}
+{section && <meta property="article:section" content={section} />}
+{tags && (tags.map((tag) =>
+	<meta property="article:tag" content={tag} />
+))}
+{datePublished && <meta property="article:published_time" content={datePublished} />}
+{dateModified && <meta property="article:modified_time" content={dateModified} />}
+
+<meta name="twitter:dnt" content="on" />
+<meta name="twitter:site" content={TWITTER} />
+<meta name="twitter:creator" content={TWITTER} />
+<meta name="twitter:domain" content={SITE.name} />
+<meta name="twitter:title" content={title} />
+<meta name="twitter:description" content={description} />
+<meta name="twitter:card" content={image ? "summary_large_image" : "summary"} />
+{image && (
+	<meta name="twitter:image" content={image.src} />
+	<meta name="twitter:image:alt" content={image.alt} />
+)}
+
+<meta name="theme-color" content="#161616" media="(prefers-color-scheme: dark)" />
+<meta name="theme-color" content="#fcfcfc" media="(prefers-color-scheme: light)" />
+<meta name="color-scheme" content="dark light" />
+
+<link rel="icon" type="image/svg+xml" href="/favicon.svg" />
+
+<link rel="canonical" href={canonicalURL} />
+<link rel="icon" href="data:image/svg+xml,<svg xmlns=%22http://www.w3.org/2000/svg%22 viewBox=%220 0 100 100%22><text y=%22.9em%22 font-size=%2290%22>👨🏻‍💻</text></svg>" />
+{prev && <link rel="prev" aria-label="Previous Page" href={new URL(prev, Astro.site).href} />}
+{next && <link rel="next" aria-label="Next Page" href={new URL(next, Astro.site).href} />}

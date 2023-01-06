@@ -1,0 +1,34 @@
+{
+  "cSpell.words": ["Astro", "frontmatter"],
+  "cSpell.ignorePaths": [
+    "package.json",
+    "node_modules",
+    "vscode-extension",
+    ".git/objects",
+    ".vscode",
+    "pnpm-lock.yaml"
+  ],
+  "deno.enable": true,
+  "deno.enablePaths": ["netlify/edge-functions"],
+  "deno.unstable": true,
+  "deno.importMap": ".netlify/edge-functions-import-map.json",
+  "deno.path": "/Users/john/Library/Preferences/netlify/deno-cli/deno",
+  "editor.defaultFormatter": "esbenp.prettier-vscode",
+  "editor.rulers": [100],
+  "editor.formatOnSave": true,
+  "editor.codeActionsOnSave": ["source.organizeImports", "source.fixAll.eslint"],
+  "emmet.includeLanguages": {
+    "astro": "html"
+  },
+  "files.exclude": {
+    "**/dist": true,
+    "**/node_modules": true
+  },
+  "markdownlint.config": {
+    "MD033": false // Since we use components in our markdown files, we disable this rule that prevents HTML
+  },
+  "prettier.documentSelectors": ["**/*.astro"],
+  "search.exclude": {
+    "**/dist": true
+  }
+}
