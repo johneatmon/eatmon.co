@@ -1,6 +1,6 @@
 import { motion } from "framer-motion"
 import type { HTMLAttributes, ReactNode } from "react"
-import React, { useRef, useState } from "react"
+import { useRef, useState } from "react"
 
 function getRelativeCoordinates(event, referenceElement) {
 	const position = {
@@ -42,7 +42,6 @@ const SpotlightButton = (props: Props) => {
 		borderRadius: "inherit",
 		WebkitMaskImage: `radial-gradient(circle at center, rgb(255, 255, 255) 0%, rgba(0, 0, 0, 0) 100%)`,
 		opacity: 0,
-		mixBlendMode: `lighten`,
 		// Change this gradient
 		backgroundImage: `linear-gradient(to right, rgba(181, 97, 255, 0.2), rgba(134, 104, 255, 0.2))`,
 		// Optional border style
@@ -59,9 +58,10 @@ const SpotlightButton = (props: Props) => {
 			{...props}
 			ref={boxRef}
 			onMouseMove={(e) => handleMouseMove(e)}
-			className="inline-block relative border border-gray-6 hover:border-transparent rounded-md px-4 py-2 text-sm font-medium"
+			className="inline-block relative border border-gray-8 dark:border-gray-6 hover:border-transparent rounded-md px-4 py-2 text-sm font-medium"
 		>
 			<motion.div
+				className="mix-blend-darken dark:mix-blend-lighten"
 				style={{
 					...style,
 				}}
