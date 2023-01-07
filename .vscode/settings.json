@@ -8,13 +8,8 @@
     ".vscode",
     "pnpm-lock.yaml"
   ],
-  "deno.enable": true,
-  "deno.enablePaths": ["netlify/edge-functions"],
-  "deno.unstable": true,
-  "deno.importMap": ".netlify/edge-functions-import-map.json",
-  "deno.path": "/Users/john/Library/Preferences/netlify/deno-cli/deno",
   "editor.defaultFormatter": "esbenp.prettier-vscode",
-  "editor.rulers": [100],
+  // "editor.rulers": [100],
   "editor.formatOnSave": true,
   "editor.codeActionsOnSave": ["source.organizeImports", "source.fixAll.eslint"],
   "emmet.includeLanguages": {
