@@ -1,5 +1,6 @@
 ---
 import BaseHead, { Props as BaseHeadProps } from "../components/BaseHead.astro"
+import LinkPreview from "../components/LinkPreview"
 
 interface Props extends Exclude<BaseHeadProps, "title"> {
 	title?: string
@@ -22,5 +23,6 @@ const { ...attrs } = Astro.props as Props
 			<slot />
 		</main>
 		<Footer class="pb-16" />
+		<LinkPreview client:idle />
 	</body>
 </html>
