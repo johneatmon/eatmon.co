@@ -9,7 +9,10 @@ const { ...attrs } = Astro.props as Props
 ---
 
 <footer {...attrs}>
-	<div aria-hidden="true" class="h-px w-full bg-gradient-to-r from-gray-6 via-gray-6 to-gray-1">
+	<div
+		aria-hidden="true"
+		class="h-px w-full bg-gradient-to-r from-gray-8 via-gray-8 to-gray-1 dark:from-gray-6 dark:via-gray-6 dark:to-gray-1"
+	>
 	</div>
 	<div class="max-w-[700px] mx-auto px-4 flex flex-col gap-8 mt-8">
 		<p class="text-gray-11 text-sm">

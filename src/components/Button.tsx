@@ -43,7 +43,7 @@ const SpotlightButton = (props: Props) => {
 		WebkitMaskImage: `radial-gradient(circle at center, rgb(255, 255, 255) 0%, rgba(0, 0, 0, 0) 100%)`,
 		opacity: 0,
 		// Change this gradient
-		backgroundImage: `linear-gradient(to right, rgba(181, 97, 255, 0.2), rgba(134, 104, 255, 0.2))`,
+		backgroundImage: `linear-gradient(to right, rgba(181, 97, 255, 0.5), rgba(134, 104, 255, 0.5))`,
 		// Optional border style
 		border: "1px solid rgba(181, 97, 255, 0.6)",
 	}
