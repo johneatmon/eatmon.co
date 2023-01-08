@@ -3,6 +3,10 @@ import { Image } from "@astrojs/image/components"
 import type { HTMLAttributes } from "astro/types"
 import Button from "../components/Button"
 
+import { SOCIALS } from "../data/config"
+
+const cv = SOCIALS.filter((x) => x.label === "ReadCV").map(({ href }) => href)
+
 interface Props extends HTMLAttributes<"header"> {}
 
 const { ...attrs } = Astro.props as Props
@@ -21,5 +25,5 @@ const { ...attrs } = Astro.props as Props
 	</div>
 	<h1 class="font-medium font-display text-3xl">John Eatmon</h1>
 	<p class="text-gray-11 mb-6">Multidisciplinary designer, developer, and creative.</p>
-	<Button href="/resume" client:idle>View résumé</Button>
+	<Button href={cv} client:idle>View résumé</Button>
 </header>
