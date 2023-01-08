@@ -16,8 +16,11 @@ const { ...attrs } = Astro.props as Props
 	<head>
 		<BaseHead title={content.title} description={content.description} {...attrs} />
 	</head>
-	<body class="text-gray-12 bg-gray-1 antialiased h-full [&>footer]:sticky [&>footer]:top-[100vh]">
-		<Header class="max-w-[700px] mx-auto px-4 pt-32 pb-9" />
+	<body
+		class="text-gray-12 bg-gray-1 antialiased h-full [&>footer]:sticky [&>footer]:top-[100vh] relative transition-colors duration-300 ease-in-out"
+	>
+		<ThemeToggle />
+		<Header class="max-w-[700px] mx-auto px-4 pt-24 lg:pt-32 pb-9" />
 		<main class="prose prose-gray max-w-[700px] mx-auto px-4">
 			<slot />
 		</main>
