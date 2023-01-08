@@ -41,7 +41,7 @@ export const SOCIALS: SocialLink[] = [
 	},
 	{
 		label: "Email",
-		href: "mailto:john@eatmon.co",
+		href: "mailto:hi@jmae.xyz",
 		icon: "bi:send",
 	},
 ].sort((a, b) => a.label.localeCompare(b.label))
