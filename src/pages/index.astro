@@ -1,0 +1,24 @@
+---
+import ExperienceSection from "../components/ExperienceSection.astro"
+import Hero from "../components/Hero.astro"
+import MapSection from "../components/MapSection.astro"
+import ProjectSection from "../components/ProjectSection.astro"
+import BaseLayout from "../layouts/BaseLayout.astro"
+
+const title = "Designer, Developer & Creative"
+const description =
+	"A wearer of many hats, I love solving business and user problems. I refine brand, service, and product strategy with a broad spectrum of skills."
+---
+
+<BaseLayout title={title} description={description}>
+	<Hero class="pt-24 lg:pt-32 pb-9">
+		<Fragment slot="title">John Eatmon</Fragment>
+		Product & web designer
+	</Hero>
+	<ProjectSection class="pt-16">Selected projects</ProjectSection>
+	<ExperienceSection class="pt-16" />
+	<MapSection class="pt-16">
+		I'm fortunate to call Tacoma, Washington my home. I've been working remotely here since summer
+		2021.
+	</MapSection>
+</BaseLayout>

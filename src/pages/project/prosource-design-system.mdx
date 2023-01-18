@@ -1,0 +1,153 @@
+---
+layout: ../../layouts/PostLayout.astro
+title: Mettle — ProSource Design System
+description: A design system for all digital experiences at ProSource. Built upon the foundation of Jordan Hughes' Untitled UI kit.
+roles:
+  - Product Designer
+  - Design Engineer
+  - Front-End Developer
+published: 2022-06-15
+modified: 2022-09-10
+image:
+  src: "https://cdn.dribbble.com/users/3271731/screenshots/20304251/media/191436d896cb9bbba9310da410db625b.png?compress=1&resize=1600x1200&vertical=top"
+  alt: A high-fidelity mockup of the ProSource website homepage on a laptop.
+tools:
+  - Figma
+  - Tailwind CSS
+  - AstroJS
+tags:
+  - design system
+  - visual design
+  - content strategy
+  - brand strategy
+duration:
+  from: May 2021
+  to: Present
+caseStudy: false
+---
+
+## Overview
+
+Mettle is a design system conceived to simplify the ideation and development cycles for ProSource's web projects. The name Mettle was chosen affectionately for its double entendre: the name sounds like the work "metal," which many technology products are created from; and, it also signifies the plucky spirit embodied by our company's small but effective team.
+
+The design system is not as comprehensive like others for large, enterprise companies. Instead, it provides a solid core upon which all designs, layouts, and variants are built upon.
+
+## Goals
+
+While it may seem perplexing for such a small company to adopt a project like this, I had a few goals in mind when I began:
+
+- Create a cohesive visual language across ProSource's surfaces (at the time of writing, this is 5 websites) and a handful of email templates.
+- Simplify front-end development for me by drawing from a unified source of truth.
+- Deliver a consistent and high-quality experience for end users.
+
+## Process
+
+Because I am a design and development team of one, I opted for a base UI kit to give me a solid framework and expedite the development process. Based on the amount of recommendations, I used Jordan Hughes' [Untitled UI Figma kit](https://www.untitledui.com/) as the starting point for Mettle.
+
+### Typography
+
+I used the type scale built into Untitled UI. It is nearly identical to the type scale used in the popular CSS framework, [Tailwind CSS](https://tailwindcss.com/docs/font-size). This reduced the cognitive load moving from design to development and kicked off the project with a shared starting point.
+
+### Spacing
+
+Spaces were based on the CSS unit, _rems_. And, as is commmon with many designs, I used a multiplier based on 8px (1rem = 16px, or 2 × 8px). Again, Untitled UI mirrored the base setup of Tailwind CSS in this way, too, which allowed me to quickly implement this design system.
+
+### Colors
+
+The color scales are tokens ranging from a 50–900. Generally, the base color would be assigned the token `500` with shades incrementing up and tints decrementing down from this midpoint. The only exception to this rule of thumb was actually our primary color, which is `indigo.600`. In addition to our primary color scale, I used a slate gray scale, two secondaries, and three scales for success, error, and warning UI elements.
+
+Taking it a step further, I created a few choice gradients from the gray and primary (indigo) color scales. I also created a few guidelines for using the gray and primary colors as background and text, ensuring a minimum of WCAG 2.0 AA contrast.
+
+## Front-End Development
+
+Translating the design system in Figma into a smooth developer experience was relatively easy. Using Tailwind CSS, I created a base theme configuration that I can import into any project. Both the web framework and email framework I use support Tailwind CSS out of the box, so I only needed one configuration for both environments.
+
+### Email templates using Maizzle
+
+I use [Maizzle](https://maizzle.com/) to develop email templates. As mentioned, this allows me to use the same Tailwind configuration that I use for websites. The build script for our email templates inlines all of the custom styles so that they render properly in various email clients, like Outlook and Gmail.
+
+### Component library in Astro
+
+[Astro](https://astro.build/) is a next-gen web framework using island architecture to deliver top-notch DX without sacrificing blazing fast speed. All of the websites I develop for ProSource use Astro. Building a collection of tooling configurations, icons, and components was relatively easy. In fact, I based most of the architecture on Astro's own [Site Kit repository](https://github.com/withastro/site-kit).
+
+## Experiments
+
+As the design system and front-end library matures, I am simplifying the amount of repetition in the Figma file and GitHub repository. In Figma, I use variant properties to streamline properties and states, like size, color, and hover.
+
+In the library, I am testing a package called [Class Variance Authority](https://github.com/joe-bell/cva) to streamline the logic between properties and states.
+
+Here's a very early example for a Button using CVA, Tailwind CSS, and Astro:
+
+```astro
+---
+import { cva, type VariantProps } from "class-variance-authority"
+
+const button = cva(
+	{/* Base button styles */}
+	"transition-colors duration-150 ease-in-out w-full text-center sm:w-auto whitespace-nowrap",
+	{
+		{/* Styles for button variants */}
+		variants: {
+			{/* Primary/secondary button types (colors) */}
+			type: {
+				primary:
+					"bg-indigo-600 hover:bg-indigo-700 active:bg-indigo-700 text-white border border-indigo-600 hover:border-indigo-700 active:border-indigo-700 outline-none ring-0 focus:ring-4 focus:ring-indigo-100",
+				secondary:
+					"bg-white hover:bg-gray-50 active:bg-gray-50 text-gray-700 border border-gray-300 outline-none ring-0 focus:ring-4 focus:ring-gray-100",
+			},
+			{/* The size of the button, based on the Figma design system */}
+			size: {
+				small: "py-2 px-[14px] text-sm font-bold shadow-sm rounded-lg",
+				medium: "px-4 py-[10px] text-sm font-bold shadow-sm rounded-lg",
+				large: "px-[18px] py-[9px] text-base font-medium shadow-sm rounded-lg",
+				xlarge: "px-5 py-3 text-base font-medium shadow-sm rounded-lg",
+				xxlarge: "px-7 py-[17px] text-base font-medium shadow-lg rounded-lg",
+			},
+			{/* Styles if an icon is used on the button */}
+			icon: {
+				yes: "inline-flex gap-2",
+				no: "inline-block",
+			},
+			{/* Styles when the button is in a disabled state */}
+			disabled: {
+				true: "cursor-not-allowed opacity-60",
+				false: "",
+			},
+		},
+		{/* Compound variants are a default state when using the button component */}
+		compoundVariants: [{ type: "primary", size: "medium", icon: "no", disabled: false }],
+	},
+)
+
+export interface Props extends VariantProps<typeof button>, astroHTML.JSX.HTMLAttributes {}
+
+const {
+	type = "primary",
+	size = "medium",
+	disabled = false,
+	class: className = "",
+	...attrs
+} = Astro.props
+
+{/* If the `href` passed to the button contains 'https:', it is considered an external link */}
+attrs.href && attrs.href.toString().includes("https:")
+	? (Astro.props.external = true)
+	: (Astro.props.external = false)
+
+{/* Slot management for icons before/after button text */}
+const icon = Astro.slots.has("before") || Astro.slots.has("after") ? "yes" : "no"
+---
+
+<a
+	href={attrs.href}
+	class={button({ type, size, icon, disabled })}
+	target={attrs.external ? "_blank" : ""}
+	rel={attrs.external ? "nofollow noopener noreferer" : ""}
+>
+	<slot name="before" />
+	<slot />
+	<slot name="after" />
+</a>
+```
+
+More work needs to be done to integrate CVA across the Mettle library, but the results so far have been promising.

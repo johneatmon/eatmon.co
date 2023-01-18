@@ -1,0 +1,16 @@
+---
+import PostHeader from "../components/PostHeader.astro"
+import BaseLayout from "../layouts/BaseLayout.astro"
+
+const { content } = Astro.props
+---
+
+<BaseLayout title={content.title} description={content.description}>
+	<article class="pt-24 lg:pt-32 mt">
+		<PostHeader {content} class="mb-16" />
+
+		<main class="prose prose-gray">
+			<slot />
+		</main>
+	</article>
+</BaseLayout>

@@ -1,0 +1,26 @@
+---
+import type { HTMLAttributes } from "astro/types"
+
+interface Props extends HTMLAttributes<"section"> {}
+
+const { ...attrs } = Astro.props as Props
+---
+
+<section aria-labelledby="#location" {...attrs}>
+	<h2 id="experience" class="font-medium mb-8">Location</h2>
+	<div class="flex flex-col md:flex-row gap-1 md:gap-9 mb-6">
+		<span class="text-gray-11 md:w-40 shrink-0 text-xs md:text-base">Tacoma, WA</span>
+		<div class="flex-grow">
+			<p class="mb-6">
+				<slot />
+			</p>
+			<iframe
+				class="w-full border-none aspect-square rounded-lg"
+				title="My Felt Map of Tacoma, WA"
+				src="https://felt.com/embed/map/My-home-9AgWsx7e5SjCLf9Cghe0RG8A?lat=47.287319&lon=-122.391078&zoom=11.400331391880338"
+				loading="lazy"
+			>
+			</iframe>
+		</div>
+	</div>
+</section>

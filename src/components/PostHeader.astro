@@ -1,0 +1,17 @@
+---
+import type { HTMLAttributes } from "astro/types"
+
+interface Props extends HTMLAttributes<"header"> {}
+
+const { ...attrs } = Astro.props as Props
+const { content } = Astro.props
+---
+
+<header {...attrs}>
+	<h1 class="text-4xl font-semibold mb-6">
+		{content.title}
+	</h1>
+	<p class="text-lg">
+		{content.description}
+	</p>
+</header>

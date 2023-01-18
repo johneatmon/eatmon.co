@@ -1,0 +1,83 @@
+---
+import { Image } from "@astrojs/image/components"
+import { Icon } from "astro-icon"
+import BaseLayout from "../layouts/BaseLayout.astro"
+
+const title = "Designer, Developer & Creative"
+const description =
+	"A wearer of many hats, I love solving business and user problems. I refine brand, service, and product strategy with a broad spectrum of skills."
+---
+
+<BaseLayout title={title} description={description}>
+	<section aria-labelledby="#about-me" class="pt-24 lg:pt-32 pb-9">
+		<div class="border border-gray-9 dark:border-gray-6 rounded-full w-fit mb-8 mx-auto">
+			<Image
+				src="https://imagedelivery.net/le40TwFDWUdIvXckEp8FBw/5966de80-8db7-449d-80f7-fd1260e76e00/public"
+				width={64}
+				aspectRatio={1}
+				alt="A selfie of me hiking on snowy Mt. Rainier. I am smiling while wearing my hat and sunglasses. Behind my head, in the distance, you can see the looming peak of Mt. Adams."
+				class="w-16 aspect-square object-cover rounded-full m-[2px]"
+				loading="eager"
+			/>
+		</div>
+		<h1 class="text-2xl max-w-xl mx-auto text-center">
+			I'm a <em class="font-serif" style="font-size: 105%;">multidiscipline</em> designer, developer,
+			and creative.
+		</h1>
+	</section>
+	<section aria-labelledby="#bio" class="pt-16">
+		<div class="flex flex-col md:flex-row gap-1 md:gap-9 mb-6">
+			<h2 id="bio" class="text-gray-11 md:w-40 shrink-0 text-xs md:text-base">About me</h2>
+			<p class="flex-grow">
+				I'm a wearer of many hats.<br /><br />
+				A generalist product designer, front-end developer, and digital Swiss Army knife, I love solving
+				user problems and meeting business objectives. I refine brand, service, and product strategy
+				with a broad spectrum of skills.
+				<br /><br />
+				My BA in English exposed me to the power of storytelling and the value of delivering cohesive
+				journeys for diverse audiences. My experience in IT has taught me the value of good CX and has
+				demonstrated that filling many roles allows me to solve a wide range of business or customer
+				challenges with various constraints. My passion for visual design and web technologies provides
+				the creativity and momentum that power my design solutions.
+				<br /><br />
+				For over 2 years, I've helped shape brand, design direction, and content in the tech industry.
+				For nearly 7 years, I've helped refine business processes, overcome workflow obstacles, and empathize
+				with unique customer challenges. As a lifelong learner and wearer of many hats, I'm both unafraid
+				and equipped to design, develop, strategize, market, write, research, test, edit, or deploy new
+				solutions.
+				<br /><br />
+				Outside of work, I hike around Washington regularly. One of my bucket list items is to summit
+				all of Washington's stratovolcanoes. So far, I've summited one, Mt. Adams. I also enjoy cooking,
+				making coffee in a French press or Chemex, and building LEGO sets.
+			</p>
+		</div>
+	</section>
+	<section aria-labelledby="#work" class="pt-16">
+		<div class="flex flex-col md:flex-row gap-1 md:gap-9 mb-6">
+			<h2 class="text-gray-11 md:w-40 shrink-0 text-xs md:text-base">Work</h2>
+			<div class="flex-grow">
+				<p class="mb-8">
+					2+ years of experience in design and development. Nearly 7 years of experience delivering
+					business value and improving customer experience in the tech industry.
+				</p>
+				<a href="/work/prosource" class="block p-2 -m-2 relative group">
+					<div
+						aria-hidden="true"
+						class="absolute isolate inset-0 bg-gray-2 rounded-lg opacity-0 group-hover:opacity-100 scale-90 group-hover:scale-100 transition-all duration-300 ease-in-out"
+					>
+					</div>
+					<div class="flex gap-x-4 w-full relative">
+						<Icon
+							name="prosource"
+							class="w-12 aspect-square object-contain text-indigo-600 group-hover:text-white transition-colors duration-300 ease-in-out"
+						/>
+						<div>
+							<h3>Intern &rarr; IT Coordinator &rarr; Product Designer</h3>
+							<p class="text-gray-11">ProSource &middot; Dec 2014&ndash;Present</p>
+						</div>
+					</div>
+				</a>
+			</div>
+		</div>
+	</section>
+</BaseLayout>

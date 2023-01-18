@@ -1,0 +1,40 @@
+---
+import type { HTMLAttributes } from "astro/types"
+import ProjectCard from "./ProjectCard.astro"
+
+interface Props extends HTMLAttributes<"section"> {}
+
+const projects = await Astro.glob("../**/project/*.mdx").then((res) =>
+	res.sort(
+		(a, b) =>
+			new Date(b.frontmatter.published).getDate() - new Date(a.frontmatter.published).getDate(),
+	),
+)
+
+const { ...attrs } = Astro.props as Props
+---
+
+<section aria-labelledby={Astro.slots.has("default") ? "#selected-work" : ""} {...attrs}>
+	{
+		Astro.slots.has("default") && (
+			<h2 id="selected-work" class="font-medium mb-8">
+				<slot />
+			</h2>
+		)
+	}
+	<ul role="list" class="flex flex-col gap-16">
+		{
+			projects.map(({ frontmatter, url }) => (
+				<ProjectCard
+					title={frontmatter.title}
+					description={frontmatter.description}
+					duration={`${frontmatter.duration.from}&ndash;${frontmatter.duration.to}`}
+					image={{ src: frontmatter.image.src, alt: frontmatter.image.alt }}
+					url={url}
+					caseStudy={frontmatter.caseStudy}
+					class="flex flex-col md:flex-row gap-1 md:gap-9"
+				/>
+			))
+		}
+	</ul>
+</section>
