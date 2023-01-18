@@ -3,7 +3,7 @@ const defaultTheme = require("tailwindcss/defaultTheme")
 /** @type {import('tailwindcss').Config} */
 module.exports = {
 	content: ["./src/**/*.{astro,html,js,jsx,md,mdx,svelte,ts,tsx,vue}"],
-	darkMode: "class",
+	darkMode: "media",
 	future: {
 		hoverOnlyWhenSupported: true,
 	},
@@ -12,6 +12,7 @@ module.exports = {
 			fontFamily: {
 				display: ["Hatton", ...defaultTheme.fontFamily.sans],
 				sans: ["Söhne", ...defaultTheme.fontFamily.sans],
+				serif: ["Nuances\\ Normal", ...defaultTheme.fontFamily.serif],
 			},
 			lineHeight: {
 				tighter: "1.1",
