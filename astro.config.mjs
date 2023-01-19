@@ -2,6 +2,7 @@ import { defineConfig } from "astro/config"
 
 import image from "@astrojs/image"
 import mdx from "@astrojs/mdx"
+import netlify from "@astrojs/netlify/functions"
 import react from "@astrojs/react"
 import tailwind from "@astrojs/tailwind"
 
@@ -21,4 +22,6 @@ export default defineConfig({
 			noExternal: ["smartypants"],
 		},
 	},
+	output: "server",
+	adapter: netlify(),
 })
