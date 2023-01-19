@@ -1,3 +1,6 @@
+[functions]
+	external_node_modules = ["astro"]
+
 [[redirects]]
 	from = "https://eatmon.netlify.app/*"
 	to = "https://eatmon.co/:splat"
