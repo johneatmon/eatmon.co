@@ -1,6 +1,5 @@
 ---
 import type { HTMLAttributes } from "astro/types"
-import Button from "../components/Button"
 import { SOCIALS } from "../data/config"
 
 const cv = SOCIALS.filter((x) => x.label === "ReadCV").map(({ href }) => href)
@@ -67,6 +66,7 @@ const { ...attrs } = Astro.props as Props
 		</div>
 	</div>
 	<div class="text-center">
-		<Button href={cv} client:idle>Read my résumé</Button>
+		<a href={cv.toString()}>Read my résumé</a>
+		<!-- <Button href={cv} client:idle>Read my résumé</Button> -->
 	</div>
 </section>
