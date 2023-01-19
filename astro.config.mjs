@@ -8,14 +8,7 @@ import tailwind from "@astrojs/tailwind"
 
 // https://astro.build/config
 export default defineConfig({
-	integrations: [
-		mdx(),
-		react(),
-		tailwind(),
-		image({
-			serviceEntryPoint: "@astrojs/image/sharp",
-		}),
-	],
+	integrations: [mdx(), react(), tailwind(), image()],
 	site: "https://eatmon.co",
 	vite: {
 		ssr: {
