@@ -1,4 +1,5 @@
 ---
+import LinkPreview from "../components/Glimpse"
 import PostHeader from "../components/PostHeader.astro"
 import BaseLayout from "../layouts/BaseLayout.astro"
 
@@ -13,4 +14,5 @@ const { content } = Astro.props
 			<slot />
 		</main>
 	</article>
+	<LinkPreview client:idle />
 </BaseLayout>
