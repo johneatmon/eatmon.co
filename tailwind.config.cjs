@@ -9,10 +9,24 @@ module.exports = {
 	},
 	theme: {
 		extend: {
+			animation: {
+				comeInOut: "comeInOut 700ms forwards",
+				spinSparkles: "spin 1000ms linear",
+			},
 			fontFamily: {
 				display: ["Hatton", ...defaultTheme.fontFamily.sans],
 				sans: ["Söhne", ...defaultTheme.fontFamily.sans],
 				serif: ["Nuances", ...defaultTheme.fontFamily.serif],
+			},
+			keyframes: {
+				comeInOut: {
+					"0%, 100%": { transform: "scale(0)" },
+					"50%": { transform: "scale(1)" },
+				},
+				spin: {
+					"0%": { transform: "rotate(0deg)" },
+					"100%": { transform: "rotate(180deg)" },
+				},
 			},
 			lineHeight: {
 				tighter: "1.1",

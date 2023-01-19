@@ -1,6 +1,9 @@
 ---
 import { Image } from "@astrojs/image/components"
 import { Icon } from "astro-icon"
+import { smartypants } from "smartypants"
+import Sparkles from "../components/Sparkles"
+import { about, tools, work } from "../data/about"
 import BaseLayout from "../layouts/BaseLayout.astro"
 
 const title = "Designer, Developer & Creative"
@@ -21,62 +24,61 @@ const description =
 			/>
 		</div>
 		<h1 class="text-2xl max-w-xl mx-auto text-center">
-			I'm a <em class="font-serif" style="font-size: 105%;">multidiscipline</em> designer, developer,
-			and creative.
+			I’m a <Sparkles client:only>
+				<em class="font-serif">multidiscipline</em>
+			</Sparkles> designer, developer, and creative.
 		</h1>
 	</section>
 	<section aria-labelledby="#bio" class="pt-16">
 		<div class="flex flex-col md:flex-row gap-1 md:gap-9 mb-6">
 			<h2 id="bio" class="text-gray-11 md:w-40 shrink-0 text-xs md:text-base">About me</h2>
-			<p class="flex-grow">
-				I'm a wearer of many hats.<br /><br />
-				A generalist product designer, front-end developer, and digital Swiss Army knife, I love solving
-				user problems and meeting business objectives. I refine brand, service, and product strategy
-				with a broad spectrum of skills.
-				<br /><br />
-				My BA in English exposed me to the power of storytelling and the value of delivering cohesive
-				journeys for diverse audiences. My experience in IT has taught me the value of good CX and has
-				demonstrated that filling many roles allows me to solve a wide range of business or customer
-				challenges with various constraints. My passion for visual design and web technologies provides
-				the creativity and momentum that power my design solutions.
-				<br /><br />
-				For over 2 years, I've helped shape brand, design direction, and content in the tech industry.
-				For nearly 7 years, I've helped refine business processes, overcome workflow obstacles, and empathize
-				with unique customer challenges. As a lifelong learner and wearer of many hats, I'm both unafraid
-				and equipped to design, develop, strategize, market, write, research, test, edit, or deploy new
-				solutions.
-				<br /><br />
-				Outside of work, I hike around Washington regularly. One of my bucket list items is to summit
-				all of Washington's stratovolcanoes. So far, I've summited one, Mt. Adams. I also enjoy cooking,
-				making coffee in a French press or Chemex, and building LEGO sets.
-			</p>
+			<p class="flex-grow" set:html={smartypants(about, 1)} />
 		</div>
 	</section>
 	<section aria-labelledby="#work" class="pt-16">
 		<div class="flex flex-col md:flex-row gap-1 md:gap-9 mb-6">
-			<h2 class="text-gray-11 md:w-40 shrink-0 text-xs md:text-base">Work</h2>
+			<h2 id="work" class="text-gray-11 md:w-40 shrink-0 text-xs md:text-base">Work</h2>
 			<div class="flex-grow">
-				<p class="mb-8">
-					2+ years of experience in design and development. Nearly 7 years of experience delivering
-					business value and improving customer experience in the tech industry.
-				</p>
-				<a href="/work/prosource" class="block p-2 -m-2 relative group">
+				<p class="mb-8" set:html={smartypants(work, 1)} />
+				<a href="/work/prosource" class="inline-block p-2 -m-2 relative group">
 					<div
 						aria-hidden="true"
 						class="absolute isolate inset-0 bg-gray-2 rounded-lg opacity-0 group-hover:opacity-100 scale-90 group-hover:scale-100 transition-all duration-300 ease-in-out"
 					>
 					</div>
 					<div class="flex gap-x-4 w-full relative">
-						<Icon
-							name="prosource"
-							class="w-12 aspect-square object-contain text-indigo-600 group-hover:text-white transition-colors duration-300 ease-in-out"
-						/>
+						<Icon name="prosource" class="w-12 aspect-square object-contain text-indigo-600" />
 						<div>
 							<h3>Intern &rarr; IT Coordinator &rarr; Product Designer</h3>
 							<p class="text-gray-11">ProSource &middot; Dec 2014&ndash;Present</p>
 						</div>
 					</div>
 				</a>
+			</div>
+		</div>
+	</section>
+	<section aria-labelledby="#tools" class="pt-16">
+		<div class="flex flex-col md:flex-row gap-2 md:gap-9 mb-6">
+			<h2 id="tools" class="text-gray-11 md:w-40 shrink-0 text-xs md:text-base">Favorite tools</h2>
+			<div class="flex-grow">
+				<ul role="list" class="grid gap-8 grid-cols-2 md:grid-cols-3">
+					{
+						tools.map(({ label, href, icon }) => (
+							<li>
+								<a href={href} class="inline-block p-2 -m-2 relative group">
+									<div
+										aria-hidden="true"
+										class="absolute isolate inset-0 bg-gray-2 rounded-lg opacity-0 group-hover:opacity-100 scale-90 group-hover:scale-100 transition-all duration-300 ease-in-out"
+									/>
+									<div class="flex items-center gap-4 relative">
+										<Icon name={icon} class="w-6 h-6 aspect-square" title={`${label} icon`} />
+										<div class="flex items-center gap-2">{label}</div>
+									</div>
+								</a>
+							</li>
+						))
+					}
+				</ul>
 			</div>
 		</div>
 	</section>
