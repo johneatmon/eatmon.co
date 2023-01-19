@@ -1,5 +1,5 @@
 [functions]
-	external_node_modules = ["astro"]
+	external_node_modules = ["astro", "svgo"]
 
 [[redirects]]
 	from = "https://eatmon.netlify.app/*"
