@@ -5,7 +5,7 @@
 	src: url("/fonts/soehne/woff2/soehne-400.woff2") format("woff2");
 	font-weight: 400;
 	font-style: normal;
-	font-display: swap;
+	font-display: auto;
 	text-rendering: auto;
 	font-feature-settings: "liga" on, "kern" on, "calt" on;
 }
@@ -15,7 +15,7 @@
 	src: url("/fonts/soehne/woff2/soehne-400-kursiv.woff2") format("woff2");
 	font-weight: 400;
 	font-style: italic;
-	font-display: swap;
+	font-display: auto;
 	text-rendering: auto;
 	font-feature-settings: "liga" on, "kern" on, "calt" on;
 }
@@ -25,7 +25,7 @@
 	src: url("/fonts/soehne/woff2/soehne-500.woff2") format("woff2");
 	font-weight: 500;
 	font-style: normal;
-	font-display: swap;
+	font-display: auto;
 	text-rendering: auto;
 	font-feature-settings: "liga" on, "kern" on, "calt" on;
 }
@@ -35,7 +35,7 @@
 	src: url("/fonts/soehne/woff2/soehne-500-kursiv.woff2") format("woff2");
 	font-weight: 500;
 	font-style: italic;
-	font-display: swap;
+	font-display: auto;
 	text-rendering: auto;
 	font-feature-settings: "liga" on, "kern" on, "calt" on;
 }
@@ -45,7 +45,7 @@
 	src: url("/fonts/soehne/woff2/soehne-700.woff2") format("woff2");
 	font-weight: 700;
 	font-style: normal;
-	font-display: swap;
+	font-display: auto;
 	text-rendering: auto;
 	font-feature-settings: "liga" on, "kern" on, "calt" on;
 }
@@ -55,7 +55,7 @@
 	src: url("/fonts/soehne/woff2/soehne-700-kursiv.woff2") format("woff2");
 	font-weight: 700;
 	font-style: italic;
-	font-display: swap;
+	font-display: auto;
 	text-rendering: auto;
 	font-feature-settings: "liga" on, "kern" on, "calt" on;
 }
@@ -65,7 +65,7 @@
 	src: url("/fonts/soehne/woff2/soehne-800.woff2") format("woff2");
 	font-weight: 800;
 	font-style: normal;
-	font-display: swap;
+	font-display: auto;
 	text-rendering: auto;
 	font-feature-settings: "liga" on, "kern" on, "calt" on;
 }
@@ -75,7 +75,7 @@
 	src: url("/fonts/soehne/woff2/soehne-800-kursiv.woff2") format("woff2");
 	font-weight: 800;
 	font-style: italic;
-	font-display: swap;
+	font-display: auto;
 	text-rendering: auto;
 	font-feature-settings: "liga" on, "kern" on, "calt" on;
 }
@@ -87,7 +87,7 @@
 	src: url("/fonts/hatton/woff2/hatton-500.woff2") format("woff2");
 	font-weight: 500;
 	font-style: normal;
-	font-display: swap;
+	font-display: auto;
 	text-rendering: auto;
 	/* font-feature-settings: "liga" on, "kern" on, "calt" on; */
 }
@@ -97,7 +97,7 @@
 	src: url("/fonts/hatton/woff2/hatton-700.woff2") format("woff2");
 	font-weight: 700;
 	font-style: normal;
-	font-display: swap;
+	font-display: auto;
 	text-rendering: auto;
 	/* font-feature-settings: "liga" on, "kern" on, "calt" on; */
 }
