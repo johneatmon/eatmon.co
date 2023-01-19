@@ -101,3 +101,23 @@
 	text-rendering: auto;
 	/* font-feature-settings: "liga" on, "kern" on, "calt" on; */
 }
+
+/* Nuances */
+
+@font-face {
+	font-family: "Nuances";
+	src: url("/fonts/nuances/woff2/nuances-400.woff2") format("woff2");
+	font-weight: 400;
+	font-style: normal;
+	font-display: auto;
+	text-rendering: auto;
+}
+
+@font-face {
+	font-family: "Nuances";
+	src: url("/fonts/nuances/woff2/nuances-400-italic.woff2") format("woff2");
+	font-weight: 400;
+	font-style: italic;
+	font-display: auto;
+	text-rendering: auto;
+}

@@ -12,7 +12,7 @@ module.exports = {
 			fontFamily: {
 				display: ["Hatton", ...defaultTheme.fontFamily.sans],
 				sans: ["Söhne", ...defaultTheme.fontFamily.sans],
-				serif: ["Nuances\\ Normal", ...defaultTheme.fontFamily.serif],
+				serif: ["Nuances", ...defaultTheme.fontFamily.serif],
 			},
 			lineHeight: {
 				tighter: "1.1",
