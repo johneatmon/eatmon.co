@@ -3,8 +3,10 @@ lockfileVersion: 5.4
 specifiers:
   '@astrojs/image': ^0.12.1
   '@astrojs/mdx': ^0.14.0
+  '@astrojs/netlify': ^1.3.0
   '@astrojs/react': ^1.2.2
   '@astrojs/tailwind': ^2.1.3
+  '@beskar-labs/glimpse': ^2.0.8
   '@haydenbleasel/glimpse': ^2.0.2
   '@netlify/functions': ^1.3.0
   '@radix-ui/colors': ^0.1.8
@@ -38,8 +40,10 @@ specifiers:
 dependencies:
   '@astrojs/image': 0.12.1_sharp@0.31.3
   '@astrojs/mdx': 0.14.0
+  '@astrojs/netlify': 1.3.0
   '@astrojs/react': 1.2.2_ie75ejlwqy5zh3tldgt7pftwcu
   '@astrojs/tailwind': 2.1.3_tailwindcss@3.2.4
+  '@beskar-labs/glimpse': 2.0.8_biqbaboplfbrettd7655fr4n2y
   '@haydenbleasel/glimpse': 2.0.2_biqbaboplfbrettd7655fr4n2y
   '@netlify/functions': 1.4.0
   '@radix-ui/colors': 0.1.8
@@ -195,6 +199,13 @@ packages:
       micromark-util-types: 1.0.2
       uvu: 0.5.6
       vfile-message: 3.1.3
+    dev: false
+
+  /@astrojs/netlify/1.3.0:
+    resolution: {integrity: sha512-bSKRXqhrDVIEq+aF0bhgKYQb11rMKL/G0U2/dKauxrxYT9EardFZAPFRkFOlJUwMxBZ3KbdnnUebfh1m0PauQQ==}
+    dependencies:
+      '@astrojs/webapi': 1.1.1
+      esbuild: 0.15.18
     dev: false
 
   /@astrojs/prism/1.0.2:
@@ -499,6 +510,24 @@ packages:
       '@babel/helper-string-parser': 7.19.4
       '@babel/helper-validator-identifier': 7.19.1
       to-fast-properties: 2.0.0
+    dev: false
+
+  /@beskar-labs/glimpse/2.0.8_biqbaboplfbrettd7655fr4n2y:
+    resolution: {integrity: sha512-OBlckewlZ12d+ee/urj0yvGhwbJbtG4Ff9GHatnHV3/dNS4yJEDUO9ELPg/2QFFkyTudES26xZB3Ez+j4259Cw==}
+    peerDependencies:
+      react: ^18.2.0
+      react-dom: ^18.2.0
+    dependencies:
+      '@radix-ui/react-portal': 1.0.1_biqbaboplfbrettd7655fr4n2y
+      '@react-hookz/web': 22.0.0_biqbaboplfbrettd7655fr4n2y
+      node-html-parser: 6.1.4
+      react: 18.2.0
+      react-dom: 18.2.0_react@18.2.0
+      react-use: 17.4.0_biqbaboplfbrettd7655fr4n2y
+      zustand: 4.3.2_react@18.2.0
+    transitivePeerDependencies:
+      - immer
+      - js-cookie
     dev: false
 
   /@csstools/postcss-cascade-layers/1.1.1_postcss@8.4.21:
@@ -992,6 +1021,21 @@ packages:
 
   /@react-hookz/web/20.1.0_biqbaboplfbrettd7655fr4n2y:
     resolution: {integrity: sha512-60H9KAQ8QF4lEEY2VujTaDTEb5tzHFVQ+pq4kV5zPHMzDVoaBQbiWcZrCKpFaVHzBP/nPvDEfXICZzga0aIIzg==}
+    peerDependencies:
+      js-cookie: ^3.0.1
+      react: ^16.8 || ^17 || ^18
+      react-dom: ^16.8 || ^17 || ^18
+    peerDependenciesMeta:
+      js-cookie:
+        optional: true
+    dependencies:
+      '@react-hookz/deep-equal': 1.0.4
+      react: 18.2.0
+      react-dom: 18.2.0_react@18.2.0
+    dev: false
+
+  /@react-hookz/web/22.0.0_biqbaboplfbrettd7655fr4n2y:
+    resolution: {integrity: sha512-jl4JgUXaiSvvDVQD2z/rq2/RaykjjLrAZxHOEQj2H38j4UFWIVhv5oKUH8yrKF4wX6tMX9gdrj62f9yGq/nSaQ==}
     peerDependencies:
       js-cookie: ^3.0.1
       react: ^16.8 || ^17 || ^18
@@ -6589,6 +6633,22 @@ packages:
 
   /zustand/4.2.0_react@18.2.0:
     resolution: {integrity: sha512-eNwaDoD2FYVnMgtNxiMUhTJO780wonZUzJrPQTLYI0erSIMZF8cniWFW22kGQUECd8rdHRJ/ZJL2XO54c9Ttuw==}
+    engines: {node: '>=12.7.0'}
+    peerDependencies:
+      immer: '>=9.0'
+      react: '>=16.8'
+    peerDependenciesMeta:
+      immer:
+        optional: true
+      react:
+        optional: true
+    dependencies:
+      react: 18.2.0
+      use-sync-external-store: 1.2.0_react@18.2.0
+    dev: false
+
+  /zustand/4.3.2_react@18.2.0:
+    resolution: {integrity: sha512-rd4haDmlwMTVWVqwvgy00ny8rtti/klRoZjFbL/MAcDnmD5qSw/RZc+Vddstdv90M5Lv6RPgWvm1Hivyn0QgJw==}
     engines: {node: '>=12.7.0'}
     peerDependencies:
       immer: '>=9.0'
