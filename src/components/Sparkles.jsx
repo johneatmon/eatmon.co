@@ -4,14 +4,6 @@ import React from "react"
 
 const DEFAULT_COLOR = "#FFC700"
 
-const usePrefersReducedMotion = () => {
-	const QUERY = "(prefers-reduced-motion: no-preference)"
-	const mediaQueryList = window.matchMedia(QUERY)
-	const prefersReducedMotion = !mediaQueryList.matches
-
-	return prefersReducedMotion
-}
-
 const random = (min, max) => Math.floor(Math.random() * (max - min)) + min
 
 const useRandomInterval = (callback, minDelay, maxDelay) => {
@@ -70,7 +62,7 @@ const Sparkles = ({ color = DEFAULT_COLOR, children, ...delegated }) => {
 	const [sparkles, setSparkles] = React.useState(() => {
 		return range(3).map(() => generateSparkle(color))
 	})
-	const prefersReducedMotion = usePrefersReducedMotion()
+
 	useRandomInterval(
 		() => {
 			const sparkle = generateSparkle(color)
@@ -82,8 +74,8 @@ const Sparkles = ({ color = DEFAULT_COLOR, children, ...delegated }) => {
 			nextSparkles.push(sparkle)
 			setSparkles(nextSparkles)
 		},
-		prefersReducedMotion ? null : 50,
-		prefersReducedMotion ? null : 450,
+		50,
+		450,
 	)
 	return (
 		<span {...delegated} className="inline-block relative">
