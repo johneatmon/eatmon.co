@@ -14,11 +14,12 @@ export const post: APIRoute = async ({ request }): Promise<Response> => {
 		return new Response(JSON.stringify({}), { status: 400, headers })
 	}
 
-	try {
-		const data = await glimpse(url)
-		console.log(data)
+	const data = await glimpse(url)
+	console.log(data)
+
+	if (!data) {
 		return new Response(JSON.stringify(data), { status: 200, headers })
-	} catch {
+	} else {
 		return new Response(JSON.stringify({}), { status: 500, headers })
 	}
 }
