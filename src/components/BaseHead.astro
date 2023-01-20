@@ -102,6 +102,6 @@ const title = [Astro.props.title, SITE.name].filter(Boolean).join(" · ")
 {prev && <link rel="prev" aria-label="Previous Page" href={new URL(prev, Astro.site).href} />}
 {next && <link rel="next" aria-label="Next Page" href={new URL(next, Astro.site).href} />}
 
-{import.meta.env.PROD && (
+<!-- {import.meta.env.PROD && (
 	<script defer data-domain="eatmon.co" src="/js/script.js"></script>
-)}
+)} -->
