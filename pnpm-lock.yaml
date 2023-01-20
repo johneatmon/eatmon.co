@@ -5,7 +5,7 @@ specifiers:
   '@astrojs/mdx': ^0.14.0
   '@astrojs/react': ^1.2.2
   '@astrojs/tailwind': ^2.1.3
-  '@astrojs/vercel': ^2.3.6
+  '@astrojs/vercel': 3.0.0-beta.1
   '@beskar-labs/glimpse': ^2.0.8
   '@haydenbleasel/glimpse': ^2.0.2
   '@radix-ui/colors': ^0.1.8
@@ -14,7 +14,7 @@ specifiers:
   '@types/react-dom': ^18.0.10
   '@typescript-eslint/eslint-plugin': ^5.48.0
   '@typescript-eslint/parser': ^5.48.0
-  astro: ^1.9.0
+  astro: 1.9.2
   astro-icon: ^0.8.0
   eslint: ^8.31.0
   eslint-plugin-astro: ^0.21.1
@@ -40,12 +40,12 @@ dependencies:
   '@astrojs/mdx': 0.14.0
   '@astrojs/react': 1.2.2_ie75ejlwqy5zh3tldgt7pftwcu
   '@astrojs/tailwind': 2.1.3_tailwindcss@3.2.4
-  '@astrojs/vercel': 2.3.6
+  '@astrojs/vercel': 3.0.0-beta.1_astro@1.9.2
   '@beskar-labs/glimpse': 2.0.8_biqbaboplfbrettd7655fr4n2y
   '@haydenbleasel/glimpse': 2.0.2_biqbaboplfbrettd7655fr4n2y
   '@radix-ui/colors': 0.1.8
   '@tailwindcss/typography': 0.5.8_tailwindcss@3.2.4
-  astro: 1.9.1
+  astro: 1.9.2
   astro-icon: 0.8.0
   framer-motion: 8.2.4_biqbaboplfbrettd7655fr4n2y
   postcss: 8.4.21
@@ -249,11 +249,14 @@ packages:
       - supports-color
     dev: false
 
-  /@astrojs/vercel/2.3.6:
-    resolution: {integrity: sha512-OAfu1d6pgzhKIi48rAKemfhNO6s8ZF/38zSRqGZwl9HnY5qfacccqWmoVeUJ9lSqB/rljxA5Xzh3s+jMqyd9mA==}
+  /@astrojs/vercel/3.0.0-beta.1_astro@1.9.2:
+    resolution: {integrity: sha512-y/Gvno2PYs9BtmMxtzDTPDTHrAnYLVTkVU25t38wxHltxWbZWGtP/12kbXeo03dxJ04dhvIRQpIg/V5vbFk6IA==}
+    peerDependencies:
+      astro: ^2.0.0-beta.2
     dependencies:
-      '@astrojs/webapi': 1.1.1
+      '@astrojs/webapi': 2.0.0-beta.0
       '@vercel/nft': 0.22.6
+      astro: 1.9.2
       fast-glob: 3.2.12
       set-cookie-parser: 2.5.1
     transitivePeerDependencies:
@@ -266,6 +269,12 @@ packages:
     dependencies:
       global-agent: 3.0.0
       node-fetch: 3.3.0
+    dev: false
+
+  /@astrojs/webapi/2.0.0-beta.0:
+    resolution: {integrity: sha512-f9ukaJK44/XFegOBrGVXt1lHz1ejoa8cWXtfZ5ZdZqt4PabhinOkmFTdmKQXtsUhc4EbUU1di38XqgY8zg/YHg==}
+    dependencies:
+      undici: 5.15.1
     dev: false
 
   /@babel/code-frame/7.18.6:
@@ -1586,8 +1595,8 @@ packages:
       svgo: 2.8.0
     dev: false
 
-  /astro/1.9.1:
-    resolution: {integrity: sha512-aQ6rvAP4w4VCgipVYA/zPmnkuTbFrMZ/+x/sAv2W1uJHWU2iQmrVRrrjUFJl+i1TuYYlHAuC2vKK7aRyXCjD4A==}
+  /astro/1.9.2:
+    resolution: {integrity: sha512-L+Ma0eR0Aa6QZg7RF0lEs+106Ye1/zukvtq3KtsYIogAojltlwllwU9X5CwMBzFwA55NxpNp4gSRh5US/xb+8Q==}
     engines: {node: ^14.18.0 || >=16.12.0, npm: '>=6.14.0'}
     hasBin: true
     dependencies:
@@ -1789,6 +1798,13 @@ packages:
     dependencies:
       base64-js: 1.5.1
       ieee754: 1.2.1
+    dev: false
+
+  /busboy/1.6.0:
+    resolution: {integrity: sha512-8SFQbg/0hQ9xy3UNTB0YEnsNBbWfhf7RtnzpL7TkBiTBRfrQ9Fxcnz7VJsleJpyp6rVLvXiuORqjlHi5q+PYuA==}
+    engines: {node: '>=10.16.0'}
+    dependencies:
+      streamsearch: 1.1.0
     dev: false
 
   /call-bind/1.0.2:
@@ -5919,6 +5935,11 @@ packages:
       stacktrace-gps: 3.1.2
     dev: false
 
+  /streamsearch/1.1.0:
+    resolution: {integrity: sha512-Mcc5wHehp9aXz1ax6bZUyY5afg9u2rv5cqQI3mRrYkGC8rW2hM02jWuwjtL++LS5qinSyhj2QfLyNsuc+VsExg==}
+    engines: {node: '>=10.0.0'}
+    dev: false
+
   /string-width/4.2.3:
     resolution: {integrity: sha512-wKyQRQpjJ0sIp62ErSZdGsjMJWsap5oRNihHhu6G7JVO/9jIB6UyevL+tXuOqrng8j/cxKTWyWUwvSTriiZz/g==}
     engines: {node: '>=8'}
@@ -6250,6 +6271,13 @@ packages:
       has-symbols: 1.0.3
       which-boxed-primitive: 1.0.2
     dev: true
+
+  /undici/5.15.1:
+    resolution: {integrity: sha512-XLk8g0WAngdvFqTI+VKfBtM4YWXgdxkf1WezC771Es0Dd+Pm1KmNx8t93WTC+Hh9tnghmVxkclU1HN+j+CvIUA==}
+    engines: {node: '>=12.18'}
+    dependencies:
+      busboy: 1.6.0
+    dev: false
 
   /unherit/3.0.1:
     resolution: {integrity: sha512-akOOQ/Yln8a2sgcLj4U0Jmx0R5jpIg2IUyRrWOzmEbjBtGzBdHtSeFKgoEcoH4KYIG/Pb8GQ/BwtYm0GCq1Sqg==}
