@@ -62,7 +62,7 @@ const LinkPreview: FC = () => {
 			</p>
 			<p className="line-clamp-2 block text-sm leading-normal text-zinc-300">{data.description}</p>
 			<span className="flex flex-wrap items-center gap-1 text-gray-11">
-				<p className="line-clamp-1 block text-sm leading-normal">{data.url}</p>
+				<p className="line-clamp-1 block text-sm leading-normal">{data.url?.replace(/\/+$/, "")}</p>
 				<ArrowUpRight />
 			</span>
 		</Glimpse>
