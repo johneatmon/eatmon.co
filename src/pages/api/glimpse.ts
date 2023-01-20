@@ -5,7 +5,7 @@ const headers = {
 	"content-type": "application/json",
 }
 
-export const post: APIRoute = async function post({ request }): Promise<Response> {
+export const post: APIRoute = async ({ request }): Promise<Response> => {
 	const { url } = (await request.json()) as { url?: string }
 
 	console.log(url)
