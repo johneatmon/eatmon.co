@@ -2,9 +2,9 @@ import { defineConfig } from "astro/config"
 
 import image from "@astrojs/image"
 import mdx from "@astrojs/mdx"
-import netlify from "@astrojs/netlify/functions"
 import react from "@astrojs/react"
 import tailwind from "@astrojs/tailwind"
+import vercel from "@astrojs/vercel/serverless"
 
 // https://astro.build/config
 export default defineConfig({
@@ -16,5 +16,5 @@ export default defineConfig({
 		},
 	},
 	output: "server",
-	adapter: netlify(),
+	adapter: vercel(),
 })
