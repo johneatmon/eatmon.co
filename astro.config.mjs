@@ -6,13 +6,14 @@ import react from "@astrojs/react"
 import tailwind from "@astrojs/tailwind"
 import vercel from "@astrojs/vercel/serverless"
 
+import { remarkReadingTime } from "./remark-reading-time.mjs"
 import { remarkWidont } from "./remark-widont.mjs"
 
 // https://astro.build/config
 export default defineConfig({
 	integrations: [mdx(), react(), tailwind(), image()],
 	markdown: {
-		remarkPlugins: [remarkWidont],
+		remarkPlugins: [remarkWidont, remarkReadingTime],
 		extendDefaultPlugins: true,
 	},
 	site: "https://eatmon.co",
