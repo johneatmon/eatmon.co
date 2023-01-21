@@ -2,9 +2,10 @@
 import { Image } from "@astrojs/image/components"
 import { Icon } from "astro-icon"
 import { smartypants } from "smartypants"
-import Sparkles from "../components/Sparkles"
-import { about, tools, work } from "../data/about"
-import BaseLayout from "../layouts/BaseLayout.astro"
+import FancyButton from "../../components/FancyButton.astro"
+import Sparkles from "../../components/Sparkles"
+import { about, tools, work } from "../../data/about"
+import BaseLayout from "../../layouts/BaseLayout.astro"
 
 const title = "Designer, Developer & Creative"
 const description =
@@ -25,10 +26,10 @@ const description =
 			/>
 		</div>
 		<h1 class="text-2xl max-w-screen-sm mx-auto text-center">
-			I’m a <Sparkles client:idle>
-				<em class="font-serif font-semibold">multidiscipline</em>
+			<Sparkles client:idle>
+				<em class="font-serif font-semibold">Multidiscipline</em>
 			</Sparkles>
-			<noscript><em class="font-serif font-semibold">multidiscipline</em></noscript>
+			<noscript><em class="font-serif font-semibold">Multidiscipline</em></noscript>
 			designer, developer, and creative.
 		</h1>
 	</section>
@@ -61,7 +62,7 @@ const description =
 		</div>
 	</section>
 	<section aria-labelledby="#tools" class="pt-16">
-		<div class="flex flex-col md:flex-row gap-2 md:gap-9 mb-6">
+		<div class="flex flex-col md:flex-row gap-2 md:gap-9 mb-8">
 			<h2 id="tools" class="text-gray-11 md:w-40 shrink-0 text-xs md:text-base">Favorite tools</h2>
 			<div class="flex-grow">
 				<ul role="list" class="grid gap-8 grid-cols-2 md:grid-cols-3">
@@ -83,6 +84,9 @@ const description =
 					}
 				</ul>
 			</div>
+		</div>
+		<div class="text-center">
+			<FancyButton href="/tools">More tools I use</FancyButton>
 		</div>
 	</section>
 </BaseLayout>

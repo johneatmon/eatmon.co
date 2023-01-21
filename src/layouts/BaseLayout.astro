@@ -18,7 +18,9 @@ const { ...attrs } = Astro.props as Props
 	<body
 		class="text-gray-12 bg-[#09090b] antialiased h-full [&>footer]:sticky [&>footer]:top-[100vh] relative transition-colors duration-300 ease-in-out"
 	>
-		<Header class="bg-[#09090b]/90 fixed isolate z-50 top-0 backdrop-blur-sm w-full" />
+		<Header
+			class="bg-[#09090b]/80 fixed isolate z-50 top-0 backdrop-blur-[20px] backdrop-saturate-[180%] w-full"
+		/>
 		<main class="relative max-w-[700px] mx-auto px-4">
 			<slot />
 		</main>
