@@ -4,6 +4,7 @@ import PostHeader from "../components/PostHeader.astro"
 import BaseLayout from "../layouts/BaseLayout.astro"
 
 const { content } = Astro.props
+const { minutesRead } = Astro.props.frontmatter
 ---
 
 <BaseLayout title={content.title} description={content.description}>
@@ -14,5 +15,10 @@ const { content } = Astro.props
 			<slot />
 		</main>
 	</article>
+
+	<div
+		class="fixed bottom-4 right-4 bg-black/70 backdrop-blur-sm px-3 py-2 rounded-full shadow-lg text-xs leading-none"
+		set:text={minutesRead}
+	/>
 	<LinkPreview client:idle />
 </BaseLayout>
