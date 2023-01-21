@@ -21,6 +21,7 @@ specifiers:
   eslint-plugin-jsx-a11y: ^6.6.1
   eslint-plugin-prettier: ^4.2.1
   framer-motion: ^8.1.9
+  mdast-util-to-string: ^3.1.0
   npm-run-all: ^4.1.5
   postcss: ^8.4.20
   postcss-nesting: ^10.2.0
@@ -29,6 +30,7 @@ specifiers:
   prettier-plugin-astro: ^0.7.2
   react: ^18.2.0
   react-dom: ^18.2.0
+  reading-time: ^1.5.0
   smartypants: ^0.1.6
   tailwindcss: ^3.2.4
   tailwindcss-radix: ^2.6.2
@@ -49,11 +51,13 @@ dependencies:
   astro: 1.9.2
   astro-icon: 0.8.0
   framer-motion: 8.2.4_biqbaboplfbrettd7655fr4n2y
+  mdast-util-to-string: 3.1.0
   postcss: 8.4.21
   postcss-nesting: 10.2.0_postcss@8.4.21
   postcss-preset-env: 7.8.3_postcss@8.4.21
   react: 18.2.0
   react-dom: 18.2.0_react@18.2.0
+  reading-time: 1.5.0
   smartypants: 0.1.6
   tailwindcss: 3.2.4_postcss@8.4.21
   tailwindcss-radix: 2.6.2
@@ -5456,6 +5460,10 @@ packages:
     engines: {node: '>=8.10.0'}
     dependencies:
       picomatch: 2.3.1
+    dev: false
+
+  /reading-time/1.5.0:
+    resolution: {integrity: sha512-onYyVhBNr4CmAxFsKS7bz+uTLRakypIe4R+5A824vBSkQy/hB3fZepoVEf8OVAxzLvK+H/jm9TzpI3ETSm64Kg==}
     dev: false
 
   /recast/0.20.5:
