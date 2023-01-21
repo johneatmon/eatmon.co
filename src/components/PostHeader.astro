@@ -2,10 +2,11 @@
 import type { HTMLAttributes } from "astro/types"
 import { smartypants } from "smartypants"
 
-interface Props extends HTMLAttributes<"header"> {}
+interface Props extends HTMLAttributes<"header"> {
+	content: any
+}
 
-const { ...attrs } = Astro.props as Props
-const { content } = Astro.props
+const { content, ...attrs } = Astro.props as Props
 ---
 
 <header {...attrs}>
