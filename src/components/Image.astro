@@ -1,0 +1,30 @@
+---
+import { Image } from "@astrojs/image/components"
+import type { Props } from "@astrojs/image/components/Image.astro"
+import probe from "probe-image-size"
+
+let { src, draggable = "false", format = "png", loading = "lazy", ...attrs } = Astro.props as Props
+
+const isRemote = typeof src === "string" && src.startsWith("http")
+
+if (isRemote) {
+	const url = src
+	const { width, height, type } = await probe(url)
+
+	src = {
+		src: url,
+		width,
+		height,
+		format: type,
+	}
+}
+---
+
+<Image
+	{src}
+	draggable={draggable}
+	format={format}
+	loading={loading}
+	class:list={["object-cover", attrs.class]}
+	{...attrs}
+/>
