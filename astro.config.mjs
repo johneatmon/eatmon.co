@@ -1,6 +1,6 @@
 import { defineConfig } from "astro/config"
 
-// import image from "@astrojs/image"
+import image from "@astrojs/image"
 import mdx from "@astrojs/mdx"
 import react from "@astrojs/react"
 import tailwind from "@astrojs/tailwind"
@@ -11,7 +11,7 @@ import { remarkWidont } from "./remark-widont.mjs"
 
 // https://astro.build/config
 export default defineConfig({
-	integrations: [mdx(), react(), tailwind()],
+	integrations: [image(), mdx(), react(), tailwind()],
 	markdown: {
 		remarkPlugins: [remarkWidont, remarkReadingTime],
 		extendDefaultPlugins: true,
