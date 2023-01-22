@@ -54,7 +54,7 @@ const LinkPreview: FC = () => {
 				loading="eager"
 			/>
 			<p
-				className={`text-md mt-2 block font-medium leading-normal ${
+				className={`text-md mt-2 block font-semibold leading-normal ${
 					data.description ? "line-clamp-1" : "line-clamp-3"
 				}`}
 			>
