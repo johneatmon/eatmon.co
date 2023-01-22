@@ -2,7 +2,9 @@
 import type { HTMLAttributes } from "astro/types"
 import ProjectCard from "./ProjectCard.astro"
 
-interface Props extends HTMLAttributes<"section"> {}
+interface Props extends HTMLAttributes<"section"> {
+	featuredNumber?: number
+}
 
 const projects = await Astro.glob("../**/project/*.mdx").then((res) =>
 	res.sort(
@@ -11,7 +13,7 @@ const projects = await Astro.glob("../**/project/*.mdx").then((res) =>
 	),
 )
 
-const { ...attrs } = Astro.props as Props
+const { featuredNumber = projects.length, ...attrs } = Astro.props as Props
 ---
 
 <section aria-labelledby={Astro.slots.has("default") ? "#selected-work" : ""} {...attrs}>
@@ -24,17 +26,19 @@ const { ...attrs } = Astro.props as Props
 	}
 	<ul role="list" class="flex flex-col gap-16">
 		{
-			projects.map(({ frontmatter, url }) => (
-				<ProjectCard
-					title={frontmatter.title}
-					description={frontmatter.description}
-					duration={`${frontmatter.duration.from}&ndash;${frontmatter.duration.to}`}
-					image={{ src: frontmatter.image.src, alt: frontmatter.image.alt }}
-					url={url}
-					caseStudy={frontmatter.caseStudy}
-					class="flex flex-col md:flex-row gap-1 md:gap-9"
-				/>
-			))
+			projects
+				.slice(0, featuredNumber)
+				.map(({ frontmatter, url }) => (
+					<ProjectCard
+						title={frontmatter.title}
+						description={frontmatter.description}
+						duration={`${frontmatter.duration.from}&ndash;${frontmatter.duration.to}`}
+						image={{ src: frontmatter.image.src, alt: frontmatter.image.alt }}
+						url={url}
+						caseStudy={frontmatter.caseStudy}
+						class="flex flex-col md:flex-row gap-1 md:gap-9"
+					/>
+				))
 		}
 	</ul>
 </section>
