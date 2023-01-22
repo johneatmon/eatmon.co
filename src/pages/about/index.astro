@@ -1,10 +1,13 @@
 ---
-// import { Icon } from "astro-icon"
+import { Icon } from "astro-icon"
 import { smartypants } from "smartypants"
 import FancyButton from "../../components/FancyButton.astro"
 import Sparkles from "../../components/Sparkles"
-import { about,tools,work } from "../../data/about"
+import { about, work } from "../../data/about"
+import { TOOLS } from "../../data/config"
 import BaseLayout from "../../layouts/BaseLayout.astro"
+
+const tools = TOOLS.filter((x) => x.featured).sort((a, b) => a.name.localeCompare(b.name))
 
 const title = "Designer, Developer & Creative"
 const description =
@@ -65,7 +68,7 @@ const description =
 			<div class="flex-grow">
 				<ul role="list" class="grid gap-8 grid-cols-2 md:grid-cols-3">
 					{
-						tools.map(({ label, href, icon }) => (
+						tools.map(({ name, href, icon }) => (
 							<li>
 								<a href={href} class="inline-block p-2 -m-2 relative group">
 									<div
@@ -73,8 +76,8 @@ const description =
 										class="absolute isolate inset-0 bg-gray-2 rounded-lg opacity-0 group-hover:opacity-100 scale-90 group-hover:scale-100 transition-all duration-300 ease-in-out"
 									/>
 									<div class="flex items-center gap-4 relative">
-										<!-- <Icon name={icon} class="w-6 h-6 aspect-square" title={`${label} icon`} /> -->
-										<div class="flex items-center gap-2">{label}</div>
+										<Icon name={icon} class="w-6 h-6 aspect-square" title={`${name} icon`} />
+										<div class="flex items-center gap-2">{name}</div>
 									</div>
 								</a>
 							</li>
@@ -84,7 +87,7 @@ const description =
 			</div>
 		</div>
 		<div class="text-center">
-			<FancyButton href="/tools">More tools I use</FancyButton>
+			<FancyButton href="/about/tools">More tools I use</FancyButton>
 		</div>
 	</section>
 </BaseLayout>

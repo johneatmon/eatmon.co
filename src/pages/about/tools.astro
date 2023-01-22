@@ -1,0 +1,37 @@
+---
+import { Icon } from "astro-icon"
+import { TOOLS } from "../../data/config"
+import BaseLayout from "../../layouts/BaseLayout.astro"
+
+const title = "Tools I Use"
+const description =
+	"The many tools, products, and services I use on a regular basis, plus a few I'm actively learning."
+
+const categories = new Set()
+const category = TOOLS.map((tool) => categories.add(tool.category))
+---
+
+<BaseLayout title={title} description={description}>
+	<section aria-labelledby="#title" class="pt-24 lg:pt-32 pb-9">
+		<h1 id="title" class="text-2xl">The tools, products, and services I use</h1>
+	</section>
+	{
+		[...categories].map((category) => (
+			<section aria-labelledby={`#${category}`} class="pt-16 grid md:grid-cols-4 gap-2 md:gap-9">
+				<h2 id={`${category}`} class="text-gray-11 text-xs md:text-base">
+					{category}
+				</h2>
+				<ul role="list" class="col-span-3 grid gap-y-8 gap-x-2 md:gap-9 grid-cols-2 md:grid-cols-3">
+					{TOOLS.filter((x) => x.category === category).map(
+						({ name, href, icon, category, learning }) => (
+							<li class="flex gap-x-2">
+								{icon && <Icon name={icon} class="w-6 h-6 aspect-square" />}
+								{name}
+							</li>
+						),
+					)}
+				</ul>
+			</section>
+		))
+	}
+</BaseLayout>
