@@ -28,7 +28,6 @@
     "@radix-ui/colors": "^0.1.8",
     "@tailwindcss/typography": "^0.5.8",
     "astro": "1.9.2",
-    "astro-icon": "^0.8.0",
     "framer-motion": "^8.1.9",
     "mdast-util-to-string": "^3.1.0",
     "postcss": "^8.4.20",
