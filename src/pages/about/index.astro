@@ -2,6 +2,7 @@
 import { Icon } from "astro-icon"
 import { smartypants } from "smartypants"
 import FancyButton from "../../components/FancyButton.astro"
+import Image from "../../components/Image.astro"
 import Sparkles from "../../components/Sparkles"
 import { about, work } from "../../data/about"
 import { TOOLS } from "../../data/config"
@@ -17,10 +18,8 @@ const description =
 <BaseLayout title={title} description={description}>
 	<section aria-labelledby="#about-me" class="pt-24 lg:pt-32 pb-9">
 		<div class="border border-gray-9 dark:border-gray-6 rounded-full w-fit mb-8 mx-auto">
-			<img
+			<Image
 				src="https://imagedelivery.net/le40TwFDWUdIvXckEp8FBw/5966de80-8db7-449d-80f7-fd1260e76e00/public"
-				width="64"
-				height="64"
 				alt="A selfie of me hiking on snowy Mt. Rainier. I am smiling while wearing my hat and sunglasses. Behind my head, in the distance, you can see the looming peak of Mt. Adams."
 				class="w-16 aspect-square object-cover rounded-full m-[2px]"
 				loading="eager"
