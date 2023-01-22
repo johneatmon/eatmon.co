@@ -4,7 +4,7 @@ import { defineConfig } from "astro/config"
 import mdx from "@astrojs/mdx"
 import react from "@astrojs/react"
 import tailwind from "@astrojs/tailwind"
-import vercel from "@astrojs/vercel/edge"
+import vercel from "@astrojs/vercel/serverless"
 
 import { remarkReadingTime } from "./remark-reading-time.mjs"
 import { remarkWidont } from "./remark-widont.mjs"
