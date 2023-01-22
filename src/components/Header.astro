@@ -1,5 +1,4 @@
 ---
-import { Image } from "@astrojs/image/components"
 import type { HTMLAttributes } from "astro/types"
 
 interface Props extends HTMLAttributes<"section"> {}
@@ -10,13 +9,12 @@ const { ...attrs } = Astro.props as Props
 <header {...attrs}>
 	<div class="max-w-[700px] mx-auto px-4 py-2 flex gap-x-3 items-center justify-between">
 		<a href="/">
-			<Image
+			<img
 				src="https://imagedelivery.net/le40TwFDWUdIvXckEp8FBw/5966de80-8db7-449d-80f7-fd1260e76e00/public"
-				width={32}
-				aspectRatio={1}
+				width="32"
+				height="32"
 				alt="A selfie of me hiking on snowy Mt. Rainier. I am smiling while wearing my hat and sunglasses. Behind my head, in the distance, you can see the looming peak of Mt. Adams."
 				class="w-8 aspect-square object-cover rounded-full m-[2px]"
-				format="png"
 				loading="eager"
 			/>
 		</a>

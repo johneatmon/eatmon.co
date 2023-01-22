@@ -1,7 +1,7 @@
 ---
-import { Icon } from "astro-icon"
-import type { HTMLAttributes } from "astro/types"
-import { SOCIALS } from "../data/config"
+// import { Icon } from "astro-icon"
+import type { HTMLAttributes } from "astro/types";
+import { SOCIALS } from "../data/config";
 
 interface Props extends HTMLAttributes<"footer"> {}
 
@@ -27,7 +27,7 @@ const { ...attrs } = Astro.props as Props
 							rel={rel}
 							class="text-gray-11 hover:text-gray-12 transition-colors duration-300 ease-in-out inline-block p-3"
 						>
-							<Icon name={icon} title={label} class="w-5 h-5" />
+							<!-- <Icon name={icon} title={label} class="w-5 h-5" /> -->
 						</a>
 					</li>
 				))
