@@ -1,5 +1,6 @@
 ---
 import type { HTMLAttributes } from "astro/types"
+import Dropdown from "../components/Dropdown"
 import Image from "../components/Image.astro"
 
 interface Props extends HTMLAttributes<"section"> {}
@@ -21,7 +22,7 @@ const { ...attrs } = Astro.props as Props
 			<ul role="list" class="flex text-sm font-medium">
 				<li><a href="/about" class="px-3">About</a></li>
 				<li><a href="/work" class="px-3">Work</a></li>
-				<li><a href="/contact" class="px-3">Contact</a></li>
+				<li><Dropdown client:idle>Contact</Dropdown></li>
 			</ul>
 		</nav>
 		<button class="grid place-items-center w-8 h-8 rounded-full border border-white/5">=</button>
