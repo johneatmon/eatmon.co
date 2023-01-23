@@ -17,7 +17,7 @@ export const about = `
 	and equipped to design, develop, strategize, market, write, research, test, edit, or deploy new
 	solutions.
 	<br /><br />
-	After hours, I summit volcanoes, backpack, build LEGO sets, brew French press or Chemex coffee, make music in Ableton, read, and trial gluten-free recipes.
+	After hours, I summit volcanoes, backpack, build LEGO sets, brew French press or Chemex coffee, make music in Ableton, read (mostly non-fiction), and trial gluten-free recipes.
 `
 
 export const work = `
