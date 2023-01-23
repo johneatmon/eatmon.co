@@ -42,6 +42,7 @@ module.exports = {
 		},
 	},
 	plugins: [
+		require("@headlessui/tailwindcss"),
 		require("windy-radix-palette"),
 		require("@tailwindcss/typography"),
 		require("windy-radix-typography"),
