@@ -1,4 +1,5 @@
 export const TWITTER = "@johneatmon_"
+export const EMAIL = "hi@jmae.xyz"
 
 type SocialLink = {
 	label: string
@@ -41,7 +42,7 @@ export const SOCIALS: SocialLink[] = [
 	},
 	{
 		label: "Email",
-		href: "mailto:hi@jmae.xyz?subject=Hello!",
+		href: `mailto:${EMAIL}?subject=Hello!`,
 		icon: "bi:send",
 	},
 ].sort((a, b) => a.label.localeCompare(b.label))
