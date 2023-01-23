@@ -19,7 +19,14 @@ export default defineConfig({
 	site: "https://eatmon.co",
 	vite: {
 		ssr: {
-			noExternal: ["smartypants"],
+			noExternal: [
+				"@radix-ui/react-compose-refs",
+				"@radix-ui/react-portal",
+				"@radix-ui/react-primitive",
+				"@radix-ui/react-slot",
+				"@radix-ui/react-toast",
+				"smartypants",
+			],
 		},
 	},
 	output: "server",
