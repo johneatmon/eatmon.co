@@ -20,9 +20,21 @@ module.exports = {
 				"toast-swipe-out-x": "toast-swipe-out-x 100ms ease-out forwards",
 				"toast-swipe-out-y": "toast-swipe-out-y 100ms ease-out forwards",
 			},
-			backgroundImage: {
+			backgroundImage: (theme) => ({
 				"gradient-conic": "conic-gradient(var(--tw-gradient-stops))",
-			},
+				"gradient-purple": `linear-gradient(to right, 
+					${theme("colors.purple.700/0")}, 
+					${theme("colors.purple.700/40")}, 
+					${theme("colors.indigo.500/40")}, 
+					${theme("colors.indigo.500/0")}
+				)`,
+				"gradient-purple-dark": `linear-gradient(to right, 
+					${theme("colors.purple.400/0")}, 
+					${theme("colors.purple.400/40")}, 
+					${theme("colors.indigo.400/40")}, 
+					${theme("colors.indigo.400/0")}
+				)`,
+			}),
 			fontFamily: {
 				display: ["Hatton", ...defaultTheme.fontFamily.sans],
 				sans: ["Söhne", ...defaultTheme.fontFamily.sans],

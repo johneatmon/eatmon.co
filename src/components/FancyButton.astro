@@ -9,7 +9,7 @@ const { ...attrs } = Astro.props as Props
 <!-- https://play.tailwindcss.com/Bqg5kMnpte -->
 <a
 	{...attrs}
-	class="inline-block group relative overflow-hidden rounded-lg bg-gray-6 hover:bg-[#09090b] transition-colors duration-300 ease-in-out px-20 py-6 ring-purple-700/50 ring-offset-[#09090b] will-change-transform focus:outline-none focus:ring-1 focus:ring-offset-2"
+	class="inline-block whitespace-nowrap group relative overflow-hidden rounded-lg bg-gray-6 hover:bg-[#09090b] transition-colors duration-300 ease-in-out px-20 py-6 ring-purple-700/50 ring-offset-[#09090b] will-change-transform focus:outline-none focus:ring-1 focus:ring-offset-2"
 >
 	<span class="absolute inset-px z-10 grid place-items-center rounded-lg bg-[#09090b]">
 		<slot />

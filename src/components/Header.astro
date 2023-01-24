@@ -6,22 +6,47 @@ import Image from "../components/Image.astro"
 interface Props extends HTMLAttributes<"section"> {}
 
 const { ...attrs } = Astro.props as Props
+
+const links = [
+	{ href: "/about", label: "About" },
+	{ href: "/work", label: "Work" },
+]
+
+const path = Astro.url.pathname
 ---
 
 <header {...attrs}>
-	<div class="max-w-[700px] mx-auto px-4 py-2 flex gap-x-3 items-center justify-between">
+	<div class="max-w-[700px] mx-auto px-4 flex items-center gap-x-3 justify-between">
 		<a href="/">
 			<Image
 				src="https://imagedelivery.net/le40TwFDWUdIvXckEp8FBw/5966de80-8db7-449d-80f7-fd1260e76e00/public"
 				alt="A selfie of me hiking on snowy Mt. Rainier. I am smiling while wearing my hat and sunglasses. Behind my head, in the distance, you can see the looming peak of Mt. Adams."
-				class="w-8 aspect-square rounded-full m-[2px]"
+				class="w-8 aspect-square rounded-full"
 				loading="eager"
 			/>
 		</a>
 		<nav>
 			<ul role="list" class="flex text-sm font-medium">
-				<li><a href="/about" class="px-3">About</a></li>
-				<li><a href="/work" class="px-3">Work</a></li>
+				{
+					links.map(({ href, label }) => (
+						<li>
+							<a href={href} class="relative inline-block py-4 px-3">
+								<span
+									class={`bg-clip-text text-gray-12 hover:text-transparent bg-gradient-to-r from-purple-700 to-indigo-500 dark:from-purple-400 dark:to-indigo-400 transition-colors ${
+										path.includes(href) && `text-transparent `
+									}`}
+								>
+									{label}
+								</span>
+								<span
+									class={`absolute inset-x-1 -bottom-px h-px bg-gradient-purple dark:bg-gradient-purple-dark ${
+										path.includes(href) ? `opacity-100` : `opacity-0`
+									}`}
+								/>
+							</a>
+						</li>
+					))
+				}
 				<li><Dropdown client:idle>Contact</Dropdown></li>
 			</ul>
 		</nav>
