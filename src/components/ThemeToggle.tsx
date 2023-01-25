@@ -25,7 +25,7 @@ const ThemeToggle: FC = () => {
 			type="button"
 			aria-label="Toggle dark mode"
 			onClick={handleClick}
-			className="group relative grid place-items-center py-4 px-[18px] -mr-[18px] rounded-full"
+			className="group relative grid place-items-center py-3 px-[18px] -mr-[18px] rounded-full"
 		>
 			{theme === "light" ? "🌙" : "🌞"}
 			{/* <SunIcon className="w-5 aspect-square text-gray-11 transition-colors group-hover:text-gray-12 dark:hidden" />
