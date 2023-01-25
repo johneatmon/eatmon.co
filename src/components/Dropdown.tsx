@@ -89,7 +89,6 @@ const Dropdown = (props: Props) => {
 			<Toast
 				title="Email address copied"
 				description="Can't wait to hear from you!"
-				isSuccess={true}
 				showToast={showToast}
 				setShowToast={setShowToast}
 			/>

@@ -19,8 +19,7 @@ const XMark = () => {
 
 type ToastProps = {
 	title: string
-	description: string
-	isSuccess: boolean
+	description?: string
 	showToast: boolean
 	setShowToast: any
 	children?: ReactNode
@@ -52,9 +51,11 @@ const Toast = (props: ToastProps) => {
 						<ToastPrimitive.Title className="text-sm font-semibold">
 							{props.title}
 						</ToastPrimitive.Title>
-						<ToastPrimitive.Description className="mt-1 text-sm text-gray-11">
-							{props.description}
-						</ToastPrimitive.Description>
+						{props.description && (
+							<ToastPrimitive.Description className="mt-1 text-sm text-gray-11">
+								{props.description}
+							</ToastPrimitive.Description>
+						)}
 					</div>
 
 					<ToastPrimitive.Close className="bg-black border border-transparent rounded-full p-3 text-sm font-medium hover:bg-gray-1 focus:z-10 focus:outline-none focus-visible:ring focus-visible:ring-purple-700 focus-visible:ring-opacity-75">
