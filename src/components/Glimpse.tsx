@@ -11,7 +11,7 @@ const ArrowUpRight = () => {
 			viewBox="0 0 24 24"
 			strokeWidth={1.5}
 			stroke="currentColor"
-			className="text-current"
+			className="text-current inline ml-1"
 		>
 			<path
 				strokeLinecap="round"
@@ -44,7 +44,7 @@ const LinkPreview: FC = () => {
 	}
 
 	return (
-		<Glimpse className="pointer-events-none fixed z-20 flex w-[316px] translate-x-2 translate-y-2 flex-col rounded-lg bg-white/80 p-3 shadow-lg backdrop-blur-md transition-opacity group-hover:-translate-y-2 dark:bg-black/70 print:hidden">
+		<Glimpse className="pointer-events-none fixed z-20 flex w-[316px] translate-x-2 translate-y-2 flex-col rounded-lg bg-white/70 p-3 shadow-lg backdrop-blur-[20px] backdrop-saturate-[180%] transition-opacity group-hover:-translate-y-2 dark:bg-black/70 print:hidden">
 			<img
 				className="m-0 h-[174px] w-full rounded-sm object-cover"
 				src={data.image}
@@ -60,13 +60,13 @@ const LinkPreview: FC = () => {
 			>
 				{data.title}
 			</p>
-			<p className="line-clamp-2 block text-sm leading-normal text-zinc-300 mb-2">
+			<p className="line-clamp-2 block text-sm leading-normal text-gray-11 mb-2">
 				{data.description}
 			</p>
-			<span className="flex flex-wrap items-center gap-1 text-gray-11">
-				<p className="line-clamp-1 block text-sm leading-normal">{data.url?.replace(/\/+$/, "")}</p>
+			<div className="text-gray-11">
+				<span className="line-clamp-1 text-sm leading-normal">{data.url?.replace(/\/+$/, "")}</span>
 				<ArrowUpRight />
-			</span>
+			</div>
 		</Glimpse>
 	)
 }

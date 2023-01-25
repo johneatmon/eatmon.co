@@ -47,7 +47,7 @@ const Dropdown = (props: Props) => {
 		<>
 			<Menu as="div" className="relative inline-block">
 				<Menu.Button className="relative group inline-block py-4 px-3">
-					<span className="bg-clip-text text-gray-12 hover:text-transparent ui-open:text-transparent bg-gradient-to-r from-purple-700 to-indigo-500 dark:from-purple-400 dark:to-indigo-400 transition-colors">
+					<span className="bg-clip-text text-gray-12 group-hover:text-transparent ui-open:text-transparent bg-gradient-to-r from-purple-700 to-indigo-500 dark:from-purple-400 dark:to-indigo-400 transition-colors">
 						{props.children}
 					</span>
 					<ChevronDown />
@@ -62,21 +62,21 @@ const Dropdown = (props: Props) => {
 					leaveFrom="transform opacity-100 scale-100"
 					leaveTo="transform opacity-0 scale-95"
 				>
-					<Menu.Items className="absolute right-0 mt-2 w-56 origin-top-right rounded-md bg-black shadow-lg ring-1 ring-black ring-opacity-5 focus:outline-none">
+					<Menu.Items className="absolute right-0 mt-2 w-56 origin-top-right rounded-md bg-white dark:bg-black shadow-lg ring-1 ring-white dark:ring-black ring-opacity-5 focus:outline-none border border-black/20">
 						<div className="p-1">
 							{links.map((link, i) => (
 								<Menu.Item
 									key={i}
 									as="a"
 									href={link.href.toString()}
-									className="ui-active:bg-gradient-to-r ui-active:from-purple-700 ui-active:to-indigo-500 group flex w-full items-center rounded-md px-2 py-2 text-sm"
+									className="ui-active:bg-gradient-to-r ui-active:from-purple-700 ui-active:to-indigo-500 dark:ui-active:from-purple-400 dark:ui-active:to-indigo-400 group flex w-full items-center rounded-md px-2 py-2 text-sm hover:text-white dark:hover:text-black transition"
 								>
 									{link.label}
 								</Menu.Item>
 							))}
 							<Menu.Item
 								as="button"
-								className="ui-active:bg-gradient-to-r ui-active:from-purple-700 ui-active:to-indigo-500 group flex w-full items-center rounded-md px-2 py-2 text-sm"
+								className="ui-active:bg-gradient-to-r ui-active:from-purple-700 ui-active:to-indigo-500 dark:ui-active:from-purple-400 dark:ui-active:to-indigo-400 group flex w-full items-center rounded-md px-2 py-2 text-sm hover:text-white dark:hover:text-black transition"
 								onClick={copyEmail}
 							>
 								Copy my email address
