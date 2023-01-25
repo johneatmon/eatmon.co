@@ -96,10 +96,9 @@ const title = [Astro.props.title, SITE.name].filter(Boolean).join(" · ")
 <meta name="theme-color" content="#fcfcfc" media="(prefers-color-scheme: light)" />
 <meta name="color-scheme" content="dark light" />
 
-<link rel="icon" type="image/svg+xml" href="/favicon.svg" />
-
 <link rel="canonical" href={canonicalURL} />
-<link rel="icon" href="data:image/svg+xml,<svg xmlns=%22http://www.w3.org/2000/svg%22 viewBox=%220 0 100 100%22><text y=%22.9em%22 font-size=%2290%22>👨🏻‍💻</text></svg>" />
+<link rel="icon" href="/favicon.png" />
+<link rel="apple-touch-icon" href="/apple-touch-icon.png" />
 {prev && <link rel="prev" aria-label="Previous Page" href={new URL(prev, Astro.site).href} />}
 {next && <link rel="next" aria-label="Next Page" href={new URL(next, Astro.site).href} />}
 
