@@ -1,6 +1,7 @@
 ---
 import type { HTMLAttributes } from "astro/types"
 import { smartypants } from "smartypants"
+import Image from "../components/Image.astro"
 
 interface Props extends HTMLAttributes<"header"> {
 	content: any
@@ -12,4 +13,20 @@ const { content, ...attrs } = Astro.props as Props
 <header {...attrs}>
 	<h1 class="text-4xl font-semibold mb-6" set:html={smartypants(content.title, 1)} />
 	<p class="text-lg" set:html={smartypants(content.description)} />
+	{
+		content.image && (
+			<div class="mt-14 -mx-8">
+				<Image
+					src={content.image.src}
+					alt={content.image.src}
+					class="sm:rounded-lg aspect-[4/3] w-full"
+					loading="eager"
+				/>
+			</div>
+		)
+	}
+	<!-- <div
+		class="bg-black/70 backdrop-blur-sm px-3 py-2 rounded-full shadow-lg text-xs leading-none"
+		set:text={content.minutesRead}
+	/> -->
 </header>
