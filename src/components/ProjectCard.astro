@@ -1,6 +1,7 @@
 ---
 import type { HTMLAttributes } from "astro/types"
 import { smartypants } from "smartypants"
+import Image from "../components/Image.astro"
 
 interface Props extends HTMLAttributes<"li"> {
 	title: string
@@ -30,7 +31,7 @@ const { title, description, duration, image, url, caseStudy, ...attrs } = Astro.
 				class="absolute inset-0 h-full w-full bg-gradient-to-t from-blackA-11 via-blackA-1 to-blackA-1 translate-y-full group-hover:translate-y-0 transition-transform duration-500"
 			>
 			</div>
-			<img
+			<Image
 				src={image.src}
 				alt={image.alt ?? ""}
 				class="rounded-lg aspect-[4/3] w-full object-cover"
