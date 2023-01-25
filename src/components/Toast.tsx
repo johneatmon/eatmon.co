@@ -58,7 +58,7 @@ const Toast = (props: ToastProps) => {
 						)}
 					</div>
 
-					<ToastPrimitive.Close className="bg-black border border-transparent rounded-full p-3 text-sm font-medium hover:bg-gray-1 focus:z-10 focus:outline-none focus-visible:ring focus-visible:ring-purple-700 focus-visible:ring-opacity-75">
+					<ToastPrimitive.Close className="bg-white dark:bg-black border border-transparent rounded-full p-3 text-sm font-medium hover:bg-zinc-300 dark:hover:bg-gray-1 focus:z-10 focus:outline-none focus-visible:ring focus-visible:ring-purple-700 focus-visible:ring-opacity-75">
 						<XMark />
 					</ToastPrimitive.Close>
 				</div>
