@@ -1,5 +1,6 @@
 ---
 import BaseHead, { Props as BaseHeadProps } from "../components/BaseHead.astro"
+import Theme from "../components/Theme.astro"
 
 interface Props extends Exclude<BaseHeadProps, "title"> {
 	title?: string
@@ -25,5 +26,6 @@ const { ...attrs } = Astro.props as Props
 			<slot />
 		</main>
 		<Footer class="relative mt-16 lg:mt-24 pb-16" />
+		<Theme />
 	</body>
 </html>
