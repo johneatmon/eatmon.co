@@ -12,7 +12,7 @@ module.exports = {
 			animation: {
 				comeInOut: "comeInOut 700ms forwards",
 				disco: "disco 4s linear infinite",
-				spinSparkles: "spin 1000ms linear",
+				spinSparkles: "sparkleSpin 1000ms linear",
 				// Toast
 				"toast-hide": "toast-hide 100ms ease-in forwards",
 				"toast-slide-in-right": "toast-slide-in-right 150ms cubic-bezier(0.16, 1, 0.3, 1)",
@@ -49,7 +49,7 @@ module.exports = {
 					"0%": { transform: "translateY(-50%) rotate(0deg)" },
 					"100%": { transform: "translateY(-50%) rotate(360deg)" },
 				},
-				spin: {
+				sparkleSpin: {
 					"0%": { transform: "rotate(0deg)" },
 					"100%": { transform: "rotate(180deg)" },
 				},
