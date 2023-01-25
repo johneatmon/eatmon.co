@@ -1,6 +1,6 @@
-import { MoonIcon, SunIcon } from "@heroicons/react/20/solid"
 import type { FC } from "react"
 import { useEffect, useState } from "react"
+// import { MoonIcon, SunIcon } from "@heroicons/react/20/solid"
 
 const ThemeToggle: FC = () => {
 	const [theme, setTheme] = useState(localStorage.getItem("theme") ?? "dark")
@@ -27,8 +27,9 @@ const ThemeToggle: FC = () => {
 			onClick={handleClick}
 			className="group relative grid place-items-center py-4 px-[18px] -mr-[18px] rounded-full"
 		>
-			<SunIcon className="w-5 aspect-square text-gray-11 transition-colors group-hover:text-gray-12 dark:hidden" />
-			<MoonIcon className="hidden w-5 aspect-square text-gray-11 transition-colors group-hover:text-gray-12 dark:block" />
+			{theme === "light" ? "🌙" : "🌞"}
+			{/* <SunIcon className="w-5 aspect-square text-gray-11 transition-colors group-hover:text-gray-12 dark:hidden" />
+			<MoonIcon className="hidden w-5 aspect-square text-gray-11 transition-colors group-hover:text-gray-12 dark:block" /> */}
 		</button>
 	)
 }
