@@ -15,6 +15,7 @@ export default defineConfig({
 	markdown: {
 		remarkPlugins: [remarkWidont, remarkReadingTime],
 		extendDefaultPlugins: true,
+		drafts: true,
 	},
 	site: "https://eatmon.co",
 	vite: {
