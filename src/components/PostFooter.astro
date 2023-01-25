@@ -1,0 +1,34 @@
+---
+import type { HTMLAttributes } from "astro/types"
+import { SOCIALS } from "../data/config"
+// import { smartypants } from "smartypants"
+
+interface Props extends HTMLAttributes<"header"> {}
+
+const { ...attrs } = Astro.props as Props
+---
+
+<footer {...attrs}>
+	<div
+		class="h-px bg-gradient-to-r from-transparent via-gray-8 to-transparent dark:from-transparent dark:via-white/10 dark:transparent mb-16"
+	>
+	</div>
+	<h2 class="font-semibold mb-1">Interested in working together?</h2>
+	<p class="text-gray-11 mb-5">Reach out to learn more about me and/or my work.</p>
+	<ul role="list" class="flex gap-x-3">
+		{
+			SOCIALS.filter((x) => x.label === "Email" || x.label === "LinkedIn").map(
+				({ href, label }) => (
+					<li>
+						<a
+							href={href}
+							class="inline-block font-medium underline-offset-2 underline decoration-2"
+						>
+							{label}
+						</a>
+					</li>
+				),
+			)
+		}
+	</ul>
+</footer>
