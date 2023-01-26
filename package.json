@@ -34,6 +34,7 @@
     "astro-icon": "^0.8.0",
     "clsx": "^1.2.1",
     "framer-motion": "^8.1.9",
+    "luxon": "^3.2.1",
     "mdast-util-to-string": "^3.1.0",
     "node-html-parser": "^6.1.4",
     "postcss": "^8.4.20",
