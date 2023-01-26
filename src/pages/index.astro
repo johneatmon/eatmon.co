@@ -5,21 +5,20 @@ import MapSection from "../components/MapSection.astro"
 import ProjectSection from "../components/ProjectSection.astro"
 import BaseLayout from "../layouts/BaseLayout.astro"
 
-const title = "Designer, Developer & Creative"
-const description =
-	"A wearer of many hats, I love solving business and user problems. I refine brand, service, and product strategy with a broad spectrum of skills."
+const title = "Multidiscipline Designer, Developer & Creative"
+const description = "I'm a product and web designer from living in Tacoma, WA."
 ---
 
 <BaseLayout title={title} description={description}>
 	<Hero class="pt-24 lg:pt-32 pb-9">
 		<Fragment slot="title">John Eatmon</Fragment>
-		Product & web designer
+		Multidiscipline designer, developer & creative
 	</Hero>
 	<ProjectSection class="pt-16" featuredNumber={3}>Selected projects</ProjectSection>
 	<ExperienceSection class="pt-16" />
 	<MapSection class="pt-16">
-		I'm fortunate to call Tacoma, Washington my home. I've been working remotely here since summer
-		2021. Below are a few of my favorite places around town &mdash; if ever you're in the area, I
-		hope you check them out!
+		I'm fortunate to call Tacoma, WA my home. I've been working remotely here since summer 2021.
+		Below are a few of my favorite places around town &mdash; if you're ever in the area, I hope you
+		check them out!
 	</MapSection>
 </BaseLayout>
