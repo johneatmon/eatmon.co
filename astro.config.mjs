@@ -14,10 +14,9 @@ export default defineConfig({
 	integrations: [image(), mdx(), react(), tailwind()],
 	markdown: {
 		remarkPlugins: [remarkWidont, remarkReadingTime],
-		extendDefaultPlugins: true,
 		drafts: true,
 	},
-	site: "https://eatmon.co",
+	site: "https://eatmon.co/",
 	vite: {
 		ssr: {
 			noExternal: [
