@@ -15,6 +15,7 @@ const { ...attrs } = Astro.props as Props
 <html lang="en" class="h-full">
 	<head>
 		<BaseHead {...attrs} />
+		<Theme />
 	</head>
 	<body
 		class="bg-gray-1 dark:bg-[#09090b] text-gray-12 antialiased h-full [&>footer]:sticky [&>footer]:top-[100vh] relative transition"
@@ -26,6 +27,5 @@ const { ...attrs } = Astro.props as Props
 			<slot />
 		</main>
 		<Footer class="relative mt-16 lg:mt-24 pb-16" />
-		<Theme />
 	</body>
 </html>
