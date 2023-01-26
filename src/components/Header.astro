@@ -17,8 +17,8 @@ const path = Astro.url.pathname
 ---
 
 <header {...attrs}>
-	<div class="max-w-[700px] mx-auto px-4 flex items-stretch gap-x-3 justify-between">
-		<a href="/" class="relative px-3 -ml-[14px] grid place-items-center">
+	<div class="max-w-[700px] mx-auto px-4 flex items-stretch sm:gap-x-3 justify-between">
+		<a href="/" class="relative px-2 -ml-[10px] sm:px-3 sm:-ml-[14px] grid place-items-center">
 			<Image
 				src="https://imagedelivery.net/le40TwFDWUdIvXckEp8FBw/5966de80-8db7-449d-80f7-fd1260e76e00/public"
 				alt="A selfie of me hiking on snowy Mt. Rainier. I am smiling while wearing my hat and sunglasses. Behind my head, in the distance, you can see the looming peak of Mt. Adams."
@@ -32,11 +32,11 @@ const path = Astro.url.pathname
 				}`}></span>
 		</a>
 		<nav>
-			<ul role="list" class="flex text-sm font-medium">
+			<ul role="list" class="flex text-xs sm:text-sm font-medium">
 				{
 					links.map(({ href, label }) => (
 						<li>
-							<a href={href} class="relative inline-block py-4 px-3 group">
+							<a href={href} class="relative inline-block py-4 px-2 sm:px-3 group">
 								<span
 									class={`bg-clip-text text-gray-12 group-hover:text-transparent bg-gradient-to-r from-purple-700 to-indigo-500 dark:from-purple-400 dark:to-indigo-400 transition-colors ${
 										path.includes(href) && `text-transparent `

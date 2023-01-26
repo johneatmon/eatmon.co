@@ -19,14 +19,14 @@ const { ...attrs } = Astro.props as Props
 			&copy; <span id="year"></span> John Eatmon &middot;
 			<a href="/about/colophon" class="underline hover:text-gray-12 transition-colors">Colophon</a>
 		</p>
-		<ul role="list" class="flex items-center -ml-3">
+		<ul role="list" class="flex items-center -ml-2 sm:-ml-3">
 			{
 				SOCIALS.map(({ href, rel, label, icon }) => (
 					<li>
 						<a
 							href={href}
 							rel={rel}
-							class="text-gray-11 hover:text-gray-12 transition-colors duration-300 ease-in-out inline-block p-3"
+							class="text-gray-11 hover:text-gray-12 transition-colors duration-300 ease-in-out inline-block p-2 sm:p-3"
 						>
 							<Icon name={icon} title={label} class="w-5 h-5" />
 						</a>
