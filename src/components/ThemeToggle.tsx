@@ -10,10 +10,8 @@ const ThemeToggle: FC = () => {
 
 	useEffect(() => {
 		if (theme === "dark") {
-			// document.documentElement.classList.add("dark")
 			document.documentElement.setAttribute("data-mode", "dark")
 		} else {
-			// document.documentElement.classList.remove("dark")
 			document.documentElement.removeAttribute("data-mode")
 		}
 		localStorage.setItem("theme", theme)
@@ -24,7 +22,7 @@ const ThemeToggle: FC = () => {
 			type="button"
 			aria-label="Toggle dark mode"
 			onClick={handleClick}
-			className="group relative grid place-items-center py-3 px-[18px] -mr-[18px] rounded-full"
+			className="group relative grid place-items-center py-3 px-2 -mr-2 sm:px-[18px] sm:-mr-[18px] rounded-full"
 		>
 			{theme === "light" ? "🌙" : "🌞"}
 		</button>
