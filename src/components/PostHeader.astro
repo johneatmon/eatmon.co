@@ -2,6 +2,7 @@
 import type { HTMLAttributes } from "astro/types"
 import { smartypants } from "smartypants"
 import Image from "../components/Image.astro"
+import { machineDate, readableDate } from "../script/dates"
 
 interface Props extends HTMLAttributes<"header"> {
 	content: any
@@ -22,6 +23,47 @@ const { content, ...attrs } = Astro.props as Props
 					class="sm:rounded-lg aspect-[4/3] w-full"
 					loading="eager"
 				/>
+			</div>
+		)
+	}
+	{
+		content.tools && content.roles && content.published && content.duration && (
+			<div class="grid sm:grid-cols-2 md:grid-cols-4 gap-y-4 gap-x-2 md:gap-9 text-sm sm:mt-14 px-4 py-10 sm:p-5 -m-4 sm:-m-5 sm:rounded-lg bg-zinc-200 dark:bg-black">
+				<div>
+					<span class="font-semibold mb-1">My role</span>
+					<ul class="text-gray-11" role="list">
+						{[...content.roles]
+							.sort((a, b) => a.localeCompare(b))
+							.map((role) => (
+								<li>{role}</li>
+							))}
+					</ul>
+				</div>
+				<div>
+					<span class="font-semibold mb-1">Tools</span>
+					<ul class="text-gray-11" role="list">
+						{[...content.tools]
+							.sort((a, b) => a.localeCompare(b))
+							.map((tool) => (
+								<li>{tool}</li>
+							))}
+					</ul>
+				</div>
+				<div>
+					<span class="font-semibold mb-1">Timeline</span>
+					<p
+						class="text-gray-11"
+						set:html={`${content.duration.from}&ndash;${content.duration.to}`}
+					/>
+				</div>
+				<div>
+					<span class="font-semibold mb-1">Published</span>
+					<time
+						class="text-gray-11 inline-block"
+						set:html={readableDate(content.published)}
+						datetime={machineDate(content.published)}
+					/>
+				</div>
 			</div>
 		)
 	}
