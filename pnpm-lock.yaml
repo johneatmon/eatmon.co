@@ -19,6 +19,7 @@ specifiers:
   '@typescript-eslint/parser': ^5.48.0
   astro: 2.0.1
   astro-icon: ^0.8.0
+  blaze-slider: ^1.9.1
   clsx: ^1.2.1
   eslint: ^8.31.0
   eslint-plugin-astro: ^0.21.1
@@ -36,6 +37,7 @@ specifiers:
   prettier-plugin-astro: ^0.7.2
   probe-image-size: ^7.2.3
   react: ^18.2.0
+  react-blaze-slider: ^1.7.2
   react-dom: ^18.2.0
   reading-time: ^1.5.0
   smartypants: ^0.1.6
@@ -60,6 +62,7 @@ dependencies:
   '@tailwindcss/typography': 0.5.8_tailwindcss@3.2.4
   astro: 2.0.1
   astro-icon: 0.8.0
+  blaze-slider: 1.9.1
   clsx: 1.2.1
   framer-motion: 8.2.4_biqbaboplfbrettd7655fr4n2y
   luxon: 3.2.1
@@ -70,6 +73,7 @@ dependencies:
   postcss-preset-env: 7.8.3_postcss@8.4.21
   probe-image-size: 7.2.3
   react: 18.2.0
+  react-blaze-slider: 1.7.2_react@18.2.0
   react-dom: 18.2.0_react@18.2.0
   reading-time: 1.5.0
   smartypants: 0.1.6
@@ -2039,6 +2043,10 @@ packages:
       buffer: 6.0.3
       inherits: 2.0.4
       readable-stream: 3.6.0
+    dev: false
+
+  /blaze-slider/1.9.1:
+    resolution: {integrity: sha512-XD2NQhgI7lrZC4AH6G1AacBXtYMV5W3p3pbu0QJb2V8iRcLrRTO1jNhVTwm1nyTmlmfCQSl3/+5TT+DhdW40cQ==}
     dev: false
 
   /boolbase/1.0.0:
@@ -5511,6 +5519,15 @@ packages:
   /quick-lru/5.1.1:
     resolution: {integrity: sha512-WuyALRjWPDGtt/wzJiadO5AXY+8hZ80hVpe6MyivgraREW751X3SbhRvG3eLKOYN+8VEvqLcf3wdnt44Z4S4SA==}
     engines: {node: '>=10'}
+    dev: false
+
+  /react-blaze-slider/1.7.2_react@18.2.0:
+    resolution: {integrity: sha512-HPLR8u91ojymptv0E9q8P9GRqEPjXLiF2aQFOcIqyKDUnnSY8KwDle76r/RQeIVbDnu5vfZw0cfzboaTxU8d5w==}
+    peerDependencies:
+      react: '>=16'
+    dependencies:
+      blaze-slider: 1.9.1
+      react: 18.2.0
     dev: false
 
   /react-dom/18.2.0_react@18.2.0:
