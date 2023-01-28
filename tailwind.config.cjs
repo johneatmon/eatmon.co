@@ -1,4 +1,5 @@
 const defaultTheme = require("tailwindcss/defaultTheme")
+const colors = require("tailwindcss/colors")
 
 /** @type {import('tailwindcss').Config} */
 module.exports = {
@@ -8,6 +9,19 @@ module.exports = {
 		hoverOnlyWhenSupported: true,
 	},
 	theme: {
+		colors: (theme) => ({
+			transparent: "transparent",
+			current: "currentColor",
+			black: colors.black,
+			white: colors.white,
+			gray: {
+				...theme.colors.zinc,
+				1000: "#050505",
+			},
+			indigo: colors.indigo,
+			purple: colors.purple,
+			emerald: colors.emerald,
+		}),
 		extend: {
 			animation: {
 				comeInOut: "comeInOut 700ms forwards",
@@ -86,9 +100,7 @@ module.exports = {
 	},
 	plugins: [
 		require("@headlessui/tailwindcss"),
-		require("windy-radix-palette"),
 		require("@tailwindcss/typography"),
-		require("windy-radix-typography"),
 		require("tailwindcss-radix"),
 	],
 }
