@@ -51,6 +51,7 @@ const LinkPreview: FC = () => {
 				width={316}
 				height={174}
 				alt=""
+				role="presentation"
 				loading="eager"
 			/>
 			<p
