@@ -13,7 +13,10 @@ const { content, ...attrs } = Astro.props as Props
 
 <header {...attrs}>
 	<h1 class="text-3xl sm:text-4xl font-semibold mb-6" set:html={smartypants(content.title, 1)} />
-	<p class="text-base sm:text-lg" set:html={smartypants(content.description)} />
+	<p
+		class="text-base sm:text-lg text-gray-500 dark:text-gray-400"
+		set:html={smartypants(content.description)}
+	/>
 	{
 		content.image && (
 			<div class="mt-14 -mx-4 sm:-mx-8">
@@ -28,7 +31,7 @@ const { content, ...attrs } = Astro.props as Props
 	}
 	{
 		content.tools && content.roles && content.published && content.duration && (
-			<div class="grid sm:grid-cols-2 md:grid-cols-4 gap-y-4 gap-x-2 md:gap-9 text-sm sm:mt-14 px-4 py-10 sm:p-5 -m-4 sm:-m-5 sm:rounded-lg bg-zinc-200 dark:bg-black">
+			<div class="grid sm:grid-cols-2 md:grid-cols-4 gap-y-4 gap-x-2 md:gap-9 text-sm sm:mt-14 px-4 py-10 sm:p-5 -m-4 sm:-m-5 sm:rounded-lg bg-gray-200 dark:bg-black">
 				<div>
 					<span class="font-semibold mb-1">My role</span>
 					<ul class="text-gray-11" role="list">

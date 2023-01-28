@@ -35,7 +35,7 @@ const Toast = (props: ToastProps) => {
 				onOpenChange={props.setShowToast}
 				className={clsx(
 					"fixed z-50 inset-x-4 w-auto top-14 md:top-4 right-4 left-auto bottom-auto md:w-full md:max-w-sm shadow-lg rounded-lg",
-					"bg-white dark:bg-black border border-gray-6",
+					"bg-white dark:bg-black border border-gray-200 dark:border-gray-800",
 					"radix-state-open:animate-toast-slide-in-bottom md:radix-state-open:animate-toast-slide-in-right",
 					"radix-state-closed:animate-toast-hide",
 					"radix-swipe-direction-right:radix-swipe-end:animate-toast-swipe-out-x",
@@ -58,7 +58,7 @@ const Toast = (props: ToastProps) => {
 						)}
 					</div>
 
-					<ToastPrimitive.Close className="bg-white dark:bg-black border border-transparent rounded-full p-3 text-sm font-medium hover:bg-zinc-300 dark:hover:bg-gray-1 focus:z-10 focus:outline-none focus-visible:ring focus-visible:ring-purple-700 focus-visible:ring-opacity-75">
+					<ToastPrimitive.Close className="bg-white dark:bg-black border border-transparent rounded-full p-3 text-sm font-medium hover:bg-gray-300 dark:hover:bg-gray-900 focus:z-10 focus:outline-none focus-visible:ring focus-visible:ring-purple-700 focus-visible:ring-opacity-75">
 						<XMark />
 					</ToastPrimitive.Close>
 				</div>

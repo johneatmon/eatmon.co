@@ -19,7 +19,7 @@ const description =
 
 <BaseLayout title={title} description={description}>
 	<section aria-labelledby="#about-me" class="pt-24 lg:pt-32 pb-9">
-		<div class="border border-gray-9 dark:border-gray-6 rounded-full w-fit mb-8 mx-auto">
+		<div class="border border-gray-200 dark:border-gray-800 rounded-full w-fit mb-8 mx-auto">
 			<Image
 				src="https://imagedelivery.net/le40TwFDWUdIvXckEp8FBw/5966de80-8db7-449d-80f7-fd1260e76e00/public"
 				alt="A selfie of me hiking on snowy Mt. Rainier. I am smiling while wearing my hat and sunglasses. Behind my head, in the distance, you can see the looming peak of Mt. Adams."
@@ -37,26 +37,32 @@ const description =
 	</section>
 	<section aria-labelledby="#bio" class="pt-16">
 		<div class="flex flex-col md:flex-row gap-1 md:gap-9 mb-6">
-			<h2 id="bio" class="text-gray-11 md:w-40 shrink-0 text-xs md:text-base">About me</h2>
+			<h2 id="bio" class="text-gray-500 dark:text-gray-400 md:w-40 shrink-0 text-xs md:text-base">
+				About me
+			</h2>
 			<p class="flex-grow" set:html={smartypants(about, 1)} />
 		</div>
 	</section>
 	<section aria-labelledby="#work" class="pt-16">
 		<div class="flex flex-col md:flex-row gap-1 md:gap-9 mb-6">
-			<h2 id="work" class="text-gray-11 md:w-40 shrink-0 text-xs md:text-base">Work</h2>
+			<h2 id="work" class="text-gray-500 dark:text-gray-400 md:w-40 shrink-0 text-xs md:text-base">
+				Work
+			</h2>
 			<div class="flex-grow">
 				<p class="mb-8" set:html={smartypants(work, 1)} />
 				<a href="/work/prosource" class="inline-block p-2 -m-2 relative group">
 					<div
 						aria-hidden="true"
-						class="absolute isolate inset-0 bg-zinc-300 dark:bg-gray-2 rounded-lg opacity-0 group-hover:opacity-100 scale-90 group-hover:scale-100 transition-all duration-300 ease-in-out"
+						class="absolute isolate inset-0 bg-gray-300/80 dark:bg-gray-900 rounded-lg opacity-0 group-hover:opacity-100 scale-90 group-hover:scale-100 transition-all duration-300 ease-in-out"
 					>
 					</div>
 					<div class="flex gap-x-4 w-full relative">
 						<Icon name="prosource" class="w-12 aspect-square object-contain text-indigo-600" />
 						<div>
 							<h3>Intern &rarr; IT Coordinator &rarr; Product Designer</h3>
-							<p class="text-gray-11">ProSource &middot; Dec 2014&ndash;Present</p>
+							<p class="text-gray-500 dark:text-gray-400">
+								ProSource &middot; Dec 2014&ndash;Present
+							</p>
 						</div>
 					</div>
 				</a>
@@ -65,7 +71,9 @@ const description =
 	</section>
 	<section aria-labelledby="#tools" class="pt-16">
 		<div class="flex flex-col md:flex-row gap-2 md:gap-9 mb-8">
-			<h2 id="tools" class="text-gray-11 md:w-40 shrink-0 text-xs md:text-base">Favorite tools</h2>
+			<h2 id="tools" class="text-gray-500 dark:text-gray-400 md:w-40 shrink-0 text-xs md:text-base">
+				Favorite tools
+			</h2>
 			<div class="flex-grow">
 				<ul role="list" class="grid gap-8 grid-cols-2 md:grid-cols-3">
 					{
@@ -74,7 +82,7 @@ const description =
 								<a href={href} class="inline-block p-2 -m-2 relative group">
 									<div
 										aria-hidden="true"
-										class="absolute isolate inset-0 bg-zinc-300 dark:bg-gray-2 rounded-lg opacity-0 group-hover:opacity-100 scale-90 group-hover:scale-100 transition-all duration-300 ease-in-out"
+										class="absolute isolate inset-0 bg-gray-300/80 dark:bg-gray-900 rounded-lg opacity-0 group-hover:opacity-100 scale-90 group-hover:scale-100 transition-all duration-300 ease-in-out"
 									/>
 									<div class="flex items-center gap-4 relative">
 										<Icon name={icon} class="w-6 h-6 aspect-square" title={`${name} icon`} />

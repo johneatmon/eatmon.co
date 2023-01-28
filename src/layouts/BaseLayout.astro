@@ -18,10 +18,10 @@ const { ...attrs } = Astro.props as Props
 		<Theme />
 	</head>
 	<body
-		class="bg-gray-1 dark:bg-[#09090b] text-gray-12 antialiased h-full [&>footer]:sticky [&>footer]:top-[100vh] relative transition"
+		class="antialiased bg-gray-50 dark:bg-gray-1000 text-gray-900 dark:text-gray-50 h-full [&>footer]:sticky [&>footer]:top-[100vh] relative transition"
 	>
 		<Header
-			class="bg-white/70 dark:bg-[#09090b]/80 fixed isolate z-50 top-0 backdrop-blur-[20px] backdrop-saturate-[180%] w-full"
+			class="bg-white/70 dark:bg-gray-1000/80 fixed isolate z-50 top-0 backdrop-blur-[20px] backdrop-saturate-[180%] w-full"
 		/>
 		<main class="relative max-w-[700px] mx-auto px-4">
 			<slot />

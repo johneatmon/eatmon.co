@@ -22,7 +22,7 @@ const path = Astro.url.pathname
 			<Image
 				src="https://imagedelivery.net/le40TwFDWUdIvXckEp8FBw/5966de80-8db7-449d-80f7-fd1260e76e00/public"
 				alt="A selfie of me hiking on snowy Mt. Rainier. I am smiling while wearing my hat and sunglasses. Behind my head, in the distance, you can see the looming peak of Mt. Adams."
-				class="w-8 aspect-square rounded-full border-2 border-[#09090b]/20 dark:border-[#09090b]/80"
+				class="w-8 aspect-square rounded-full border-2 border-gray-1000/20 dark:border-gray-800"
 				loading="eager"
 			/>
 			<span
@@ -38,7 +38,7 @@ const path = Astro.url.pathname
 						<li>
 							<a href={href} class="relative inline-block py-4 px-2 sm:px-3 group">
 								<span
-									class={`bg-clip-text text-gray-12 group-hover:text-transparent bg-gradient-to-r from-purple-700 to-indigo-500 dark:from-purple-400 dark:to-indigo-400 transition-colors ${
+									class={`bg-clip-text group-hover:text-transparent bg-gradient-to-r from-purple-700 to-indigo-500 dark:from-purple-400 dark:to-indigo-400 transition-colors ${
 										path.includes(href) && `text-transparent `
 									}`}
 								>
@@ -61,7 +61,7 @@ const path = Astro.url.pathname
 	</div>
 	<div
 		aria-hidden="true"
-		class="h-px w-full bg-gradient-to-r from-gray-8 via-gray-8 to-gray-1 dark:from-white/10 dark:via-white/10 dark:to-[#09090b]"
+		class="h-px w-full bg-gradient-to-r from-gray-300 via-gray-300 to-gray-50 dark:from-white/10 dark:via-white/10 dark:to-gray-1000"
 	>
 	</div>
 </header>

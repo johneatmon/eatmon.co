@@ -60,10 +60,10 @@ const LinkPreview: FC = () => {
 			>
 				{data.title}
 			</p>
-			<p className="line-clamp-2 block text-sm leading-normal text-gray-11 mb-2">
+			<p className="line-clamp-2 block text-sm leading-normal text-gray-500 dark:text-gray-400 mb-2">
 				{data.description}
 			</p>
-			<div className="text-gray-11">
+			<div className="text-gray-400 dark:text-gray-600">
 				<span className="line-clamp-1 text-sm leading-normal">{data.url?.replace(/\/+$/, "")}</span>
 				<ArrowUpRight />
 			</div>
