@@ -7,6 +7,10 @@
 		--bg-color: theme("colors.gray.50");
 	}
 
+	::selection {
+		@apply bg-purple-700 text-white dark:bg-purple-400 dark:text-black;
+	}
+
 	html {
 		@apply antialiased;
 		background-color: var(--bg-color);
