@@ -1,4 +1,5 @@
 ---
+import Analytics from "../components/Analytics.astro"
 import BaseHead, { Props as BaseHeadProps } from "../components/BaseHead.astro"
 import Theme from "../components/Theme.astro"
 
@@ -12,10 +13,11 @@ import Header from "../components/Header.astro"
 const { ...attrs } = Astro.props as Props
 ---
 
-<html lang="en" class="h-full">
+<html lang="en" class="h-full transition">
 	<head>
 		<BaseHead {...attrs} />
 		<Theme />
+		<Analytics />
 	</head>
 	<body
 		class="antialiased bg-gray-50 dark:bg-gray-1000 text-gray-900 dark:text-gray-50 h-full [&>footer]:sticky [&>footer]:top-[100vh] relative transition"
