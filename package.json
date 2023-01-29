@@ -42,6 +42,7 @@
     "probe-image-size": "^7.2.3",
     "react": "^18.2.0",
     "react-blaze-slider": "^1.7.2",
+    "react-compare-slider": "^2.2.0",
     "react-dom": "^18.2.0",
     "reading-time": "^1.5.0",
     "sharp": "^0.31.3",

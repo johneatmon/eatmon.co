@@ -36,6 +36,7 @@ specifiers:
   probe-image-size: ^7.2.3
   react: ^18.2.0
   react-blaze-slider: ^1.7.2
+  react-compare-slider: ^2.2.0
   react-dom: ^18.2.0
   reading-time: ^1.5.0
   sharp: ^0.31.3
@@ -69,6 +70,7 @@ dependencies:
   probe-image-size: 7.2.3
   react: 18.2.0
   react-blaze-slider: 1.7.2_react@18.2.0
+  react-compare-slider: 2.2.0_biqbaboplfbrettd7655fr4n2y
   react-dom: 18.2.0_react@18.2.0
   reading-time: 1.5.0
   sharp: 0.31.3
@@ -5573,6 +5575,16 @@ packages:
     dependencies:
       blaze-slider: 1.9.1
       react: 18.2.0
+    dev: false
+
+  /react-compare-slider/2.2.0_biqbaboplfbrettd7655fr4n2y:
+    resolution: {integrity: sha512-I77xqulpoibZ9eqjn5wjpZL5IRpUZYcUlde70YaJ+MORGbUThrjTlHKl/UeGyCIPUWtPID5f5/zK9Q+1ovQLeA==}
+    peerDependencies:
+      react: '>=16.8'
+      react-dom: '>=16.8'
+    dependencies:
+      react: 18.2.0
+      react-dom: 18.2.0_react@18.2.0
     dev: false
 
   /react-dom/18.2.0_react@18.2.0:
