@@ -25,10 +25,12 @@ const shots = await res.json()
 				>
 					<img
 						src={images.hidpi}
-						alt=""
+						alt={`Dribbble shot of the ${title} post.`}
 						class="rounded-t-lg aspect-[4/3]"
 						height={height}
 						width={width}
+						loading="lazy"
+						decoding="async"
 					/>
 					<div class="p-4 flex flex-col group-hover:bg-gray-300/70 dark:group-hover:bg-gray-900 transition">
 						<h3 class="font-medium">{title}</h3>

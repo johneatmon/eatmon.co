@@ -1,6 +1,7 @@
 ---
 import type { HTMLAttributes } from "astro/types"
 import { smartypants } from "smartypants"
+import FeltMap from "./FeltMap"
 
 interface Props extends HTMLAttributes<"section"> {}
 
@@ -18,13 +19,7 @@ if (Astro.slots.has("default")) html = await Astro.slots.render("default")
 		>
 		<div class="flex-grow">
 			<p class="mb-6" set:html={smartypants(html, 1)} />
-			<iframe
-				class="w-full border-none aspect-square rounded-lg"
-				title="My Felt Map of Tacoma, WA"
-				src="https://felt.com/embed/map/My-home-9AgWsx7e5SjCLf9Cghe0RG8A?lat=47.287319&lon=-122.391078&zoom=11.400331391880338"
-				loading="lazy"
-			>
-			</iframe>
+			<FeltMap client:visible />
 		</div>
 	</div>
 </section>

@@ -1,5 +1,6 @@
 ---
 import Carousel from "../components/Carousel"
+import Image from "../components/Image.astro"
 
 const work = await Astro.glob("../../**/project/*.mdx")
 	.then((res) => res.filter((x) => !x.frontmatter.draft))
@@ -19,7 +20,11 @@ const work = await Astro.glob("../../**/project/*.mdx")
 					href={url}
 					class="bg-white dark:bg-black rounded-lg border border-gray-300 dark:border-gray-800 block group"
 				>
-					<img src={frontmatter.image.src} alt="" class="rounded-t-lg aspect-[4/3]" />
+					<Image
+						src={frontmatter.image.src}
+						alt={frontmatter.image.alt}
+						class="rounded-t-lg aspect-[4/3]"
+					/>
 					<div class="p-4 flex flex-col group-hover:bg-gray-300/70 dark:group-hover:bg-gray-900 transition">
 						<h3 class="font-medium">{frontmatter.title}</h3>
 						<p class="text-sm text-gray-400">
