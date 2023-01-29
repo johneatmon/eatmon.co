@@ -18,7 +18,7 @@ const work = await Astro.glob("./*.mdx").then((res) => res.filter((x) => !x.fron
 		<ul role="list" class="flex flex-col gap-16">
 			{
 				work.map(({ frontmatter, url }) => (
-					<li class="flex flex-col md:flex-row gap-1 md:gap-9">
+					<li class="flex flex-col md:flex-row gap-2 md:gap-9">
 						<span
 							class="text-gray-500 dark:text-gray-400 md:w-40 shrink-0 text-xs md:text-base"
 							set:html={`${frontmatter.duration.from}&ndash;${frontmatter.duration.to}`}
