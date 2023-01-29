@@ -5,6 +5,7 @@ import { Icon } from "astro-icon"
 import { smartypants } from "smartypants"
 import FancyButton from "../../components/FancyButton.astro"
 import Image from "../../components/Image.astro"
+import MapSection from "../../components/MapSection.astro"
 import Sparkles from "../../components/Sparkles"
 import { about, work } from "../../data/about"
 import { TOOLS } from "../../data/config"
@@ -103,4 +104,9 @@ const description =
 			<FancyButton href="/about/tools">More tools I use</FancyButton>
 		</div>
 	</section>
+	<MapSection class="pt-16">
+		I'm fortunate to call Tacoma, WA my home. I've been working remotely here since summer 2021.
+		Below are a few of my favorite places around town &mdash; if you're ever in the area, I hope you
+		check them out!
+	</MapSection>
 </BaseLayout>

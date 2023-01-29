@@ -12,10 +12,10 @@ if (Astro.slots.has("default")) html = await Astro.slots.render("default")
 ---
 
 <section aria-labelledby="#location" {...attrs}>
-	<h2 id="experience" class="font-medium mb-8">Location</h2>
+	<!-- <h2 id="experience" class="font-medium mb-8">Location</h2> -->
 	<div class="flex flex-col md:flex-row gap-1 md:gap-9 mb-6">
 		<span class="text-gray-500 dark:text-gray-400 md:w-40 shrink-0 text-xs md:text-base"
-			>Tacoma, WA</span
+			>Location</span
 		>
 		<div class="flex-grow">
 			<p class="mb-6" set:html={smartypants(html, 1)} />

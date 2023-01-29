@@ -3,7 +3,6 @@ export const prerender = true
 
 import ExperienceSection from "../components/ExperienceSection.astro"
 import Hero from "../components/Hero.astro"
-import MapSection from "../components/MapSection.astro"
 import ProjectSection from "../components/ProjectSection.astro"
 import BaseLayout from "../layouts/BaseLayout.astro"
 
@@ -18,9 +17,4 @@ const description = "I'm a product and web designer living in Tacoma, WA."
 	</Hero>
 	<ProjectSection class="pt-16" featuredNumber={3}>Selected projects</ProjectSection>
 	<ExperienceSection class="pt-16" />
-	<MapSection class="pt-16">
-		I'm fortunate to call Tacoma, WA my home. I've been working remotely here since summer 2021.
-		Below are a few of my favorite places around town &mdash; if you're ever in the area, I hope you
-		check them out!
-	</MapSection>
 </BaseLayout>
