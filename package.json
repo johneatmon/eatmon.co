@@ -28,6 +28,7 @@
     "@headlessui/react": "^1.7.7",
     "@headlessui/tailwindcss": "^0.1.2",
     "@radix-ui/react-toast": "^1.1.2",
+    "@tailwindcss/line-clamp": "^0.4.2",
     "@tailwindcss/typography": "^0.5.8",
     "astro": "2.0.1",
     "astro-compress": "^1.1.28",
