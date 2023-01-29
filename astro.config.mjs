@@ -23,7 +23,9 @@ export default defineConfig({
 		}),
 		mdx(),
 		react(),
-		tailwind(),
+		tailwind({
+			config: { applyBaseStyles: false },
+		}),
 	],
 	markdown: {
 		remarkPlugins: [remarkWidont, remarkReadingTime],
