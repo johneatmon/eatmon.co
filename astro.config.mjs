@@ -11,7 +11,14 @@ import { remarkWidont } from "./remark-widont.mjs"
 
 // https://astro.build/config
 export default defineConfig({
-	integrations: [image(), mdx(), react(), tailwind()],
+	integrations: [
+		image({
+			serviceEntryPoint: "@astrojs/image/sharp",
+		}),
+		mdx(),
+		react(),
+		tailwind(),
+	],
 	markdown: {
 		remarkPlugins: [remarkWidont, remarkReadingTime],
 		drafts: true,
