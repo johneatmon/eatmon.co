@@ -2,6 +2,7 @@
 export const prerender = true
 
 import { Icon } from "astro-icon"
+
 import { TOOLS } from "../../data/config"
 import BaseLayout from "../../layouts/BaseLayout.astro"
 
@@ -23,15 +24,33 @@ const category = TOOLS.map((tool) => categories.add(tool.category))
 				<h2 id={`${category}`} class="text-gray-500 dark:text-gray-400 text-xs md:text-base">
 					{category}
 				</h2>
-				<ul role="list" class="col-span-3 grid gap-y-8 gap-x-2 md:gap-9 grid-cols-2 md:grid-cols-3">
-					{TOOLS.filter((x) => x.category === category).map(
-						({ name, href, icon, category, learning }) => (
-							<li class="flex gap-x-2">
-								{icon && <Icon name={icon} class="w-6 h-6 aspect-square" />}
-								{name}
-							</li>
-						),
-					)}
+				<ul role="list" class="col-span-3 grid gap-y-8 gap-x-2 md:gap-9 grid-cols-2">
+					{TOOLS.filter((x) => x.category === category).map(({ name, href, icon, learning }) => (
+						<li class="relative w-fit">
+							<a
+								href={href ?? "#"}
+								class={`inline-block p-2 -m-2 relative z-10 peer group ${
+									learning ? "hover:opacity-90 cursor-help" : ""
+								}`}
+							>
+								<div
+									aria-hidden="true"
+									class="absolute isolate inset-0 bg-gray-300/80 dark:bg-gray-900 rounded-lg opacity-0 group-hover:opacity-100 scale-90 group-hover:scale-100 transition-all duration-300 ease-in-out"
+								/>
+								<div class="flex items-center gap-4 relative">
+									{icon && (
+										<Icon name={icon} class="w-6 h-6 aspect-square" title={`${name} icon`} />
+									)}
+									<div class="flex items-center gap-2">{name}</div>
+								</div>
+							</a>
+							{learning && (
+								<span class="absolute -top-full -translate-y-2 z-10 left-1/2 -translate-x-1/2 opacity-0 peer-hover:opacity-100 bg-black p-1 rounded text-sm">
+									Learning
+								</span>
+							)}
+						</li>
+					))}
 				</ul>
 			</section>
 		))

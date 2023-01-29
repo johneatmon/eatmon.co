@@ -54,12 +54,14 @@ export const TOOLS: Tool[] = [
 	{
 		name: "Rive App",
 		icon: "",
+		href: "https://rive.app/",
 		category: "Design",
 		learning: true,
 	},
 	{
 		name: "Spline",
 		icon: "",
+		href: "https://spline.design/",
 		category: "Design",
 		learning: true,
 	},
@@ -82,6 +84,7 @@ export const TOOLS: Tool[] = [
 	{
 		name: "Tailwind CSS",
 		icon: "tailwindcss",
+		href: "https://tailwindcss.com/",
 		category: "Development",
 	},
 	{
@@ -93,10 +96,12 @@ export const TOOLS: Tool[] = [
 		name: "TypeScript",
 		icon: "ts",
 		category: "Development",
+		learning: true,
 	},
 	{
 		name: "React",
 		icon: "react",
+		href: "https://beta.reactjs.org/",
 		category: "Development",
 	},
 	{
@@ -109,6 +114,7 @@ export const TOOLS: Tool[] = [
 	{
 		name: "Next.js",
 		icon: "nextjs",
+		href: "https://nextjs.org/",
 		category: "Development",
 		learning: true,
 	},
@@ -116,6 +122,7 @@ export const TOOLS: Tool[] = [
 	{
 		name: "Vercel",
 		icon: "vercel",
+		href: "https://vercel.com/",
 		category: "Services",
 	},
 	{
@@ -128,11 +135,13 @@ export const TOOLS: Tool[] = [
 	{
 		name: "Cloudflare Images",
 		icon: "cloudflare",
+		href: "https://www.cloudflare.com/products/cloudflare-images/",
 		category: "Services",
 	},
 	{
 		name: "GitHub",
 		icon: "github",
+		href: "https://github.com/",
 		category: "Services",
 	},
 
@@ -146,14 +155,17 @@ export const TOOLS: Tool[] = [
 	{
 		name: "Loom",
 		icon: "loom",
+		href: "https://www.loom.com/",
 		category: "Services",
 	},
 	{
 		name: "Felt",
+		href: "https://felt.com/",
 		category: "Services",
 	},
 	{
 		name: "Plausible Analytics",
+		href: "https://plausible.io/",
 		category: "Services",
 	},
 	// Apps
@@ -181,13 +193,14 @@ export const TOOLS: Tool[] = [
 	{
 		name: "CleanShot X",
 		icon: "",
+		href: "https://cleanshot.com/",
 		category: "Apps",
 	},
 	{
 		name: "Ableton Live",
 		icon: "",
+		href: "https://www.ableton.com/en/live/",
 		category: "Apps",
 		learning: true,
 	},
-	// Gear
 ]
