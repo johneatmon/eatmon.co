@@ -1,0 +1,29 @@
+---
+import LinkPreview from "../components/Glimpse"
+import PostFooter from "../components/PostFooter.astro"
+import PostHeader from "../components/PostHeader.astro"
+import BaseLayout from "../layouts/BaseLayout.astro"
+
+const { content } = Astro.props
+---
+
+<BaseLayout
+	title={content.title}
+	description={content.description}
+	type="article"
+	section={content.caseStudy === true ? "Case Study" : "Project"}
+	tags={content.tags}
+	datePublished={content.published}
+	dateModified={content.modified}
+>
+	<article class="pt-24 lg:pt-32 mt">
+		<PostHeader {content} />
+		<main
+			class="prose prose-zinc dark:prose-invert my-16 prose-em:font-serif prose-em:text-[110%] prose-em:font-medium prose-blockquote:font-serif prose-blockquote:text-[110%] prose-blockquote:font-medium"
+		>
+			<slot />
+		</main>
+		<PostFooter />
+	</article>
+	<LinkPreview client:idle />
+</BaseLayout>

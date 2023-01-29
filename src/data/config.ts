@@ -1,4 +1,5 @@
-export { SOCIALS, TWITTER } from "./socials"
+export { EMAIL, SOCIALS, TWITTER } from "./socials"
+export { TOOLS } from "./tools"
 
 export const SITE = {
 	name: "John Eatmon",

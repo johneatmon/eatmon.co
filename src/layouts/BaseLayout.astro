@@ -1,6 +1,7 @@
 ---
+import Analytics from "../components/Analytics.astro"
 import BaseHead, { Props as BaseHeadProps } from "../components/BaseHead.astro"
-import ThemeToggle from "../components/ThemeToggle.astro"
+import Theme from "../components/Theme.astro"
 
 interface Props extends Exclude<BaseHeadProps, "title"> {
 	title?: string
@@ -9,22 +10,24 @@ interface Props extends Exclude<BaseHeadProps, "title"> {
 import Footer from "../components/Footer.astro"
 import Header from "../components/Header.astro"
 
-const { content } = Astro.props
 const { ...attrs } = Astro.props as Props
 ---
 
-<html lang="en" class="h-full">
+<html lang="en" class="h-full transition">
 	<head>
-		<BaseHead title={content.title} description={content.description} {...attrs} />
+		<BaseHead {...attrs} />
+		<Theme />
+		<Analytics />
 	</head>
 	<body
-		class="text-gray-12 bg-gray-1 antialiased h-full [&>footer]:sticky [&>footer]:top-[100vh] relative transition-colors duration-300 ease-in-out"
+		class="antialiased bg-gray-50 dark:bg-gray-1000 text-gray-900 dark:text-gray-50 h-full [&>footer]:sticky [&>footer]:top-[100vh] relative transition"
 	>
-		<ThemeToggle />
-		<Header class="max-w-[700px] mx-auto px-4 pt-24 lg:pt-32 pb-9" />
-		<main class="prose prose-gray max-w-[700px] mx-auto px-4">
+		<Header
+			class="bg-white/70 dark:bg-gray-1000/80 fixed isolate z-50 top-0 backdrop-blur-[20px] backdrop-saturate-[180%] w-full"
+		/>
+		<main class="relative max-w-[700px] mx-auto px-4">
 			<slot />
 		</main>
-		<Footer class="mt-16 lg:mt-24 pb-16" />
+		<Footer class="relative mt-16 lg:mt-24 pb-16" />
 	</body>
 </html>

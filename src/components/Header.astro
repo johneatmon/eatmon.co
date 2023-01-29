@@ -1,29 +1,67 @@
 ---
-import { Image } from "@astrojs/image/components"
 import type { HTMLAttributes } from "astro/types"
-import Button from "../components/Button"
+import Dropdown from "../components/Dropdown"
+import Image from "../components/Image.astro"
+import ThemeToggle from "./ThemeToggle"
 
-import { SOCIALS } from "../data/config"
-
-const cv = SOCIALS.filter((x) => x.label === "ReadCV").map(({ href }) => href)
-
-interface Props extends HTMLAttributes<"header"> {}
+interface Props extends HTMLAttributes<"section"> {}
 
 const { ...attrs } = Astro.props as Props
+
+const links = [
+	{ href: "/about", label: "About" },
+	{ href: "/work", label: "Work" },
+]
+
+const path = Astro.url.pathname
 ---
 
 <header {...attrs}>
-	<div class="border border-gray-9 dark:border-gray-6 rounded-full w-fit mb-8">
-		<Image
-			src="https://imagedelivery.net/le40TwFDWUdIvXckEp8FBw/5966de80-8db7-449d-80f7-fd1260e76e00/public"
-			width={64}
-			aspectRatio={1}
-			alt="A selfie of me hiking on snowy Mt. Rainier. I am smiling while wearing my hat and sunglasses. Behind my head, in the distance, you can see the looming peak of Mt. Adams."
-			class="w-16 aspect-square object-cover rounded-full m-[2px]"
-			loading="eager"
-		/>
+	<div class="max-w-[700px] mx-auto px-4 flex items-stretch sm:gap-x-3 justify-between">
+		<a href="/" class="relative px-2 -ml-[10px] sm:px-3 sm:-ml-[14px] grid place-items-center">
+			<Image
+				src="https://imagedelivery.net/le40TwFDWUdIvXckEp8FBw/5966de80-8db7-449d-80f7-fd1260e76e00/w=32,h=32,format=webp"
+				alt="A selfie of me hiking on snowy Mt. Rainier. I am smiling while wearing my hat and sunglasses. Behind my head, in the distance, you can see the looming peak of Mt. Adams."
+				class="w-8 aspect-square rounded-full border-2 border-gray-1000/20 dark:border-gray-800"
+				loading="eager"
+			/>
+			<span
+				aria-hidden="true"
+				class={`absolute inset-x-1 -bottom-px h-px bg-gradient-purple dark:bg-gradient-purple-dark ${
+					path === "/" ? `opacity-100` : `opacity-0`
+				}`}></span>
+		</a>
+		<nav>
+			<ul role="list" class="flex text-xs sm:text-sm font-medium">
+				{
+					links.map(({ href, label }) => (
+						<li>
+							<a href={href} class="relative inline-block py-4 px-2 sm:px-3 group">
+								<span
+									class={`bg-clip-text group-hover:text-transparent bg-gradient-to-r from-purple-700 to-indigo-500 dark:from-purple-400 dark:to-indigo-400 transition-colors ${
+										path.includes(href) && `text-transparent `
+									}`}
+								>
+									{label}
+								</span>
+								<span
+									aria-hidden="true"
+									class={`absolute inset-x-1 -bottom-px h-px bg-gradient-purple dark:bg-gradient-purple-dark ${
+										path.includes(href) ? `opacity-100` : `opacity-0`
+									}`}
+								/>
+							</a>
+						</li>
+					))
+				}
+				<li><Dropdown client:idle>Contact</Dropdown></li>
+			</ul>
+		</nav>
+		<ThemeToggle client:visible />
 	</div>
-	<h1 class="font-medium font-display text-3xl">John Eatmon</h1>
-	<p class="text-gray-11 mb-6">Multidisciplinary designer, developer, and creative.</p>
-	<Button href={cv} client:idle>View résumé</Button>
+	<div
+		aria-hidden="true"
+		class="h-px w-full bg-gradient-to-r from-gray-300 via-gray-300 to-gray-50 dark:from-white/10 dark:via-white/10 dark:to-gray-1000"
+	>
+	</div>
 </header>

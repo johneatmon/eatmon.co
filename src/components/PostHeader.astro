@@ -1,0 +1,78 @@
+---
+import type { HTMLAttributes } from "astro/types"
+import { smartypants } from "smartypants"
+import Image from "../components/Image.astro"
+import { machineDate, readableDate } from "../script/dates"
+
+interface Props extends HTMLAttributes<"header"> {
+	content: any
+}
+
+const { content, ...attrs } = Astro.props as Props
+---
+
+<header {...attrs}>
+	<h1 class="text-3xl sm:text-4xl font-semibold mb-6" set:html={smartypants(content.title, 1)} />
+	<p
+		class="text-base sm:text-lg text-gray-500 dark:text-gray-400"
+		set:html={smartypants(content.description)}
+	/>
+	{
+		content.image && (
+			<div class="mt-14 -mx-4 sm:-mx-8">
+				<Image
+					src={content.image.src}
+					alt={content.image.src}
+					class="sm:rounded-lg aspect-[4/3] w-full"
+					loading="eager"
+				/>
+			</div>
+		)
+	}
+	{
+		content.tools && content.roles && content.published && content.duration && (
+			<div class="grid grid-cols-2 md:grid-cols-4 gap-y-4 gap-x-2 md:gap-9 text-sm sm:mt-14 px-4 py-10 sm:p-5 -m-4 sm:-m-5 sm:rounded-lg bg-gray-200 dark:bg-black">
+				<div>
+					<span class="font-semibold mb-1">My role</span>
+					<ul class="text-gray-11" role="list">
+						{[...content.roles]
+							.sort((a, b) => a.localeCompare(b))
+							.map((role) => (
+								<li>{role}</li>
+							))}
+					</ul>
+				</div>
+				<div>
+					<span class="font-semibold mb-1">Tools</span>
+					<ul class="text-gray-11" role="list">
+						{[...content.tools]
+							.sort((a, b) => a.localeCompare(b))
+							.map((tool) => (
+								<li>{tool}</li>
+							))}
+					</ul>
+				</div>
+				<div>
+					<span class="font-semibold mb-1">Timeline</span>
+					<p
+						class="text-gray-11"
+						set:html={`${content.duration.from}&ndash;${content.duration.to}`}
+					/>
+				</div>
+				<div>
+					<span class="font-semibold mb-1">Published</span>
+					<br />
+					<time
+						class="text-gray-11 inline-block"
+						set:html={readableDate(content.published)}
+						datetime={machineDate(content.published)}
+					/>
+				</div>
+			</div>
+		)
+	}
+	<!-- <div
+		class="bg-black/70 backdrop-blur-sm px-3 py-2 rounded-full shadow-lg text-xs leading-none"
+		set:text={content.minutesRead}
+	/> -->
+</header>

@@ -1,0 +1,16 @@
+---
+import type { HTMLAttributes } from "astro/types"
+
+interface Props extends HTMLAttributes<"section"> {}
+
+const { ...attrs } = Astro.props as Props
+---
+
+<section {...attrs} aria-labelledby="#title">
+	<h1 id="title" class="font-medium font-display text-2xl">
+		<slot name="title" />
+	</h1>
+	<p class="text-gray-500 dark:text-gray-400 mb-6">
+		<slot />
+	</p>
+</section>

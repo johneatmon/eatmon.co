@@ -1,0 +1,55 @@
+---
+export const prerender = true
+
+import { Icon } from "astro-icon"
+import { smartypants } from "smartypants"
+import ProjectSection from "../../components/ProjectSection.astro"
+import BaseLayout from "../../layouts/BaseLayout.astro"
+
+const work = await Astro.glob("./*.mdx").then((res) => res.filter((x) => !x.frontmatter.draft))
+---
+
+<BaseLayout title="Work & Projects" description="Yada yada">
+	<section aria-labelledby="#title" class="pt-24 lg:pt-32 pb-9">
+		<h1 id="title" class="font-semibold text-2xl">Work & Projects</h1>
+	</section>
+	<section aria-labelledby="#work" class="pt-16">
+		<h2 id="work" class="font-medium mb-8">Work experience</h2>
+		<ul role="list" class="flex flex-col gap-16">
+			{
+				work.map(({ frontmatter, url }) => (
+					<li class="flex flex-col md:flex-row gap-2 md:gap-9">
+						<span
+							class="text-gray-500 dark:text-gray-400 md:w-40 shrink-0 text-xs md:text-base"
+							set:html={`${frontmatter.duration.from}&ndash;${frontmatter.duration.to}`}
+						/>
+						<a href={url} class="inline-block p-2 -m-2 relative group">
+							<div
+								aria-hidden="true"
+								class="absolute isolate inset-0 bg-gray-300/80 dark:bg-gray-900 rounded-lg opacity-0 group-hover:opacity-100 scale-90 group-hover:scale-100 transition-all duration-300 ease-in-out"
+							/>
+							<div class="flex gap-x-4 items-start w-full relative">
+								<Icon
+									name="prosource"
+									title="ProSource brandmark"
+									class="w-12 flex-shrink-0 aspect-square object-contain text-indigo-600"
+								/>
+								<div>
+									<h3
+										class="font-semibold"
+										set:html={`${frontmatter.roles} &middot; ${frontmatter.title}`}
+									/>
+									<p
+										class="text-gray-500 dark:text-gray-400"
+										set:html={smartypants(frontmatter.description, 1)}
+									/>
+								</div>
+							</div>
+						</a>
+					</li>
+				))
+			}
+		</ul>
+	</section>
+	<ProjectSection class="pt-16">Projects</ProjectSection>
+</BaseLayout>

@@ -1,0 +1,23 @@
+---
+import type { HTMLAttributes } from "astro/types"
+
+interface Props extends HTMLAttributes<"a"> {}
+
+const { ...attrs } = Astro.props as Props
+---
+
+<!-- https://play.tailwindcss.com/Bqg5kMnpte -->
+<a
+	{...attrs}
+	class="inline-block whitespace-nowrap group relative overflow-hidden rounded-lg bg-black/20 dark:bg-white/20 hover:bg-white dark:hover:bg-gray-1000 transition-colors duration-300 ease-in-out px-20 py-6 ring-purple-700/50 dark:ring-purple-400/50 ring-offset-white dark:ring-offset-gray-1000 will-change-transform focus:outline-none focus:ring-1 focus:ring-offset-2"
+>
+	<span
+		class="absolute inset-px z-10 grid place-items-center rounded-lg bg-white dark:bg-gray-1000"
+	>
+		<slot />
+	</span>
+	<span
+		aria-hidden="true"
+		class="absolute inset-0 opacity-0 group-hover:opacity-100 transition-opacity duration-[2s] [transition-timing-function:cubic-bezier(.4,0,.2,1)] z-0 scale-x-[2.0] blur before:absolute before:inset-0 before:top-1/2 before:aspect-square group-hover:before:animate-disco before:bg-gradient-conic before:from-purple-700 dark:before:from-purple-400 before:via-indigo-500 dark:before:via-indigo-400 before:to-purple-700/0 dark:before:to-purple-400/0"
+	></span>
+</a>

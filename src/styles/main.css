@@ -1,0 +1,53 @@
+@import "fonts.css";
+@tailwind base;
+
+/* Add some additional CSS resets from Andy Bell (https://piccalil.li/blog/a-modern-css-reset) */
+@layer base {
+	:root {
+		--bg-color: theme("colors.gray.50");
+	}
+
+	::selection {
+		@apply bg-purple-700 text-white dark:bg-purple-400 dark:text-black;
+	}
+
+	html {
+		@apply antialiased;
+		background-color: var(--bg-color);
+
+		&:focus-within {
+			scroll-behavior: smooth;
+		}
+
+		&[data-mode="dark"] {
+			--bg-color: theme("colors.gray.1000");
+		}
+	}
+
+	body {
+		min-height: theme("height.screen");
+		text-rendering: optimizeSpeed;
+	}
+
+	a:not([class]) {
+		text-decoration-skip-ink: auto;
+	}
+
+	@media (prefers-reduced-motion: reduce) {
+		html:focus-within {
+			scroll-behavior: auto;
+		}
+
+		*,
+		*::before,
+		*::after {
+			animation-duration: 0.01ms !important;
+			animation-iteration-count: 1 !important;
+			transition-duration: 0.01ms !important;
+			scroll-behavior: auto !important;
+		}
+	}
+}
+
+@tailwind components;
+@tailwind utilities;
