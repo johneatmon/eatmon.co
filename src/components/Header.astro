@@ -54,10 +54,10 @@ const path = Astro.url.pathname
 						</li>
 					))
 				}
-				<li><Dropdown client:load>Contact</Dropdown></li>
+				<li><Dropdown client:idle>Contact</Dropdown></li>
 			</ul>
 		</nav>
-		<ThemeToggle client:load />
+		<ThemeToggle client:idle />
 	</div>
 	<div
 		aria-hidden="true"
