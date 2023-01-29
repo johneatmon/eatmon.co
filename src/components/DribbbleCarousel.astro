@@ -35,7 +35,7 @@ const shots = await res.json()
 					<div class="p-4 flex flex-col group-hover:bg-gray-300/70 dark:group-hover:bg-gray-900 transition">
 						<h3 class="font-medium">{title}</h3>
 						<p class="text-sm text-gray-400">
-							Posted&nbsp;
+							Posted
 							<time datetime={new Date(published_at).toISOString()}>
 								{new Intl.DateTimeFormat("en-US", { dateStyle: "medium" }).format(
 									new Date(published_at),

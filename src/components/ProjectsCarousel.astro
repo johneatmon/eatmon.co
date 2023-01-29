@@ -28,7 +28,7 @@ const work = await Astro.glob("../../**/project/*.mdx")
 					<div class="p-4 flex flex-col group-hover:bg-gray-300/70 dark:group-hover:bg-gray-900 transition">
 						<h3 class="font-medium">{frontmatter.title}</h3>
 						<p class="text-sm text-gray-400">
-							Posted&nbsp;
+							Posted
 							<time datetime={new Date(frontmatter.published).toISOString()}>
 								{new Intl.DateTimeFormat("en-US", { dateStyle: "medium" }).format(
 									new Date(frontmatter.published),
