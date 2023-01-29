@@ -11,7 +11,6 @@ const { content } = Astro.props
 	title={content.title}
 	description={content.description}
 	type="article"
-	image={{ src: content.image.src, alt: content.image.alt }}
 	section={content.caseStudy === true ? "Case Study" : "Project"}
 	tags={content.tags}
 	datePublished={content.published}
