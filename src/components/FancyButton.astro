@@ -17,7 +17,7 @@ const { ...attrs } = Astro.props as Props
 		<slot />
 	</span>
 	<span
-		aria-hidden
+		aria-hidden="true"
 		class="absolute inset-0 opacity-0 group-hover:opacity-100 transition-opacity duration-[2s] [transition-timing-function:cubic-bezier(.4,0,.2,1)] z-0 scale-x-[2.0] blur before:absolute before:inset-0 before:top-1/2 before:aspect-square group-hover:before:animate-disco before:bg-gradient-conic before:from-purple-700 dark:before:from-purple-400 before:via-indigo-500 dark:before:via-indigo-400 before:to-purple-700/0 dark:before:to-purple-400/0"
 	></span>
 </a>
