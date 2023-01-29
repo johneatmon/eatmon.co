@@ -10,7 +10,9 @@ const { content } = Astro.props
 <BaseLayout title={content.title} description={content.description}>
 	<article class="pt-24 lg:pt-32 mt">
 		<PostHeader {content} />
-		<main class="prose prose-zinc dark:prose-invert my-16">
+		<main
+			class="prose prose-zinc dark:prose-invert my-16 prose-em:font-serif prose-em:text-[110%] prose-em:font-medium"
+		>
 			<slot />
 		</main>
 		<PostFooter />
