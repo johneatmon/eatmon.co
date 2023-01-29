@@ -13,9 +13,17 @@ interface Props extends HTMLAttributes<"li"> {
 	}
 	url: string | undefined
 	caseStudy?: boolean
+	index?: number
 }
 
-const { title, description, duration, image, url, caseStudy, ...attrs } = Astro.props as Props
+const { title, description, duration, image, url, caseStudy, index, ...attrs } =
+	Astro.props as Props
+
+let loading = "lazy"
+
+if (index !== undefined && index < 1) {
+	loading = "eager"
+}
 ---
 
 <li {...attrs}>
@@ -27,7 +35,7 @@ const { title, description, duration, image, url, caseStudy, ...attrs } = Astro.
 		<h3 class="font-semibold mb-1" set:html={title} />
 		<p class="text-gray-500 dark:text-gray-400 mb-1" set:html={smartypants(description, 1)} />
 		<a href={url} class="inline-block font-medium underline-offset-2 underline decoration-2 mb-6">
-			{caseStudy ? "Ready case study" : "Read more"}
+			{caseStudy ? "Ready case study" : "Read about this project"}
 		</a>
 		<a href={url} class="block relative overflow-hidden group">
 			<div
@@ -38,6 +46,7 @@ const { title, description, duration, image, url, caseStudy, ...attrs } = Astro.
 				src={image.src}
 				alt={image.alt ?? ""}
 				class="rounded-lg aspect-[4/3] w-full object-cover"
+				loading={loading}
 			/>
 		</a>
 	</div>

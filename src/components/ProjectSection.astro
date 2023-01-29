@@ -28,7 +28,7 @@ const { featuredNumber = projects.length, ...attrs } = Astro.props as Props
 		{
 			projects
 				.slice(0, featuredNumber)
-				.map(({ frontmatter, url }) => (
+				.map(({ frontmatter, url }, i) => (
 					<ProjectCard
 						title={frontmatter.title}
 						description={frontmatter.description}
@@ -37,6 +37,7 @@ const { featuredNumber = projects.length, ...attrs } = Astro.props as Props
 						url={url}
 						caseStudy={frontmatter.caseStudy}
 						class="flex flex-col md:flex-row gap-1 md:gap-9"
+						index={i}
 					/>
 				))
 		}
