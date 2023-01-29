@@ -6,13 +6,13 @@
 		if (window.matchMedia("(prefers-color-scheme: dark)").matches) {
 			return "dark"
 		}
-		return "light"
+		return "dark" // This is the 'default' state
 	})()
 
 	if (theme === "light") {
-		document.documentElement.classList.remove("dark")
+		document.documentElement.removeAttribute("data-mode")
 	} else {
-		document.documentElement.classList.add("dark")
+		document.documentElement.setAttribute("data-mode", "dark")
 	}
 
 	window.localStorage.setItem("theme", theme)
