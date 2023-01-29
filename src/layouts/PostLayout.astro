@@ -7,7 +7,16 @@ import BaseLayout from "../layouts/BaseLayout.astro"
 const { content } = Astro.props
 ---
 
-<BaseLayout title={content.title} description={content.description}>
+<BaseLayout
+	title={content.title}
+	description={content.description}
+	type="article"
+	image={{ src: content.image.src, alt: content.image.alt }}
+	section={content.caseStudy === true ? "Case Study" : "Project"}
+	tags={content.tags}
+	datePublished={content.published}
+	dateModified={content.modified}
+>
 	<article class="pt-24 lg:pt-32 mt">
 		<PostHeader {content} />
 		<main
