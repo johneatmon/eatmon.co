@@ -33,6 +33,7 @@
     "astro": "2.0.1",
     "astro-compress": "^1.1.28",
     "astro-icon": "^0.8.0",
+    "astro-robots-txt": "^0.3.11",
     "blaze-slider": "^1.9.1",
     "clsx": "^1.2.1",
     "luxon": "^3.2.1",

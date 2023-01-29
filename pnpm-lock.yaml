@@ -20,6 +20,7 @@ specifiers:
   astro: 2.0.1
   astro-compress: ^1.1.28
   astro-icon: ^0.8.0
+  astro-robots-txt: ^0.3.11
   blaze-slider: ^1.9.1
   clsx: ^1.2.1
   eslint: ^8.31.0
@@ -63,6 +64,7 @@ dependencies:
   astro: 2.0.1
   astro-compress: 1.1.28
   astro-icon: 0.8.0
+  astro-robots-txt: 0.3.11
   blaze-slider: 1.9.1
   clsx: 1.2.1
   luxon: 3.2.1
@@ -1894,6 +1896,14 @@ packages:
       svgo: 2.8.0
     dev: false
 
+  /astro-robots-txt/0.3.11:
+    resolution: {integrity: sha512-UmIOU6zLusFSPBQjl8vozlfE1fkxLuXDhaT7ZOalsE8Ee4c/ua8OWexcx9Z4d2rZZ8/pywuL28LeG0Sjaq5m3w==}
+    dependencies:
+      deepmerge: 4.2.2
+      valid-filename: 4.0.0
+      zod: 3.20.2
+    dev: false
+
   /astro/2.0.1:
     resolution: {integrity: sha512-EXq1lks+ylmArhtUs99PQelK0bQ3VS+698OO9UYkjG08Bd02ficqihsRGBnhEor7U9989hZb+1p4y0rNpgKH8g==}
     engines: {node: '>=16.12.0', npm: '>=6.14.0'}
@@ -3171,6 +3181,11 @@ packages:
 
   /file-uri-to-path/1.0.0:
     resolution: {integrity: sha512-0Zt+s3L7Vf1biwWZ29aARiVYLx7iMGnEUl9x33fbB/j3jR81u/O2LbqK+Bm1CDSNDKVtJ/YjwY7TUd5SkeLQLw==}
+    dev: false
+
+  /filename-reserved-regex/3.0.0:
+    resolution: {integrity: sha512-hn4cQfU6GOT/7cFHXBqeBg2TbrMBgdD0kcjLhvSQYYwm3s4B6cjvBfb7nBALJLAXqmU5xajSa7X2NnUud/VCdw==}
+    engines: {node: ^12.20.0 || ^14.13.1 || >=16.0.0}
     dev: false
 
   /files-pipeline/0.0.2:
@@ -6847,6 +6862,13 @@ packages:
       diff: 5.1.0
       kleur: 4.1.5
       sade: 1.8.1
+    dev: false
+
+  /valid-filename/4.0.0:
+    resolution: {integrity: sha512-VEYTpTVPMgO799f2wI7zWf0x2C54bPX6NAfbZ2Z8kZn76p+3rEYCTYVYzMUcVSMvakxMQTriBf24s3+WeXJtEg==}
+    engines: {node: ^12.20.0 || ^14.13.1 || >=16.0.0}
+    dependencies:
+      filename-reserved-regex: 3.0.0
     dev: false
 
   /validate-npm-package-license/3.0.4:
