@@ -11,7 +11,7 @@ const ArrowUpRight = () => {
 			viewBox="0 0 24 24"
 			strokeWidth={1.5}
 			stroke="currentColor"
-			className="text-current inline ml-1"
+			className="text-current"
 		>
 			<path
 				strokeLinecap="round"
@@ -64,7 +64,7 @@ const LinkPreview: FC = () => {
 			<p className="line-clamp-2 block text-sm leading-normal text-gray-500 dark:text-gray-400 mb-2">
 				{data.description}
 			</p>
-			<div className="text-gray-400 dark:text-gray-600">
+			<div className="text-gray-400 dark:text-gray-600 flex flex-wrap gap-1 items-center">
 				<span className="line-clamp-1 text-sm leading-normal">{data.url?.replace(/\/+$/, "")}</span>
 				<ArrowUpRight />
 			</div>
