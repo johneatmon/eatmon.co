@@ -9,8 +9,8 @@ roles:
 published: 2022-06-20
 modified: 2023-01-07
 image:
-  src: "https://cdn.dribbble.com/users/3271731/screenshots/20470727/media/a60877d9110219294be842a829d36850.png?compress=1&resize=1600x1200&vertical=top"
-  alt: A high-fidelity mockup of the ProSource website homepage on a laptop.
+  src: "https://imagedelivery.net/le40TwFDWUdIvXckEp8FBw/8ec89360-48e4-438d-9160-aa069adac000/w=1600,h=1200,format=webp"
+  alt: A stylized mockup of ProSource's radiology landing page in dark and light modes.
 tools:
   - Figma
   - FigJam
@@ -27,11 +27,13 @@ duration:
 caseStudy: true
 ---
 
+import Image from "../../components/Image.astro"
+
 export const prerender = true
 
 ## Overview
 
-Between 2021–2022, I created 4 landing pages tailored to specific industries or service offerings. These would be more hyper-focused on acquiring leads who otherwise wouldn’t be engaged on our main marketing website. The four landing pages:
+Between 2021--2022, I created 4 landing pages tailored to specific industries or service offerings. These would be more hyper-focused on acquiring leads who otherwise wouldn't be engaged on our main marketing website. The four landing pages:
 
 - Hosted QuickBooks
 - Hosted QuickBooks (with Intuit QuickBooks Solution Provider partnership)
@@ -40,7 +42,7 @@ Between 2021–2022, I created 4 landing pages tailored to specific industries o
 
 ## Problem statement
 
-It’s hard to captivate each and every prospect on the main marketing website. There were a few scenarios where sending a prospect to our main website wasn’t the best idea:
+It's hard to captivate each and every prospect on the main marketing website. There were a few scenarios where sending a prospect to our main website wasn't the best idea:
 
 - **Referral links from partners:** For example, because we were an Intuit partner, they featured us on their authorized hosting page for QuickBooks Desktop. It made more sense to tailor a landing page specific to these prospects than to send them to our main website.
 - **Cold outreach:** Any time we cold-called leads, we targeted one, specific industry at a time. Sending a tailored landing page that focuses only on the one industry would convert at a higher rate.
@@ -60,6 +62,12 @@ We knew the bounce rate on any landing page would be higher than our main websit
 
 We primarily focused on our conversion rates to measure the performance of each landing page. Specifically, this was the ratio of leads booking appointments with our Business Development Director versus the total number of website visitors.
 
+<Image
+	src="https://imagedelivery.net/le40TwFDWUdIvXckEp8FBw/cf1e7df8-4908-4def-b1cd-3b2c43d1ad00/w=1600,h=1200,format=webp"
+	alt="Stylized mockup of ProSource's landing pages."
+	class="sm:rounded-lg w-full"
+/>
+
 ## Design process
 
 Following our lean UX approach, I created a few quick wireframes to plot out answers to common pain points that leads bring to us. I also designed sections to answer questions before they are asked, specifically pertaining to pricing, availability, and included features.
@@ -74,9 +82,17 @@ Wireframes were vetted for cohesiveness by the Director of Business Development.
 
 ### The HIPAA compliance quiz
 
-We gated the quiz with an email capture. This way, even if a user didn’t complete the quiz, we still had their email in our HubSpot contact database. To make each quiz experience unique, I randomized the order of the questions.
+We gated the quiz with an email capture. This way, even if a user didn't complete the quiz, we still had their email in our HubSpot contact database. To make each quiz experience unique, I randomized the order of the questions.
 
-After a user finishes the quiz, they receive a score and a recommendation for further action. A score of 7 or higher indicates that the user is adhering well to HIPAA compliance guidelines. A score lower than 7 prompts the user to schedule a free appointment with us to discuss ways to improve their security and policies. The user’s quiz results are attached to their contact object in HubSpot regardless of their score. If the user booked an appointment, we could preempt the gaps in their security and/or policies.
+After a user finishes the quiz, they receive a score and a recommendation for further action. A score of 7 or higher indicates that the user is adhering well to HIPAA compliance guidelines. A score lower than 7 prompts the user to schedule a free appointment with us to discuss ways to improve their security and policies. The user's quiz results are attached to their contact object in HubSpot regardless of their score. If the user booked an appointment, we could preempt the gaps in their security and/or policies.
+
+<img
+	src="https://cdn.dribbble.com/users/3271731/screenshots/20504807/media/a1d8003112586f2e88bcc0c6838fbbc5.gif"
+	alt="A GIF of me taking the HIPAA quiz on the ProSource healthcare landing page."
+	class="sm:rounded-lg aspect-[4/3] object-cover"
+	loading="lazy"
+	decoding="async"
+/>
 
 ## Results
 
@@ -84,4 +100,4 @@ The landing pages have been instrumental for converting leads from cold outreach
 
 ### By the numbers
 
-Given that [most landing pages convert anywhere from 2–6%](https://unbounce.com/average-conversion-rates-landing-pages/), we were surprised to discover that ours averaged a 10% conversion rate. Most leads came from our partners’ backlinks, so perhaps these users were already more inclined to purchase from the get-go. It’s worth noting that I did count anyone who submitted their email address in our HIPAA quiz as a conversion, whether they booked a meeting with our Director of Business Development or not.
+Given that [most landing pages convert anywhere from 2&ndash;6%](https://unbounce.com/average-conversion-rates-landing-pages/), we were surprised to discover that ours averaged a 10% conversion rate. Most leads came from our partners' backlinks, so perhaps these users were already more inclined to purchase from the get-go. It's worth noting that I did count anyone who submitted their email address in our HIPAA quiz as a conversion, whether they booked a meeting with our Director of Business Development or not.

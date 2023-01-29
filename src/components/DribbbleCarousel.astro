@@ -1,0 +1,48 @@
+---
+import Carousel from "../components/Carousel"
+
+const ACCESS_TOKEN = "f1a200a33f5febd1d25ba9be35b4fd286d7496f2465d145f741fb1bf669be427"
+// const ACCESS_TOKEN = import.meta.env.DRIBBBLE_ACCESS_TOKEN
+
+const res = await fetch("https://api.dribbble.com/v2/user/shots", {
+	method: "GET",
+	headers: {
+		Authorization: `Bearer ${ACCESS_TOKEN}`,
+		"Content-Type": "application/json",
+	},
+})
+
+const shots = await res.json()
+---
+
+<Carousel client:idle>
+	<div class="blaze-track">
+		{
+			shots.map(({ html_url, images, height, width, title, published_at }) => (
+				<a
+					href={html_url}
+					class="bg-white dark:bg-black rounded-lg border border-gray-300 dark:border-gray-800 block group"
+				>
+					<img
+						src={images.hidpi}
+						alt=""
+						class="rounded-t-lg aspect-[4/3]"
+						height={height}
+						width={width}
+					/>
+					<div class="p-4 flex flex-col group-hover:bg-gray-300/70 dark:group-hover:bg-gray-900 transition">
+						<h3 class="font-medium">{title}</h3>
+						<p class="text-sm text-gray-400">
+							Posted&nbsp;
+							<time datetime={new Date(published_at).toISOString()}>
+								{new Intl.DateTimeFormat("en-US", { dateStyle: "medium" }).format(
+									new Date(published_at),
+								)}
+							</time>
+						</p>
+					</div>
+				</a>
+			))
+		}
+	</div>
+</Carousel>
