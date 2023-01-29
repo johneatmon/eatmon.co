@@ -6,6 +6,7 @@ import react from "@astrojs/react"
 import tailwind from "@astrojs/tailwind"
 import vercel from "@astrojs/vercel/serverless"
 import compress from "astro-compress"
+import robots from "astro-robots-txt"
 
 import { remarkReadingTime } from "./remark-reading-time.mjs"
 import { remarkWidont } from "./remark-widont.mjs"
@@ -23,6 +24,16 @@ export default defineConfig({
 		}),
 		mdx(),
 		react(),
+		robots({
+			policy: [
+				{
+					userAgent: "*",
+					allow: "/",
+					disallow: ["/api", "/api/glimpse"],
+				},
+			],
+			sitemap: false,
+		}),
 		tailwind({
 			config: { applyBaseStyles: false },
 		}),
