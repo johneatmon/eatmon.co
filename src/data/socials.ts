@@ -1,5 +1,5 @@
 export const TWITTER = "@johneatmon_"
-export const EMAIL = "hi@jmae.xyz"
+export const EMAIL = "john@eatmon.co"
 
 type SocialLink = {
 	label: string
