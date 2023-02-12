@@ -1,30 +1,31 @@
 ---
+import type { CollectionEntry } from "astro:content"
 // @ts-ignore
 import { smartypants } from "smartypants"
 import LinkPreview from "../components/Glimpse"
 import PostFooter from "../components/PostFooter.astro"
 import BaseLayout from "../layouts/BaseLayout.astro"
 
-const { content } = Astro.props
+type Props = CollectionEntry<"work">["data"]
+
+const data = Astro.props as Props
+const { title, description, published } = data
 ---
 
 <BaseLayout
-	title={content.title}
-	description={content.description}
+	title={title}
+	description={description}
 	type="article"
 	section="Work"
-	datePublished={content.published.toString()}
-	dateModified={content.modified?.toString()}
+	datePublished={published.toString()}
+	dateModified={data.modified?.toString()}
 >
 	<article class="mt pt-24 lg:pt-32">
 		<header>
-			<h1
-				class="mb-6 text-3xl font-semibold sm:text-4xl"
-				set:html={smartypants(content.title, 1)}
-			/>
+			<h1 class="mb-6 text-3xl font-semibold sm:text-4xl" set:html={smartypants(data.title, 1)} />
 			<p
 				class="text-base text-gray-500 dark:text-gray-400 sm:text-lg"
-				set:html={smartypants(content.description, 1)}
+				set:html={smartypants(data.description, 1)}
 			/>
 		</header>
 		<main
