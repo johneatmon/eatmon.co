@@ -51,7 +51,7 @@ module.exports = {
 			}),
 			fontFamily: {
 				display: ["Hatton", ...defaultTheme.fontFamily.sans],
-				sans: ["Söhne", ...defaultTheme.fontFamily.sans],
+				sans: ["Söhne\\ variant", "Söhne\\ variant\\ fallback", ...defaultTheme.fontFamily.sans],
 				serif: ["Nuances", ...defaultTheme.fontFamily.serif],
 			},
 			keyframes: {
