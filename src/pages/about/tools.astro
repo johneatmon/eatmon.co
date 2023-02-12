@@ -15,37 +15,37 @@ const category = TOOLS.map((tool) => categories.add(tool.category))
 ---
 
 <BaseLayout title={title} description={description}>
-	<section aria-labelledby="#title" class="pt-24 lg:pt-32 pb-9">
-		<h1 id="title" class="font-semibold text-2xl">The tools, products, and services I use</h1>
+	<section aria-labelledby="#title" class="pt-24 pb-9 lg:pt-32">
+		<h1 id="title" class="text-2xl font-semibold">The tools, products, and services I use</h1>
 	</section>
 	{
 		[...categories].map((category) => (
-			<section aria-labelledby={`#${category}`} class="pt-16 grid md:grid-cols-4 gap-2 md:gap-9">
-				<h2 id={`${category}`} class="text-gray-500 dark:text-gray-400 text-xs md:text-base">
+			<section aria-labelledby={`#${category}`} class="grid gap-2 pt-16 md:grid-cols-4 md:gap-9">
+				<h2 id={`${category}`} class="text-xs text-gray-500 dark:text-gray-400 md:text-base">
 					{category}
 				</h2>
-				<ul role="list" class="col-span-3 grid gap-y-8 gap-x-2 md:gap-9 grid-cols-2">
+				<ul role="list" class="col-span-3 grid grid-cols-2 gap-y-8 gap-x-2 md:gap-9">
 					{TOOLS.filter((x) => x.category === category).map(({ name, href, icon, learning }) => (
 						<li class="relative w-fit">
 							<a
 								href={href ?? "#"}
-								class={`inline-block p-2 -m-2 relative z-10 peer group ${
-									learning ? "hover:opacity-90 cursor-help" : ""
+								class={`group peer relative z-10 -m-2 inline-block p-2 ${
+									learning ? "cursor-help hover:opacity-90" : ""
 								}`}
 							>
 								<div
 									aria-hidden="true"
-									class="absolute isolate inset-0 bg-gray-300/80 dark:bg-gray-900 rounded-lg opacity-0 group-hover:opacity-100 scale-90 group-hover:scale-100 transition-all duration-300 ease-in-out"
+									class="absolute inset-0 isolate scale-90 rounded-lg bg-gray-300/80 opacity-0 transition-all duration-300 ease-in-out group-hover:scale-100 group-hover:opacity-100 dark:bg-gray-900"
 								/>
-								<div class="flex items-center gap-4 relative">
+								<div class="relative flex items-center gap-4">
 									{icon && (
-										<Icon name={icon} class="w-6 h-6 aspect-square" title={`${name} icon`} />
+										<Icon name={icon} class="aspect-square h-6 w-6" title={`${name} icon`} />
 									)}
 									<div class="flex items-center gap-2">{name}</div>
 								</div>
 							</a>
 							{learning && (
-								<span class="absolute -top-full -translate-y-2 z-10 left-1/2 -translate-x-1/2 opacity-0 peer-hover:opacity-100 bg-black p-1 rounded text-sm">
+								<span class="absolute -top-full left-1/2 z-10 -translate-y-2 -translate-x-1/2 rounded bg-black p-1 text-sm opacity-0 peer-hover:opacity-100">
 									Learning
 								</span>
 							)}
