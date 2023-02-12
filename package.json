@@ -37,7 +37,6 @@
     "blaze-slider": "^1.9.1",
     "clsx": "^1.2.1",
     "fontaine": "^0.2.3",
-    "luxon": "^3.2.1",
     "mdast-util-to-string": "^3.1.0",
     "node-html-parser": "^6.1.4",
     "postcss": "^8.4.20",
