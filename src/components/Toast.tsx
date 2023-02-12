@@ -2,7 +2,7 @@ import * as ToastPrimitive from "@radix-ui/react-toast"
 import { clsx } from "clsx"
 
 import type { ReactNode } from "react"
-import { useMediaQuery } from "../script/use-media-query"
+import { useMediaQuery } from "../lib/use-media-query"
 
 const XMark = () => {
 	return (

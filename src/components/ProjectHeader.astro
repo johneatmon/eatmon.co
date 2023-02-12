@@ -4,7 +4,7 @@ import type { CollectionEntry } from "astro:content"
 // @ts-ignore
 import { smartypants } from "smartypants"
 import Image from "../components/Image.astro"
-import { machineDate, readableDate } from "../script/dates"
+import { machineDate, readableDate } from "../lib/dates"
 
 interface Props extends HTMLAttributes<"header"> {
 	data: CollectionEntry<"project">["data"]
