@@ -15,6 +15,9 @@
   "emmet.includeLanguages": {
     "astro": "html"
   },
+  "files.associations": {
+    "*.mdx": "markdown"
+  },
   "files.exclude": {
     "**/dist": true,
     "**/node_modules": true

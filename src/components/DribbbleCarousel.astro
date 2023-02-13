@@ -1,11 +1,29 @@
 ---
 import Carousel from "../components/Carousel"
+import DribbbleShot from "./DribbbleShot.astro"
 
-// TODO: Improve this - https://matthewelsom.com/blog/display-shots-on-webpage-with-dribbble-v2-api.html
-const ACCESS_TOKEN = "f1a200a33f5febd1d25ba9be35b4fd286d7496f2465d145f741fb1bf669be427"
-// const ACCESS_TOKEN = import.meta.env.DRIBBBLE_ACCESS_TOKEN
+type Images = {
+	hidpi?: string
+	normal?: string
+	teaser?: string
+}
 
-const res = await fetch("https://api.dribbble.com/v2/user/shots", {
+export type DribbbleShot = {
+	html_url: string
+	images: Images
+	height: number
+	width: number
+	title: string
+	published_at: string
+}
+
+export type DribbbleShots = {
+	message?: string
+} & DribbbleShot[]
+
+const ACCESS_TOKEN = import.meta.env.DRIBBBLE_OAUTH_TOKEN
+
+const shots = await fetch("https://api.dribbble.com/v2/user/shots", {
 	method: "GET",
 	headers: {
 		Authorization: `Bearer ${ACCESS_TOKEN}`,
@@ -13,39 +31,21 @@ const res = await fetch("https://api.dribbble.com/v2/user/shots", {
 	},
 })
 
-const shots = await res.json()
+const data = (await shots.json()) as DribbbleShots
 ---
 
-<Carousel client:idle>
-	<div class="blaze-track">
-		{
-			shots.map(({ html_url, images, height, width, title, published_at }) => (
-				<a
-					href={html_url}
-					class="bg-white dark:bg-black rounded-lg border border-gray-300 dark:border-gray-800 block group"
-				>
-					<img
-						src={images.hidpi}
-						alt={`Dribbble shot of the ${title} post.`}
-						class="rounded-t-lg aspect-[4/3]"
-						height={height}
-						width={width}
-						loading="lazy"
-						decoding="async"
-					/>
-					<div class="p-4 flex flex-col group-hover:bg-gray-300/70 dark:group-hover:bg-gray-900 transition">
-						<h3 class="font-medium">{title}</h3>
-						<p class="text-sm text-gray-400">
-							Posted
-							<time datetime={new Date(published_at).toISOString()}>
-								{new Intl.DateTimeFormat("en-US", { dateStyle: "medium" }).format(
-									new Date(published_at),
-								)}
-							</time>
-						</p>
-					</div>
-				</a>
-			))
-		}
-	</div>
-</Carousel>
+{
+	data && !data.message ? (
+		<Carousel client:idle>
+			<div class="blaze-track">
+				{data.map((shot: DribbbleShot) => (
+					<DribbbleShot {...shot} />
+				))}
+			</div>
+		</Carousel>
+	) : (
+		<p class="-mx-4 rounded-lg border border-purple-700 bg-purple-900 p-4 text-white">
+			Rats! Something's not working...
+		</p>
+	)
+}

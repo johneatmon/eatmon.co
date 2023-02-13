@@ -1,4 +1,6 @@
+// eslint-disable-next-line
 const defaultTheme = require("tailwindcss/defaultTheme")
+// eslint-disable-next-line
 const colors = require("tailwindcss/colors")
 
 /** @type {import('tailwindcss').Config} */
@@ -51,7 +53,7 @@ module.exports = {
 			}),
 			fontFamily: {
 				display: ["Hatton", ...defaultTheme.fontFamily.sans],
-				sans: ["Söhne", ...defaultTheme.fontFamily.sans],
+				sans: ["Söhne\\ variant", "Söhne\\ variant\\ fallback", ...defaultTheme.fontFamily.sans],
 				serif: ["Nuances", ...defaultTheme.fontFamily.serif],
 			},
 			keyframes: {

@@ -1,17 +1,13 @@
 ---
 import type { HTMLAttributes } from "astro/types"
+import { getCollection } from "astro:content"
 import ProjectCard from "./ProjectCard.astro"
 
 interface Props extends HTMLAttributes<"section"> {
 	featuredNumber?: number
 }
 
-const projects = await Astro.glob("../**/project/*.mdx").then((res) =>
-	res.sort(
-		(a, b) =>
-			new Date(b.frontmatter.published).getDate() - new Date(a.frontmatter.published).getDate(),
-	),
-)
+const projects = await getCollection("project")
 
 const { featuredNumber = projects.length, ...attrs } = Astro.props as Props
 ---
@@ -19,7 +15,7 @@ const { featuredNumber = projects.length, ...attrs } = Astro.props as Props
 <section aria-labelledby={Astro.slots.has("default") ? "#selected-work" : ""} {...attrs}>
 	{
 		Astro.slots.has("default") && (
-			<h2 id="selected-work" class="font-medium mb-8">
+			<h2 id="selected-work" class="mb-8 font-medium">
 				<slot />
 			</h2>
 		)
@@ -28,15 +24,15 @@ const { featuredNumber = projects.length, ...attrs } = Astro.props as Props
 		{
 			projects
 				.slice(0, featuredNumber)
-				.map(({ frontmatter, url }, i) => (
+				.map(({ data, slug }, i) => (
 					<ProjectCard
-						title={frontmatter.title}
-						description={frontmatter.description}
-						duration={`${frontmatter.duration.from}&ndash;${frontmatter.duration.to}`}
-						image={{ src: frontmatter.image.src, alt: frontmatter.image.alt }}
-						url={url}
-						caseStudy={frontmatter.caseStudy}
-						class="flex flex-col md:flex-row gap-1 md:gap-9"
+						title={data.title}
+						description={data.description}
+						duration={`${data.duration.from}&ndash;${data.duration.to}`}
+						image={{ src: data.image.src, alt: data.image.alt ?? "" }}
+						url={`/project/${slug}`}
+						caseStudy={data.caseStudy}
+						class="flex flex-col gap-1 md:flex-row md:gap-9"
 						index={i}
 					/>
 				))

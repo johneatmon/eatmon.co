@@ -2,7 +2,7 @@ import * as ToastPrimitive from "@radix-ui/react-toast"
 import { clsx } from "clsx"
 
 import type { ReactNode } from "react"
-import { useMediaQuery } from "../script/use-media-query"
+import { useMediaQuery } from "../lib/use-media-query"
 
 const XMark = () => {
 	return (
@@ -10,7 +10,7 @@ const XMark = () => {
 			xmlns="http://www.w3.org/2000/svg"
 			viewBox="0 0 20 20"
 			fill="currentColor"
-			className="w-5 aspect-square"
+			className="aspect-square w-5"
 		>
 			<path d="M6.28 5.22a.75.75 0 00-1.06 1.06L8.94 10l-3.72 3.72a.75.75 0 101.06 1.06L10 11.06l3.72 3.72a.75.75 0 101.06-1.06L11.06 10l3.72-3.72a.75.75 0 00-1.06-1.06L10 8.94 6.28 5.22z" />
 		</svg>
@@ -34,8 +34,8 @@ const Toast = (props: ToastProps) => {
 				open={props.showToast}
 				onOpenChange={props.setShowToast}
 				className={clsx(
-					"fixed z-50 inset-x-4 w-auto top-14 right-4 left-auto bottom-auto md:w-full md:max-w-sm shadow-lg rounded-lg",
-					"bg-white dark:bg-black border border-gray-200 dark:border-gray-800",
+					"fixed inset-x-4 top-14 right-4 left-auto bottom-auto z-50 w-auto rounded-lg shadow-lg md:w-full md:max-w-sm",
+					"border border-gray-200 bg-white dark:border-gray-800 dark:bg-black",
 					"radix-state-open:animate-toast-slide-in-bottom md:radix-state-open:animate-toast-slide-in-right",
 					"radix-state-closed:animate-toast-hide",
 					"radix-swipe-direction-right:radix-swipe-end:animate-toast-swipe-out-x",
@@ -47,18 +47,18 @@ const Toast = (props: ToastProps) => {
 				)}
 			>
 				<div className="flex items-center gap-x-2 px-5 py-4">
-					<div className="flex-grow radix">
+					<div className="radix flex-grow">
 						<ToastPrimitive.Title className="text-sm font-semibold">
 							{props.title}
 						</ToastPrimitive.Title>
 						{props.description && (
-							<ToastPrimitive.Description className="mt-1 text-sm text-gray-11">
+							<ToastPrimitive.Description className="text-gray-11 mt-1 text-sm">
 								{props.description}
 							</ToastPrimitive.Description>
 						)}
 					</div>
 
-					<ToastPrimitive.Close className="bg-white dark:bg-black border border-transparent rounded-full p-3 text-sm font-medium hover:bg-gray-300 dark:hover:bg-gray-900 focus:z-10 focus:outline-none focus-visible:ring focus-visible:ring-purple-700 focus-visible:ring-opacity-75">
+					<ToastPrimitive.Close className="rounded-full border border-transparent bg-white p-3 text-sm font-medium hover:bg-gray-300 focus:z-10 focus:outline-none focus-visible:ring focus-visible:ring-purple-700 focus-visible:ring-opacity-75 dark:bg-black dark:hover:bg-gray-900">
 						<XMark />
 					</ToastPrimitive.Close>
 				</div>
