@@ -57,5 +57,7 @@ export default defineConfig({
 		},
 	},
 	output: "server",
-	adapter: vercel(),
+	adapter: vercel({
+		includeFiles: ["./public/fonts/soehne/otf/soehne-400.otf"],
+	}),
 })

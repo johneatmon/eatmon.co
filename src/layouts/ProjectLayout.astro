@@ -8,6 +8,7 @@ import BaseLayout from "../layouts/BaseLayout.astro"
 type Props = CollectionEntry<"project">["data"]
 
 const data = Astro.props as Props
+
 const { title, description, tags, caseStudy, modified, published } = data
 ---
 
@@ -19,6 +20,10 @@ const { title, description, tags, caseStudy, modified, published } = data
 	tags={tags}
 	datePublished={published?.toString()}
 	dateModified={modified?.toString()}
+	image={{
+		src: new URL(`${Astro.url.pathname}.og`, Astro.site).href,
+		alt: `Open Graph image for ${title}.`,
+	}}
 >
 	<article class="mt pt-24 lg:pt-32">
 		<ProjectHeader data={data} />
