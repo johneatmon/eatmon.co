@@ -64,7 +64,7 @@ export default defineConfig({
 			}),
 		],
 		ssr: {
-			noExternal: [/^@radix-ui\/*/, "smartypants"],
+			noExternal: [/^@radix-ui\/*/, "react-wrap-balancer", "smartypants"],
 		},
 	},
 	output: "server",
