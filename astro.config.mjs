@@ -48,7 +48,7 @@ export default defineConfig({
 		plugins: [
 			// https://stackblitz.com/github/unjs/fontaine/tree/main/playground?file=vite.config.mjs
 			FontaineTransform.vite({
-				fallbacks: ["BlinkMacSystemFont", "Segoe UI", "Roboto", "Ubuntu", "Cantarell", "Noto Sans"],
+				fallbacks: ["Arial"],
 				resolvePath: (id) => new URL(`./public${id}`, import.meta.url), // id is the font src value in the CSS
 			}),
 		],
