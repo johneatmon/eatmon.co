@@ -14,7 +14,6 @@
 	html {
 		@apply antialiased;
 		background-color: var(--bg-color);
-		text-rendering: optimizeLegibility;
 
 		&:focus-within {
 			scroll-behavior: smooth;
