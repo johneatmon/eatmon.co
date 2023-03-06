@@ -53,8 +53,9 @@ module.exports = {
 			}),
 			fontFamily: {
 				display: ["Hatton", ...defaultTheme.fontFamily.sans],
-				sans: ["Söhne\\ variant", "Söhne\\ variant\\ fallback", ...defaultTheme.fontFamily.sans],
-				serif: ["Nuances", ...defaultTheme.fontFamily.serif],
+				sans: ["Söhne", "Söhne\\ override", ...defaultTheme.fontFamily.sans],
+				serif: ["Spectral", ...defaultTheme.fontFamily.serif],
+				mono: ["MD\\ IO\\ 0.5", ...defaultTheme.fontFamily.mono],
 			},
 			keyframes: {
 				comeInOut: {
