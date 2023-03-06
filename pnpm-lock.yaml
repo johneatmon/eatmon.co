@@ -20,6 +20,7 @@ specifiers:
   '@typescript-eslint/eslint-plugin': ^5.48.0
   '@typescript-eslint/parser': ^5.48.0
   astro: 2.0.1
+  astro-auto-import: ^0.2.1
   astro-compress: ^1.1.28
   astro-icon: ^0.8.0
   astro-robots-txt: ^0.3.11
@@ -67,6 +68,7 @@ dependencies:
   '@tailwindcss/line-clamp': 0.4.2_tailwindcss@3.2.4
   '@tailwindcss/typography': 0.5.8_tailwindcss@3.2.4
   astro: 2.0.1_@types+node@18.13.0
+  astro-auto-import: 0.2.1_astro@2.0.1
   astro-compress: 1.1.28
   astro-icon: 0.8.0
   astro-robots-txt: 0.3.11
@@ -1894,6 +1896,17 @@ packages:
   /astring/1.8.4:
     resolution: {integrity: sha512-97a+l2LBU3Op3bBQEff79i/E4jMD2ZLFD8rHx9B6mXyB2uQwhJQYfiDqUwtfjF4QA1F2qs//N6Cw8LetMbQjcw==}
     hasBin: true
+    dev: false
+
+  /astro-auto-import/0.2.1_astro@2.0.1:
+    resolution: {integrity: sha512-UDBdJ2IQs8fWfDysFu63PY+Ue96vo7ce6YZzQ/YXdPq+MG2/AIL0+IlMuWdmyWmsuG2qVmRCWtlDNcPKRSu3Vg==}
+    engines: {node: '>=16.0.0'}
+    peerDependencies:
+      astro: ^1.0.0 || ^2.0.0-beta
+    dependencies:
+      '@types/node': 18.13.0
+      acorn: 8.8.1
+      astro: 2.0.1_@types+node@18.13.0
     dev: false
 
   /astro-compress/1.1.28:
