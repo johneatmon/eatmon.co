@@ -27,6 +27,8 @@
 	body {
 		min-height: theme("height.screen");
 		text-rendering: optimizeSpeed;
+		overflow-y: scroll;
+		scrollbar-gutter: stable both-edges;
 	}
 
 	.font-serif {
