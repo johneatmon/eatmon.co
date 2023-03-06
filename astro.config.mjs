@@ -6,6 +6,7 @@ import mdx from "@astrojs/mdx"
 import react from "@astrojs/react"
 import tailwind from "@astrojs/tailwind"
 import vercel from "@astrojs/vercel/serverless"
+import autoImport from "astro-auto-import"
 import compress from "astro-compress"
 import robots from "astro-robots-txt"
 
@@ -15,6 +16,13 @@ import { remarkWidont } from "./remark-plugins/remark-widont.mjs"
 // https://astro.build/config
 export default defineConfig({
 	integrations: [
+		autoImport({
+			imports: [
+				{
+					"./src/lib/smartypants.ts": ["smarty"],
+				},
+			],
+		}),
 		compress({
 			html: false,
 			img: false,
