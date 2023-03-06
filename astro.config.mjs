@@ -40,8 +40,11 @@ export default defineConfig({
 		}),
 	],
 	markdown: {
-		remarkPlugins: [remarkWidont, remarkReadingTime],
 		drafts: true,
+		remarkPlugins: [remarkWidont, remarkReadingTime],
+		shikiConfig: {
+			theme: "poimandres",
+		},
 	},
 	site: "https://eatmon.co/",
 	vite: {
