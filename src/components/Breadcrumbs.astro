@@ -1,0 +1,79 @@
+---
+import type { HTMLAttributes } from "astro/types"
+
+interface Props extends HTMLAttributes<"nav"> {
+	current?: {
+		title: string
+		href: string
+	}
+}
+
+const { current, ...attrs } = Astro.props as Props
+
+// https://github.com/felix-berlin/astro-breadcrumbs/blob/main/src/Breadcrumbs.astro
+const paths = Astro.url.pathname.split("/").filter((path: string) => path)
+
+let breadcrumbs = [
+	{
+		text: "Home",
+		href: "/",
+	},
+]
+
+paths.forEach((text: string, index: number) => {
+	const href = `/${paths.slice(0, index + 1).join("/")}`
+	const title = href === current?.href ? current?.title : text.replace(/[-_]/g, " ")
+
+	breadcrumbs = [
+		...breadcrumbs,
+		{
+			text: title,
+			href,
+		},
+	]
+})
+
+const schema = JSON.stringify({
+	"@context": "https://schema.org",
+	"@type": "BreadcrumbList",
+	itemListElement: breadcrumbs.map((crumb, index) => ({
+		"@type": "ListItem",
+		position: index + 1,
+		item: {
+			"@id": crumb.href,
+			name: crumb.text,
+		},
+	})),
+})
+---
+
+<nav aria-label="Breadcrumbs" {...attrs}>
+	<ol role="list" class="flex gap-x-2 text-sm sm:text-base">
+		{
+			breadcrumbs.map(({ text, ...attrs }, index, array) => (
+				<>
+					<li>
+						{(!Astro.slots.has("index") || (Astro.slots.has("index") && index !== 0)) && (
+							<a
+								{...attrs}
+								class:list={[
+									"capitalize",
+									index + 1 === array.length ? "underline font-medium line-clamp-1" : "",
+								]}
+								aria-current={index + 1 === array.length ? "location" : false}
+								set:text={text}
+							/>
+						)}
+					</li>
+					{array.length - 1 !== index && (
+						<span class="inline-flex text-gray-500" aria-hidden="true">
+							/
+						</span>
+					)}
+				</>
+			))
+		}
+	</ol>
+</nav>
+
+{!!schema && <script type="application/ld+json" set:html={schema} />}
