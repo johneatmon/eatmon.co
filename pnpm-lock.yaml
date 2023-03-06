@@ -45,6 +45,7 @@ specifiers:
   react-blaze-slider: ^1.7.2
   react-compare-slider: ^2.2.0
   react-dom: ^18.2.0
+  react-wrap-balancer: ^0.4.0
   reading-time: ^1.5.0
   satori: ^0.2.5
   satori-html: ^0.3.2
@@ -85,6 +86,7 @@ dependencies:
   react-blaze-slider: 1.7.2_react@18.2.0
   react-compare-slider: 2.2.0_biqbaboplfbrettd7655fr4n2y
   react-dom: 18.2.0_react@18.2.0
+  react-wrap-balancer: 0.4.0_react@18.2.0
   reading-time: 1.5.0
   satori: 0.2.5
   satori-html: 0.3.2
@@ -6120,6 +6122,14 @@ packages:
       throttle-debounce: 3.0.1
       ts-easing: 0.2.0
       tslib: 2.4.1
+    dev: false
+
+  /react-wrap-balancer/0.4.0_react@18.2.0:
+    resolution: {integrity: sha512-MUsROihHd7bFHCo9kCOifKDYBEZPgKTyGvfa8RcwRQKtT2cL7Um9Cc8A7GvuT8t3np7LAGsEkzdEyJdKrr5lVQ==}
+    peerDependencies:
+      react: ^18.0.0
+    dependencies:
+      react: 18.2.0
     dev: false
 
   /react/18.2.0:

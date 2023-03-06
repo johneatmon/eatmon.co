@@ -48,6 +48,7 @@
     "react-blaze-slider": "^1.7.2",
     "react-compare-slider": "^2.2.0",
     "react-dom": "^18.2.0",
+    "react-wrap-balancer": "^0.4.0",
     "reading-time": "^1.5.0",
     "satori": "^0.2.5",
     "satori-html": "^0.3.2",
