@@ -1,0 +1,14 @@
+---
+import * as Colophon from "@components/colophon.md"
+import PostLayout from "@layouts/PostLayout.astro"
+
+export const prerender = true
+---
+
+<PostLayout
+	title={Colophon.frontmatter.title}
+	description={Colophon.frontmatter.description}
+	published={Colophon.frontmatter.published}
+	modified={Colophon.frontmatter?.modified}
+	set:html={Colophon.compiledContent()}
+/>
