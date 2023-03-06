@@ -14,6 +14,7 @@
 	html {
 		@apply antialiased;
 		background-color: var(--bg-color);
+		text-rendering: optimizeLegibility;
 
 		&:focus-within {
 			scroll-behavior: smooth;
@@ -27,6 +28,10 @@
 	body {
 		min-height: theme("height.screen");
 		text-rendering: optimizeSpeed;
+	}
+
+	.font-serif {
+		letter-spacing: theme("letterSpacing.tighter");
 	}
 
 	a:not([class]) {
