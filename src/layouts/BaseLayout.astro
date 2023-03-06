@@ -20,14 +20,14 @@ const { ...attrs } = Astro.props as Props
 		<Analytics />
 	</head>
 	<body
-		class="antialiased bg-gray-50 dark:bg-gray-1000 text-gray-900 dark:text-gray-50 h-full [&>footer]:sticky [&>footer]:top-[100vh] relative transition"
+		class="relative h-full bg-gray-50 text-gray-900 antialiased transition dark:bg-gray-1000 dark:text-gray-50 [&>footer]:sticky [&>footer]:top-[100vh]"
 	>
 		<Header
 			class="bg-white/70 dark:bg-gray-1000/80 fixed isolate z-50 top-0 backdrop-blur-[20px] backdrop-saturate-[180%] w-full"
 		/>
-		<main class="relative max-w-[700px] mx-auto px-4">
+		<main class="relative mx-auto max-w-[700px] px-4">
 			<slot />
 		</main>
-		<Footer class="relative mt-16 lg:mt-24 pb-16" />
+		<Footer class="relative pt-4 mt-16 md:mt-24 pb-16" />
 	</body>
 </html>
