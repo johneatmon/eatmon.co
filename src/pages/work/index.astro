@@ -1,20 +1,21 @@
 ---
-export const prerender = true
-
+import Hero from "@components/Hero.astro"
+import ProjectSection from "@components/ProjectSection.astro"
+import BaseLayout from "@layouts/BaseLayout.astro"
+import { smarty } from "@lib/smartypants"
 import { Icon } from "astro-icon"
 import { getCollection } from "astro:content"
-// @ts-ignore
-import { smartypants } from "smartypants"
-import ProjectSection from "../../components/ProjectSection.astro"
-import BaseLayout from "../../layouts/BaseLayout.astro"
+
+export const prerender = true
 
 const work = await getCollection("work")
 ---
 
 <BaseLayout title="Work & Projects" description="Yada yada">
-	<section aria-labelledby="#title" class="pt-24 pb-9 lg:pt-32">
-		<h1 id="title" class="text-2xl font-semibold">Work & Projects</h1>
-	</section>
+	<Hero class="pt-24 lg:pt-32 pb-9">
+		<Fragment slot="title" set:html={smarty("Work & Projects")} />
+		Case studies, work experience, and other projects.
+	</Hero>
 	<section aria-labelledby="#work" class="pt-16">
 		<h2 id="work" class="mb-8 font-medium">Work experience</h2>
 		<ul role="list" class="flex flex-col gap-16">
@@ -38,10 +39,7 @@ const work = await getCollection("work")
 								/>
 								<div>
 									<h3 class="font-semibold" set:html={`${data.roles} &middot; ${data.title}`} />
-									<p
-										class="text-gray-500 dark:text-gray-400"
-										set:html={smartypants(data.description, 1)}
-									/>
+									<p class="text-gray-500 dark:text-gray-400" set:html={smarty(data.description)} />
 								</div>
 							</div>
 						</a>
