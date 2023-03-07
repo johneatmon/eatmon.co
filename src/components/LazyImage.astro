@@ -1,0 +1,69 @@
+---
+import type { HTMLAttributes } from "astro/types"
+
+import got from "got"
+import sharp from "sharp"
+// @ts-ignore
+import { v4 as uuidv4 } from "uuid"
+
+sharp.cache(false)
+
+type Props = Exclude<HTMLAttributes<"img">, "src"> & {
+	src: string | URL
+}
+
+const { src, alt, class: className = "", ...attrs } = Astro.props as Props
+
+async function generateLazyImage(src: string) {
+	const { body } = await got(new URL(src).href, { responseType: "buffer" })
+	const sharpImage = sharp(body)
+	const { width, height, format } = await sharpImage.metadata()
+	const lqipBuf = await sharpImage.resize({ width: 30, height: 30, fit: "inside" }).toBuffer()
+
+	return {
+		width: width,
+		height: height,
+		aspectRatio: width / height,
+		lqip: `data:image/${format};base64,${lqipBuf.toString("base64")}`,
+	}
+}
+
+const { lqip, width, height, aspectRatio } = await generateLazyImage(src)
+const uuid = uuidv4()
+---
+
+<div class="relative overflow-hidden">
+	<img
+		src={lqip}
+		alt=""
+		aria-hidden="true"
+		class:list={[className, "absolute inset-0 h-full w-full object-cover"]}
+		height={height}
+		width={width}
+		loading="eager"
+		decoding="async"
+		{...attrs}
+	/>
+	<img
+		src={src}
+		alt={alt ?? ""}
+		data-uuid={uuid}
+		class:list={[
+			className,
+			"relative h-auto w-full opacity-0 transition-opacity duration-500 ease-linear",
+		]}
+		height={height}
+		width={width}
+		loading="lazy"
+		decoding="async"
+		{...attrs}
+	/>
+</div>
+
+<script is:inline define:vars={{ uuid }}>
+	let lazyImg = document.querySelector(`img[data-uuid="${uuid}"]`)
+
+	lazyImg.addEventListener("load", (e) => {
+		lazyImg.style.opacity = "1"
+	})
+</script>
