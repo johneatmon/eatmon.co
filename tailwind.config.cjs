@@ -55,7 +55,7 @@ module.exports = {
 				display: ["Hatton", ...defaultTheme.fontFamily.sans],
 				sans: ["Söhne", "Söhne\\ override", ...defaultTheme.fontFamily.sans],
 				serif: ["PP\\ Editorial\\ New", ...defaultTheme.fontFamily.serif],
-				mono: ["MD\\ IO\\ 0.5", ...defaultTheme.fontFamily.mono],
+				// mono: ["MD\\ IO\\ 0.5", ...defaultTheme.fontFamily.mono],
 			},
 			keyframes: {
 				comeInOut: {
