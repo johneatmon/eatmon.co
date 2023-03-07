@@ -7,10 +7,12 @@ export const prerender = true
 export async function getStaticPaths() {
 	const blogPosts = await getCollection("blog")
 
-	return blogPosts.map((blog) => ({
-		params: { slug: blog.slug },
-		props: blog,
-	}))
+	return blogPosts
+		.filter((x) => x.data.draft !== true)
+		.map((blog) => ({
+			params: { slug: blog.slug },
+			props: blog,
+		}))
 }
 
 type Props = CollectionEntry<"blog">

@@ -23,6 +23,7 @@ const { featuredNumber = blogPosts.length, ...attrs } = Astro.props as Props
 	<ul role="list" class="flex flex-col gap-8">
 		{
 			blogPosts
+				.filter((x) => x.data.draft !== true)
 				.sort((a, b) => new Date(b.data.published).valueOf() - new Date(a.data.published).valueOf())
 				.slice(0, featuredNumber)
 				.map(({ data, slug }, i) => (
