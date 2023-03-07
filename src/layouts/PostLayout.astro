@@ -4,6 +4,7 @@ import LinkPreview from "@components/Glimpse"
 import PostFooter from "@components/PostFooter.astro"
 import { RWBBalancer as Balancer } from "@components/RWBBalancer"
 import BaseLayout from "@layouts/BaseLayout.astro"
+import { machineDate, readableDate } from "@lib/dates"
 import { smarty } from "@lib/smartypants"
 
 const { title, description, published, modified } = Astro.props
@@ -14,14 +15,27 @@ const { title, description, published, modified } = Astro.props
 	description={description}
 	type="article"
 	section="Post"
-	datePublished={published.toString()}
-	dateModified={modified?.toString()}
+	datePublished={machineDate(published)}
+	dateModified={modified && machineDate(modified)}
 >
 	<Breadcrumbs current={{ title: title, href: Astro.url.pathname }} class="mt-20 mb-16 md:mb-24" />
 	<article>
 		<div
 			class="-mx-4 -my-8 border border-gray-300 bg-white py-8 px-4 dark:border-transparent dark:bg-black sm:px-8 md:-m-16 md:rounded-3xl md:p-16"
 		>
+			{
+				(!!published || !!modified) && (
+					<div class="mb-4 font-mono text-xs">
+						Published <time datetime={machineDate(published)} set:text={readableDate(published)} />
+						{!!modified && (
+							<>
+								&middot; Updated
+								<time datetime={machineDate(modified)} set:text={readableDate(modified)} />
+							</>
+						)}
+					</div>
+				)
+			}
 			<h1 class="mb-6 text-4xl font-semibold leading-[1.1] tracking-tight md:text-5xl">
 				<Balancer>
 					{smarty(title)}
