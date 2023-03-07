@@ -1,15 +1,16 @@
 ---
-export const prerender = true
-
+import FancyButton from "@components/FancyButton.astro"
+// import Image from "@components/Image.astro"
+import LazyImage from "@components/LazyImage.astro"
+import MapSection from "@components/MapSection.astro"
+import Sparkles from "@components/Sparkles"
+import { about, work } from "@data/about"
+import { TOOLS } from "@data/config"
+import BaseLayout from "@layouts/BaseLayout.astro"
+import { smarty } from "@lib/smartypants"
 import { Icon } from "astro-icon"
-import { smartypants } from "smartypants"
-import FancyButton from "../../components/FancyButton.astro"
-import Image from "../../components/Image.astro"
-import MapSection from "../../components/MapSection.astro"
-import Sparkles from "../../components/Sparkles"
-import { about, work } from "../../data/about"
-import { TOOLS } from "../../data/config"
-import BaseLayout from "../../layouts/BaseLayout.astro"
+
+export const prerender = true
 
 const tools = TOOLS.filter((x) => x.featured).sort((a, b) => a.name.localeCompare(b.name))
 
@@ -19,16 +20,15 @@ const description =
 ---
 
 <BaseLayout title={title} description={description}>
-	<section aria-labelledby="#about-me" class="pt-24 lg:pt-32 pb-9">
-		<div class="border border-gray-200 dark:border-gray-800 rounded-full w-fit mb-8 mx-auto">
-			<Image
-				src="https://imagedelivery.net/le40TwFDWUdIvXckEp8FBw/5966de80-8db7-449d-80f7-fd1260e76e00/w=64,h=64,format=webp"
+	<section aria-labelledby="#about-me" class="pt-24 pb-9 lg:pt-32">
+		<div class="mx-auto mb-8 w-fit rounded-full border border-gray-200 dark:border-gray-800">
+			<LazyImage
+				src="https://imagedelivery.net/le40TwFDWUdIvXckEp8FBw/e4a8c6d5-3d4c-4d24-a5ca-a8bd1f73bf00/w=96,h=96,format=webp"
 				alt="A selfie of me hiking on snowy Mt. Rainier. I am smiling while wearing my hat and sunglasses. Behind my head, in the distance, you can see the looming peak of Mt. Adams."
-				class="w-16 aspect-square object-cover rounded-full m-[2px]"
-				loading="eager"
+				class="w-24 aspect-square object-cover rounded-full p-[2px]"
 			/>
 		</div>
-		<h1 id="about-me" class="text-2xl font-medium max-w-screen-sm mx-auto text-center">
+		<h1 id="about-me" class="mx-auto max-w-screen-sm text-center text-2xl font-medium">
 			<Sparkles client:load>
 				<em class="font-serif font-semibold">Multidiscipline</em>
 			</Sparkles>
@@ -37,60 +37,76 @@ const description =
 		</h1>
 	</section>
 	<section aria-labelledby="#bio" class="pt-16">
-		<div class="flex flex-col md:flex-row gap-1 md:gap-9 mb-6">
-			<h2 id="bio" class="text-gray-500 dark:text-gray-400 md:w-40 shrink-0 text-xs md:text-base">
-				About me
+		<div class="mb-6 flex flex-col gap-1 md:flex-row md:gap-9">
+			<h2 id="bio" class="shrink-0 text-xs text-gray-500 dark:text-gray-400 md:w-40 md:text-base">
+				Introduction
 			</h2>
-			<p class="flex-grow" set:html={smartypants(about, 1)} />
+			<p class="flex-grow" set:html={smarty(about)} />
+		</div>
+	</section>
+	<!-- <section aria-labelledby="#mission" class="pt-16">
+		<div class="mb-6 flex flex-col gap-1 md:flex-row md:gap-9">
+			<h2 id="bio" class="shrink-0 text-xs text-gray-500 dark:text-gray-400 md:w-40 md:text-base">
+				My mission
+			</h2>
+			<p class="flex-grow" set:html={smarty(mission)} />
+		</div>
+	</section> -->
+	<section aria-labelledby="#experience" class="pt-16">
+		<div class="mb-8 flex flex-col gap-1 md:flex-row md:gap-9">
+			<h2 id="bio" class="shrink-0 text-xs text-gray-500 dark:text-gray-400 md:w-40 md:text-base">
+				Work experience
+			</h2>
+			<p class="flex-grow" set:html={smarty(work)} />
+		</div>
+		<div class="text-center">
+			<FancyButton href="/work/prosource">Learn more</FancyButton>
 		</div>
 	</section>
 	<section aria-labelledby="#work" class="pt-16">
-		<div class="flex flex-col md:flex-row gap-1 md:gap-9 mb-6">
-			<h2 id="work" class="text-gray-500 dark:text-gray-400 md:w-40 shrink-0 text-xs md:text-base">
-				Work
+		<div class="mb-6 flex flex-col gap-1 md:flex-row md:gap-9">
+			<h2 id="work" class="shrink-0 text-xs text-gray-500 dark:text-gray-400 md:w-40 md:text-base">
+				Work history
 			</h2>
-			<div class="flex-grow">
-				<p class="mb-8" set:html={smartypants(work, 1)} />
-				<a href="/work/prosource" class="inline-block p-2 -m-2 relative group">
-					<div
-						aria-hidden="true"
-						class="absolute isolate inset-0 bg-gray-300/80 dark:bg-gray-900 rounded-lg opacity-0 group-hover:opacity-100 scale-90 group-hover:scale-100 transition-all duration-300 ease-in-out"
-					>
-					</div>
-					<div class="flex gap-x-4 w-full relative">
-						<Icon
-							name="prosource"
-							title="ProSource logo"
-							class="w-12 aspect-square object-contain text-indigo-600"
-						/>
-						<div>
-							<h3>Intern &rarr; IT Coordinator &rarr; Product Designer</h3>
-							<p class="text-gray-500 dark:text-gray-400">
-								ProSource &middot; Dec 2014&ndash;Present
-							</p>
-						</div>
-					</div>
-				</a>
-			</div>
+			<ul class="flex flex-col gap-8">
+				<li>
+					<h3>Product Designer</h3>
+					<p class="text-gray-500 dark:text-gray-400">
+						ProSource &middot; October 2020&ndash;Present
+					</p>
+				</li>
+				<li>
+					<h3>IT Coordinator</h3>
+					<p class="text-gray-500 dark:text-gray-400">
+						ProSource &middot; May 2016&ndash;October 2020
+					</p>
+				</li>
+				<li>
+					<h3>Intern</h3>
+					<p class="text-gray-500 dark:text-gray-400">
+						ProSource &middot; December 2014&ndash;December 2015
+					</p>
+				</li>
+			</ul>
 		</div>
 	</section>
 	<section aria-labelledby="#tools" class="pt-16">
-		<div class="flex flex-col md:flex-row gap-2 md:gap-9 mb-8">
-			<h2 id="tools" class="text-gray-500 dark:text-gray-400 md:w-40 shrink-0 text-xs md:text-base">
+		<div class="mb-8 flex flex-col gap-2 md:flex-row md:gap-9">
+			<h2 id="tools" class="shrink-0 text-xs text-gray-500 dark:text-gray-400 md:w-40 md:text-base">
 				Favorite tools
 			</h2>
 			<div class="flex-grow">
-				<ul role="list" class="grid gap-8 grid-cols-2 sm:grid-cols-3">
+				<ul role="list" class="grid grid-cols-2 gap-8 sm:grid-cols-3">
 					{
 						tools.map(({ name, href, icon }) => (
 							<li>
-								<a href={href} class="inline-block p-2 -m-2 relative group">
+								<a href={href} class="group relative -m-2 inline-block p-2">
 									<div
 										aria-hidden="true"
-										class="absolute isolate inset-0 bg-gray-300/80 dark:bg-gray-900 rounded-lg opacity-0 group-hover:opacity-100 scale-90 group-hover:scale-100 transition-all duration-300 ease-in-out"
+										class="absolute inset-0 isolate scale-90 rounded-lg bg-gray-300/80 opacity-0 transition-all duration-300 ease-in-out group-hover:scale-100 group-hover:opacity-100 dark:bg-gray-900"
 									/>
-									<div class="flex items-center gap-4 relative">
-										<Icon name={icon} class="w-6 h-6 aspect-square" title={`${name} icon`} />
+									<div class="relative flex items-center gap-4">
+										<Icon name={icon} class="aspect-square h-6 w-6" title={`${name} icon`} />
 										<div class="flex items-center gap-2">{name}</div>
 									</div>
 								</a>
