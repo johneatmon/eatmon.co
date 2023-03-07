@@ -11,11 +11,16 @@ tags:
 ---
 
 import Stackblitz from "@components/Stackblitz.astro"
-import Image from "@components/Image.astro"
+import LazyImage from "@components/LazyImage.astro"
 
 You want to use `font-display: swap` in your project’s CSS to boost your page loading speed. But when you do, this happens:
 
-_(Image courtesy: [js-craft.io](https://www.js-craft.io))_
+<LazyImage
+	src="https://imagedelivery.net/le40TwFDWUdIvXckEp8FBw/4836af36-9e63-42c0-f43e-a39c2db02900/public"
+	alt="A visual demonstration of cumulative layout shift caused by font-display swap."
+/>
+
+_(Image courtesy: [js-craft.io](https://www.js-craft.io/blog/optimizing-web-fonts-loading-for-cls-cumulative-layout-shift/))_
 
 Ugh! That annoying shift when your font files do load contributes to the cumulative layout shift (CLS)
 of your page. The more CLS there is, the more points will be deducted from your Google Lighthouse score.
