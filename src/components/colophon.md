@@ -2,10 +2,10 @@
 title: Colophon
 description: The technologies, services, and people who empowered me to build this website.
 published: 2023-01-24
-modified: 2023-03-05
+modified: 2023-03-06
 ---
 
-This site is primarily typeset in [Söhne](https://klim.co.nz/retail-fonts/soehne/) by Klim Type Foundry. The serif typeface scattered throughout is [Spectral](https://fonts.google.com/specimen/Spectral) by Production Type — at least, until I can afford something like [Heldane Text](https://klim.co.nz/retail-fonts/heldane-text/). Söhne is licensed to John Eatmon, Spectral is licensed under the Open Font License.
+This site is primarily typeset in [Söhne](https://klim.co.nz/retail-fonts/soehne/) by Klim Type Foundry. The serif typeface scattered throughout is [PP Editorial New](https://pangrampangram.com/products/editorial-new) by PangramPangram. Söhne and PP Editorial New are licensed to John Eatmon. PP Editorial New is licensed for personal, non-commercial use.
 
 ## Technologies
 

@@ -54,7 +54,7 @@ module.exports = {
 			fontFamily: {
 				display: ["Hatton", ...defaultTheme.fontFamily.sans],
 				sans: ["Söhne", "Söhne\\ override", ...defaultTheme.fontFamily.sans],
-				serif: ["Spectral", ...defaultTheme.fontFamily.serif],
+				serif: ["PP\\ Editorial\\ New", ...defaultTheme.fontFamily.serif],
 				mono: ["MD\\ IO\\ 0.5", ...defaultTheme.fontFamily.mono],
 			},
 			keyframes: {

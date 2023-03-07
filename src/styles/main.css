@@ -32,7 +32,7 @@
 	}
 
 	.font-serif {
-		letter-spacing: theme("letterSpacing.tighter");
+		font-size: 95%; /* Optical correct for PP Editorial New */
 	}
 
 	a:not([class]) {
