@@ -48,7 +48,7 @@ export default defineConfig({
 		}),
 	],
 	markdown: {
-		drafts: true,
+		drafts: !import.meta.env.PROD,
 		remarkPlugins: [remarkWidont, remarkReadingTime],
 		shikiConfig: {
 			theme: "poimandres",
