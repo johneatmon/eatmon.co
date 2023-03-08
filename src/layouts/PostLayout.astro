@@ -7,7 +7,7 @@ import BaseLayout from "@layouts/BaseLayout.astro"
 import { machineDate, readableDate } from "@lib/dates"
 import { smarty } from "@lib/smartypants"
 
-const { title, description, published, modified } = Astro.props
+const { title, description, published, modified, tags } = Astro.props
 ---
 
 <BaseLayout
@@ -17,6 +17,7 @@ const { title, description, published, modified } = Astro.props
 	section="Post"
 	datePublished={machineDate(published)}
 	dateModified={modified && machineDate(modified)}
+	tags={tags}
 >
 	<Breadcrumbs current={{ title: title, href: Astro.url.pathname }} class="mt-20 mb-16 md:mb-24" />
 	<article>
