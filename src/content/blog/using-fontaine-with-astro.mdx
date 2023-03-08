@@ -13,7 +13,7 @@ tags:
 import Stackblitz from "@components/Stackblitz.astro"
 import LazyImage from "@components/LazyImage.astro"
 
-You want to use `font-display: swap` in your project’s CSS to boost your page loading speed. But when you do, this happens:
+You want to use `font-display: swap` or `font-display: auto` in your project’s CSS to boost your page loading speed. But when you do, this happens:
 
 <LazyImage
 	src="https://imagedelivery.net/le40TwFDWUdIvXckEp8FBw/4836af36-9e63-42c0-f43e-a39c2db02900/public"
@@ -26,7 +26,7 @@ Ugh! That annoying shift when your font files do load contributes to the cumulat
 of your page. The more CLS there is, the more points will be deducted from your Google Lighthouse score.
 Bummer!
 
-## Why Fontaine
+## Why Fontaine?
 
 [Fontaine](https://github.com/danielroe/fontaine) is a Vite plugin written by [Daniel Roe](https://github.com/danielroe) that helps you optimize a fallback font. The plugin uses [Capsize](https://www.npmjs.com/package/@capsizecss/core) to analyze your typeface and create font metrics for ascenders and descenders accordingly. Those are fancy-schmancy CSS features that are [decently supported across browsers](https://caniuse.com/?search=FontFace%20API%20override) (just waiting on Webkit 😐). Using this technique, a fallback system font will occupy about the same visual space as your preferred type. When your custom type does finally swap in, there won’t be a jarring layout shift. Pretty nifty, huh?
 
@@ -144,7 +144,7 @@ You can check to make sure Fontaine is working by inspecting the `/dist` folder 
 
 _Voilà !_ We have success.
 
-Mixed with a couple of other font loading strategies — [prefetching font files, subsetting for Latin alphabets, self-hosting your font files, caching your font files](https://leerob.io/blog/fonts) — we can also use `font-display: swap` without having to worry about jarring layout shifts (on non-Webkit browsers).
+Mixed with a couple of other font loading strategies — [prefetching font files, subsetting for Latin alphabets, self-hosting your font files, caching your font files](https://leerob.io/blog/fonts) — we can also use `font-display: swap` or `font-display: auto` without having to worry about jarring layout shifts (on non-Webkit browsers).
 
 ## Working example
 
