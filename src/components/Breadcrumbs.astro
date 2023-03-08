@@ -22,7 +22,7 @@ let breadcrumbs = [
 
 paths.forEach((text: string, index: number) => {
 	const href = `/${paths.slice(0, index + 1).join("/")}`
-	const title = href === current?.href ? current?.title : text.replace(/[-_]/g, " ")
+	const title = href == current?.href ? current?.title : text.replace(/[-_]/g, " ")
 
 	breadcrumbs = [
 		...breadcrumbs,
