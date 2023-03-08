@@ -3,6 +3,7 @@ import type { CollectionEntry } from "astro:content"
 
 import LinkPreview from "@components/Glimpse"
 import PostFooter from "@components/PostFooter.astro"
+import { RWBBalancer as Balancer } from "@components/RWBBalancer"
 import BaseLayout from "@layouts/BaseLayout.astro"
 import { smarty } from "@lib/smartypants"
 
@@ -22,14 +23,18 @@ const { title, description, published } = data
 >
 	<article class="mt pt-24 lg:pt-32">
 		<header>
-			<h1 class="mb-6 text-3xl font-semibold sm:text-4xl" set:html={smarty(data.title)} />
+			<h1 class="mb-6 font-serif text-4xl font-semibold leading-tight md:text-5xl">
+				<Balancer>
+					<Fragment set:html={smarty(data.title)} />
+				</Balancer>
+			</h1>
 			<p
 				class="text-base text-gray-500 dark:text-gray-400 sm:text-lg"
 				set:html={smarty(data.description)}
 			/>
 		</header>
 		<main
-			class="prose prose-zinc my-16 prose-blockquote:font-serif prose-blockquote:text-[110%] prose-blockquote:font-medium prose-em:font-serif prose-em:text-[110%] prose-em:font-medium dark:prose-invert"
+			class="prose prose-base prose-zinc my-16 max-w-max prose-headings:font-serif prose-headings:font-semibold prose-blockquote:font-serif prose-blockquote:text-lg prose-blockquote:font-medium prose-blockquote:italic prose-blockquote:tracking-normal prose-em:font-serif prose-pre:text-base dark:prose-invert"
 		>
 			<slot />
 		</main>
