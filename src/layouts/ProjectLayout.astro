@@ -4,6 +4,7 @@ import type { CollectionEntry } from "astro:content"
 import LinkPreview from "@components/Glimpse"
 import PostFooter from "@components/PostFooter.astro"
 import ProjectHeader from "@components/ProjectHeader.astro"
+import Prose from "@components/Prose.astro"
 import BaseLayout from "@layouts/BaseLayout.astro"
 
 type Props = CollectionEntry<"project">["data"]
@@ -31,11 +32,7 @@ const pathname = Astro.url.pathname
 >
 	<article class="mt pt-24 lg:pt-32">
 		<ProjectHeader data={data} />
-		<main
-			class="prose prose-base prose-zinc my-16 max-w-max prose-headings:font-serif prose-headings:font-semibold prose-blockquote:font-serif prose-blockquote:text-lg prose-blockquote:font-medium prose-blockquote:italic prose-blockquote:tracking-normal prose-em:font-serif prose-pre:text-base dark:prose-invert"
-		>
-			<slot />
-		</main>
+		<Prose set:html={Astro.slots.render("default")} />
 		<PostFooter />
 	</article>
 	<LinkPreview client:idle />
