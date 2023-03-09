@@ -31,10 +31,6 @@
 		scrollbar-gutter: stable both-edges;
 	}
 
-	:not(h1).font-serif {
-		letter-spacing: theme("letterSpacing.wide");
-	}
-
 	a:not([class]) {
 		text-decoration-skip-ink: auto;
 	}
