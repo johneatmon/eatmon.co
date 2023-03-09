@@ -3,12 +3,14 @@ import * as Colophon from "@components/colophon.md"
 import PostLayout from "@layouts/PostLayout.astro"
 
 export const prerender = true
+
+const { title, description, published, modified } = Colophon.frontmatter
 ---
 
 <PostLayout
-	title={Colophon.frontmatter.title}
-	description={Colophon.frontmatter.description}
-	published={Colophon.frontmatter.published}
-	modified={Colophon.frontmatter?.modified}
+	title={title}
+	description={description}
+	published={published}
+	modified={modified}
 	set:html={Colophon.compiledContent()}
 />
