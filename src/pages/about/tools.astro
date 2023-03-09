@@ -1,10 +1,9 @@
 ---
-export const prerender = true
-
+import { TOOLS } from "@data/config"
+import BaseLayout from "@layouts/BaseLayout.astro"
 import { Icon } from "astro-icon"
 
-import { TOOLS } from "../../data/config"
-import BaseLayout from "../../layouts/BaseLayout.astro"
+export const prerender = true
 
 const title = "Tools I Use"
 const description =

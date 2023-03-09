@@ -1,14 +1,13 @@
 ---
-import Analytics from "../components/Analytics.astro"
-import BaseHead, { Props as BaseHeadProps } from "../components/BaseHead.astro"
-import Theme from "../components/Theme.astro"
+import Analytics from "@components/Analytics.astro"
+import BaseHead, { Props as BaseHeadProps } from "@components/BaseHead.astro"
+import Footer from "@components/Footer.astro"
+import Header from "@components/Header.astro"
+import Theme from "@components/Theme.astro"
 
 interface Props extends Exclude<BaseHeadProps, "title"> {
 	title?: string
 }
-
-import Footer from "../components/Footer.astro"
-import Header from "../components/Header.astro"
 
 const { ...attrs } = Astro.props as Props
 ---
