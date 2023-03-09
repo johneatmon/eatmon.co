@@ -20,9 +20,12 @@ let breadcrumbs = [
 	},
 ]
 
-paths.forEach((text: string, index: number) => {
+const path = paths.forEach((text: string, index: number) => {
 	const href = `/${paths.slice(0, index + 1).join("/")}`
-	const title = href == current?.href ? current?.title : text.replace(/[-_]/g, " ")
+	const title =
+		href.includes(Astro.url.pathname) && current?.title !== undefined
+			? current.title
+			: text.replace(/[-_]/g, " ")
 
 	breadcrumbs = [
 		...breadcrumbs,
@@ -66,7 +69,7 @@ const schema = JSON.stringify({
 						)}
 					</li>
 					{array.length - 1 !== index && (
-						<span class="inline-flex text-gray-500" aria-hidden="true">
+						<span class="inline-flex text-gray-500 dark:text-gray-400" aria-hidden="true">
 							/
 						</span>
 					)}
