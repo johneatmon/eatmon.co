@@ -37,7 +37,7 @@ const description =
 		</h1>
 	</section>
 	<section aria-labelledby="#bio" class="pt-16">
-		<div class="mb-6 flex flex-col gap-1 md:flex-row md:gap-9">
+		<div class="flex flex-col gap-1 md:flex-row md:gap-9">
 			<h2 id="bio" class="shrink-0 text-xs text-gray-500 dark:text-gray-400 md:w-40 md:text-base">
 				Introduction
 			</h2>
@@ -45,7 +45,7 @@ const description =
 		</div>
 	</section>
 	<!-- <section aria-labelledby="#mission" class="pt-16">
-		<div class="mb-6 flex flex-col gap-1 md:flex-row md:gap-9">
+		<div class="flex flex-col gap-1 md:flex-row md:gap-9">
 			<h2 id="bio" class="shrink-0 text-xs text-gray-500 dark:text-gray-400 md:w-40 md:text-base">
 				My mission
 			</h2>
@@ -53,18 +53,18 @@ const description =
 		</div>
 	</section> -->
 	<section aria-labelledby="#experience" class="pt-16">
-		<div class="mb-8 flex flex-col gap-1 md:flex-row md:gap-9">
+		<div class="flex flex-col gap-1 md:flex-row md:gap-9">
 			<h2 id="bio" class="shrink-0 text-xs text-gray-500 dark:text-gray-400 md:w-40 md:text-base">
 				Work experience
 			</h2>
-			<p class="flex-grow" set:html={smarty(work)} />
-		</div>
-		<div class="text-center">
-			<FancyButton href="/work/prosource">Learn more</FancyButton>
+			<div class="flex-grow">
+				<p class="mb-8" set:html={smarty(work)} />
+				<FancyButton href="/work/prosource" class="!block sm:!inline-block">Learn more</FancyButton>
+			</div>
 		</div>
 	</section>
 	<section aria-labelledby="#work" class="pt-16">
-		<div class="mb-6 flex flex-col gap-1 md:flex-row md:gap-9">
+		<div class="flex flex-col gap-1 md:flex-row md:gap-9">
 			<h2 id="work" class="shrink-0 text-xs text-gray-500 dark:text-gray-400 md:w-40 md:text-base">
 				Work history
 			</h2>
@@ -91,12 +91,12 @@ const description =
 		</div>
 	</section>
 	<section aria-labelledby="#tools" class="pt-16">
-		<div class="mb-8 flex flex-col gap-2 md:flex-row md:gap-9">
+		<div class="flex flex-col gap-2 md:flex-row md:gap-9">
 			<h2 id="tools" class="shrink-0 text-xs text-gray-500 dark:text-gray-400 md:w-40 md:text-base">
 				Favorite tools
 			</h2>
 			<div class="flex-grow">
-				<ul role="list" class="grid grid-cols-2 gap-8 sm:grid-cols-3">
+				<ul role="list" class="mb-8 grid grid-cols-2 gap-8 sm:grid-cols-3">
 					{
 						tools.map(({ name, href, icon }) => (
 							<li>
@@ -114,10 +114,10 @@ const description =
 						))
 					}
 				</ul>
+				<FancyButton href="/about/tools" class="!block sm:!inline-block">
+					More tools I use
+				</FancyButton>
 			</div>
-		</div>
-		<div class="text-center">
-			<FancyButton href="/about/tools">More tools I use</FancyButton>
 		</div>
 	</section>
 	<MapSection class="pt-16">
