@@ -27,6 +27,12 @@
 	body {
 		min-height: theme("height.screen");
 		text-rendering: optimizeSpeed;
+		overflow-y: scroll;
+		scrollbar-gutter: stable both-edges;
+	}
+
+	:not(h1).font-serif {
+		letter-spacing: theme("letterSpacing.wide");
 	}
 
 	a:not([class]) {

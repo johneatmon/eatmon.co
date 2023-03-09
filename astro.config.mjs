@@ -6,6 +6,7 @@ import mdx from "@astrojs/mdx"
 import react from "@astrojs/react"
 import tailwind from "@astrojs/tailwind"
 import vercel from "@astrojs/vercel/serverless"
+import autoImport from "astro-auto-import"
 import compress from "astro-compress"
 import robots from "astro-robots-txt"
 
@@ -15,6 +16,13 @@ import { remarkWidont } from "./remark-plugins/remark-widont.mjs"
 // https://astro.build/config
 export default defineConfig({
 	integrations: [
+		autoImport({
+			imports: [
+				{
+					"./src/lib/smartypants.ts": ["smarty"],
+				},
+			],
+		}),
 		compress({
 			html: false,
 			img: false,
@@ -40,20 +48,22 @@ export default defineConfig({
 		}),
 	],
 	markdown: {
+		drafts: !import.meta.env.PROD,
 		remarkPlugins: [remarkWidont, remarkReadingTime],
-		drafts: true,
+		shikiConfig: {
+			theme: "poimandres",
+		},
 	},
 	site: "https://eatmon.co/",
 	vite: {
 		plugins: [
-			// https://stackblitz.com/github/unjs/fontaine/tree/main/playground?file=vite.config.mjs
 			FontaineTransform.vite({
-				fallbacks: ["BlinkMacSystemFont", "Segoe UI", "Roboto", "Ubuntu", "Cantarell", "Noto Sans"],
-				resolvePath: (id) => new URL(`./public${id}`, import.meta.url), // id is the font src value in the CSS
+				fallbacks: ["Arial"],
+				resolvePath: (id) => new URL(`./public${id}`, import.meta.url),
 			}),
 		],
 		ssr: {
-			noExternal: [/^@radix-ui\/*/, "smartypants"],
+			noExternal: [/^@radix-ui\/*/, "react-wrap-balancer", "smartypants"],
 		},
 	},
 	output: "server",

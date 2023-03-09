@@ -1,10 +1,12 @@
 ---
-export const prerender = true
+import BlogSection from "@components/BlogSection.astro"
+import ExperienceSection from "@components/ExperienceSection.astro"
+import Hero from "@components/Hero.astro"
+import ProjectSection from "@components/ProjectSection.astro"
+import BaseLayout from "@layouts/BaseLayout.astro"
+import { smarty } from "@lib/smartypants"
 
-import ExperienceSection from "../components/ExperienceSection.astro"
-import Hero from "../components/Hero.astro"
-import ProjectSection from "../components/ProjectSection.astro"
-import BaseLayout from "../layouts/BaseLayout.astro"
+export const prerender = true
 
 const title = "Multidiscipline Designer, Developer & Creative"
 const description = "I'm a product and web designer living in Tacoma, WA."
@@ -12,9 +14,10 @@ const description = "I'm a product and web designer living in Tacoma, WA."
 
 <BaseLayout title={title} description={description}>
 	<Hero class="pt-24 lg:pt-32 pb-9">
-		<Fragment slot="title">John Eatmon</Fragment>
-		Multidiscipline designer, developer & creative
+		<Fragment slot="title" set:html={smarty("Hi, I'm John Eatmon")} />
+		I solve problems with design, code, and strategy.
 	</Hero>
 	<ProjectSection class="pt-16" featuredNumber={3}>Selected projects</ProjectSection>
 	<ExperienceSection class="pt-16" />
+	<BlogSection class="pt-16">Recent posts</BlogSection>
 </BaseLayout>

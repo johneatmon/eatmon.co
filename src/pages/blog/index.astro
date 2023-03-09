@@ -1,0 +1,16 @@
+---
+import BlogSection from "@components/BlogSection.astro"
+import Hero from "@components/Hero.astro"
+import BaseLayout from "@layouts/BaseLayout.astro"
+import { smarty } from "@lib/smartypants"
+
+export const prerender = true
+---
+
+<BaseLayout>
+	<Hero class="pt-24 lg:pt-32 pb-9">
+		<Fragment slot="title" set:html={smarty("Writings by John")} />
+		I write about design, development, and technology.
+	</Hero>
+	<BlogSection class="pt-16" />
+</BaseLayout>

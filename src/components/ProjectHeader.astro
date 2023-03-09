@@ -1,10 +1,11 @@
 ---
 import type { HTMLAttributes } from "astro/types"
 import type { CollectionEntry } from "astro:content"
-// @ts-ignore
-import { smartypants } from "smartypants"
-import Image from "../components/Image.astro"
-import { machineDate, readableDate } from "../lib/dates"
+
+import Image from "@components/Image.astro"
+import { RWBBalancer as Balancer } from "@components/RWBBalancer"
+import { machineDate, readableDate } from "@lib/dates"
+import { smarty } from "@lib/smartypants"
 
 interface Props extends HTMLAttributes<"header"> {
 	data: CollectionEntry<"project">["data"]
@@ -14,10 +15,14 @@ const { data, ...attrs } = Astro.props as Props
 ---
 
 <header {...attrs}>
-	<h1 class="mb-6 text-3xl font-semibold sm:text-4xl" set:html={smartypants(data.title, 1)} />
+	<h1 class="mb-6 font-serif text-4xl font-semibold leading-tight tracking-tight md:text-5xl">
+		<Balancer>
+			<Fragment set:html={smarty(data.title)} />
+		</Balancer>
+	</h1>
 	<p
 		class="text-base text-gray-500 dark:text-gray-400 sm:text-lg"
-		set:html={smartypants(data.description, 1)}
+		set:html={smarty(data.description)}
 	/>
 	{
 		!!data.image && (

@@ -1,0 +1,53 @@
+---
+title: Astro and Tailwind and Radix UI!
+description: A perfect trio?
+published: 2023-03-05
+tags:
+  - radix
+  - astro
+  - tailwindcss
+  - tutorial
+draft: true
+---
+
+I'm going to walk through my process to get Radix UI primitives working in Astro with Tailwind CSS.
+
+The stack we will be using (RAT stack? 🤔):
+
+- [Radix UI](https://www.radix-ui.com/)
+- [Astro](https://astro.build/)
+- [Tailwind CSS](https://tailwindcss.com/)
+
+---
+
+## Project setup
+
+We'll start by creating a brand new Astro project. To make things easier on ourselves, we'll use Astro's React template since we will need React for our Radix UI primitives:
+
+```bash
+pnpm create astro@latest -- --template framework-react
+```
+
+### Add Tailwind CSS
+
+Next, we'll need to add Tailwind CSS. We will be adding the Radix-specific configs in just a moment.
+
+You can use the Astro command-line tool to help you add Tailwind:
+
+```bash
+pnpm astro add tailwind
+```
+
+Or, you can add it manually:
+
+```bash
+pnpm add @astrojs/tailwind tailwindcss
+```
+
+### Adding Radix
+
+You have a few options getting Radix and Tailwind to play nicely together:
+
+1. The Radix team recently [added support for Tailwind CSS styling](https://twitter.com/radix_ui/status/1626219141647728641) of the primitives in their docs. You can use their provided configuration file and code.
+2. [shadcn](https://twitter.com/shadcn) has created beautiful UI components from all of the Radix primitives and Tailwind CSS. The code can be dropped into any project as-is.
+3. I personally use the [Tailwind CSS Raidix](https://tailwindcss-radix.vercel.app/) project by [Florentin Eckl](https://twitter.com/ecklflorentin) because I find the examples a bit more stripped back and easier to modify. I'm going to use this package for this tutorial, but feel free to choose whichever approach you prefer.

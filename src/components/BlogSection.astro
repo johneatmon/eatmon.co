@@ -1,0 +1,55 @@
+---
+import type { HTMLAttributes } from "astro/types"
+
+import { machineDate, readableDate } from "@lib/dates"
+import { getCollection } from "astro:content"
+
+interface Props extends HTMLAttributes<"section"> {
+	featuredNumber?: number
+}
+
+const blogPosts = import.meta.env.PROD
+	? await getCollection("blog").then((res) => res.filter((x) => x.data.draft !== true))
+	: await getCollection("blog")
+
+const { featuredNumber = blogPosts.length, ...attrs } = Astro.props as Props
+---
+
+<section aria-labelledby={Astro.slots.has("default") ? "#selected-posts" : ""} {...attrs}>
+	{
+		Astro.slots.has("default") && (
+			<h2 id="selected-posts" class="mb-8 font-medium">
+				<slot />
+			</h2>
+		)
+	}
+	<ul role="list" class="flex flex-col gap-8">
+		{
+			blogPosts
+				.sort((a, b) => new Date(b.data.published).valueOf() - new Date(a.data.published).valueOf())
+				.slice(0, featuredNumber)
+				.map(({ data, slug }, i) => (
+					<li class="group relative -m-4 p-4">
+						<a href={`/blog/${slug}`}>
+							<div
+								aria-hidden="true"
+								class="absolute inset-0 h-full w-full scale-95 rounded-xl bg-gray-300 opacity-0 transition-all duration-300 ease-in-out group-hover:scale-100 group-hover:opacity-100 dark:bg-gray-900"
+							/>
+							<article class="relative flex w-full flex-wrap-reverse items-center gap-x-1">
+								<h3 set:html={data.title} class="w-full sm:w-auto" />
+								<div
+									aria-hidden="true"
+									class="dark:to-gray-1000/0 hidden h-px flex-grow bg-gradient-to-r from-gray-300 via-gray-300 to-gray-50/0 dark:from-white/10 dark:via-white/10 sm:flex"
+								/>
+								<time
+									datetime={machineDate(data.published)}
+									set:html={readableDate(data.published)}
+									class="shrink-0 text-xs text-gray-500 dark:text-gray-400 sm:text-base"
+								/>
+							</article>
+						</a>
+					</li>
+				))
+		}
+	</ul>
+</section>

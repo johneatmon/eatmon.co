@@ -1,10 +1,12 @@
 ---
 import type { CollectionEntry } from "astro:content"
-// @ts-ignore
-import { smartypants } from "smartypants"
-import LinkPreview from "../components/Glimpse"
-import PostFooter from "../components/PostFooter.astro"
-import BaseLayout from "../layouts/BaseLayout.astro"
+
+import LinkPreview from "@components/Glimpse"
+import PostFooter from "@components/PostFooter.astro"
+import Prose from "@components/Prose.astro"
+import { RWBBalancer as Balancer } from "@components/RWBBalancer"
+import BaseLayout from "@layouts/BaseLayout.astro"
+import { smarty } from "@lib/smartypants"
 
 type Props = CollectionEntry<"work">["data"]
 
@@ -22,17 +24,17 @@ const { title, description, published } = data
 >
 	<article class="mt pt-24 lg:pt-32">
 		<header>
-			<h1 class="mb-6 text-3xl font-semibold sm:text-4xl" set:html={smartypants(data.title, 1)} />
+			<h1 class="mb-6 font-serif text-4xl font-semibold leading-tight tracking-tight md:text-5xl">
+				<Balancer>
+					<Fragment set:html={smarty(data.title)} />
+				</Balancer>
+			</h1>
 			<p
 				class="text-base text-gray-500 dark:text-gray-400 sm:text-lg"
-				set:html={smartypants(data.description, 1)}
+				set:html={smarty(data.description)}
 			/>
 		</header>
-		<main
-			class="prose prose-zinc my-16 prose-blockquote:font-serif prose-blockquote:text-[110%] prose-blockquote:font-medium prose-em:font-serif prose-em:text-[110%] prose-em:font-medium dark:prose-invert"
-		>
-			<slot />
-		</main>
+		<Prose set:html={Astro.slots.render("default")} />
 		<PostFooter />
 	</article>
 	<LinkPreview client:idle />

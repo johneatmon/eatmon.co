@@ -20,6 +20,14 @@ export const about = `
 	After hours, I summit volcanoes, backpack, build LEGO sets, brew French press or Chemex coffee, make music in Ableton, read (mostly non-fiction), and trial gluten-free recipes.
 `
 
+export const mission = `
+
+`
+
 export const work = `
-	2+ years of experience in design and development. Nearly 7 years of experience delivering business value and improving customer experience in the tech industry.
+	Nearly 7 years ago, I joined ProSource, an Orlando-based technology services provider.
+	<br/><br/>
+	Over those 7 years, I've made an impact in almost every area of the business. I've increased workflow efficiency, standardized processes, improved customer experience, delivered business value, and increased revenue.
+	<br/><br/>
+	Working my way up from an internship, I now lead design and development of all digital surfaces at ProSource.
 `

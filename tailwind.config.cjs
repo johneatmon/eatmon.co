@@ -5,7 +5,7 @@ const colors = require("tailwindcss/colors")
 
 /** @type {import('tailwindcss').Config} */
 module.exports = {
-	content: ["./src/**/*.{astro,html,js,jsx,md,mdx,svelte,ts,tsx,vue}"],
+	content: ["./src/**/*.{astro,html,svg,js,jsx,md,mdx,svelte,ts,tsx,vue}"],
 	darkMode: ["class", '[data-mode="dark"]'],
 	future: {
 		hoverOnlyWhenSupported: true,
@@ -52,9 +52,9 @@ module.exports = {
 				)`,
 			}),
 			fontFamily: {
-				display: ["Hatton", ...defaultTheme.fontFamily.sans],
-				sans: ["Söhne\\ variant", "Söhne\\ variant\\ fallback", ...defaultTheme.fontFamily.sans],
-				serif: ["Nuances", ...defaultTheme.fontFamily.serif],
+				sans: ["Söhne", "Söhne\\ override", ...defaultTheme.fontFamily.sans],
+				serif: ["PP\\ Right\\ Serif", ...defaultTheme.fontFamily.serif],
+				// mono: ["MD\\ IO\\ 0.5", ...defaultTheme.fontFamily.mono],
 			},
 			keyframes: {
 				comeInOut: {

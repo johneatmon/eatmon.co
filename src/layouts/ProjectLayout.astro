@@ -1,15 +1,19 @@
 ---
 import type { CollectionEntry } from "astro:content"
-import LinkPreview from "../components/Glimpse"
-import PostFooter from "../components/PostFooter.astro"
-import ProjectHeader from "../components/ProjectHeader.astro"
-import BaseLayout from "../layouts/BaseLayout.astro"
+
+import LinkPreview from "@components/Glimpse"
+import PostFooter from "@components/PostFooter.astro"
+import ProjectHeader from "@components/ProjectHeader.astro"
+import Prose from "@components/Prose.astro"
+import BaseLayout from "@layouts/BaseLayout.astro"
 
 type Props = CollectionEntry<"project">["data"]
 
 const data = Astro.props as Props
 
 const { title, description, tags, caseStudy, modified, published } = data
+
+const pathname = Astro.url.pathname
 ---
 
 <BaseLayout
@@ -21,17 +25,14 @@ const { title, description, tags, caseStudy, modified, published } = data
 	datePublished={published?.toString()}
 	dateModified={modified?.toString()}
 	image={{
-		src: new URL(`${Astro.url.pathname}.og`, Astro.site).href,
+		src: new URL(`${pathname.endsWith("/") ? pathname.slice(0, -1) : pathname}.og`, Astro.site)
+			.href,
 		alt: `Open Graph image for ${title}.`,
 	}}
 >
 	<article class="mt pt-24 lg:pt-32">
 		<ProjectHeader data={data} />
-		<main
-			class="prose prose-zinc my-16 prose-blockquote:font-serif prose-blockquote:text-[110%] prose-blockquote:font-medium prose-em:font-serif prose-em:text-[110%] prose-em:font-medium dark:prose-invert"
-		>
-			<slot />
-		</main>
+		<Prose set:html={Astro.slots.render("default")} />
 		<PostFooter />
 	</article>
 	<LinkPreview client:idle />

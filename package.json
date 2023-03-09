@@ -31,12 +31,14 @@
     "@tailwindcss/line-clamp": "^0.4.2",
     "@tailwindcss/typography": "^0.5.8",
     "astro": "2.0.1",
+    "astro-auto-import": "^0.2.1",
     "astro-compress": "^1.1.28",
     "astro-icon": "^0.8.0",
     "astro-robots-txt": "^0.3.11",
     "blaze-slider": "^1.9.1",
     "clsx": "^1.2.1",
     "fontaine": "^0.2.3",
+    "got": "^12.6.0",
     "mdast-util-to-string": "^3.1.0",
     "node-html-parser": "^6.1.4",
     "postcss": "^8.4.20",
@@ -47,6 +49,7 @@
     "react-blaze-slider": "^1.7.2",
     "react-compare-slider": "^2.2.0",
     "react-dom": "^18.2.0",
+    "react-wrap-balancer": "^0.4.0",
     "reading-time": "^1.5.0",
     "satori": "^0.2.5",
     "satori-html": "^0.3.2",
@@ -54,7 +57,8 @@
     "smartypants": "^0.1.6",
     "tailwindcss": "^3.2.4",
     "tailwindcss-radix": "^2.6.2",
-    "unist-util-visit": "^4.1.1"
+    "unist-util-visit": "^4.1.1",
+    "uuid": "^9.0.0"
   },
   "devDependencies": {
     "@types/node": "^18.13.0",
