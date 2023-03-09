@@ -31,7 +31,7 @@
 		scrollbar-gutter: stable both-edges;
 	}
 
-	.font-serif {
+	:where(h1).font-serif {
 		letter-spacing: theme("letterSpacing.tight");
 	}
 
