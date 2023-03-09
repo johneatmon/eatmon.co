@@ -31,8 +31,8 @@
 		scrollbar-gutter: stable both-edges;
 	}
 
-	:where(h1).font-serif {
-		letter-spacing: theme("letterSpacing.tight");
+	:not(h1).font-serif {
+		letter-spacing: theme("letterSpacing.wide");
 	}
 
 	a:not([class]) {
