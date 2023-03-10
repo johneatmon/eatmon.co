@@ -7,6 +7,8 @@ specifiers:
   '@astrojs/tailwind': ^3.0.0
   '@astrojs/vercel': 3.0.0
   '@beskar-labs/glimpse': ^2.0.8
+  '@fontsource/martian-mono': ^4.5.1
+  '@fontsource/spectral': ^4.5.13
   '@haydenbleasel/glimpse': ^2.0.2
   '@headlessui/react': ^1.7.7
   '@headlessui/tailwindcss': ^0.1.2
@@ -64,6 +66,8 @@ dependencies:
   '@astrojs/tailwind': 3.0.0_bgk6wvini4j5nfa7w2itosrqne
   '@astrojs/vercel': 3.0.0_astro@2.0.1
   '@beskar-labs/glimpse': 2.0.8_biqbaboplfbrettd7655fr4n2y
+  '@fontsource/martian-mono': 4.5.1
+  '@fontsource/spectral': 4.5.13
   '@haydenbleasel/glimpse': 2.0.2_biqbaboplfbrettd7655fr4n2y
   '@headlessui/react': 1.7.7_biqbaboplfbrettd7655fr4n2y
   '@headlessui/tailwindcss': 0.1.2_tailwindcss@3.2.4
@@ -965,6 +969,14 @@ packages:
     transitivePeerDependencies:
       - supports-color
     dev: true
+
+  /@fontsource/martian-mono/4.5.1:
+    resolution: {integrity: sha512-13PXdSHHMJ/XhkTX48xNgJjMMkyvkOmh5jVIUFNT3+zl5Xx8VRARCdXc1E7qOSn/SWGbUmAwAoNSgxJbM6yC3Q==}
+    dev: false
+
+  /@fontsource/spectral/4.5.13:
+    resolution: {integrity: sha512-fr/6K7x4mcplJYmopofPO/GGYzihq7hebZz0xtj/i9/y4S//y2cLoxnhY92u8CBTcW55LWUVsaif5/Qltovj6g==}
+    dev: false
 
   /@haydenbleasel/glimpse/2.0.2_biqbaboplfbrettd7655fr4n2y:
     resolution: {integrity: sha512-+Xt5Re9o5lfY0+QH/dyGNaKmvvgVNi07hga9Tyf6AMqWGMV9yZO8Pwh17+lr7CsqPRO0Aknb7FNhAs0PNhKMBw==}
