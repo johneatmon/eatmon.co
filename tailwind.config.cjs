@@ -53,8 +53,8 @@ module.exports = {
 			}),
 			fontFamily: {
 				sans: ["Söhne", "Söhne\\ override", ...defaultTheme.fontFamily.sans],
-				serif: ["PP\\ Editorial\\ New", ...defaultTheme.fontFamily.serif],
-				// mono: ["MD\\ IO\\ 0.5", ...defaultTheme.fontFamily.mono],
+				serif: ["Spectral", ...defaultTheme.fontFamily.serif],
+				mono: ["Martian\\ Mono", ...defaultTheme.fontFamily.mono],
 			},
 			keyframes: {
 				comeInOut: {
