@@ -1,8 +1,9 @@
 ---
-// @ts-ignore
-import smartypants from "smartypants"
-import { SITE,TWITTER } from "../data/config"
-import '../styles/main.css'
+import { SITE,TWITTER } from "@data/config"
+import '@johneatmon/blanco'
+import '@johneatmon/soehne'
+import { smarty } from "@lib/smartypants"
+import '@styles/main.css'
 
 export interface Props {
 	title?: string
@@ -40,7 +41,7 @@ const title = [Astro.props.title, SITE.name].filter(Boolean).join(" · ")
 <meta charset="utf-8" />
 <meta name="viewport" content="width=device-width, initial-scale=1" />
 
-<title set:html={smartypants(title, 1)} />
+<title set:html={smarty(title)} />
 
 <meta name="description" content={description} />
 <meta name="generator" content={Astro.generator} />

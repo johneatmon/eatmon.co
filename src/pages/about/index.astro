@@ -1,16 +1,18 @@
 ---
+import { smarty } from "@/lib/smartypants"
+import * as About from "@components/about/index"
 import FancyButton from "@components/FancyButton.astro"
-// import Image from "@components/Image.astro"
 import LazyImage from "@components/LazyImage.astro"
 import MapSection from "@components/MapSection.astro"
-import Sparkles from "@components/Sparkles"
-import { about, work } from "@data/about"
+import Prose from "@components/Prose.astro"
+// import Sparkles from "@components/Sparkles"
 import { TOOLS } from "@data/config"
 import BaseLayout from "@layouts/BaseLayout.astro"
-import { smarty } from "@lib/smartypants"
 import { Icon } from "astro-icon"
 
 export const prerender = true
+
+const { Introduction, AfterHours, Experience, Mission, Location } = About
 
 const tools = TOOLS.filter((x) => x.featured).sort((a, b) => a.name.localeCompare(b.name))
 
@@ -24,53 +26,76 @@ const description =
 		<div class="mx-auto mb-8 w-fit rounded-full border border-gray-200 dark:border-gray-800">
 			<LazyImage
 				src="https://imagedelivery.net/le40TwFDWUdIvXckEp8FBw/e4a8c6d5-3d4c-4d24-a5ca-a8bd1f73bf00/w=96,h=96,format=webp"
-				alt="A selfie of me hiking on snowy Mt. Rainier. I am smiling while wearing my hat and sunglasses. Behind my head, in the distance, you can see the looming peak of Mt. Adams."
-				class="w-24 aspect-square object-cover rounded-full p-[2px]"
+				alt="A profile photo of me, John Eatmon."
+				class="w-24 aspect-square object-cover rounded-full p-[2px] saturate-0"
 			/>
 		</div>
-		<h1 id="about-me" class="mx-auto max-w-screen-sm text-center text-2xl font-medium">
-			<Sparkles client:load>
-				<em class="font-serif font-semibold">Multidiscipline</em>
-			</Sparkles>
-			<noscript><em class="font-serif font-semibold">Multidiscipline</em></noscript>
-			designer, developer, and creative.
-		</h1>
+		<h1
+			id="about-me"
+			class="mx-auto max-w-screen-sm text-center text-2xl font-semibold"
+			set:html={smarty("I'm John, a digital Swiss Army knife")}
+		/>
+		<!-- <Sparkles client:visible>
+			<em class="font-serif font-bold tracking-tight" style="font-size: 115%;">Multidiscipline</em
+			>
+		</Sparkles>
+		<noscript
+			><em class="font-serif tracking-tight" style="font-size: 115%;">Multidiscipline</em
+			></noscript
+		> -->
 	</section>
 	<section aria-labelledby="#bio" class="pt-16">
-		<div class="mb-6 flex flex-col gap-1 md:flex-row md:gap-9">
+		<div class="flex flex-col gap-1 md:flex-row md:gap-9">
 			<h2 id="bio" class="shrink-0 text-xs text-gray-500 dark:text-gray-400 md:w-40 md:text-base">
 				Introduction
 			</h2>
-			<p class="flex-grow" set:html={smarty(about)} />
+			<div class="flex-grow">
+				<Prose class="!leading-[28px]" set:html={Introduction.compiledContent()} />
+			</div>
 		</div>
 	</section>
-	<!-- <section aria-labelledby="#mission" class="pt-16">
-		<div class="mb-6 flex flex-col gap-1 md:flex-row md:gap-9">
+	<section aria-labelledby="#afterhours" class="pt-16">
+		<div class="flex flex-col gap-1 md:flex-row md:gap-9">
+			<h2
+				id="afterhours"
+				class="shrink-0 text-xs text-gray-500 dark:text-gray-400 md:w-40 md:text-base"
+			>
+				After hours
+			</h2>
+			<div class="flex-grow">
+				<Prose class="!leading-[28px]" set:html={AfterHours.compiledContent()} />
+			</div>
+		</div>
+	</section>
+	<section aria-labelledby="#mission" class="pt-16">
+		<div class="flex flex-col gap-1 md:flex-row md:gap-9">
 			<h2 id="bio" class="shrink-0 text-xs text-gray-500 dark:text-gray-400 md:w-40 md:text-base">
 				My mission
 			</h2>
-			<p class="flex-grow" set:html={smarty(mission)} />
+			<div class="flex-grow">
+				<Prose class="!leading-[28px]" set:html={Mission.compiledContent()} />
+			</div>
 		</div>
-	</section> -->
+	</section>
 	<section aria-labelledby="#experience" class="pt-16">
-		<div class="mb-8 flex flex-col gap-1 md:flex-row md:gap-9">
+		<div class="flex flex-col gap-1 md:flex-row md:gap-9">
 			<h2 id="bio" class="shrink-0 text-xs text-gray-500 dark:text-gray-400 md:w-40 md:text-base">
-				Work experience
+				Experience
 			</h2>
-			<p class="flex-grow" set:html={smarty(work)} />
-		</div>
-		<div class="text-center">
-			<FancyButton href="/work/prosource">Learn more</FancyButton>
+			<div class="flex-grow">
+				<Prose class="!leading-[28px] mb-8" set:html={Experience.compiledContent()} />
+				<FancyButton href="/work/prosource" class="!block sm:!inline-block">Learn more</FancyButton>
+			</div>
 		</div>
 	</section>
 	<section aria-labelledby="#work" class="pt-16">
-		<div class="mb-6 flex flex-col gap-1 md:flex-row md:gap-9">
+		<div class="flex flex-col gap-1 md:flex-row md:gap-9">
 			<h2 id="work" class="shrink-0 text-xs text-gray-500 dark:text-gray-400 md:w-40 md:text-base">
 				Work history
 			</h2>
 			<ul class="flex flex-col gap-8">
 				<li>
-					<h3>Product Designer</h3>
+					<h3>Designer & Developer</h3>
 					<p class="text-gray-500 dark:text-gray-400">
 						ProSource &middot; October 2020&ndash;Present
 					</p>
@@ -91,12 +116,12 @@ const description =
 		</div>
 	</section>
 	<section aria-labelledby="#tools" class="pt-16">
-		<div class="mb-8 flex flex-col gap-2 md:flex-row md:gap-9">
+		<div class="flex flex-col gap-2 md:flex-row md:gap-9">
 			<h2 id="tools" class="shrink-0 text-xs text-gray-500 dark:text-gray-400 md:w-40 md:text-base">
 				Favorite tools
 			</h2>
 			<div class="flex-grow">
-				<ul role="list" class="grid grid-cols-2 gap-8 sm:grid-cols-3">
+				<ul role="list" class="mb-8 grid grid-cols-2 gap-8 sm:grid-cols-3">
 					{
 						tools.map(({ name, href, icon }) => (
 							<li>
@@ -114,15 +139,13 @@ const description =
 						))
 					}
 				</ul>
+				<FancyButton href="/about/tools" class="!block sm:!inline-block">
+					More tools I use
+				</FancyButton>
 			</div>
-		</div>
-		<div class="text-center">
-			<FancyButton href="/about/tools">More tools I use</FancyButton>
 		</div>
 	</section>
 	<MapSection class="pt-16">
-		I'm fortunate to call Tacoma, WA my home. I've been working remotely here since summer 2021.
-		Below are a few of my favorite places around town &mdash; if you're ever in the area, I hope you
-		check them out!
+		<Prose class="!leading-[28px]" set:html={Location.compiledContent()} />
 	</MapSection>
 </BaseLayout>

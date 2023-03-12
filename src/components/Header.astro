@@ -40,9 +40,12 @@ const path = Astro.url.pathname
 						<li>
 							<a href={href} class="group relative inline-block py-4 px-2 sm:px-3">
 								<span
-									class={`bg-gradient-to-r from-purple-700 to-indigo-500 bg-clip-text transition-colors group-hover:text-transparent dark:from-purple-400 dark:to-indigo-400 ${
-										path.includes(href) && `text-transparent `
-									}`}
+									class:list={[
+										"transition",
+										path.includes(href)
+											? "text-gray-900 dark:text-white"
+											: "text-gray-500 dark:text-gray-400 group-hover:text-gray-900 dark:group-hover:text-white",
+									]}
 								>
 									{label}
 								</span>

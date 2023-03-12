@@ -1,5 +1,17 @@
+---
+import type { HTMLAttributes } from "astro/types"
+
+interface Props extends HTMLAttributes<"main"> {}
+
+const { class: className = "", ...attrs } = Astro.props as Props
+---
+
 <main
-	class="prose prose-base prose-zinc my-16 max-w-max prose-headings:font-serif prose-headings:font-medium prose-blockquote:font-serif prose-blockquote:text-lg prose-blockquote:font-medium prose-blockquote:italic prose-blockquote:tracking-normal prose-em:font-serif prose-pre:text-base dark:prose-invert"
+	class:list={[
+		className,
+		"prose font-serif prose-lg prose-zinc max-w-max prose-headings:font-sans prose-headings:font-semibold prose-blockquote:font-serif prose-blockquote:text-xl prose-blockquote:italic dark:prose-invert prose-pre:text-sm prose-code:text-sm",
+	]}
+	{...attrs}
 >
 	<slot />
 </main>

@@ -1,26 +1,32 @@
-@import "fonts.css";
+@font-face {
+	font-family: "Söhne fallback";
+	src: local("Arial");
+	ascent-override: 104%;
+	descent-override: 23.4%;
+	line-gap-override: 0%;
+}
+
+@font-face {
+	font-family: "Blanco fallback";
+	src: local("Times New Roman"), local("Times");
+	ascent-override: 99.7%;
+	descent-override: 22.8%;
+	line-gap-override: 0%;
+}
+
 @tailwind base;
 
 /* Add some additional CSS resets from Andy Bell (https://piccalil.li/blog/a-modern-css-reset) */
 @layer base {
-	:root {
-		--bg-color: theme("colors.gray.50");
-	}
-
 	::selection {
 		@apply bg-purple-700 text-white dark:bg-purple-400 dark:text-black;
 	}
 
 	html {
 		@apply antialiased;
-		background-color: var(--bg-color);
 
 		&:focus-within {
 			scroll-behavior: smooth;
-		}
-
-		&[data-mode="dark"] {
-			--bg-color: theme("colors.gray.1000");
 		}
 	}
 
@@ -29,10 +35,6 @@
 		text-rendering: optimizeSpeed;
 		overflow-y: scroll;
 		scrollbar-gutter: stable both-edges;
-	}
-
-	:not(h1).font-serif {
-		letter-spacing: theme("letterSpacing.wide");
 	}
 
 	a:not([class]) {

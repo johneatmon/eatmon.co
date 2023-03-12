@@ -1,6 +1,6 @@
 import { visit } from "unist-util-visit"
 
-export function remarkWidont() {
+export function remarkDeruntify() {
 	function transformer(tree) {
 		visit(tree, "text", function (node) {
 			let wordCount = node.value.split(" ").length

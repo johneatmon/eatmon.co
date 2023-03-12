@@ -32,7 +32,7 @@ const pathname = Astro.url.pathname
 >
 	<article class="mt pt-24 lg:pt-32">
 		<ProjectHeader data={data} />
-		<Prose set:html={Astro.slots.render("default")} />
+		<Prose class="my-16" set:html={Astro.slots.render("default")} />
 		<PostFooter />
 	</article>
 	<LinkPreview client:idle />

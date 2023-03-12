@@ -11,10 +11,13 @@ export const prerender = true
 const work = await getCollection("work")
 ---
 
-<BaseLayout title="Work & Projects" description="Yada yada">
+<BaseLayout
+	title="Work & Projects"
+	description="Read my case studies, work experience, and side projects."
+>
 	<Hero class="pt-24 lg:pt-32 pb-9">
-		<Fragment slot="title" set:html={smarty("Work & Projects")} />
-		Case studies, work experience, and other projects.
+		<Fragment slot="title" set:html={smarty("Work, projects, and the like")} />
+		Case studies, work experience, and side projects.
 	</Hero>
 	<section aria-labelledby="#work" class="pt-16">
 		<h2 id="work" class="mb-8 font-medium">Work experience</h2>

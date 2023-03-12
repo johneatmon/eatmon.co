@@ -75,10 +75,10 @@ const Sparkles = ({ color = DEFAULT_COLOR, children, ...delegated }) => {
 			setSparkles(nextSparkles)
 		},
 		50,
-		450,
+		1000, // increase this number to decrease # of sparkles
 	)
 	return (
-		<span {...delegated} className="inline-block relative">
+		<span {...delegated} className="relative inline-block">
 			{sparkles.map((sparkle) => (
 				<Sparkle key={sparkle.id} color={sparkle.color} size={sparkle.size} style={sparkle.style} />
 			))}

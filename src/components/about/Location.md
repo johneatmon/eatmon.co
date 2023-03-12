@@ -1,0 +1,1 @@
+I'm fortunate to call Tacoma, WA my home. I've been working here remotely since summer 2021. Below are a handful of my favorite places around town. If you're ever in the area, I hope you'll check them out!
