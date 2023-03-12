@@ -8,9 +8,9 @@ interface Props extends HTMLAttributes<"section"> {
 	featuredNumber?: number
 }
 
-const blogPosts = import.meta.env.PROD
-	? await getCollection("blog").then((res) => res.filter((x) => x.data.draft !== true))
-	: await getCollection("blog")
+const blogPosts = import.meta.env.DEV
+	? await getCollection("blog")
+	: await getCollection("blog").then((res) => res.filter((x) => x.data.draft !== true))
 
 const { featuredNumber = blogPosts.length, ...attrs } = Astro.props as Props
 ---
