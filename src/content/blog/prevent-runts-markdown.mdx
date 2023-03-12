@@ -1,0 +1,103 @@
+---
+title: Remove runts from your Astro Markdown files with ~15 lines of code
+description: Runts are a small but annoying pet peeve of mine — luckily, we can fix them.
+published: 2023-03-20
+tags:
+  - markdown
+  - remark
+  - astro
+---
+
+import Stackblitz from "@components/Stackblitz.astro"
+import LazyImage from "@components/LazyImage.astro"
+
+This tutorial is a super quick one, because you only need about 15 lines of code to fix pesky typographic runts.
+
+## What the hell are runts?
+
+Have you ever noticed a paragraph of text that ends with a word all by its lonesome on the last line? It looks like this:
+
+<LazyImage
+	src="https://imagedelivery.net/le40TwFDWUdIvXckEp8FBw/43061d2a-d60a-43be-929b-7a90eb602000/w=666,h=666,format=webp"
+	alt="A visual demonstration of a typographic runt. There is paragraph of lorem ipsum text, and on the last line is the word libero all by itself."
+/>
+
+I don't know about you, but that really grinds my gears.
+
+## Let's fix &rsquo;em
+
+Astro makes it super easy to add [remark plugins](https://github.com/remarkjs/remark/blob/main/doc/plugins.md) to your Markdown files. By default, Astro uses a package called `smartypants` to turn straight quotes and apostrophes into curly ones. We can extend this base configuration with our own, custom plugins.
+
+This post will assume you already have your Astro project set up for Markdown (`.md` or `.mdx`). If you need help setting that up, I recommend following [Astro's "Build a Blog" tutorial](https://docs.astro.build/en/tutorial/0-introduction/).
+
+### Getting started
+
+We're only going to need one package, `unist-util-visit`:
+
+```bash
+pnpm add unist-util-visit
+```
+
+This package lets you "walk the tree," by visiting each DOM node. We will do that so we can parse the text content of each node and transform it by adding a non-breaking space between the last two words.
+
+### Writing our plugin
+
+Now, we'll create the JS file that will actually do the transformation. I like to store my custom plugins in a folder called `/remark-plugins` at the root of my project, but you're welcome to put them wherever.
+
+```js
+// /remark-plugins/remark-deruntify.mjs
+import { visit } from "unist-util-visit"
+
+export function remarkDeruntify() {
+	function transformer(tree) {
+		visit(tree, "text", function (node) {
+			let wordCount = node.value.split(" ").length
+
+			if (wordCount >= 4) {
+				node.value = node.value.replace(/ ([^ ]*)$/, "\u00A0$1")
+			}
+		})
+	}
+
+	return transformer
+}
+```
+
+**So, what's going on here?** 🤔
+
+1. We're exporting a custom function that goes through each node's text content,
+2. and checks if there are more than 4 words;
+3. if there are, it inserts a non-breaking space entity between the last two words.
+
+Now we need to import our function into our Astro config file and enable it for Markdown content:
+
+```js
+// astro.config.mjs
+import { defineConfig } from "astro/config"
+
+import mdx from "@astrojs/mdx"
+
+import { remarkDeruntify } from "./remark-plugins/remark-deruntify.mjs"
+
+export default defineConfig({
+	integrations: [mdx()],
+	markdown: {
+		remarkPlugins: [remarkDeruntify],
+	},
+})
+```
+
+_That's it!_ Feel free to tailor the `wordCount` in the `remark-deruntify.mjs` file to your liking -- 4 was a decent starting point for me, personally.
+
+## Working example
+
+<Stackblitz class="not-prose -mx-4 md:-mx-16" projectId="github-xhgus7" file="astro.config.mjs" />
+
+Feel free to [drop me a line](mailto:john@eatmon.co) or [tweet at me](https://twitter.com/johneatmon_). I am always open to improving this tutorial or my code examples.
+
+---
+
+## Further reading
+
+- [What are "widows" & "orphans"?](https://opusdesign.us/wordcount/typographic-widows-orphans/) by Opus
+- [_The Elements of Typographic Style_](https://www.thriftbooks.com/w/the-elements-of-typographic-style_robert-bringhurst/278779/) by Robert Bringhurst

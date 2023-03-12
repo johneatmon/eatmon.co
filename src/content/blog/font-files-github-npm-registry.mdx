@@ -1,0 +1,22 @@
+---
+title: Use GitHub Packages to store font files as a private NPM package
+description: GitHub Packages allow you to store NPM packages privately, for free.
+published: 2023-03-11
+tags:
+  - fonts
+  - vercel
+  - github
+  - npm
+draft: true
+---
+
+I remember stumbling upon Kelly Harrop's post, [_Creating a fonts package_](https://kellyharrop.com/blog/2022/adding-fonts), some time last year. Intrigued, this idea marinated in my head for a while. Though I do share all of Kelly's goals by creating this external font package, I had an additional goal that wasn't mentioned in her post. I wasn't quite sure how to make this repo and package _private_ to protect a type foundry's intellectual property.
+
+Before I figured out this technique, I'd been storing font files (`.woff2` files, primarily) in my project repositories. Though convenient, I felt like I was violating the EULAs I'd agreed to. For work projects, this wasn't an issue, as all of our repositories are private.
+
+Earlier this year, when I finally started to put the finishing touches on this website, I felt a tinge of guilt tracking the font files I'd licensed into a public repository. It was then I remembered Kelly's post. I was determined to find a way to tailor her approach to my situation.
+
+Licensing issues aside, there are other reasons why you'd want to store font files -- or any type of files, for that matter -- in a separate, private NPM package:
+
+1. **Confidential source code:** Maybe you have code separate from your open-source project that you want to keep secret. In that case, turning a private repo into a GitHub Package you can `npm install` is pretty handy.
+2. **Reduce boilerplate**: At work, I need to reach for the same typefaces on every single web project to adhere to our brand. Even though all of my work repos are private, it's tedious doing the same setup tasks for every project.
