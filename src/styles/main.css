@@ -1,3 +1,19 @@
+@font-face {
+	font-family: "Söhne fallback";
+	src: local("Arial");
+	ascent-override: 104%;
+	descent-override: 23.4%;
+	line-gap-override: 0%;
+}
+
+@font-face {
+	font-family: "Blanco fallback";
+	src: local("Times New Roman"), local("Times");
+	ascent-override: 99.7%;
+	descent-override: 22.8%;
+	line-gap-override: 0%;
+}
+
 @tailwind base;
 
 /* Add some additional CSS resets from Andy Bell (https://piccalil.li/blog/a-modern-css-reset) */

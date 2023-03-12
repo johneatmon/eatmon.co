@@ -52,9 +52,8 @@ module.exports = {
 				)`,
 			}),
 			fontFamily: {
-				sans: ["Söhne", "Söhne\\ override", ...defaultTheme.fontFamily.sans],
-				serif: ["Spectral", ...defaultTheme.fontFamily.serif],
-				mono: ["Martian\\ Mono", ...defaultTheme.fontFamily.mono],
+				sans: ["Söhne", "Söhne\\ fallback", ...defaultTheme.fontFamily.sans],
+				serif: ["Blanco", "Blanco\\ fallback", ...defaultTheme.fontFamily.serif],
 			},
 			keyframes: {
 				comeInOut: {
