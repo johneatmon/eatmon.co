@@ -9,7 +9,7 @@ This site is typeset in [Söhne](https://klim.co.nz/retail-fonts/soehne/) by Kli
 
 ## Technologies
 
-This website is built with [Astro](https://astro.build), [Tailwind CSS](https://tailwindcss.com/), some React, and a few [Headless UI](https://headlessui.com/) and [Radix UI](https://www.radix-ui.com/) components. For a hollistic view of the technologies used, you can [check out the source code on GitHub](https://github.com/johneatmon/eatmon.co).
+This website is built with [Astro](https://astro.build), [Tailwind CSS](https://tailwindcss.com/), some React, and a few [Headless UI](https://headlessui.com/) and [Radix UI](https://www.radix-ui.com/) components. For a holistic view of the technologies used, you can [check out the source code on GitHub](https://github.com/johneatmon/eatmon.co).
 
 ## Services
 
