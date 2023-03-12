@@ -1,4 +1,6 @@
 ---
+import { smarty } from "@/lib/smartypants"
+import Hero from "@components/Hero.astro"
 import { TOOLS } from "@data/config"
 import BaseLayout from "@layouts/BaseLayout.astro"
 import { Icon } from "astro-icon"
@@ -14,9 +16,9 @@ const category = TOOLS.map((tool) => categories.add(tool.category))
 ---
 
 <BaseLayout title={title} description={description}>
-	<section aria-labelledby="#title" class="pt-24 pb-9 lg:pt-32">
-		<h1 id="title" class="text-2xl font-semibold">The tools, products, and services I use</h1>
-	</section>
+	<Hero class="pt-24 lg:pt-32 pb-9">
+		<Fragment slot="title" set:html={smarty("The tools, products, and services I use")} />
+	</Hero>
 	{
 		[...categories].map((category) => (
 			<section aria-labelledby={`#${category}`} class="grid gap-2 pt-16 md:grid-cols-4 md:gap-9">

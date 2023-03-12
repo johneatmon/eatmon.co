@@ -1,16 +1,21 @@
 ---
+import { smarty } from "@lib/smartypants"
 import type { HTMLAttributes } from "astro/types"
 
 interface Props extends HTMLAttributes<"section"> {}
 
 const { ...attrs } = Astro.props as Props
+
+let html: string = ""
+if (Astro.slots.has("default")) html = await Astro.slots.render("default")
 ---
 
 <section {...attrs} aria-labelledby="#title">
-	<h1 id="title" class="text-2xl font-semibold">
+	<h1 id="title" class="mb-1 text-2xl font-semibold">
 		<slot name="title" />
 	</h1>
-	<p class="mb-6 text-gray-500 dark:text-gray-400">
-		<slot />
-	</p>
+	<p
+		class="mb-6 max-w-lg font-serif text-lg text-gray-500 dark:text-gray-400"
+		set:html={smarty(html)}
+	/>
 </section>
