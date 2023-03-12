@@ -34,7 +34,7 @@ const { title, description, published } = data
 				set:html={smarty(data.description)}
 			/>
 		</header>
-		<Prose set:html={Astro.slots.render("default")} />
+		<Prose class="my-16" set:html={Astro.slots.render("default")} />
 		<PostFooter />
 	</article>
 	<LinkPreview client:idle />
