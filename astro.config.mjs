@@ -8,8 +8,8 @@ import vercel from "@astrojs/vercel/serverless"
 import compress from "astro-compress"
 import robots from "astro-robots-txt"
 
+import { remarkDeruntify } from "./remark-plugins/remark-deruntify.mjs"
 import { remarkReadingTime } from "./remark-plugins/remark-reading-time.mjs"
-import { remarkWidont } from "./remark-plugins/remark-widont.mjs"
 
 // https://astro.build/config
 export default defineConfig({
@@ -40,7 +40,7 @@ export default defineConfig({
 	],
 	markdown: {
 		drafts: !import.meta.env.PROD,
-		remarkPlugins: [remarkWidont, remarkReadingTime],
+		remarkPlugins: [remarkDeruntify, remarkReadingTime],
 		shikiConfig: {
 			theme: "poimandres",
 		},
