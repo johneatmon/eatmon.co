@@ -1,15 +1,15 @@
 ---
 title: Colophon
-description: The technologies, services, and people who empowered me to build this website.
+description: The technologies, services, and people that empowered me to build this website.
 published: 2023-01-24
-modified: 2023-03-06
+modified: 2023-03-12
 ---
 
-This site is primarily typeset in [Söhne](https://klim.co.nz/retail-fonts/soehne/) by Klim Type Foundry. The serif typeface scattered throughout is [PP Editorial New](https://pangrampangram.com/products/editorial-new) by PangramPangram. Söhne and PP Editorial New are licensed to John Eatmon. PP Editorial New is licensed for personal, non-commercial use.
+This site is typeset in [Söhne](https://klim.co.nz/retail-fonts/soehne/) by Klim Type Foundry and [Blanco](https://www.fostertype.com/retail-type/blanco) by Foster Type. Söhne and Blanco are licensed to John Eatmon for personal and commercial use.
 
 ## Technologies
 
-This website is built with [Astro](https://astro.build), [Tailwind CSS](https://tailwindcss.com/), some React, and a few [Headless UI](https://headlessui.com/) and [Radix UI](https://www.radix-ui.com/) components. For a hollistic view of the technologies used, you can [check out the project on GitHub](https://github.com/johneatmon/eatmon.co).
+This website is built with [Astro](https://astro.build), [Tailwind CSS](https://tailwindcss.com/), some React, and a few [Headless UI](https://headlessui.com/) and [Radix UI](https://www.radix-ui.com/) components. For a hollistic view of the technologies used, you can [check out the source code on GitHub](https://github.com/johneatmon/eatmon.co).
 
 ## Services
 
