@@ -27,7 +27,7 @@ const { title, description, published, modified, tags } = Astro.props
 		>
 			{
 				(!!published || !!modified) && (
-					<div class="mb-8 inline-block rounded-full bg-gray-900 px-3 pb-2 pt-[9px] font-mono text-[10px] leading-none text-white">
+					<div class="border-x-gray-1000 border-b-gray-1000 -mx-3 mb-8 inline-block rounded-full border border-t-gray-800 bg-gray-900 px-3 pb-2 pt-[9px] font-mono text-[10px] leading-none text-white shadow-lg">
 						Published <time datetime={machineDate(published)} set:text={readableDate(published)} />
 						{!!modified && (
 							<>
