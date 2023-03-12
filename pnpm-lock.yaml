@@ -10,6 +10,7 @@ specifiers:
   '@haydenbleasel/glimpse': ^2.0.2
   '@headlessui/react': ^1.7.7
   '@headlessui/tailwindcss': ^0.1.2
+  '@johneatmon/blanco': ^0.0.1
   '@johneatmon/soehne': ^0.0.2
   '@radix-ui/react-toast': ^1.1.2
   '@tailwindcss/line-clamp': ^0.4.2
@@ -66,6 +67,7 @@ dependencies:
   '@haydenbleasel/glimpse': 2.0.2_biqbaboplfbrettd7655fr4n2y
   '@headlessui/react': 1.7.7_biqbaboplfbrettd7655fr4n2y
   '@headlessui/tailwindcss': 0.1.2_tailwindcss@3.2.4
+  '@johneatmon/blanco': 0.0.1
   '@johneatmon/soehne': 0.0.2
   '@radix-ui/react-toast': 1.1.2_biqbaboplfbrettd7655fr4n2y
   '@tailwindcss/line-clamp': 0.4.2_tailwindcss@3.2.4
@@ -1008,6 +1010,10 @@ packages:
   /@humanwhocodes/object-schema/1.2.1:
     resolution: {integrity: sha512-ZnQMnLV4e7hDlUvw8H+U8ASL02SS2Gn6+9Ac3wGGLIe7+je2AeAOxPY+izIPJDfFDb7eDjev0Us8MO1iFRN8hA==}
     dev: true
+
+  /@johneatmon/blanco/0.0.1:
+    resolution: {integrity: sha512-UPCoPL7n3SKZP4EQ58MDA3ekpdFhXLMT6jwDYQB2TGv981CFUpb9QPSpeW1r/jM7R9gEmEOqkghuOx6Sz+L9lQ==, tarball: download/@johneatmon/blanco/0.0.1/783d805801c486b56d0130ada50c2c9ecc8189a5}
+    dev: false
 
   /@johneatmon/soehne/0.0.2:
     resolution: {integrity: sha512-2WOoHCeRKwJaxzaAb9kkz8sQod4O43VluL6ebleXS5hZ9xg8F8pOWOyOkkoWKOZ0B6Zhdr6jqF39KEPJhDC/5A==, tarball: download/@johneatmon/soehne/0.0.2/9e27991c769914551f927948f602bdbda0a5dbe6}
