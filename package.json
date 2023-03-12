@@ -24,8 +24,6 @@
     "@astrojs/tailwind": "^3.0.0",
     "@astrojs/vercel": "3.0.0",
     "@beskar-labs/glimpse": "^2.0.8",
-    "@fontsource/martian-mono": "^4.5.1",
-    "@fontsource/spectral": "^4.5.13",
     "@haydenbleasel/glimpse": "^2.0.2",
     "@headlessui/react": "^1.7.7",
     "@headlessui/tailwindcss": "^0.1.2",
