@@ -21,6 +21,7 @@
     "@astrojs/image": "^0.13.0",
     "@astrojs/mdx": "^0.15.0",
     "@astrojs/react": "^2.0.0",
+    "@astrojs/sitemap": "^1.2.0",
     "@astrojs/tailwind": "^3.0.0",
     "@astrojs/vercel": "3.0.0",
     "@beskar-labs/glimpse": "^2.0.8",
