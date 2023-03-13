@@ -1,5 +1,6 @@
+import soehneRegular from "@johneatmon/soehne/files/otf/Söhne-Buch.otf"
+import soehneBold from "@johneatmon/soehne/files/otf/Söhne-Dreiviertelfett.otf"
 import { defineConfig } from "astro/config"
-import path from "path"
 
 import image from "@astrojs/image"
 import mdx from "@astrojs/mdx"
@@ -59,12 +60,6 @@ export default defineConfig({
 	},
 	output: "server",
 	adapter: vercel({
-		includeFiles: [
-			path.join(process.cwd(), "node_modules/@johneatmon/soehne/files/otf/Söhne-Buch.otf"),
-			path.join(
-				process.cwd(),
-				"node_modules/@johneatmon/soehne/files/otf/Söhne-Dreiviertelfett.otf",
-			),
-		],
+		includeFiles: [soehneRegular, soehneBold],
 	}),
 })
