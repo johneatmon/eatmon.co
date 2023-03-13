@@ -59,8 +59,11 @@ export default defineConfig({
 	output: "server",
 	adapter: vercel({
 		includeFiles: [
-			"./node_modules/@johneatmon/soehne/files/otf/Söhne-Buch.otf",
-			"./node_modules/@johneatmon/soehne/files/otf/Söhne-Dreiviertelfett.otf",
+			new URL("./node_modules/@johneatmon/soehne/files/otf/Söhne-Buch.otf", import.meta.url).href,
+			new URL(
+				"./node_modules/@johneatmon/soehne/files/otf/Söhne-Dreiviertelfett.otf",
+				import.meta.url,
+			).href,
 		],
 	}),
 })
