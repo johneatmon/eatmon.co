@@ -9,7 +9,7 @@ const { html_url, images, height, width, title, published_at } = Astro.props as 
 
 <a
 	href={html_url}
-	class="group block rounded-lg border border-gray-300 bg-white dark:border-gray-800 dark:bg-black"
+	class="not-prose group block rounded-lg border border-gray-300 bg-white dark:border-gray-800 dark:bg-black"
 >
 	<img
 		src={images.hidpi ?? images.normal ?? images.teaser}
@@ -20,7 +20,9 @@ const { html_url, images, height, width, title, published_at } = Astro.props as 
 		loading="lazy"
 		decoding="async"
 	/>
-	<div class="flex flex-col p-4 transition group-hover:bg-gray-300/70 dark:group-hover:bg-gray-900">
+	<div
+		class="flex flex-col p-4 font-sans transition group-hover:bg-gray-300/70 dark:group-hover:bg-gray-900"
+	>
 		<h3 class="font-medium">{title}</h3>
 		<p class="text-sm text-gray-400">
 			Posted

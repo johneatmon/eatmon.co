@@ -41,6 +41,10 @@
 		text-decoration-skip-ink: auto;
 	}
 
+	:where(:not(.prose)).font-serif {
+		font-size: 1.125em;
+	}
+
 	@media (prefers-reduced-motion: reduce) {
 		html:focus-within {
 			scroll-behavior: auto;

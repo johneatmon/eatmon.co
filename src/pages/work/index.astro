@@ -42,7 +42,10 @@ const work = await getCollection("work")
 								/>
 								<div>
 									<h3 class="font-semibold" set:html={`${data.roles} &middot; ${data.title}`} />
-									<p class="text-gray-500 dark:text-gray-400" set:html={smarty(data.description)} />
+									<p
+										class="font-serif text-gray-500 dark:text-gray-400"
+										set:html={smarty(data.description)}
+									/>
 								</div>
 							</div>
 						</a>
