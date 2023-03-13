@@ -9,15 +9,15 @@ import { getCollection } from "astro:content"
 export const prerender = true
 
 const work = await getCollection("work")
+
+const title = "Work, projects, and the like"
+const description = "Case studies, work experience, and side projects."
 ---
 
-<BaseLayout
-	title="Work & Projects"
-	description="Read my case studies, work experience, and side projects."
->
+<BaseLayout title={title} description={description}>
 	<Hero class="pt-24 lg:pt-32 pb-9">
-		<Fragment slot="title" set:html={smarty("Work, projects, and the like")} />
-		Case studies, work experience, and side projects.
+		<Fragment slot="title" set:html={smarty(title)} />
+		<Fragment set:html={description} />
 	</Hero>
 	<section aria-labelledby="#work" class="pt-16">
 		<h2 id="work" class="mb-8 font-medium">Work experience</h2>

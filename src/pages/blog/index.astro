@@ -5,12 +5,15 @@ import BaseLayout from "@layouts/BaseLayout.astro"
 import { smarty } from "@lib/smartypants"
 
 export const prerender = true
+
+const title = "Writings by John"
+const description = "I write about design, development, and technology."
 ---
 
-<BaseLayout>
+<BaseLayout title={title} description={description}>
 	<Hero class="pt-24 lg:pt-32 pb-9">
-		<Fragment slot="title" set:html={smarty("Writings by John")} />
-		I write about design, development, and technology.
+		<Fragment slot="title" set:html={smarty(title)} />
+		<Fragment set:html={description} />
 	</Hero>
 	<BlogSection class="pt-16" />
 </BaseLayout>

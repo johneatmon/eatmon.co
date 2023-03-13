@@ -12,8 +12,6 @@ type Props = CollectionEntry<"project">["data"]
 const data = Astro.props as Props
 
 const { title, description, tags, caseStudy, modified, published } = data
-
-const pathname = Astro.url.pathname
 ---
 
 <BaseLayout
@@ -24,11 +22,6 @@ const pathname = Astro.url.pathname
 	tags={tags}
 	datePublished={published?.toString()}
 	dateModified={modified?.toString()}
-	image={{
-		src: new URL(`${pathname.endsWith("/") ? pathname.slice(0, -1) : pathname}.og`, Astro.site)
-			.href,
-		alt: `Open Graph image for ${title}.`,
-	}}
 >
 	<article class="mt pt-24 lg:pt-32">
 		<ProjectHeader data={data} />
