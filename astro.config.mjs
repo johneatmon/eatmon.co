@@ -57,7 +57,5 @@ export default defineConfig({
 		},
 	},
 	output: "server",
-	adapter: vercel({
-		includeFiles: ["./node_modules/@johneatmon/soehne/files/otf/Söhne-Buch.otf"],
-	}),
+	adapter: vercel(),
 })
