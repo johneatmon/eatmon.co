@@ -1,5 +1,4 @@
 import { defineConfig } from "astro/config"
-import path from "node:path"
 
 import image from "@astrojs/image"
 import mdx from "@astrojs/mdx"
@@ -12,28 +11,6 @@ import robots from "astro-robots-txt"
 
 import { remarkDeruntify } from "./remark-plugins/remark-deruntify.mjs"
 import { remarkReadingTime } from "./remark-plugins/remark-reading-time.mjs"
-
-const fontFileRegular = path.resolve(
-	process.cwd(),
-	"node_modules",
-	"@johneatmon",
-	"soehne",
-	"files",
-	"otf",
-	"Söhne-Buch.otf",
-)
-
-const fontFileBold = path.resolve(
-	process.cwd(),
-	"node_modules",
-	"@johneatmon",
-	"soehne",
-	"files",
-	"otf",
-	"Söhne-Dreiviertelfett.otf",
-)
-
-console.log(fontFileRegular, fontFileBold)
 
 // https://astro.build/config
 export default defineConfig({
@@ -80,7 +57,5 @@ export default defineConfig({
 		},
 	},
 	output: "server",
-	adapter: vercel({
-		includeFiles: [fontFileRegular, fontFileBold],
-	}),
+	adapter: vercel(),
 })
