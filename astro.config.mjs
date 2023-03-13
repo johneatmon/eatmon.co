@@ -3,6 +3,7 @@ import { defineConfig } from "astro/config"
 import image from "@astrojs/image"
 import mdx from "@astrojs/mdx"
 import react from "@astrojs/react"
+import sitemap from "@astrojs/sitemap"
 import tailwind from "@astrojs/tailwind"
 import vercel from "@astrojs/vercel/serverless"
 import compress from "astro-compress"
@@ -32,7 +33,11 @@ export default defineConfig({
 					disallow: ["/api", "/api/glimpse"],
 				},
 			],
-			sitemap: false,
+			sitemap: ["https://eatmon.co/sitemap-index.xml", "https://eatmon.co/sitemap-0.xml"],
+		}),
+		sitemap({
+			filter: (page) =>
+				page !== "https://eatmon.co/api" && page !== "https://eatmon.co/api/glimpse",
 		}),
 		tailwind({
 			config: { applyBaseStyles: false },
