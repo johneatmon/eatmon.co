@@ -1,11 +1,12 @@
 ---
-title: Remove runts from your Astro Markdown files with ~15 lines of code
+title: Remove runts from your Astro Mark&shy;down files with ~15 lines of code
 description: Runts are a small but annoying pet peeve of mine — luckily, we can fix them.
-published: 2023-03-20
+published: 2023-03-12
 tags:
   - markdown
   - remark
   - astro
+  - runts
 ---
 
 import Stackblitz from "@components/Stackblitz.astro"
@@ -15,18 +16,20 @@ This tutorial is a super quick one, because you only need about 15 lines of code
 
 ## What the hell are runts?
 
-Have you ever noticed a paragraph of text that ends with a word all by its lonesome on the last line? It looks like this:
+Have you ever noticed a paragraph of text that ends with a word all by its lonesome on the last line? Here's an example:
 
 <LazyImage
-	src="https://imagedelivery.net/le40TwFDWUdIvXckEp8FBw/43061d2a-d60a-43be-929b-7a90eb602000/w=666,h=666,format=webp"
+	src="https://opusdesign.us/wp-content/uploads/2013/01/widows-orphans-3.jpg"
 	alt="A visual demonstration of a typographic runt. There is paragraph of lorem ipsum text, and on the last line is the word libero all by itself."
 />
+
+_(Courtesy: [opusdesign.us](https://opusdesign.us/wordcount/typographic-widows-orphans/))_
 
 I don't know about you, but that really grinds my gears.
 
 ## Let's fix &rsquo;em
 
-Astro makes it super easy to add [remark plugins](https://github.com/remarkjs/remark/blob/main/doc/plugins.md) to your Markdown files. By default, Astro uses a package called `smartypants` to turn straight quotes and apostrophes into curly ones. We can extend this base configuration with our own, custom plugins.
+Astro makes it super easy to add [remark plugins](https://github.com/remarkjs/remark/blob/main/doc/plugins.md) to your projects. By default, Astro uses a package called `smartypants` to turn straight quotes and apostrophes into curly ones. We can extend this base configuration with our own, custom plugins.
 
 This post will assume you already have your Astro project set up for Markdown (`.md` or `.mdx`). If you need help setting that up, I recommend following [Astro's "Build a Blog" tutorial](https://docs.astro.build/en/tutorial/0-introduction/).
 
