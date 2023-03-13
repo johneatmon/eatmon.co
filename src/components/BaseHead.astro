@@ -90,6 +90,7 @@ const title = [smarty(Astro.props.title!), SITE.name].filter(Boolean).join(" · 
 <meta name="color-scheme" content="dark light" />
 
 <link rel="canonical" href={canonicalURL} />
+<link rel="sitemap" href={new URL("/sitemap-index.xml", Astro.site).href} />
 <link rel="icon" href="/favicon.png" />
 <link rel="apple-touch-icon" href="/apple-touch-icon.png" />
 {prev && <link rel="prev" aria-label="Previous Page" href={new URL(prev, Astro.site).href} />}
