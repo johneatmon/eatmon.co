@@ -3,3 +3,4 @@
 /// <reference types="astro/client" />
 
 declare module "sharp"
+declare module "sanitize-html"
