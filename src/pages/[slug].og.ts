@@ -1,5 +1,6 @@
 import type { APIRoute } from "astro"
 import { readFileSync } from "fs"
+import path from "path"
 import satori from "satori"
 import { html } from "satori-html"
 import sharp from "sharp"
@@ -13,8 +14,24 @@ export const get: APIRoute = async ({ params, request }) => {
 		const title = searchParams.has("title") ? searchParams.get("title")?.slice(0, 100) : "My Post"
 		const desc = searchParams.has("desc") ? searchParams.get("desc") : "Lorem ipsum dolor sit amet."
 
-		const fontFileRegularPath = `${process.cwd()}/node_modules/@johneatmon/soehne/files/otf/Söhne-Buch.otf`
-		const fontFileBoldPath = `${process.cwd()}/node_modules/@johneatmon/soehne/files/otf/Söhne-Dreiviertelfett.otf`
+		const fontFileRegularPath = path.join(
+			process.cwd(),
+			"node_modules",
+			"@johneatmon",
+			"soehne",
+			"files",
+			"otf",
+			"Söhne-Buch.otf",
+		)
+		const fontFileBoldPath = path.join(
+			process.cwd(),
+			"node_modules",
+			"@johneatmon",
+			"soehne",
+			"files",
+			"otf",
+			"Söhne-Dreiviertelfett.otf",
+		)
 		const fontFileRegular = readFileSync(fontFileRegularPath)
 		const fontFileBold = readFileSync(fontFileBoldPath)
 
