@@ -15,7 +15,7 @@ export const get: APIRoute = async ({ params }) => {
 		(await projects.filter((x) => x.slug === slug).map((post) => post.data.title)[0]) ??
 		"John Eatmon Projects"
 
-	const fontFilePath = `${process.cwd()}/public/fonts/soehne/otf/soehne-400.otf`
+	const fontFilePath = `${process.cwd()}/node_modules/@johneatmon/soehne/files/otf/Söhne-Buch.otf`
 	const fontFile = readFileSync(fontFilePath)
 
 	const markup = html(

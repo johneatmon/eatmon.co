@@ -58,6 +58,6 @@ export default defineConfig({
 	},
 	output: "server",
 	adapter: vercel({
-		includeFiles: ["./public/fonts/soehne/otf/soehne-400.otf"],
+		includeFiles: ["./node_modules/@johneatmon/soehne/files/otf/Söhne-Buch.otf"],
 	}),
 })
