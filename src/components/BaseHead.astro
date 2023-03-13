@@ -4,6 +4,7 @@ import '@johneatmon/blanco'
 import '@johneatmon/soehne'
 import { smarty } from "@lib/smartypants"
 import '@styles/main.css'
+import sanitizeHtml from 'sanitize-html'
 
 export interface Props {
 	title?: string
@@ -35,13 +36,13 @@ const {
 	next,
 } = Astro.props as Props
 
-const title = [Astro.props.title, SITE.name].filter(Boolean).join(" · ")
+const title = [smarty(Astro.props.title!), SITE.name].filter(Boolean).join(" · ")
 ---
 
 <meta charset="utf-8" />
 <meta name="viewport" content="width=device-width, initial-scale=1" />
 
-<title set:html={smarty(title)} />
+<title set:html={title} />
 
 <meta name="description" content={description} />
 <meta name="generator" content={Astro.generator} />
@@ -51,7 +52,7 @@ const title = [Astro.props.title, SITE.name].filter(Boolean).join(" · ")
 
 <meta property="og:locale" content="en_US" />
 <meta property="og:type" content={type} />
-<meta property="og:title" content={Astro.props.title} />
+<meta property="og:title" content={sanitizeHtml(Astro.props.title)} />
 <meta property="og:description" content={description} />
 <meta property="og:url" content={new URL(Astro.url.pathname, Astro.site).href} />
 <meta property="og:site_name" content={SITE.name} />
@@ -76,7 +77,7 @@ const title = [Astro.props.title, SITE.name].filter(Boolean).join(" · ")
 <meta name="twitter:site" content={TWITTER} />
 <meta name="twitter:creator" content={TWITTER} />
 <meta name="twitter:domain" content={SITE.name} />
-<meta name="twitter:title" content={title} />
+<meta name="twitter:title" content={sanitizeHtml(Astro.props.title)} />
 <meta name="twitter:description" content={description} />
 <meta name="twitter:card" content={image ? "summary_large_image" : "summary"} />
 {image && (
