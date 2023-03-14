@@ -55,6 +55,7 @@ export const get: APIRoute = async ({ params, request }) => {
 		const svg = await satori(markup, {
 			width: 1200,
 			height: 630,
+			embedFont: true,
 			fonts: [
 				{
 					name: "Söhne",
