@@ -23,7 +23,7 @@
     "@astrojs/react": "^2.0.0",
     "@astrojs/sitemap": "^1.2.0",
     "@astrojs/tailwind": "^3.0.0",
-    "@astrojs/vercel": "3.0.0",
+    "@astrojs/vercel": "3.2.1",
     "@beskar-labs/glimpse": "^2.0.8",
     "@haydenbleasel/glimpse": "^2.0.2",
     "@headlessui/react": "^1.7.7",
