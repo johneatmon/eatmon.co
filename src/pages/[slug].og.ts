@@ -36,7 +36,7 @@ export const get: APIRoute = async ({ params, request }) => {
 		const fontFileBold = readFileSync(fontFileBoldPath)
 
 		const markup = html`<div
-			style="height: 100%; width: 100%; position: relative; display: flex; background-color: black"
+			style="font-family: Söhne, sans-serif; height: 100%; width: 100%; position: relative; display: flex; background-color: black;"
 		>
 			<div
 				style="position: relative; display: flex; width: 100%; height: 100%; flex-direction: column; align-items: center; justify-content: center; padding: 4rem;"
