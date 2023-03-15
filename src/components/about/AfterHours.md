@@ -1,1 +1,1 @@
-When I'm not problem solving or [mountain climbing](/hikes), you can find me building LEGO sets, brewing French press or Chemex coffee, making music in Ableton, [reading](https://literal.club/johneatmon), or trialing gluten-free recipes.
+When I'm not problem solving or [mountain climbing](https://www.wta.org/@@backpacks/scrnm-jmaeat), you can find me building LEGO sets, brewing French press or Chemex coffee, making music in Ableton, [reading](https://literal.club/johneatmon), or trialing gluten-free recipes.
