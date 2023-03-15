@@ -1,3 +1,4 @@
+import "@johneatmon/soehne"
 import type { APIRoute } from "astro"
 import { readFileSync } from "fs"
 import satori from "satori"
@@ -38,7 +39,7 @@ export const get: APIRoute = async ({ params, request }) => {
 		const svg = await satori(markup, {
 			width: 1200,
 			height: 630,
-			embedFont: true,
+			// embedFont: true,
 			fonts: [
 				{
 					name: "Söhne",
