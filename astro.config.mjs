@@ -1,4 +1,5 @@
 import { defineConfig } from "astro/config"
+import glob from "glob"
 
 import image from "@astrojs/image"
 import mdx from "@astrojs/mdx"
@@ -58,9 +59,6 @@ export default defineConfig({
 	},
 	output: "server",
 	adapter: vercel({
-		includeFiles: [
-			"./node_modules/@johneatmon/soehne/files/otf/Söhne-Buch.otf",
-			"./node_modules/@johneatmon/soehne/files/otf/Söhne-Dreiviertelfett.otf",
-		],
+		includeFiles: [...glob.sync("./node_modules/@johneatmon/soehne/files/otf/*.otf")],
 	}),
 })
