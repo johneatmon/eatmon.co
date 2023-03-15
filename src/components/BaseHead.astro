@@ -41,7 +41,7 @@ const title = [smarty(Astro.props.title!), SITE.name].filter(Boolean).join(" · 
 let sanitizedTitle = sanitizeHtml(Astro.props.title);
 
 let path = Astro.url.pathname;
-path.endsWith('/') ? path.slice(0, -1) : path;
+path.endsWith('/') ? path : `${path}/`;
 
 const og = `${Astro.url.pathname === '/' ? 'index' : path.substring(path.lastIndexOf('/') + 1)}.og`;
 let url = new URL(og, Astro.site);
