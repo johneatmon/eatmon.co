@@ -7,6 +7,8 @@ modified: 2023-03-12
 
 This site is typeset in [Söhne](https://klim.co.nz/retail-fonts/soehne/) by Klim Type Foundry and [Blanco](https://www.fostertype.com/retail-type/blanco) by Foster Type. Söhne and Blanco are licensed to John Eatmon for personal and commercial use.
 
+I used [Standard](https://github.com/brycewilner/Standard) for the Satori-generated OG images (couldn't get Söhne to work 😥). Standard is a translation and modification of Berthold's 1896 version by Bryce Wilner. It is licensed under the [SIL Open Font License](https://scripts.sil.org/cms/scripts/page.php?site_id=nrsi&id=OFL).
+
 ## Technologies
 
 This website is built with [Astro](https://astro.build), [Tailwind CSS](https://tailwindcss.com/), some React, and a few [Headless UI](https://headlessui.com/) and [Radix UI](https://www.radix-ui.com/) components. For a holistic view of the technologies used, you can [check out the source code on GitHub](https://github.com/johneatmon/eatmon.co).
