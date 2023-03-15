@@ -1,5 +1,4 @@
 import { defineConfig } from "astro/config"
-import glob from "glob"
 
 import image from "@astrojs/image"
 import mdx from "@astrojs/mdx"
@@ -59,6 +58,9 @@ export default defineConfig({
 	},
 	output: "server",
 	adapter: vercel({
-		includeFiles: [...glob.sync("./node_modules/@johneatmon/soehne/files/otf/*.otf")],
+		includeFiles: [
+			"./public/fonts/standard/standard-bold-webfont.woff",
+			"./public/fonts/standard/standard-book-webfont.woff",
+		],
 	}),
 })

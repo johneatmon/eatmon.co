@@ -1,7 +1,5 @@
-import "@johneatmon/soehne"
 import type { APIRoute } from "astro"
 import { readFileSync } from "fs"
-import path from "node:path"
 import satori from "satori"
 import { html } from "satori-html"
 import sharp from "sharp"
@@ -15,19 +13,13 @@ export const get: APIRoute = async ({ params, request }) => {
 		const title = searchParams.has("title") ? searchParams.get("title")?.slice(0, 100) : "My Post"
 		const desc = searchParams.has("desc") ? searchParams.get("desc") : "Lorem ipsum dolor sit amet."
 
-		const fontFileRegularPath = path.resolve(
-			process.cwd(),
-			"node_modules/@johneatmon/soehne/files/otf/Söhne-Buch.otf",
-		)
-		const fontFileBoldPath = path.resolve(
-			process.cwd(),
-			"node_modules/@johneatmon/soehne/files/otf/Söhne-Dreiviertelfett.otf",
-		)
+		const fontFileRegularPath = `${process.cwd()}/public/fonts/standard/standard-book-webfont.woff`
+		const fontFileBoldPath = `${process.cwd()}/public/fonts/standard/standard-bold-webfont.woff`
 		const fontFileRegular = readFileSync(fontFileRegularPath)
 		const fontFileBold = readFileSync(fontFileBoldPath)
 
 		const markup = html`<div
-			style="font-family: Söhne, sans-serif; height: 100%; width: 100%; position: relative; display: flex; background-color: black;"
+			style="font-family: Standard; height: 100%; width: 100%; position: relative; display: flex; background-color: black;"
 		>
 			<div
 				style="position: relative; display: flex; width: 100%; height: 100%; flex-direction: column; align-items: center; justify-content: center; padding: 4rem;"
@@ -49,13 +41,13 @@ export const get: APIRoute = async ({ params, request }) => {
 			// embedFont: true,
 			fonts: [
 				{
-					name: "Söhne",
+					name: "Standard",
 					data: fontFileRegular,
 					style: "normal",
 					weight: 400,
 				},
 				{
-					name: "Söhne",
+					name: "Standard",
 					data: fontFileBold,
 					style: "normal",
 					weight: 700,
