@@ -40,6 +40,8 @@ let { image } = Astro.props as Props
 const title = [smarty(Astro.props.title!), SITE.name].filter(Boolean).join(" · ")
 let sanitizedTitle = sanitizeHtml(Astro.props.title);
 
+console.log(Astro.url.pathname)
+
 let path = Astro.url.pathname;
 path.endsWith('/') ? path : `${path}/`;
 
