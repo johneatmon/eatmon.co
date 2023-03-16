@@ -45,8 +45,6 @@ const segments = path.split('/').filter((segment) => segment !== '')
 const lastSegment = segments[segments.length - 1];
 const og = `${path === '/' ? 'index' : lastSegment}.og`;
 
-console.log(og)
-
 let url = new URL(og, Astro.site);
 !!Astro.props.title && url.searchParams.append('title', encodeURIComponent(sanitizedTitle));
 !!description && url.searchParams.append('desc', encodeURIComponent(description));
