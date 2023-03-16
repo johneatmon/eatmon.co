@@ -40,14 +40,14 @@ let { image } = Astro.props as Props
 const title = [smarty(Astro.props.title!), SITE.name].filter(Boolean).join(" · ")
 let sanitizedTitle = sanitizeHtml(Astro.props.title);
 
-console.log(Astro.url.pathname)
-
 let path = Astro.url.pathname;
-path.endsWith('/') ? path : `${path}/`;
+const segments = path.split('/').filter((segment) => segment !== '')
+const lastSegment = segments[segments.length - 1];
+const og = `${path === '/' ? 'index' : lastSegment}.og`;
 
-const og = `${path === '/' ? 'index' : path.substring(path.lastIndexOf('/') + 1)}.og`;
+console.log(og)
+
 let url = new URL(og, Astro.site);
-
 !!Astro.props.title && url.searchParams.append('title', encodeURIComponent(sanitizedTitle));
 !!description && url.searchParams.append('desc', encodeURIComponent(description));
 
