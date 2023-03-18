@@ -23,7 +23,7 @@ let breadcrumbs = [
 const path = paths.forEach((text: string, index: number) => {
 	const href = `/${paths.slice(0, index + 1).join("/")}`
 	const title =
-		href.includes(Astro.url.pathname) && current?.title !== undefined
+		`${href}/` === Astro.url.pathname && current?.title !== undefined
 			? current.title
 			: text.replace(/[-_]/g, " ")
 
