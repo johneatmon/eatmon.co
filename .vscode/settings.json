@@ -28,5 +28,6 @@
   "prettier.documentSelectors": ["**/*.astro"],
   "search.exclude": {
     "**/dist": true
-  }
+  },
+  "tailwindCSS.classAttributes": ["class", "className", "class:list"]
 }
