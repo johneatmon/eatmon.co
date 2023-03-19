@@ -43,8 +43,8 @@ I then walk through the prompts to create a `package.json` file. I don't bother 
 ```
 blanco/
 ├─ files/
-│  ├─ Blanco/
-│    ├─ woff2/
+│  ╰─ Blanco/
+│    ╰─ woff2/
 │      ├─ Blanco-Regular.woff2
 │      ├─ Blanco-Italic.woff2
 │      ├─ Blanco-Medium.woff2
@@ -52,10 +52,10 @@ blanco/
 │      ├─ Blanco-Bold.woff2
 │      ├─ Blanco-BoldItalic.woff2
 │      ├─ Blanco-ExtraBold.woff2
-│      ├─ Blanco-ExtraBoldItalic.woff2
+│      ╰─ Blanco-ExtraBoldItalic.woff2
 ├─ index.css
 ├─ package.json
-├─ README.md
+╰─ README.md
 ```
 
 I like to group my font files by file type, but you're welcome to do what works best for you.
@@ -106,7 +106,7 @@ Let's take a look at the `index.css` file:
 /* ... */
 ```
 
-Write as many `@font-face` declarations as you need for your font files. Since I know I will be using the font's kerning and ligatures features, I enable those in the `font-feature-settings` property. I also specify the `unicode-range` property to ensure the browser only downloads the font files it needs, it subsets for Latin alphabet characters.
+Write as many `@font-face` declarations as you need for your font files. Since I know I will be using the font's kerning and ligatures features, I enable those in the `font-feature-settings` property. I also specify the `unicode-range` property to subset the font for the Latin alphabet.
 
 Once you've set all of this up, go ahead and commit these to your GitHub repo. Make sure the name of the repo matches the name in your `package.json` file.
 
