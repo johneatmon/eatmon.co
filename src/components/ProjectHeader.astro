@@ -2,7 +2,7 @@
 import type { HTMLAttributes } from "astro/types"
 import type { CollectionEntry } from "astro:content"
 
-import Image from "@components/Image.astro"
+import LazyImage from "@components/LazyImage.astro"
 import { RWBBalancer as Balancer } from "@components/RWBBalancer"
 import { machineDate, readableDate } from "@lib/dates"
 import { smarty } from "@lib/smartypants"
@@ -27,7 +27,7 @@ const { data, ...attrs } = Astro.props as Props
 	{
 		!!data.image && (
 			<div class="-mx-4 mt-14 sm:-mx-8">
-				<Image
+				<LazyImage
 					src={data.image.src}
 					alt={data.image.alt}
 					class="aspect-[4/3] w-full sm:rounded-lg"
