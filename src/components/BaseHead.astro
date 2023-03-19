@@ -37,7 +37,7 @@ const {
 
 let { image } = Astro.props as Props
 
-const title = [smarty(Astro.props.title!), SITE.name].filter(Boolean).join(" · ")
+const title = [SITE.name, smarty(Astro.props.title!)].filter(Boolean).join(" · ")
 let sanitizedTitle = sanitizeHtml(Astro.props.title);
 
 let path = Astro.url.pathname;
