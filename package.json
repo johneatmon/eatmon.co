@@ -45,7 +45,6 @@
     "postcss": "^8.4.20",
     "postcss-nesting": "^10.2.0",
     "postcss-preset-env": "^7.8.3",
-    "probe-image-size": "^7.2.3",
     "react": "^18.2.0",
     "react-blaze-slider": "^1.7.2",
     "react-compare-slider": "^2.2.0",
