@@ -5,7 +5,6 @@ import FancyButton from "@components/FancyButton.astro"
 import LazyImage from "@components/LazyImage.astro"
 import MapSection from "@components/MapSection.astro"
 import Prose from "@components/Prose.astro"
-// import Sparkles from "@components/Sparkles"
 import { TOOLS } from "@data/config"
 import BaseLayout from "@layouts/BaseLayout.astro"
 import { Icon } from "astro-icon"
@@ -35,14 +34,6 @@ const description =
 			class="mx-auto max-w-2xl text-center text-2xl font-semibold"
 			set:html={smarty("I'm John &mdash; Web Artisan and mountain climbing enthusiast")}
 		/>
-		<!-- <Sparkles client:visible>
-			<em class="font-serif font-bold tracking-tight" style="font-size: 115%;">Multidiscipline</em
-			>
-		</Sparkles>
-		<noscript
-			><em class="font-serif tracking-tight" style="font-size: 115%;">Multidiscipline</em
-			></noscript
-		> -->
 	</section>
 	<section aria-labelledby="#bio" class="pt-16">
 		<div class="flex flex-col gap-1 md:flex-row md:gap-9">
