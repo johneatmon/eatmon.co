@@ -18,7 +18,7 @@ const tools = TOOLS.filter((x) => x.featured).sort((a, b) => a.name.localeCompar
 
 const title = "About"
 const description =
-	"A wearer of many hats, I love solving business and user problems. I refine brand, service, and product strategy with a broad spectrum of skills."
+	"I specialize in designing and building websites with an emphasis strategy, performance, and security."
 ---
 
 <BaseLayout title={title} description={description}>
@@ -32,8 +32,8 @@ const description =
 		</div>
 		<h1
 			id="about-me"
-			class="mx-auto max-w-screen-sm text-center text-2xl font-semibold"
-			set:html={smarty("I'm John, a digital Swiss Army knife")}
+			class="mx-auto max-w-2xl text-center text-2xl font-semibold"
+			set:html={smarty("I'm John &mdash; Web Artisan and mountain climbing enthusiast")}
 		/>
 		<!-- <Sparkles client:visible>
 			<em class="font-serif font-bold tracking-tight" style="font-size: 115%;">Multidiscipline</em
@@ -95,7 +95,7 @@ const description =
 			</h2>
 			<ul class="flex flex-col gap-8">
 				<li>
-					<h3>Designer & Developer</h3>
+					<h3>Digital Designer & Developer</h3>
 					<p class="text-gray-500 dark:text-gray-400">
 						ProSource &middot; October 2020&ndash;Present
 					</p>

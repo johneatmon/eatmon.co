@@ -8,16 +8,24 @@ import { smarty } from "@lib/smartypants"
 
 export const prerender = true
 
-const title = "Digital Swiss Army knife"
+const title = "Web Artisan"
 const description =
-	"I'm a multidisciplinary designer, developer, and creative living in Tacoma, WA."
+	"John Eatmon is a web designer, developer, and mountain climber based in Tacoma, WA."
 ---
 
 <BaseLayout title={title} description={description}>
 	<Hero class="pt-24 lg:pt-32 pb-9">
 		<Fragment slot="title" set:html={smarty("Hi, I'm John Eatmon")} />
-		I'm a designer and developer with a keen understanding of business and a specialty for delivering
-		delightful customer experiences.
+		I'm a web designer, developer, and <a
+			href="https://www.wta.org/@@backpacks/scrnm-jmaeat"
+			class="inline-block font-medium text-gray-900 underline underline-offset-2 dark:text-gray-50"
+			>mountain climbing</a
+		> enthusiast. Currently I'm a Digital Designer & Developer for
+		<a
+			href="/work/prosource"
+			class="inline-block font-medium text-gray-900 underline underline-offset-2 dark:text-gray-50"
+			>ProSource</a
+		>.
 	</Hero>
 	<ProjectSection class="pt-16" featuredNumber={3}>Selected projects</ProjectSection>
 	<ExperienceSection class="pt-16" />
