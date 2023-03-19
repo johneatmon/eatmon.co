@@ -1,11 +1,10 @@
 ---
-import type { CollectionEntry } from "astro:content"
-
 import LinkPreview from "@components/Glimpse"
 import PostFooter from "@components/PostFooter.astro"
 import ProjectHeader from "@components/ProjectHeader.astro"
 import Prose from "@components/Prose.astro"
 import BaseLayout from "@layouts/BaseLayout.astro"
+import type { CollectionEntry } from "astro:content"
 
 type Props = CollectionEntry<"project">["data"]
 

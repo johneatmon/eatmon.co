@@ -1,11 +1,10 @@
 ---
-import type { HTMLAttributes } from "astro/types"
-import type { CollectionEntry } from "astro:content"
-
 import LazyImage from "@components/LazyImage.astro"
 import { RWBBalancer as Balancer } from "@components/RWBBalancer"
 import { machineDate, readableDate } from "@lib/dates"
 import { smarty } from "@lib/smartypants"
+import type { HTMLAttributes } from "astro/types"
+import type { CollectionEntry } from "astro:content"
 
 interface Props extends HTMLAttributes<"header"> {
 	data: CollectionEntry<"project">["data"]

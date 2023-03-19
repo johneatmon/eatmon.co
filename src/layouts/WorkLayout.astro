@@ -1,12 +1,11 @@
 ---
-import type { CollectionEntry } from "astro:content"
-
 import LinkPreview from "@components/Glimpse"
 import PostFooter from "@components/PostFooter.astro"
 import Prose from "@components/Prose.astro"
 import { RWBBalancer as Balancer } from "@components/RWBBalancer"
 import BaseLayout from "@layouts/BaseLayout.astro"
 import { smarty } from "@lib/smartypants"
+import type { CollectionEntry } from "astro:content"
 
 type Props = CollectionEntry<"work">["data"]
 
