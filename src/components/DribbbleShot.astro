@@ -1,32 +1,33 @@
 ---
-import { machineDate, readableDate } from "@/lib/dates"
-import type { DribbbleShot } from "./DribbbleCarousel.astro"
+import type { DribbbleShot } from "@components/DribbbleCarousel.astro"
+import LazyImage from "@components/LazyImage.astro"
+import { machineDate, readableDate } from "@lib/dates"
 
 interface Props extends DribbbleShot {}
 
 const { html_url, images, height, width, title, published_at } = Astro.props as Props
 ---
 
-<a
-	href={html_url}
-	class="not-prose group block rounded-lg border border-gray-300 bg-white dark:border-gray-800 dark:bg-black"
->
-	<img
-		src={images.hidpi ?? images.normal ?? images.teaser}
-		alt={`Dribbble shot of the ${title} post.`}
-		class="aspect-[4/3] rounded-t-lg"
-		height={height}
-		width={width}
-		loading="lazy"
-		decoding="async"
-	/>
-	<div
-		class="flex flex-col p-4 font-sans transition group-hover:bg-gray-300/70 dark:group-hover:bg-gray-900"
-	>
-		<h3 class="font-medium">{title}</h3>
-		<p class="text-sm text-gray-400">
-			Posted
-			<time datetime={machineDate(published_at)} set:html={readableDate(published_at)} />
-		</p>
-	</div>
-</a>
+{
+	!!images.hidpi && (
+		<a
+			href={html_url}
+			class="not-prose group block rounded-lg border border-gray-300 bg-white dark:border-gray-800 dark:bg-black"
+		>
+			<LazyImage
+				src={images.hidpi ?? images.normal ?? images.teaser}
+				alt={`Dribbble shot of the ${title} post.`}
+				class="aspect-[4/3] rounded-t-lg"
+				height={height}
+				width={width}
+			/>
+			<div class="flex flex-col p-4 font-sans transition group-hover:bg-gray-300/70 dark:group-hover:bg-gray-900">
+				<h3 class="font-medium">{title}</h3>
+				<p class="text-sm text-gray-400">
+					Posted
+					<time datetime={machineDate(published_at)} set:html={readableDate(published_at)} />
+				</p>
+			</div>
+		</a>
+	)
+}

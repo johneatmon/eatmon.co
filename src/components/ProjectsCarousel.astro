@@ -1,7 +1,7 @@
 ---
+import Carousel from "@components/Carousel"
+import LazyImage from "@components/LazyImage.astro"
 import { getCollection } from "astro:content"
-import Carousel from "../components/Carousel"
-import Image from "../components/Image.astro"
 
 const projects = await getCollection("project").then((res) =>
 	res.sort((a, b) => new Date(b.data.published).valueOf() - new Date(a.data.published).valueOf()),
@@ -16,7 +16,7 @@ const projects = await getCollection("project").then((res) =>
 					href={`/project/${slug}`}
 					class="group block rounded-lg border border-gray-300 bg-white dark:border-gray-800 dark:bg-black"
 				>
-					<Image src={data.image.src} alt={data.image.alt} class="aspect-[4/3] rounded-t-lg" />
+					<LazyImage src={data.image.src} alt={data.image.alt} class="aspect-[4/3] rounded-t-lg" />
 					<div class="flex flex-col p-4 font-sans transition group-hover:bg-gray-300/70 dark:group-hover:bg-gray-900">
 						<h3 class="font-medium">{data.title}</h3>
 						<p class="text-sm text-gray-400">
