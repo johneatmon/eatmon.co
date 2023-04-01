@@ -23,8 +23,6 @@
 	}
 
 	html {
-		@apply antialiased;
-
 		&:focus-within {
 			scroll-behavior: smooth;
 		}
@@ -32,7 +30,7 @@
 
 	body {
 		min-height: theme("height.screen");
-		text-rendering: optimizeSpeed;
+		text-rendering: optimizeLegibility;
 		overflow-y: scroll;
 		scrollbar-gutter: stable both-edges;
 	}
@@ -41,8 +39,8 @@
 		text-decoration-skip-ink: auto;
 	}
 
-	:where(:not(.prose)).font-serif {
-		font-size: 1.125em;
+	.font-serif {
+		font-feature-settings: "kern" on, "liga" on, "ss01" on;
 	}
 
 	@media (prefers-reduced-motion: reduce) {
