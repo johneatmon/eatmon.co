@@ -1,17 +1,19 @@
 ---
 import type { HTMLAttributes } from "astro/types"
 
-interface Props extends HTMLAttributes<"main"> {}
+interface Props extends HTMLAttributes<any> {
+	as?: keyof HTMLElementTagNameMap
+}
 
-const { class: className = "", ...attrs } = Astro.props as Props
+const { as: Prose = "main", class: className = "", ...attrs } = Astro.props as Props
 ---
 
-<main
+<Prose
 	class:list={[
 		className,
-		"prose font-serif prose-lg prose-zinc max-w-max prose-headings:font-sans prose-headings:font-semibold prose-blockquote:font-serif prose-blockquote:text-xl prose-blockquote:italic dark:prose-invert prose-pre:text-sm prose-code:text-sm",
+		"prose font-serif prose-lg prose-zinc max-w-max prose-headings:font-sans prose-headings:font-semibold prose-blockquote:font-serif prose-blockquote:text-xl prose-blockquote:italic dark:prose-invert prose-pre:text-sm prose-code:text-sm [hyphens:manual] text-justify tracking-[-0.022em]",
 	]}
 	{...attrs}
 >
 	<slot />
-</main>
+</Prose>
