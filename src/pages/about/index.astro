@@ -41,7 +41,7 @@ const description =
 				Introduction
 			</h2>
 			<div class="flex-grow">
-				<Prose class="!leading-[28px]" set:html={Introduction.compiledContent()} />
+				<Prose as="div" class="!leading-[28px]" set:html={Introduction.compiledContent()} />
 			</div>
 		</div>
 	</section>
@@ -54,7 +54,7 @@ const description =
 				After hours
 			</h2>
 			<div class="flex-grow">
-				<Prose class="!leading-[28px]" set:html={AfterHours.compiledContent()} />
+				<Prose as="div" class="!leading-[28px]" set:html={AfterHours.compiledContent()} />
 			</div>
 		</div>
 	</section>
@@ -64,7 +64,7 @@ const description =
 				My mission
 			</h2>
 			<div class="flex-grow">
-				<Prose class="!leading-[28px]" set:html={Mission.compiledContent()} />
+				<Prose as="div" class="!leading-[28px]" set:html={Mission.compiledContent()} />
 			</div>
 		</div>
 	</section>
@@ -74,7 +74,7 @@ const description =
 				Experience
 			</h2>
 			<div class="flex-grow">
-				<Prose class="!leading-[28px] mb-8" set:html={Experience.compiledContent()} />
+				<Prose as="div" class="!leading-[28px] mb-8" set:html={Experience.compiledContent()} />
 				<FancyButton href="/work/prosource" class="!block sm:!inline-block">Learn more</FancyButton>
 			</div>
 		</div>
@@ -137,6 +137,6 @@ const description =
 		</div>
 	</section>
 	<MapSection class="pt-16">
-		<Prose class="!leading-[28px]" set:html={Location.compiledContent()} />
+		<Prose as="div" class="!leading-[28px]" set:html={Location.compiledContent()} />
 	</MapSection>
 </BaseLayout>
