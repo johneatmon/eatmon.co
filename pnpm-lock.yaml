@@ -34,6 +34,7 @@ specifiers:
   eslint-plugin-jsx-a11y: ^6.6.1
   eslint-plugin-prettier: ^4.2.1
   got: ^12.6.0
+  hyphenopoly: ^5.0.0
   mdast-util-to-string: ^3.1.0
   node-html-parser: ^6.1.4
   npm-run-all: ^4.1.5
@@ -82,6 +83,7 @@ dependencies:
   blaze-slider: 1.9.1
   clsx: 1.2.1
   got: 12.6.0
+  hyphenopoly: 5.0.0
   mdast-util-to-string: 3.1.0
   node-html-parser: 6.1.4
   postcss: 8.4.21
@@ -3818,6 +3820,11 @@ packages:
 
   /hyphenate-style-name/1.0.4:
     resolution: {integrity: sha512-ygGZLjmXfPHj+ZWh6LwbC37l43MhfztxetbFCoYTM2VjkIUpeHgSNn7QIyVFj7YQ1Wl9Cbw5sholVJPzWvC2MQ==}
+    dev: false
+
+  /hyphenopoly/5.0.0:
+    resolution: {integrity: sha512-VsuspLqLzagYHqshj9OVLYsbG2oRZHur0SkPQtESzwzo4OYQhLwlNngadKZvDd6WSKeoL15eer2jC6MQiQBVPw==}
+    engines: {node: '>=14'}
     dev: false
 
   /ieee754/1.2.1:
