@@ -4,7 +4,7 @@ import { CustomBalancer as Balancer } from "@components/CustomBalancer"
 import LinkPreview from "@components/Glimpse"
 import PostFooter from "@components/PostFooter.astro"
 import Prose from "@components/Prose.astro"
-import { RWBBalancer as Balancer } from "@components/RWBBalancer"
+import RemainingReadTime from "@components/RemainingReadTime.astro"
 import BaseLayout from "@layouts/BaseLayout.astro"
 import { machineDate, readableDate } from "@lib/dates"
 import { smarty } from "@lib/smartypants"
@@ -21,6 +21,7 @@ const { title, description, published, modified, tags } = Astro.props
 	dateModified={modified && machineDate(modified)}
 	tags={tags}
 >
+	<RemainingReadTime />
 	<Breadcrumbs current={{ title: title, href: Astro.url.pathname }} class="mt-20 mb-16 md:mb-24" />
 	<article>
 		<div
