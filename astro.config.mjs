@@ -9,9 +9,10 @@ import vercel from "@astrojs/vercel/serverless"
 import compress from "astro-compress"
 import robots from "astro-robots-txt"
 
+// Remark plugins
+import remarkCodeTitles from "remark-code-titles"
 import { remarkDeruntify } from "./remark-plugins/remark-deruntify.mjs"
 import { remarkHyphenate } from "./remark-plugins/remark-hyphenate.mjs"
-import { remarkReadingTime } from "./remark-plugins/remark-reading-time.mjs"
 
 // https://astro.build/config
 export default defineConfig({
@@ -46,7 +47,7 @@ export default defineConfig({
 	],
 	markdown: {
 		drafts: true,
-		remarkPlugins: [remarkHyphenate, remarkDeruntify, remarkReadingTime],
+		remarkPlugins: [remarkHyphenate, remarkDeruntify, remarkCodeTitles],
 		shikiConfig: {
 			theme: "poimandres",
 		},
