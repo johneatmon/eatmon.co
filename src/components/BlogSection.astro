@@ -18,12 +18,12 @@ const { featuredNumber = blogPosts.length, ...attrs } = Astro.props as Props
 <section aria-labelledby={Astro.slots.has("default") ? "#selected-posts" : ""} {...attrs}>
 	{
 		Astro.slots.has("default") && (
-			<h2 id="selected-posts" class="mb-8 font-medium">
+			<h2 id="selected-posts" class="mb-8 font-medium text-gray-500 dark:text-gray-400">
 				<slot />
 			</h2>
 		)
 	}
-	<ul role="list" class="flex flex-col gap-8">
+	<ul role="list" class="flex flex-col gap-8 tabular-nums">
 		{
 			blogPosts
 				.sort((a, b) => new Date(b.data.published).valueOf() - new Date(a.data.published).valueOf())

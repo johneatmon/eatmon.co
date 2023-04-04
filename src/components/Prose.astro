@@ -11,7 +11,7 @@ const { as: Prose = "main", class: className = "", ...attrs } = Astro.props as P
 <Prose
 	class:list={[
 		className,
-		"prose font-serif prose-lg prose-zinc max-w-max prose-headings:font-sans prose-headings:font-semibold prose-blockquote:font-serif prose-blockquote:text-xl prose-blockquote:italic dark:prose-invert prose-pre:text-sm prose-code:text-sm [hyphens:manual] text-justify tracking-[-0.022em]",
+		"prose font-serif prose-lg prose-zinc max-w-max prose-headings:font-sans prose-headings:font-semibold prose-blockquote:font-serif prose-blockquote:text-xl prose-blockquote:italic dark:prose-invert prose-pre:text-sm prose-code:text-sm [hyphens:manual] sm:text-justify tracking-[-0.022em] prose-li:text-left",
 	]}
 	{...attrs}
 >

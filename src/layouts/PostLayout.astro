@@ -23,7 +23,7 @@ const { title, description, published, modified, tags } = Astro.props
 	<Breadcrumbs current={{ title: title, href: Astro.url.pathname }} class="mt-20 mb-16 md:mb-24" />
 	<article>
 		<div
-			class="-mx-4 -my-8 border border-gray-300 bg-white py-8 px-4 dark:border-transparent dark:bg-black sm:px-8 md:-m-16 md:rounded-3xl md:p-16"
+			class="-mx-4 -my-8 border border-gray-300 bg-white py-8 px-4 dark:border-transparent dark:border-b-gray-900 dark:bg-gray-1000 sm:px-8 md:-m-16 md:rounded-3xl md:p-16"
 		>
 			{
 				(!!published || !!modified) && (

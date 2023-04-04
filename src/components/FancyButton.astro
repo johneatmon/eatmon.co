@@ -11,12 +11,10 @@ const { class: className = "", ...attrs } = Astro.props as Props
 	{...attrs}
 	class:list={[
 		className,
-		"inline-block whitespace-nowrap group relative overflow-hidden rounded-lg bg-black/20 dark:bg-white/20 hover:bg-white dark:hover:bg-gray-1000 transition-colors duration-300 ease-in-out px-20 py-6 ring-purple-700/50 dark:ring-purple-400/50 ring-offset-white dark:ring-offset-gray-1000 will-change-transform focus:outline-none focus:ring-1 focus:ring-offset-2",
+		"inline-block whitespace-nowrap group relative overflow-hidden rounded-lg bg-black/20 dark:bg-white/20 hover:bg-white dark:hover:bg-black transition-colors duration-300 ease-in-out px-20 py-6 ring-purple-700/50 dark:ring-purple-400/50 ring-offset-white dark:ring-offset-gray-1000 will-change-transform focus:outline-none focus:ring-1 focus:ring-offset-2",
 	]}
 >
-	<span
-		class="absolute inset-px z-10 grid place-items-center rounded-lg bg-white dark:bg-gray-1000"
-	>
+	<span class="absolute inset-px z-10 grid place-items-center rounded-lg bg-white dark:bg-black">
 		<slot />
 	</span>
 	<span

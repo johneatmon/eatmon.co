@@ -19,14 +19,18 @@ const { ...attrs } = Astro.props as Props
 		<Analytics />
 	</head>
 	<body
-		class="relative h-full bg-gray-50 text-gray-900 antialiased transition dark:bg-gray-1000 dark:text-gray-50 [&>footer]:sticky [&>footer]:top-[100vh]"
+		class="relative h-full bg-gray-50 text-gray-900 antialiased transition dark:bg-black dark:text-gray-50 [&>footer]:sticky [&>footer]:top-[100vh]"
 	>
 		<Header
 			class="bg-white/70 dark:bg-gray-1000/80 fixed isolate z-50 top-0 backdrop-blur-[20px] backdrop-saturate-[180%] w-full"
 		/>
-		<main class="relative mx-auto max-w-[700px] px-4">
+		<main class="relative mx-auto max-w-2xl px-4">
 			<slot />
 		</main>
 		<Footer class="relative pt-4 mt-16 md:mt-24 pb-16" />
+		<div
+			class="fixed bottom-0 h-16 w-full bg-black [mask-image:linear-gradient(to_bottom,transparent,#000)]"
+		>
+		</div>
 	</body>
 </html>
