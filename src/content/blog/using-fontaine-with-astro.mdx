@@ -2,6 +2,7 @@
 title: "Reduce font-related CLS in your Astro projects with Fontaine"
 description: "A Vite plugin that makes `font-display: swap` actually viable."
 published: 2023-03-05
+modified: 2023-04-02
 tags:
   - font
   - CLS
@@ -53,18 +54,17 @@ Now, we’ll want to add our font files to Astro’s `/public` directory. This d
 ```
 your-astro-project/
 ├─ public/
-│  ├─ fonts/
-│    ├─ SpaceGrotesk/
-│      ├─ ttf/
-│        ├─ SpaceGrotesk-Regular.ttf
+│  ╰─ fonts/
+│     ╰─ SpaceGrotesk/
+│        ╰─ ttf/
+│           ╰─ SpaceGrotesk-Regular.ttf
 ```
 
 You can use Google Fonts or Adobe Typekit — but hosting your own font files is preferred [for a litany of reasons](https://termageddon.com/google-fonts-violates-gdpr/). If you do choose Google Fonts or Typekit, you will need to adjust the Fontaine URL in the Astro config accordingly.
 
 Now we’ll need to write some `@font-face` rules to tell our browser where to locate our font files. If you’re writing with SCSS, you can [use this handy function I wrote](https://gist.github.com/johneatmon/dad7af4fc864f245630ec90bd21c8637) to load in a bunch of font files cleanly.
 
-```css
-/* fonts.css */
+```css:fonts.css
 @font-face {
 	font-family: "Space Grotesk";
 	src: url("/fonts/SpaceGrotesk/SpaceGrotesk-Regular.ttf") format("truetype");
@@ -82,8 +82,7 @@ Once you’ve written this CSS, you will need to import it in an Astro file so t
 
 We need to do two final things to get this to work. First, we need to reference our custom type in our `tailwind.config.cjs` file. What I generally do is extend the default sans-serif font stack. You can do that like so:
 
-```js
-// tailwind.config.cjs
+```js:tailwind.config.cjs
 const defaultTheme = require("tailwindcss/defaultTheme")
 
 module.exports = {
@@ -107,8 +106,7 @@ In our `astro.config.mjs` file, we will add the Fontaine plugin and give it our 
 
 We tell Fontaine where to locate our font files like this:
 
-```js
-// astro.config.mjs
+```js:astro.config.js
 import { defineConfig } from "astro/config"
 import { FontaineTransform } from "fontaine"
 

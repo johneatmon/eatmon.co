@@ -1,7 +1,8 @@
 ---
-title: Remove runts from your Astro Mark&shy;down files with ~15 lines of code
+title: Remove runts from Astro Mark&shy;down files with ~15 lines of code
 description: Runts are a small but annoying pet peeve of mine — luckily, we can fix them.
 published: 2023-03-12
+modified: 2023-04-02
 tags:
   - markdown
   - remark
@@ -47,8 +48,7 @@ This package lets you "walk the tree," by visiting each DOM node. We will do tha
 
 Now, we'll create the JS file that will actually do the transformation. I like to store my custom plugins in a folder called `/remark-plugins` at the root of my project, but you're welcome to put them wherever.
 
-```js
-// /remark-plugins/remark-deruntify.mjs
+```js:remark-plugins/remark-deruntify.mjs
 import { visit } from "unist-util-visit"
 
 export function remarkDeruntify() {
@@ -74,8 +74,7 @@ export function remarkDeruntify() {
 
 Now we need to import our function into our Astro config file and enable it for Markdown content:
 
-```js
-// astro.config.mjs
+```js:astro.config.mjs
 import { defineConfig } from "astro/config"
 
 import mdx from "@astrojs/mdx"

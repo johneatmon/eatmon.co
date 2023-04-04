@@ -2,7 +2,7 @@
 title: Use GitHub Packages to store font files as a private NPM package
 description: GitHub Packages allow you to store up to 500 MB of NPM packages privately, for free.
 published: 2023-03-18
-modified: 2023-03-31
+modified: 2023-04-02
 tags:
   - fonts
   - vercel
@@ -45,15 +45,15 @@ I then walk through the prompts to create a `package.json` file. I don't bother 
 blanco/
 ├─ files/
 │  ╰─ Blanco/
-│    ╰─ woff2/
-│      ├─ Blanco-Regular.woff2
-│      ├─ Blanco-Italic.woff2
-│      ├─ Blanco-Medium.woff2
-│      ├─ Blanco-MediumItalic.woff2
-│      ├─ Blanco-Bold.woff2
-│      ├─ Blanco-BoldItalic.woff2
-│      ├─ Blanco-ExtraBold.woff2
-│      ╰─ Blanco-ExtraBoldItalic.woff2
+│     ╰─ woff2/
+│        ├─ Blanco-Regular.woff2
+│        ├─ Blanco-Italic.woff2
+│        ├─ Blanco-Medium.woff2
+│        ├─ Blanco-MediumItalic.woff2
+│        ├─ Blanco-Bold.woff2
+│        ├─ Blanco-BoldItalic.woff2
+│        ├─ Blanco-ExtraBold.woff2
+│        ╰─ Blanco-ExtraBoldItalic.woff2
 ├─ index.css
 ├─ package.json
 ╰─ README.md
@@ -65,7 +65,7 @@ I like to group my font files by file type, but you're welcome to do what works 
 
 Your `package.json` may look something like this:
 
-```json
+```json:package.json
 {
 	"name": "@johneatmon/blanco", // <-- this must be your GH username and repo/package name
 	"version": "0.0.1", // <-- this is the semver of your package
@@ -90,7 +90,7 @@ The lines I've commented are the crucial ones you will need to adapt to your env
 
 Let's take a look at the `index.css` file:
 
-```css
+```css:index.css
 /* Regular */
 
 @font-face {
@@ -219,7 +219,7 @@ npm install @your_github_username/your_package_name
 
 To use the font in your project, you'll need to import it in your CSS file. In my case, using Astro, I simply add the following line to my `<BaseHead />` component:
 
-```jsx
+```jsx:src/components/BaseHead.astro
 import "@johneatmon/blanco"
 ```
 
