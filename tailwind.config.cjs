@@ -11,19 +11,6 @@ module.exports = {
 		hoverOnlyWhenSupported: true,
 	},
 	theme: {
-		colors: (theme) => ({
-			transparent: "transparent",
-			current: "currentColor",
-			black: colors.black,
-			white: colors.white,
-			gray: {
-				...theme.colors.zinc,
-				1000: "#050505",
-			},
-			indigo: colors.indigo,
-			purple: colors.purple,
-			emerald: colors.emerald,
-		}),
 		extend: {
 			animation: {
 				comeInOut: "comeInOut 700ms forwards",
@@ -43,17 +30,37 @@ module.exports = {
 					${theme("colors.purple.700/40")}, 
 					${theme("colors.indigo.500/40")}, 
 					${theme("colors.indigo.500/0")}
-				)`,
+					)`,
 				"gradient-purple-dark": `linear-gradient(to right, 
-					${theme("colors.purple.400/0")}, 
-					${theme("colors.purple.400/40")}, 
-					${theme("colors.indigo.400/40")}, 
-					${theme("colors.indigo.400/0")}
-				)`,
+						${theme("colors.purple.400/0")}, 
+						${theme("colors.purple.400/40")}, 
+						${theme("colors.indigo.400/40")}, 
+						${theme("colors.indigo.400/0")}
+						)`,
+			}),
+			colors: (theme) => ({
+				gray: {
+					...theme.colors.zinc,
+					1000: "#050505",
+				},
 			}),
 			fontFamily: {
-				sans: ["Söhne", "Söhne\\ fallback", ...defaultTheme.fontFamily.sans],
-				serif: ["Blanco", "Blanco\\ fallback", ...defaultTheme.fontFamily.serif],
+				sans: [
+					"Söhne",
+					// {
+					// 	fontFeatureSettings: '"kern" on, "calt" on, "liga" on',
+					// },
+					"Söhne\\ fallback",
+					...defaultTheme.fontFamily.sans,
+				],
+				serif: [
+					"Blanco",
+					// {
+					// 	fontFeatureSettings: '"kern" on, "liga" on, "ss01" on',
+					// },
+					"Blanco\\ fallback",
+					...defaultTheme.fontFamily.serif,
+				],
 			},
 			keyframes: {
 				comeInOut: {
