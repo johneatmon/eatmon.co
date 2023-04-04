@@ -1,8 +1,7 @@
+import Balancer from "@lib/react-wrap-balancer"
 import type { ElementType, ReactNode } from "react"
-import React from "react"
-import Balancer from "react-wrap-balancer"
 
-const RWBBalancer = ({
+const CustomBalancer = ({
 	children,
 	ratio,
 	as,
@@ -18,4 +17,4 @@ const RWBBalancer = ({
 	)
 }
 
-export { RWBBalancer }
+export { CustomBalancer }
