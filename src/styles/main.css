@@ -16,7 +16,6 @@
 
 @tailwind base;
 
-/* Add some additional CSS resets from Andy Bell (https://piccalil.li/blog/a-modern-css-reset) */
 @layer base {
 	::selection {
 		@apply bg-purple-700 text-white dark:bg-purple-400 dark:text-black;
@@ -33,6 +32,22 @@
 		text-rendering: optimizeLegibility;
 		overflow-y: scroll;
 		scrollbar-gutter: stable both-edges;
+
+		scrollbar-width: thin;
+		scrollbar-color: theme("colors.gray.600") transparent;
+	}
+
+	body::-webkit-scrollbar {
+		width: theme("width.2");
+	}
+
+	body::-webkit-scrollbar-track {
+		background: none;
+	}
+
+	body::-webkit-scrollbar-thumb {
+		background-color: theme("colors.gray.800");
+		border-radius: theme("borderRadius.full");
 	}
 
 	a:not([class]) {
@@ -61,3 +76,35 @@
 
 @tailwind components;
 @tailwind utilities;
+
+.remark-code-title {
+	@apply -mb-7 ml-auto mr-8 w-max rounded-t-md bg-[#1b1e28] py-3 px-4 font-mono text-xs leading-none text-gray-500;
+}
+
+pre.astro-code {
+	text-align: revert;
+	hyphens: revert;
+	scrollbar-width: thin;
+	scrollbar-color: transparent transparent;
+
+	&:hover {
+		scrollbar-color: theme("colors.gray.600") transparent;
+	}
+
+	&::-webkit-scrollbar {
+		height: theme("height.2");
+	}
+
+	&::-webkit-scrollbar-track {
+		background: none;
+	}
+
+	&::-webkit-scrollbar-thumb {
+		background-color: none;
+		border-radius: theme("borderRadius.full");
+	}
+
+	&:hover::-webkit-scrollbar-thumb {
+		background-color: theme("colors.gray.600");
+	}
+}
