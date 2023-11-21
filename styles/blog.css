@@ -1,0 +1,174 @@
+hr {
+	@apply border-gray-300 dark:border-gray-700;
+}
+
+.footnotes {
+	@apply border-t border-gray-300 dark:border-gray-900;
+	padding-block-start: 3rem;
+	margin-block-start: 3rem;
+}
+
+.footnotes::before {
+	@apply text-gray-950 dark:text-gray-50;
+	content: 'Footnotes';
+	font-weight: 600;
+	font-size: 1.5em;
+	margin-block-end: 1em;
+}
+
+.footnotes ol {
+	color: theme('colors.gray.500');
+	font-size: theme('fontSize.sm');
+}
+
+.footnotes ol a {
+	scroll-padding-block-start: 10%;
+}
+
+.prose {
+	@apply text-gray-700 dark:text-gray-300;
+	font-weight: 350;
+	line-height: 160%;
+}
+
+.prose :where(h1, h2, h3, h4, h5, h6) {
+	@apply text-gray-950 dark:text-gray-50;
+	font-weight: 600;
+	letter-spacing: theme('letterSpacing.tight');
+	line-height: 110%;
+}
+
+.prose .anchor {
+	@apply invisible absolute no-underline;
+
+	margin-left: -1em;
+	padding-right: 0.5em;
+	width: 80%;
+	max-width: 700px;
+	cursor: pointer;
+}
+
+.anchor:hover {
+	@apply visible;
+}
+
+.prose a {
+	@apply decoration-gray-400 decoration-[0.075em] underline-offset-2 transition hover:decoration-gray-950 dark:decoration-gray-600 dark:hover:decoration-gray-50;
+}
+
+.prose em {
+	font-style: normal;
+	font-weight: theme('fontWeight.medium');
+	letter-spacing: theme('letterSpacing.tight');
+	color: theme('colors.gray.50');
+}
+
+.prose .anchor:after {
+	@apply text-gray-300 dark:text-gray-700;
+	content: '#';
+}
+
+.prose *:hover > .anchor {
+	@apply visible;
+}
+
+.prose pre {
+	@apply border border-gray-300 bg-gray-50 dark:border-gray-800 dark:bg-gray-900;
+}
+
+.prose code {
+	@apply rounded-lg border border-gray-100 bg-gray-100 px-1 py-0.5 text-gray-800 dark:border-gray-800 dark:bg-gray-900 dark:text-gray-200;
+}
+
+.prose pre code {
+	@apply p-0 text-gray-800 dark:text-gray-200;
+	border: initial;
+}
+
+.prose img {
+	/* Don't apply styles to next/image */
+	@apply m-0;
+}
+
+.prose > :first-child {
+	/* Override removing top margin, causing layout shift */
+	margin-top: 1.25em !important;
+	margin-bottom: 1.25em !important;
+}
+
+code[class*='language-'],
+pre[class*='language-'] {
+	@apply text-gray-50;
+}
+
+pre::-webkit-scrollbar {
+	display: none;
+}
+
+pre {
+	-ms-overflow-style: none; /* IE and Edge */
+	scrollbar-width: none; /* Firefox */
+}
+
+/* Remove Safari input shadow on mobile */
+input[type='text'],
+input[type='email'] {
+	-webkit-appearance: none;
+	-moz-appearance: none;
+	appearance: none;
+}
+
+.prose .tweet a {
+	text-decoration: inherit;
+	font-weight: inherit;
+}
+
+table {
+	display: block;
+	max-width: fit-content;
+	overflow-x: auto;
+	white-space: nowrap;
+}
+
+.prose .callout > p {
+	margin: 0 !important;
+}
+
+[data-rehype-pretty-code-fragment] code {
+	@apply grid min-w-full break-words rounded-none border-0 bg-transparent p-0 text-sm text-black;
+	counter-reset: line;
+	box-decoration-break: clone;
+}
+[data-rehype-pretty-code-fragment] .line {
+	@apply py-1;
+}
+[data-rehype-pretty-code-fragment] [data-line-numbers] > .line::before {
+	counter-increment: line;
+	content: counter(line);
+	display: inline-block;
+	width: 1rem;
+	margin-right: 1rem;
+	text-align: right;
+	color: gray;
+}
+[data-rehype-pretty-code-fragment] .line--highlighted {
+	@apply bg-gray-500 bg-opacity-10;
+}
+[data-rehype-pretty-code-fragment] .line-highlighted span {
+	@apply relative;
+}
+[data-rehype-pretty-code-fragment] .word--highlighted {
+	@apply rounded-md bg-gray-500 bg-opacity-10 p-1;
+}
+[data-rehype-pretty-code-title] {
+	@apply rounded-t-lg border border-gray-300 bg-gray-100 px-4 py-3 font-mono text-xs font-medium text-gray-950 dark:border-[#333333] dark:bg-[#1c1c1c] dark:text-gray-200;
+}
+[data-rehype-pretty-code-title] + pre {
+	@apply mt-0 rounded-t-none border-t-0;
+}
+[data-theme='light'] {
+	@apply dark:hidden;
+}
+[data-theme='dark'] {
+	@apply hidden dark:block;
+}

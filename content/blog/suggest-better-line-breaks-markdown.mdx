@@ -1,0 +1,133 @@
+---
+title: Use Hyphenopoly to insert better hyphenations in your Markdown content
+description: Automagically insert soft hyphens into your Markdown content using Frank Liang's LaTeX algorithm.
+date: 2023-03-31
+updated: 2023-04-02
+---
+
+Adding on to my previous post, [Remove runts from your Astro Markdown files with ~15 lines of code](/blog/remove-runts-markdown), I wanted to share another quick tip for improving the layout of your Markdown prose.
+
+We're going to write a custom Remark plugin to suggest line breaks in our Markdown content. Doing this allows us to use the `hyphens: manual` CSS property while avoiding awkward breaks in places they shouldn't be.
+
+## Wait, can't CSS fix this?
+
+CSS does have a property for breaking words and inserting hyphens -- `hyphens: auto` -- but it's not super granular about the words it breaks. For example, words with only 5 letters will get broken just as easily as words with 20 letters. _Yuck!_
+
+There is _another_ CSS property to control the length of words that get broken (`hyphenate-limit-chars`), but [it's not yet widely supported](https://developer.mozilla.org/en-US/docs/Web/CSS/hyphenate-limit-chars).
+
+This custom plugin I wrote sprinkles line break opportunities into your markup by inserting the `&shy;` entity. The `&shy;` entity is a _soft_ hyphen, which means it's a suggestion to the browser to insert hyphens there when the `hyphens: manual` CSS property is used.
+
+## Hyphenopoly to the rescue
+
+Under the hood, I'm using the package `hyphenopoly` to insert these soft hyphens everywhere. According to the package's documentation, hyphenopoly uses Franklin M. Liang's hyphenation algorithm developed for TeX. If you're curious how that algorithm works, I suggest you [check out the project's README](https://github.com/mnater/Hyphenopoly/blob/master/README.md#user-content-automatic-hyphenation).
+
+## Getting started
+
+**Note:** If you need help setting up your Astro blog for Markdown (`.md` or `.mdx`), I recommend following [Astro's "Build a Blog" tutorial](https://docs.astro.build/en/tutorial/0-introduction/).
+
+This time, we'll need two npm packages:
+
+```zsh
+npm install unist-util-visit hyphenopoly
+```
+
+### Writing our plugin
+
+Now, we'll create the JS file that will actually do the transformation. I like to store my custom plugins in a folder called `/remark-plugins` at the root of my project, but you're welcome to put them wherever.
+
+```js title="remark-plugins/remark-hyphenate.mjs" showLineNumbers {18}
+import { readFileSync } from 'node:fs';
+import { dirname } from 'path';
+import { fileURLToPath } from 'url';
+import hyphenopoly from 'hyphenopoly';
+import { visit } from 'unist-util-visit';
+
+function loaderSync(file) {
+  const cwd = dirname(fileURLToPath(import.meta.url));
+  return readFileSync(`${cwd}/../node_modules/hyphenopoly/patterns/${file}`);
+}
+
+const hyphenator = hyphenopoly.config({
+  exceptions: {
+    'en-us': 'Houston',
+  },
+  loaderSync,
+  // dontHyphenateClass: 'donthyphenate',
+  // minWordLength: 6,
+  require: ['en-us'],
+  defaultLanguage: 'en-us',
+  sync: true,
+});
+
+export function remarkHyphenate() {
+  function transformer(tree) {
+    visit(tree, 'text', function (node) {
+      const hyphenated = hyphenator(node.value);
+
+      node.value = hyphenated;
+    });
+  }
+
+  return transformer;
+}
+```
+
+This Remark plugin has a bit more going on than my last one. That's because hyphenopoly _must_ have a pattern specified to apply the soft hyphens. The package ships with a ton of built-in language support (71 by my count!), so you have to tell it which `.wasm` file to load up.
+
+In my case, I'm using the `en-us` pattern. [You can find the full list of patterns here](https://github.com/mnater/Hyphenopoly/tree/master/patterns).
+
+**Warning: Boring code explanation time!**
+
+1. The `loaderSync` function is a bit of a hack -- it loads the `en-us.wasm` file from the `hyphenopoly` package directory. I'm not sure if there's a better way to do this, but it works for now.
+2. `hyphenator` configures hyphenopoly:
+   - We pass in our custom loader with the `.wasm` pattern, and specify which language(s) we want to use.
+   - You can specify exceptions to the hyphenation rules, which I've done for the word "Houston."
+   - You can specify a minimum word length for hyphenation, but I've left that commented out for now. Six is the default, and that was good enough for me.
+   - I've also commented out the optional `dontHyphenateClass` setting, which allows you to specify a CSS class that will prevent hyphenation from happening.
+3. We're using `unist-util-visit` to traverse the Markdown AST and replace the text content of each (textual) DOM node (`node.value`) with our hyphenated text.
+
+### Enabling the plugin in Astro
+
+The last thing we have to do is tell Astro to use our new plugin. We can do this by adding a `remarkPlugins` array to our `astro.config.mjs` file:
+
+```js title="astro.config.mjs" showLineNumbers {4,9}
+import mdx from '@astrojs/mdx';
+import { defineConfig } from 'astro/config';
+
+import { remarkHyphenate } from './remark-plugins/remark-hyphenate.mjs';
+
+export default defineConfig({
+  integrations: [mdx()],
+  markdown: {
+    remarkPlugins: [remarkHyphenate],
+  },
+});
+```
+
+## Enable word breaks in CSS
+
+To reap the full benefit of our custom plugin, we need to add at least one CSS property to our prose content:
+
+```css
+hyphens: manual;
+text-align: justify; /* Optionally, you can now use `justify` */
+```
+
+I like the way justified text looks, but I've found it can look a bit wonky across browsers and screen sizes. Your mileage may vary.
+
+Feel free to tinker with the hyphenopoly settings to your heart's content. You can load up additional languages, or even create your own custom patterns.
+
+## Further improvements
+
+I'm still not 100% happy with the way this plugin works. I'd like a better method to load in the `.wasm` pattern file. My loader function seems rather brittle.
+
+Out of the box, hyphenopoly provides orphan control (they actually mean "runts"), which I'd like to test. If it does as good a job as my Remark "deruntify" plugin, then that's redundant code I can happily rip out.
+
+---
+
+Feel free to [drop me a line](mailto:john@eatmon.co) or [tweet at me](https://twitter.com/johneatmon_). I am always open to improving this tutorial or my code examples.
+
+## Further reading
+
+- [Hyphenopoly's automatic hyphenation algorithm](https://github.com/mnater/Hyphenopoly/blob/master/README.md#user-content-automatic-hyphenation) from the Hyphenopoly README
+- [Word Hy-phen-a-tion by Com-put-er](https://www.tug.org/docs/liang/) by Frank Liang

@@ -1,0 +1,7 @@
+@tailwind base;
+@tailwind components;
+@tailwind utilities;
+
+i {
+	@apply not-italic underline decoration-gray-500 decoration-wavy decoration-[0.075em] underline-offset-2;
+}

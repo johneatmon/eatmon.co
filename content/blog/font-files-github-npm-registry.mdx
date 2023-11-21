@@ -1,0 +1,238 @@
+---
+title: Use GitHub Packages to store font files as a private NPM package
+description: GitHub Packages allow you to store up to 500 MB of NPM packages privately, for free.
+date: 2023-03-18
+updated: 2023-04-02
+---
+
+I remember stumbling upon Kelly Harrop's post, &ldquo;[Creating a fonts package](https://kellyharrop.com/blog/2022/adding-fonts)," some time last year. Intrigued, her idea marinated in my head for a while. Though I do share all of Kelly's goals with the external font package, I had an additional goal not mentioned in her post: I wanted to make my font repo and NPM package _private_.
+
+My reasoning here was twofold. I wanted to help protect the type foundry's intellectual property, and I also wanted to comply with the EULAs I agreed to when I licensed a particular typeface.
+
+[Blanco](https://www.fostertype.com/retail-type/blanco) &mdash; the serif typeface I use for body copy on this site[^1] &mdash; specifies in their [EULA](https://www.fostertype.com/licence) that the licensor cannot "store or use font files in a way that makes them available for use by any third party." This, I think, rules out storing the font files as-is in a public GitHub repository.
+
+As I put the finishing touches on this site's latest design, I remembered Kelly's post and decided to tweak her process for my private font packages.
+
+---
+
+## Reasons for private NPM packages
+
+Licensing issues aside, there are other reasons why you'd want to store font files -- or any type of files, for that matter -- in a separate, private NPM package:
+
+- **Confidential source code:** Maybe you have code separate from your open-source project that you want to keep secret. In that case, turning a private repo into a GitHub Package you can `npm install` is pretty handy.
+- **Reduce boilerplate**: At work, I need to reach for the same typefaces on every single web project to adhere to our brand. Even though all of my work repos are private, it's tedious doing the same setup tasks for every project. Maybe you need the same config files shared across a lot of projects, storing them in one source of truth is handy.
+
+## Setting up our repo
+
+First, we'll need to create the local directory that we'll push to GitHub. I name mine after the typeface I will store in it, but you can name it whatever you want.
+
+```bash
+npm init
+```
+
+I then walk through the prompts to create a `package.json` file. I don't bother filling out the prompts, but you can if you want. Then, add the font files, an `index.css` file, and a `README.md`, if desired. In the end, your directory may look something like this:
+
+```
+blanco/
+├─ files/
+│  ╰─ Blanco/
+│     ╰─ woff2/
+│        ├─ Blanco-Regular.woff2
+│        ├─ Blanco-Italic.woff2
+│        ├─ Blanco-Medium.woff2
+│        ├─ Blanco-MediumItalic.woff2
+│        ├─ Blanco-Bold.woff2
+│        ├─ Blanco-BoldItalic.woff2
+│        ├─ Blanco-ExtraBold.woff2
+│        ╰─ Blanco-ExtraBoldItalic.woff2
+├─ index.css
+├─ package.json
+╰─ README.md
+```
+
+I like to group my font files by file type, but you're welcome to do what works best for you.
+
+### The package.json file
+
+Your `package.json` may look something like this:
+
+```json {1-2,3} title="package.json"
+{
+  "name": "@johneatmon/blanco", // <-- this must be your GH username and repo/package name
+  "version": "0.0.1", // <-- this is the semver of your package
+  "description": "The font files for the Blanco typeface",
+  "main": "index.css", // <-- this is the entry point for your package
+  "publishConfig": {
+    "access": "restricted", // <-- this makes your package private
+    "registry": "https://npm.pkg.github.com" // <-- this tells NPM to use GH Packages
+  },
+  "repository": {
+    "type": "git",
+    "url": "git+https://github.com/johneatmon/blanco.git" // <-- this is the URL to your GH repo
+  },
+  "author": "John Eatmon <...>",
+  "homepage": "https://github.com/johneatmon/blanco#readme"
+}
+```
+
+The lines I've commented are the crucial ones you will need to adapt to your environment.
+
+### The CSS file
+
+Let's take a look at the `index.css` file:
+
+```css title="index.css"
+/* Regular */
+
+@font-face {
+  font-family: 'Blanco';
+  src: url('./files/woff2/Blanco-Regular.woff2') format('woff2');
+  font-weight: 400;
+  font-style: normal;
+  font-display: auto;
+  font-feature-settings:
+    'kern' on,
+    'liga' on,
+    'ss01' on;
+  unicode-range: U+0000-00FF, U+0131, U+0152-0153, U+02BB-02BC, U+02C6, U+02DA, U+02DC, U+2000-206F,
+    U+2074, U+20AC, U+2122, U+2191, U+2193, U+2212, U+2215, U+FEFF, U+FFFD;
+}
+
+/* ... */
+```
+
+Write as many `@font-face` declarations as you need for your font files. Since I know I will be using the font's kerning and ligatures features, I enable those in the `font-feature-settings` property. I also specify the `unicode-range` property to subset the font for the Latin alphabet.
+
+Once you've set all of this up, go ahead and commit these to your GitHub repo. Make sure the name of the repo matches the name in your `package.json` file.
+
+## Create a GitHub personal access token (PAT)
+
+Now that we have our GitHub repo set up, we need to configure a GitHub Personal Access Token (PAT) to allow us to push our package to GitHub Packages.
+
+1. To do this, go to your [GitHub Settings](https://github.com/settings/profile).
+2. Click on the **Developer settings** tab.
+3. Then, click on **Personal access tokens**.
+4. In the **Tokens (classic)** tab, click **Generate new token** and give it a name. I called mine `Private GH registry`, but name it whatever.
+5. Select the `repo` and `write:packages` scopes.
+6. Once you've created the token, copy it to your clipboard. I recommend you stash it in a password manager or similar because you won't be able to see it again.
+
+Now we need to add our personal access token as a shell environment variable.
+
+## Configuring bash/zsh to use GitHub Packages
+
+To configure bash or zsh to use GitHub Packages, we need to edit the `~/.bashrc` or `~/.zshenv` file on our machine. My macOS machine uses zsh, so I will be adding a `~/.zshenv` file (didn't exist before). My Windows machine uses bash, so I edited the `~/.bashrc` file there instead.
+
+Here's how we'll do that:
+
+### macOS (zsh)
+
+1. Go to the directory where your `.zshrc` file is stored, typically in your home directory. If you're not sure, you can type the following in a new zsh terminal:
+
+```zsh
+echo ~
+```
+
+This will print out the directory of your `.zshrc` file.
+
+2. Once you've located the directory, you might not see the file right away. That's because, by default, macOS hides files that start with a `.`. To see the file, you can use the following keyboard shortcut: `⌘ + Shift + .` &mdash; this will toggle the visibility of hidden files. You should see the `.zshrc` file now.
+
+3. Create a new file (if not preexisting) called `.zshenv` in the same directory.
+
+4. In that file, add the following line:
+
+```
+export GITHUB_TOKEN=GITHUB_PAT_TOKEN
+```
+
+`GITHUB_TOKEN` is the environment variable that will be referenced later, you can call it whatever you wish. Replace `GITHUB_PAT_TOKEN` with the personal access token you created earlier. Save the file and close it.
+
+Any programs you have running that use zsh will now have access to the `GITHUB_TOKEN` environment variable (but you may need to restart them first).
+
+4. You can check that the environment variable is set by typing the following in a new zsh terminal:
+
+```zsh
+echo ${GITHUB_TOKEN}
+```
+
+### Windows (bash)
+
+1. Go to the directory where your `.bashrc` file is stored, typically in your home directory. If you're not sure, you can type the following in a new bash terminal:
+
+```bash
+echo ~
+```
+
+2. Once you've located the directory, you might not see the file right away. That's because, by default, Windows hides files that start with a `.`. To see the file, you can click the **View** button in the File Explorer toolbar and then select **Show** &rarr; **Hidden items**. This will toggle the visibility of hidden files. You should see the `.bashrc` file now.
+
+3. Open the `.bashrc` file and add the following line:
+
+```
+export GITHUB_TOKEN=GITHUB_PAT_TOKEN
+```
+
+`GITHUB_TOKEN` is our environment variable that will be referenced later, you can call it whatever you wish. Replace `GITHUB_PAT_TOKEN` with the token you copied earlier. Save the file and close it.
+
+4. You can check that the environment variable is set by typing the following in a new bash terminal:
+
+```bash
+echo ${GITHUB_TOKEN}
+```
+
+## Publishing the package
+
+Now that we have our environment variable set up, we can publish our package to GitHub Packages. 🥳
+
+Go back to your font project directory and run the following command:
+
+```zsh
+npm publish
+```
+
+If everything was done correctly, it should publish your package to GitHub Packages. You'll see an NPM package displayed on the sidebar in your GitHub repo. _Sweet!_
+
+## Using the package
+
+To use this package in your projects, you'll first need to add an `.npmrc` file to your project directory. This file will tell NPM to use GitHub Packages as the registry _but only for the namespace that we'll specify_.
+
+Create the `.npmrc` file and add the following lines:
+
+```
+@johneatmon:registry=https://npm.pkg.github.com
+//npm.pkg.github.com/:_authToken=${GITHUB_TOKEN}
+```
+
+Replace `@johneatmon` with your GitHub username, and replace `GITHUB_TOKEN` if you named your environment variable something else.
+
+We are telling NPM to only use GitHub Packages for packages that start with `@johneatmon` (in this case, my username). This is important because we don't want NPM to use GitHub Packages for _all_ packages, just the ones we specify in this way.
+
+Now, you can install the package in your project by running the following command:
+
+```zsh
+npm install @your_github_username/your_package_name
+```
+
+To use the font in your project, you'll need to import it in your CSS file. In my case, using Astro, I simply add the following line to my `<BaseHead />` component:
+
+```jsx
+import '@johneatmon/blanco';
+```
+
+You may need to tailor this approach to your project, however.
+
+### Deploying with your custom package
+
+All you need to do to deploy your application with private packages is add the `GITHUB_TOKEN` to your .env variables.
+
+## Wrapping up
+
+You can safely commit `.npmrc` to your project's repo. It will not expose your GitHub PAT token because we kept it secret using a shell environment variable.
+
+**Note:** When you do make changes to your fonts package, you'll need to bump the version number in your `package.json` file. Then, you can publish the new version by running the `npm publish` command.
+
+As always, [drop me a line](mailto:john@eatmon.co) or [tweet at me](https://twitter.com/johneatmon_) with any questions or suggestions.
+
+## Further reading
+
+- &ldquo;[Creating a fonts package](https://kellyharrop.com/blog/2022/adding-fonts)" by Kelly Harrop
+
+[^1]: This was an earlier iteration of my site. I'm curently using Geist.

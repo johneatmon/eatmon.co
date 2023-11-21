@@ -1,0 +1,150 @@
+---
+title: 'Reduce font-related CLS in your Astro projects with Fontaine'
+description: 'A Vite plugin that makes `font-display: swap` actually viable.'
+date: 2023-03-05
+updated: 2023-04-23
+---
+
+You want to use `font-display: swap` in your project's CSS to boost your page loading speed. But when you do, this happens:
+
+<img
+  src='https://imagedelivery.net/le40TwFDWUdIvXckEp8FBw/4836af36-9e63-42c0-f43e-a39c2db02900/public'
+  alt='A visual demonstration of cumulative layout shift caused by font-display swap.'
+  width={800}
+  height={400}
+/>
+
+Image courtesy: [js-craft.io](https://www.js-craft.io/blog/optimizing-web-fonts-loading-for-cls-cumulative-layout-shift/)
+
+Ugh! That annoying shift when your font files do load contributes to the cumulative layout shift (CLS) of your page. The more CLS there is, the more points will be deducted from your Google Lighthouse score. Bummer!
+
+## Why Fontaine?
+
+[Fontaine](https://github.com/danielroe/fontaine) is a Vite plugin written by [Daniel Roe](https://github.com/danielroe) that helps you optimize a fallback font. The plugin uses [Capsize](https://www.npmjs.com/package/@capsizecss/core) to analyze your typeface and create font metrics for ascenders and descenders accordingly. Those are fancy-schmancy CSS features that are [decently supported across browsers](https://caniuse.com/?search=FontFace%20API%20override) (just waiting on Webkit 😐).
+
+Using this technique, a fallback system font will occupy about the same visual space as your preferred type. When your custom type does finally swap in, there won't be a jarring layout shift. Pretty nifty, huh?
+
+## Getting started
+
+Let's get this added to an Astro project! In my example, I will be using Tailwind CSS, but you certainly don't have to. Feel free to use whichever CSS framework (or just plain ol' CSS) your heart desires.
+
+Let's create a bare-bones Astro project with Tailwind CSS. To do that, we'll run this command:
+
+```bash
+pnpm create astro@latest -- --template with-tailwindcss
+```
+
+Next, we'll add in the Fontaine package:
+
+```bash
+pnpm add fontaine
+```
+
+## Add your font files
+
+Now, we'll want to add our font files to Astro's `/public` directory. This directory is where static assets that won't be processed by Astro live. I like to keep my font files organized by typeface and file type, but feel free to do whatever floats your boat.
+
+```txt
+your-astro-project/
+├─ public/
+│  ╰─ fonts/
+│     ╰─ SpaceGrotesk/
+│        ╰─ ttf/
+│           ╰─ SpaceGrotesk-Regular.ttf
+```
+
+You can use Google Fonts or Adobe Typekit — but hosting your own font files is preferred [for a litany of reasons](https://termageddon.com/google-fonts-violates-gdpr/). If you do choose Google Fonts or Typekit, you will need to adjust the Fontaine URL in the Astro config accordingly.
+
+Now we'll need to write some `@font-face` rules to tell our browser where to locate our font files. If you're writing with SCSS, you can [use this handy function I wrote](https://gist.github.com/johneatmon/dad7af4fc864f245630ec90bd21c8637) to load in a bunch of font files cleanly.
+
+```css title="fonts.css"
+@font-face {
+  font-family: 'Space Grotesk';
+  src: url('/fonts/SpaceGrotesk/SpaceGrotesk-Regular.ttf') format('truetype');
+  font-style: normal;
+  font-weight: 400;
+  font-display: swap;
+  unicode-range: U+0000-00FF, U+0131, U+0152-0153, U+02BB-02BC, U+02C6, U+02DA, U+02DC, U+2000-206F,
+    U+2074, U+20AC, U+2122, U+2191, U+2193, U+2212, U+2215, U+FEFF, U+FFFD;
+}
+```
+
+Once you've written this CSS, you will need to import it in an Astro file so that your project will actually use it. If you use a base `<head />` component, that would be a good spot; otherwise, a layout file would work, too.
+
+## Config files
+
+We need to do two final things to get this to work. First, we need to reference our custom type in our `tailwind.config.cjs` file. What I generally do is extend the default sans-serif font stack. You can do that like so:
+
+```js title="tailwind.config.cjs" showLineNumbers
+const defaultTheme = require('tailwindcss/defaultTheme');
+
+module.exports = {
+  /* ... */
+  theme: {
+    extend: {
+      fontFamily: {
+        sans: ['Space\\ Grotesk', ...defaultTheme.fontFamily.sans],
+      },
+    },
+  },
+};
+```
+
+Excellent! Now, we're going to tell Tailwind to try our backup typeface if our primary one isn't available. By default, the specially-adjusted Fontaine font is the name of your typeface appended with `override`. So we will reference that in our Tailwind like so:
+
+```js title="tailwind.config.cjs"
+sans: ['Space\\ Grotesk', 'Space\\ Grotesk\\ override', ...defaultTheme.fontFamily.sans];
+```
+
+In our `astro.config.mjs` file, we will add the Fontaine plugin and give it our config. With Fontaine, you can specify many font fallbacks, but only the first in your array will be used for the adjustment calculations. Because we already have fallbacks specified in our Tailwind config, there's really only value in using one fallback font. I choose Arial for sans-serif typefaces because it's pretty much [guaranteed to be installed on any machine](https://fonts.google.com/knowledge/glossary/system_font_web_safe_font).
+
+We tell Fontaine where to locate our font files like this:
+
+```js title="astro.config.js" showLineNumbers
+import { defineConfig } from 'astro/config';
+import { FontaineTransform } from 'fontaine';
+
+export default defineConfig({
+  vite: {
+    plugins: [
+      FontaineTransform.vite({
+        fallbacks: ['Arial'],
+        resolvePath: (id) => new URL(`./public${id}`, import.meta.url), // id is the font src value in the CSS
+      }),
+    ],
+  },
+});
+```
+
+And that's it! If we've done everything correctly, we should be able to run our build command error-free:
+
+```bash
+pnpm build
+```
+
+You can check to make sure Fontaine is working by inspecting the `/dist` folder where Astro spits out completed builds. In the `/dist` folder, there's an `_astro` directory, and inside of that there should be a `.css` file. Opening it, you should see a declaration like this at the start of the file (mine was minified):
+
+```css
+@font-face {
+  font-family: Space Grotesk override;
+  src: local('Arial');
+  ascent-override: 98.4%;
+  descent-override: 29.2%;
+  line-gap-override: 0%;
+}
+```
+
+Mixed with a couple of other font loading strategies — [prefetching font files, subsetting for Latin alphabets, self-hosting your font files, caching your font files](https://leerob.io/blog/fonts) — we can also use `font-display: swap` without having to worry about jarring layout shifts (on non-Webkit browsers anyway).
+
+---
+
+I would love to hear your thoughts and feedback, feel free to [drop me a line](mailto:john@eatmon.co) or [tweet at me](https://twitter.com/johneatmon_). I am always open to improvements to this tutorial or my code example.
+
+Until next time, stay safe out there, Astronauts.
+
+## Further reading
+
+- [How to avoid layout shifts caused by web fonts](https://simonhearne.com/2021/layout-shifts-webfonts/) by Simon Hearne
+- [More than you ever wanted to know about font loading on the web](https://www.industrialempathy.com/posts/high-performance-web-font-loading/) by Malte Ubl
+- [Web Fonts in 2021](https://leerob.io/blog/fonts) (still relevant) by Lee Rob
+- [The Fastest Google Fonts](https://csswizardry.com/2020/05/the-fastest-google-fonts/) by Harry via CSS Wizardry
