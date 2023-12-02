@@ -1,37 +1,6 @@
 import { unstable_cache as cache } from 'next/cache';
 import 'server-only';
-import db from '~/lib/planetscale';
 import { parseError } from '~/lib/utils';
-
-export const getBlogViews = cache(
-	async () => {
-		if (
-			!process.env.DATABASE_HOST ||
-			!process.env.DATABASE_USERNAME ||
-			!process.env.DATABASE_PASSWORD
-		) {
-			return 0;
-		}
-
-		const data = await db.selectFrom('views').select(['count']).execute();
-
-		return data.reduce((acc, curr) => acc + Number(curr.count), 0);
-	},
-	['blog-views-total'],
-	{
-		revalidate: 5,
-	}
-);
-
-export const getViewsCount = cache(
-	async () => {
-		return db.selectFrom('views').select(['slug', 'count']).execute();
-	},
-	['all-views'],
-	{
-		revalidate: 5,
-	}
-);
 
 type ForecastPeriod = {
 	number: number;

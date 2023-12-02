@@ -11,7 +11,7 @@ export default function ViewCounter({
 	slug: string;
 	allViews: {
 		slug: string;
-		count: number;
+		count: number | null;
 	}[];
 	trackView?: boolean;
 }) {

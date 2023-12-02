@@ -61,15 +61,19 @@ const RootLayout: FC<{ readonly children: ReactNode }> = ({ children }) => (
 		className={cn(
 			GeistSans.variable,
 			GeistMono.variable,
-			'touch-manipulation font-sans antialiased'
+			'touch-manipulation font-serif antialiased'
 		)}
 	>
-		<body className='min-h-screen bg-gray-50 text-gray-950 dark:bg-black dark:text-gray-300'>
+		<body className='min-h-screen bg-gray-50 text-gray-950 dark:bg-black dark:text-gray-400'>
 			<ThemeProvider attribute='class' defaultTheme='system' enableSystem disableTransitionOnChange>
 				{children}
 				<Footer />
 			</ThemeProvider>
 			<Analytics />
+			<div
+				aria-hidden='true'
+				className='pointer-events-none fixed inset-x-0 bottom-0 z-10 h-16 bg-gradient-to-b from-transparent to-black'
+			/>
 		</body>
 	</html>
 );

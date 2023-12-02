@@ -19,7 +19,7 @@ type ContactTemplateProps = {
 	readonly name: string;
 	readonly email: string;
 	readonly avatar: string;
-	readonly message: string;
+	readonly message: string | undefined;
 };
 
 export const ContactTemplate: FC<ContactTemplateProps> = ({ name, email, avatar, message }) => (
@@ -52,10 +52,12 @@ export const ContactTemplate: FC<ContactTemplateProps> = ({ name, email, avatar,
 					<Heading className='mx-0 mt-8 p-0 text-2xl font-normal text-black'>
 						New message from {name} ({email})
 					</Heading>
-					<Text
-						className='text-base leading-6 text-black'
-						dangerouslySetInnerHTML={{ __html: smartypants(message, 1) }}
-					/>
+					{message && (
+						<Text
+							className='text-base leading-6 text-black'
+							dangerouslySetInnerHTML={{ __html: smartypants(message, 1) }}
+						/>
+					)}
 					<Hr className='mx-0 my-6 w-full bg-gray-200' />
 					<Text className='text-sm leading-6 text-gray-500'>
 						This message was sent via the contact form on eatmon.co

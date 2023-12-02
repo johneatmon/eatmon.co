@@ -35,7 +35,7 @@ npm install unist-util-visit hyphenopoly
 
 Now, we'll create the JS file that will actually do the transformation. I like to store my custom plugins in a folder called `/remark-plugins` at the root of my project, but you're welcome to put them wherever.
 
-```js title="remark-plugins/remark-hyphenate.mjs" showLineNumbers {18}
+```js title="remark-plugins/remark-hyphenate.mjs" {18}
 import { readFileSync } from 'node:fs';
 import { dirname } from 'path';
 import { fileURLToPath } from 'url';
@@ -53,7 +53,7 @@ const hyphenator = hyphenopoly.config({
   },
   loaderSync,
   // dontHyphenateClass: 'donthyphenate',
-  // minWordLength: 6,
+  minWordLength: 6,
   require: ['en-us'],
   defaultLanguage: 'en-us',
   sync: true,
@@ -90,7 +90,7 @@ In my case, I'm using the `en-us` pattern. [You can find the full list of patter
 
 The last thing we have to do is tell Astro to use our new plugin. We can do this by adding a `remarkPlugins` array to our `astro.config.mjs` file:
 
-```js title="astro.config.mjs" showLineNumbers {4,9}
+```js title="astro.config.mjs" {4,9}
 import mdx from '@astrojs/mdx';
 import { defineConfig } from 'astro/config';
 

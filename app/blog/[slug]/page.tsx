@@ -4,11 +4,10 @@ import type { Metadata } from 'next';
 import Link from 'next/link';
 import { notFound } from 'next/navigation';
 import { FC, Suspense } from 'react';
-import Balancer from 'react-wrap-balancer';
 import smartypants from 'smartypants';
 import ViewCounter from '~/app/blog/view-counter';
 import { Mdx } from '~/components/mdx';
-import { getViewsCount } from '~/lib/metrics';
+import { getViewsCount } from '~/lib/planetscale';
 import { cn } from '~/lib/utils';
 import '~/styles/blog.css';
 
@@ -17,8 +16,6 @@ type BlogPostProps = {
 		slug: string;
 	};
 };
-
-// export const dynamic = 'force-dynamic';
 
 export const generateMetadata = ({ params }: BlogPostProps): Metadata => {
 	const currentPath = params.slug;
@@ -60,15 +57,16 @@ const BlogPost: FC<BlogPostProps> = ({ params }) => {
 	return (
 		<main className='mx-auto flex max-w-2xl flex-col px-4 pb-24 pt-[128px]'>
 			<Link
-				className='group mb-16 inline-flex items-center gap-1 text-sm text-gray-500 transition-colors hover:text-gray-600 focus:text-gray-600 focus:underline focus:outline-none'
+				className='group mb-16 inline-flex items-center gap-1 font-sans text-sm text-gray-500 no-underline transition-colors hover:text-gray-600 focus:text-gray-600 focus:underline focus:outline-none'
 				href='/blog'
 			>
 				<ArrowLeftIcon className='inline-block h-4 w-4 transition group-hover:-translate-x-0.5 group-hover:text-gray-600' />
 				Back to Blog
 			</Link>
-			<h1 className='mb-4 scroll-m-20 text-4xl font-bold leading-[1.1em] tracking-tight text-gray-950 dark:text-gray-50'>
-				<Balancer>{post.title}</Balancer>
-			</h1>
+			<h1
+				className='mb-4 scroll-m-20 font-sans text-4xl font-bold leading-[1.1em] tracking-tighter text-gray-950 dark:text-gray-50'
+				dangerouslySetInnerHTML={{ __html: smartypants(post.title, 1) }}
+			/>
 			<p
 				className='mb-3 text-gray-500 dark:text-gray-400'
 				dangerouslySetInnerHTML={{ __html: smartypants(post.description, 1) }}
@@ -81,7 +79,8 @@ const BlogPost: FC<BlogPostProps> = ({ params }) => {
 						day: 'numeric',
 					})}
 				</time>
-				&#9585;
+				{/* &#9585; */}
+				&middot;
 				<Suspense fallback={<span className='inline-block h-5' />}>
 					<Views slug={post.slug} /> views
 				</Suspense>
@@ -95,7 +94,7 @@ const BlogPost: FC<BlogPostProps> = ({ params }) => {
 					)}
 				>
 					{prevPost && (
-						<div aria-label='Previous post' className='w-1/2'>
+						<div aria-label='Previous post' className='w-1/2 font-sans'>
 							<span className='mb-0.5 inline-block text-gray-500'>Previous</span>
 							<Link
 								className='line-clamp-1 font-[450] text-gray-50'
@@ -107,7 +106,7 @@ const BlogPost: FC<BlogPostProps> = ({ params }) => {
 						</div>
 					)}
 					{nextPost && (
-						<div aria-label='Next post' className='w-1/2 text-right'>
+						<div aria-label='Next post' className='w-1/2 text-right font-sans'>
 							<span className='mb-0.5 inline-block text-gray-500'>Next</span>
 							<Link className='line-clamp-1 font-[450] text-gray-50' href={nextPost.slug}>
 								{nextPost.title}

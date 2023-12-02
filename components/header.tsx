@@ -1,4 +1,3 @@
-import { Suspense } from 'react';
 import BlurImage from '~/components/image';
 import { getSeattleWeather } from '~/lib/metrics';
 
@@ -14,14 +13,15 @@ const Header = () => {
 				loading='eager'
 			/>
 			<h1>
-				<small className='flex max-w-max flex-col text-sm leading-relaxed text-gray-500'>
-					<span className='font-medium text-gray-100'>John Eatmon</span>
-					<span>Software Engineer at UnitedHealthcare</span>
+				<small className='flex max-w-max flex-col font-sans text-base font-normal leading-relaxed'>
+					<span className='font-medium text-gray-50'>John Eatmon</span>
+					<span>Software Engineer</span>
 					<span>
-						Seattle, WA &middot;{' '}
+						Seattle, Washington
+						{/* &middot;{' '}
 						<Suspense fallback={<span>Loading weather...</span>}>
 							<SeattleWeather />
-						</Suspense>
+						</Suspense> */}
 					</span>
 					{/* Software Engineer&ensp;&#9585;&ensp;Seattle, WA */}
 				</small>

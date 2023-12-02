@@ -1,12 +1,15 @@
 {
   "private": true,
+  "type": "module",
   "scripts": {
     "dev": "next dev",
     "build": "next build",
     "start": "next start",
     "lint": "next lint",
     "email": "email dev --port 3005",
-    "contentlayer": "npx contentlayer build"
+    "contentlayer": "npx contentlayer build",
+    "db:push": "drizzle-kit push:mysql --config=drizzle.config.ts",
+    "prepare": "husky install"
   },
   "lint-staged": {
     "*.{js,jsx,ts,tsx}": [
@@ -29,9 +32,8 @@
     "blaze-slider": "^1.9.3",
     "clsx": "^2.0.0",
     "contentlayer": "^0.3.4",
+    "drizzle-orm": "^0.29.1",
     "geist": "^1.0.0",
-    "kysely": "^0.26.3",
-    "kysely-planetscale": "^1.4.0",
     "linkedom": "^0.16.1",
     "lucide-react": "^0.291.0",
     "next": "^14.0.2",
@@ -40,6 +42,9 @@
     "node-html-parser": "^6.1.11",
     "plaiceholder": "^3.0.0",
     "postcss": "^8.4.31",
+    "postcss-nesting": "^12.0.1",
+    "postcss-preset-env": "^9.3.0",
+    "puppeteer": "^21.5.2",
     "react": "^18",
     "react-blaze-slider": "^1.7.2",
     "react-dom": "^18",
@@ -71,6 +76,8 @@
     "@typescript-eslint/eslint-plugin": "^6.7.4",
     "@typescript-eslint/parser": "^6.7.4",
     "concurrently": "^8.2.2",
+    "dotenv": "^16.3.1",
+    "drizzle-kit": "^0.20.6",
     "eslint": "^8",
     "eslint-config-next": "^14.0.2",
     "eslint-config-prettier": "^9.0.0",

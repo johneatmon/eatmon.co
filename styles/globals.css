@@ -2,6 +2,37 @@
 @tailwind components;
 @tailwind utilities;
 
+body {
+	-webkit-font-smoothing: antialiased;
+	-moz-osx-font-smoothing: grayscale;
+	letter-spacing: -0.01rem;
+	text-rendering: optimizelegibility;
+	touch-action: manipulation;
+}
+
+:is(h1, h2, h3, h4, h5, h6) {
+	font-family: theme('fontFamily.sans');
+	font-weight: 600;
+	letter-spacing: theme('letterSpacing.tight');
+}
+
+/* .prose a {
+	@apply decoration-gray-400 decoration-[0.075em] underline-offset-2 transition hover:decoration-gray-950 dark:decoration-gray-600 dark:hover:decoration-gray-50;
+} */
+
+a {
+	@apply underline decoration-[0.075em] underline-offset-2 transition dark:decoration-gray-900;
+
+	&:is(:hover, :focus-visible) {
+		@apply decoration-gray-600;
+	}
+}
+
+::selection {
+	background-color: theme('colors.gray.400');
+	color: theme('colors.gray.950');
+}
+
 i {
 	@apply not-italic underline decoration-gray-500 decoration-wavy decoration-[0.075em] underline-offset-2;
 }
