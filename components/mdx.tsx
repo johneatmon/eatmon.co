@@ -1,6 +1,6 @@
 import { getMDXComponent } from 'next-contentlayer/hooks';
-import Image from 'next/image';
 import type { FC, HTMLProps } from 'react';
+import BlurImage from '~/components/image';
 
 const a: FC<HTMLProps<HTMLAnchorElement>> = ({ href, ...props }) => {
 	if (typeof href !== 'string') {
@@ -23,7 +23,7 @@ const img: FC<HTMLProps<HTMLImageElement>> = (props) => {
 	}
 
 	return (
-		<Image
+		<BlurImage
 			src={props.src}
 			alt={props.alt}
 			width={1240}
@@ -34,17 +34,32 @@ const img: FC<HTMLProps<HTMLImageElement>> = (props) => {
 	);
 };
 
+const dinkus: FC<HTMLProps<HTMLDivElement>> = (props) => (
+	<div
+		aria-hidden
+		className='flex w-full items-center justify-center gap-x-6 font-serif text-gray-900'
+		{...props}
+	>
+		{Array.from({ length: 3 }).map((_, index) => (
+			<span key={index}>*</span>
+		))}
+	</div>
+);
+
 const components = {
 	a,
 	img,
+	hr: dinkus,
 };
 
 export function Mdx({ code }: { code: string }) {
 	const Component = getMDXComponent(code);
 
 	return (
-		<div className='prose prose-zinc max-w-2xl dark:prose-invert'>
+		<div className='prose prose-neutral max-w-2xl dark:prose-invert'>
 			<Component components={components} />
 		</div>
 	);
 }
+
+export { components };

@@ -4,6 +4,7 @@ import { GeistSans } from 'geist/font/sans';
 import type { Metadata } from 'next';
 import { FC, ReactNode } from 'react';
 import Footer from '~/components/footer';
+import Gestura from '~/lib/fonts';
 import { ThemeProvider } from '~/lib/providers/theme-provider';
 import { cn } from '~/lib/utils';
 import '~/styles/globals.css';
@@ -61,10 +62,11 @@ const RootLayout: FC<{ readonly children: ReactNode }> = ({ children }) => (
 		className={cn(
 			GeistSans.variable,
 			GeistMono.variable,
+			Gestura.variable,
 			'touch-manipulation font-serif antialiased'
 		)}
 	>
-		<body className='min-h-screen bg-gray-50 text-gray-950 dark:bg-black dark:text-gray-400'>
+		<body className='min-h-screen bg-gray-50 text-gray-700 dark:bg-black dark:text-gray-400'>
 			<ThemeProvider attribute='class' defaultTheme='system' enableSystem disableTransitionOnChange>
 				{children}
 				<Footer />
@@ -72,7 +74,7 @@ const RootLayout: FC<{ readonly children: ReactNode }> = ({ children }) => (
 			<Analytics />
 			<div
 				aria-hidden='true'
-				className='pointer-events-none fixed inset-x-0 bottom-0 z-10 h-16 bg-gradient-to-b from-transparent to-black'
+				className='pointer-events-none fixed inset-x-0 bottom-0 z-10 h-16 bg-gradient-to-b from-transparent to-gray-50 dark:bg-gradient-to-b dark:from-transparent dark:to-black'
 			/>
 		</body>
 	</html>

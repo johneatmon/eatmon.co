@@ -1,8 +1,7 @@
 import { allBlogs } from 'contentlayer/generated';
-import { ArrowLeftIcon } from 'lucide-react';
 import type { Metadata } from 'next';
-import Link from 'next/link';
 import BlogPost from '~/components/blog-post';
+import ReturnLink from '~/components/return-link';
 import Section from '~/components/section';
 import { getTotalBlogViews } from '~/lib/planetscale';
 
@@ -16,20 +15,15 @@ export default async function BlogPage() {
 
 	return (
 		<main className='mx-auto flex max-w-2xl flex-col gap-16 px-4 pb-24 pt-[128px]'>
-			<Link
-				className='group mb-16 inline-flex items-center gap-1 font-sans text-sm text-gray-500 no-underline transition-colors hover:text-gray-600 focus:text-gray-600 focus:underline focus:outline-none'
-				href='/'
-			>
-				<ArrowLeftIcon className='inline-block h-4 w-4 transition group-hover:-translate-x-0.5' />
-				Index
-			</Link>
+			<ReturnLink href='/'>Index</ReturnLink>
 			<Section>
-				<h1 className='mb-6 text-2xl font-semibold text-gray-50'>Blog</h1>
+				<h1 className='mb-4 text-2xl font-semibold text-gray-950 dark:text-gray-50'>Blog</h1>
 				<p className='mb-8'>
-					{totalBlogViews.toLocaleString()} views &middot; {allBlogs.length} posts
+					{allBlogs.length.toLocaleString()} posts &middot; {totalBlogViews.toLocaleString()} views
 				</p>
-				<ul role='list' className='flex flex-col gap-3'>
+				<ul role='list' className='flex flex-col gap-4'>
 					{allBlogs
+						.filter((post) => (process.env.NODE_ENV === 'development' ? true : !post.draft))
 						.sort((a, b) => {
 							if (new Date(a.date) > new Date(b.date)) {
 								return -1;

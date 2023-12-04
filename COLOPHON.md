@@ -1,23 +1,26 @@
 # Colophon
 
-The technologies, services, and people that empowered me to build this website.
+The technologies, services, and inspiration that helped me build this website.
 
 ## How it's built
 
 Here's the tech stack:
 
 - Front-end: Next.js 14 + Radix UI
-- Styles: Tailwind CSS
-- Email: Resend and React Email
-- Content: Contentlayer + MDX
-- Hosting: Vercel
-- Domain/DNS: Cloudflare
-- Analytics: Vercel Analytics
+- Styling: Tailwind CSS
+- Email: [Resend](https://resend.com/home) + [React Email](https://react.email/)
+- Content: [Contentlayer](https://contentlayer.dev/) + MDX
+- Database: [PlanetScale](https://planetscale.com/) + [Drizzle ORM](https://drizzle.dev/)
+- Hosting: [Vercel](https://vercel.com/home)
+- Domain/DNS: [Cloudflare](https://www.cloudflare.com/)
+- Image CDN: [Cloudflare Images](https://developers.cloudflare.com/images/cloudflare-images/)
+- Analytics: [Vercel Analytics](https://vercel.com/analytics)
 
 I also wanted to include more than one typeface, I'm using:
 
-- Serif: [Gestura Text VF](https://www.socio-type.com/demo/gestura-text) from Sociotype
-- Sans serif: [Geist](#) from Vercel and Basement Studio
+- Serif: [Gestura Text](https://www.socio-type.com/demo/gestura-text) from Sociotype
+- Sans serif: [Geist](https://vercel.com/font) from Vercel and Basement Studio
+- Monospace: Menlo
 
 ## Source code
 
@@ -25,11 +28,12 @@ The source code for this website is available on [GitHub](https://github.com/joh
 
 ## Inspiration
 
-I was inspired by the following websites:
+My website's design is a reflection of those who inspire me:
 
+- [Hayden Bleasel](https://www.haydenbleasel.com/)
+- [Rauno Freiberg](https://rauno.me)
+- [Frank Chimero](https://frankchimero.com)
 - [Lee Robinson](https://leerob.io)
 - [Josh Comeau](https://www.joshwcomeau.com)
 - [Pedro Duarte](https://ped.ro)
-- [Rauno Freiberg](https://rauno.xyz)
 - [Paco Coursey](https://pacocoursey.com)
-- [Frank Chimero](https://frankchimero.com)

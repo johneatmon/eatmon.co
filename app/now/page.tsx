@@ -1,4 +1,4 @@
-import { Eye } from 'lucide-react';
+import { EyeOpenIcon } from '@radix-ui/react-icons';
 import { Metadata } from 'next';
 import Image from 'next/image';
 import { ReactNode, Suspense } from 'react';
@@ -7,8 +7,7 @@ import Header from '~/components/header';
 import Section from '~/components/section';
 import fetchMovies from '~/lib/letterboxd';
 import { fetchBooks } from '~/lib/literal';
-import { getYNABDebt } from '~/lib/metrics';
-import { cn } from '~/lib/utils';
+import { getSeattleWeather } from '~/lib/weather';
 
 export const metadata: Metadata = {
 	title: 'Create Next App',
@@ -59,12 +58,9 @@ export default async function NowPage() {
 	return (
 		<main className='mx-auto flex max-w-2xl flex-col gap-16 px-4 pb-24 pt-[128px]'>
 			<Header />
-			<Section title='Current debt'>
-				Total debt:{' '}
-				<Suspense fallback={<span>Loading balance...</span>}>
-					<DebtBalance />
-				</Suspense>
-			</Section>
+			<Suspense fallback={<span>Loading weather...</span>}>
+				<SeattleWeather />
+			</Suspense>
 			<Section title="Movies I've watched recently">
 				<div className='relative z-0'>
 					<div className='pointer-events-none absolute inset-0 z-20 h-full w-full bg-gradient-to-r from-transparent from-[69%] to-black' />
@@ -76,7 +72,7 @@ export default async function NowPage() {
 									index={index}
 									subtitle={
 										<>
-											<Eye size={14} className='text-gray-700' />
+											<EyeOpenIcon className='text-sm text-gray-700' />
 											<time dateTime={new Date(movie.date).toISOString()}>
 												{new Date(movie.date).toLocaleDateString('en-US', {
 													month: 'long',
@@ -125,12 +121,25 @@ export default async function NowPage() {
 	);
 }
 
-async function DebtBalance() {
-	const balance = await getYNABDebt();
+async function SeattleWeather() {
+	let weather;
+	try {
+		weather = await getSeattleWeather();
+	} catch (error) {
+		console.error(error);
+	}
+
+	if (!weather) {
+		return null;
+	}
+
+	const { temperature, temperatureUnit, shortForecast } = weather;
 
 	return (
-		<span className={cn(balance < 0 && 'text-red-500')}>
-			{Number(balance).toLocaleString('en-US', { style: 'currency', currency: 'USD' })}
-		</span>
+		<span
+			dangerouslySetInnerHTML={{
+				__html: ` ${temperature}&deg;${temperatureUnit}, ${shortForecast.toLocaleLowerCase()}`,
+			}}
+		/>
 	);
 }

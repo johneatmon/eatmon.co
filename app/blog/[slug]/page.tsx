@@ -1,4 +1,3 @@
-import { ArrowLeftIcon } from '@radix-ui/react-icons';
 import { allBlogs } from 'contentlayer/generated';
 import type { Metadata } from 'next';
 import Link from 'next/link';
@@ -7,6 +6,7 @@ import { FC, Suspense } from 'react';
 import smartypants from 'smartypants';
 import ViewCounter from '~/app/blog/view-counter';
 import { Mdx } from '~/components/mdx';
+import ReturnLink from '~/components/return-link';
 import { getViewsCount } from '~/lib/planetscale';
 import { cn } from '~/lib/utils';
 import '~/styles/blog.css';
@@ -20,7 +20,7 @@ type BlogPostProps = {
 export const generateMetadata = ({ params }: BlogPostProps): Metadata => {
 	const currentPath = params.slug;
 	const post = allBlogs
-		.filter((post) => !post.draft)
+		.filter((post) => (process.env.NODE_ENV === 'development' ? true : !post.draft))
 		.find(({ slugAsParams }) => slugAsParams === currentPath);
 
 	if (!post) {
@@ -36,7 +36,7 @@ export const generateMetadata = ({ params }: BlogPostProps): Metadata => {
 
 export const generateStaticParams = (): BlogPostProps['params'][] =>
 	allBlogs
-		.filter((post) => !post.draft)
+		.filter((post) => (process.env.NODE_ENV === 'development' ? true : !post.draft))
 		.map((post) => ({
 			slug: post.slug,
 		}));
@@ -44,7 +44,7 @@ export const generateStaticParams = (): BlogPostProps['params'][] =>
 const BlogPost: FC<BlogPostProps> = ({ params }) => {
 	const currentPath = params.slug;
 	const post = allBlogs
-		.filter((post) => !post.draft)
+		.filter((post) => (process.env.NODE_ENV === 'development' ? true : !post.draft))
 		.find(({ slugAsParams }) => slugAsParams === currentPath);
 
 	if (!post) {
@@ -56,19 +56,13 @@ const BlogPost: FC<BlogPostProps> = ({ params }) => {
 
 	return (
 		<main className='mx-auto flex max-w-2xl flex-col px-4 pb-24 pt-[128px]'>
-			<Link
-				className='group mb-16 inline-flex items-center gap-1 font-sans text-sm text-gray-500 no-underline transition-colors hover:text-gray-600 focus:text-gray-600 focus:underline focus:outline-none'
-				href='/blog'
-			>
-				<ArrowLeftIcon className='inline-block h-4 w-4 transition group-hover:-translate-x-0.5 group-hover:text-gray-600' />
-				Back to Blog
-			</Link>
+			<ReturnLink href='/blog'>Back to Blog</ReturnLink>
 			<h1
-				className='mb-4 scroll-m-20 font-sans text-4xl font-bold leading-[1.1em] tracking-tighter text-gray-950 dark:text-gray-50'
+				className='mb-4 mt-16 scroll-m-20 font-sans text-4xl font-bold leading-[1.1em] tracking-tighter text-gray-950 dark:text-gray-50'
 				dangerouslySetInnerHTML={{ __html: smartypants(post.title, 1) }}
 			/>
 			<p
-				className='mb-3 text-gray-500 dark:text-gray-400'
+				className='mb-3 font-sans text-gray-500'
 				dangerouslySetInnerHTML={{ __html: smartypants(post.description, 1) }}
 			/>
 			<small className='mb-8 flex items-center gap-x-1 tabular-nums text-gray-500'>
@@ -89,7 +83,7 @@ const BlogPost: FC<BlogPostProps> = ({ params }) => {
 			{(prevPost || nextPost) && (
 				<footer
 					className={cn(
-						'mt-10 flex items-center gap-1 border-t border-gray-800 py-10 text-sm',
+						'mt-10 flex items-center gap-1 border-t border-gray-950/60 py-10 text-sm',
 						nextPost && !prevPost && 'justify-end'
 					)}
 				>

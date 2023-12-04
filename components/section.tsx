@@ -14,7 +14,7 @@ const Section: FC<SectionProps> = ({ title, children, ...props }) => {
 			{title && (
 				<h2
 					id={id}
-					className='mb-6 font-medium text-gray-50'
+					className='mb-6 font-medium text-gray-950 dark:text-gray-50'
 					dangerouslySetInnerHTML={{ __html: smartypants(title, 1) }}
 				/>
 			)}

@@ -3,10 +3,12 @@
 @tailwind utilities;
 
 body {
+	text-rendering: optimizeLegibility;
 	-webkit-font-smoothing: antialiased;
 	-moz-osx-font-smoothing: grayscale;
+	-webkit-text-size-adjust: 100%;
+	font-synthesis: none;
 	letter-spacing: -0.01rem;
-	text-rendering: optimizelegibility;
 	touch-action: manipulation;
 }
 
@@ -16,15 +18,11 @@ body {
 	letter-spacing: theme('letterSpacing.tight');
 }
 
-/* .prose a {
-	@apply decoration-gray-400 decoration-[0.075em] underline-offset-2 transition hover:decoration-gray-950 dark:decoration-gray-600 dark:hover:decoration-gray-50;
-} */
-
 a {
-	@apply underline decoration-[0.075em] underline-offset-2 transition dark:decoration-gray-900;
+	@apply underline decoration-gray-300 decoration-[0.075em] underline-offset-2 transition dark:decoration-gray-600;
 
 	&:is(:hover, :focus-visible) {
-		@apply decoration-gray-600;
+		@apply decoration-gray-600 dark:decoration-gray-50;
 	}
 }
 

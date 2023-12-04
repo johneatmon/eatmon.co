@@ -10,15 +10,9 @@ import { ContactTemplate as template } from '~/emails/contact';
 import { db } from '~/lib/planetscale';
 
 export async function increment(slug: string) {
-	// const data = await db.selectFrom('views').where('slug', '=', slug).select(['count']).execute();
 	const data = await db.select({ count: views.count }).from(views).where(eq(views.slug, slug));
 	const blogViews = !data.length ? 0 : Number(data[0].count);
 
-	// await db
-	// 	.insertInto('views')
-	// 	.values({ slug, count: 1 })
-	// 	.onDuplicateKeyUpdate({ count: blogViews + 1 })
-	// 	.execute();
 	await db
 		.insert(views)
 		.values({ slug, count: 1 })

@@ -1,32 +1,25 @@
 hr {
-	@apply border-gray-300 dark:border-gray-700;
+	@apply border-gray-300 dark:border-gray-900;
+}
+
+kbd {
+	@apply rounded-[0.25em] border-b-[0.125em] border-t border-b-black/10 border-t-white bg-gradient-to-b from-black/10 to-black/5 p-[0.15em] px-[0.3em] font-mono text-[0.9375em] [box-shadow:0_0_0_1px_rgba(0,0,0,0.25)] dark:border-t-0 dark:border-b-black/40 dark:from-white/10 dark:to-white/[15%] dark:[box-shadow:0_0_0_1px_rgba(255,255,255,0.15)];
 }
 
 .footnotes {
-	@apply border-t border-gray-300 dark:border-gray-900;
-	padding-block-start: 3rem;
-	margin-block-start: 3rem;
-
-	&::before {
-		@apply text-gray-950 dark:text-gray-50;
-		content: 'Footnotes';
-		font-weight: 600;
-		font-size: 1.5em;
-		margin-block-end: 1em;
-	}
 	& ol {
-		color: theme('colors.gray.500');
 		font-size: theme('fontSize.sm');
-		& a {
-			scroll-padding-block-start: 10%;
-		}
 	}
 }
 
 .prose {
-	@apply text-gray-700 dark:text-gray-300;
+	@apply oldstyle-nums text-gray-700 dark:text-gray-400;
 	font-weight: 350;
 	line-height: 160%;
+}
+
+.prose h1 {
+	@apply mb-4 scroll-m-20 font-sans text-4xl font-bold leading-[1.1em] tracking-tighter text-gray-950 dark:text-gray-50;
 }
 
 .prose :where(h1, h2, h3, h4, h5, h6) {
@@ -53,10 +46,10 @@ hr {
 }
 
 .prose a {
-	@apply underline decoration-[0.075em] underline-offset-2 transition dark:decoration-gray-900;
+	@apply underline decoration-gray-300 decoration-[0.075em] underline-offset-2 transition dark:decoration-gray-600;
 
 	&:is(:hover, :focus-visible) {
-		@apply decoration-gray-600;
+		@apply decoration-gray-600 dark:decoration-gray-50;
 	}
 }
 
@@ -77,7 +70,7 @@ hr {
 }
 
 .prose pre {
-	@apply border border-gray-300 bg-gray-50 dark:border-gray-950 dark:bg-black;
+	@apply border border-gray-300 bg-gray-50 dark:border-gray-800/80 dark:bg-black;
 }
 
 /* Inline snippets */
@@ -95,7 +88,7 @@ hr {
 	@apply m-0;
 }
 
-.prose > :first-child {
+.prose:not(:has(h1)) > :first-child {
 	/* Override removing top margin, causing layout shift */
 	margin-top: 1.25em !important;
 	margin-bottom: 1.25em !important;
@@ -157,7 +150,7 @@ table {
 	color: gray;
 }
 [data-rehype-pretty-code-title] {
-	@apply rounded-t-lg border border-gray-300 bg-gray-100 px-4 py-3 font-mono text-xs font-medium text-gray-950 dark:border-gray-950 dark:bg-gray-1000 dark:text-gray-200;
+	@apply rounded-t-lg border border-gray-300 bg-gray-100 px-4 py-3 font-mono text-xs font-medium text-gray-950 dark:border-gray-800/80 dark:bg-gray-1000 dark:text-gray-200;
 }
 [data-rehype-pretty-code-title] + pre {
 	@apply mt-0 rounded-t-none border-t-0;
