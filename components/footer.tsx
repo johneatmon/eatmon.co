@@ -1,22 +1,25 @@
 import Link from 'next/link';
 import { FC } from 'react';
 import { ThemeToggleGroup } from '~/components/theme-toggle';
+import GitHubIcon from '~/public/icons/github.svg';
+import ReadCVIcon from '~/public/icons/readcv.svg';
+import XIcon from '~/public/icons/x.svg';
 
 export const socials = [
 	{
 		name: 'GitHub',
-		url: 'https://github.com/johneatmon',
-		icon: '/icons/github.svg',
+		url: '/github',
+		icon: () => <GitHubIcon />,
 	},
 	{
 		name: 'X',
-		url: 'https://twitter.com/johneatmon_',
-		icon: '/icons/x.svg',
+		url: '/x',
+		icon: () => <XIcon />,
 	},
 	{
 		name: 'Read.CV',
-		url: 'https://read.cv/johneatmon',
-		icon: '/icons/readcv.svg',
+		url: '/cv',
+		icon: () => <ReadCVIcon />,
 	},
 ];
 
@@ -32,21 +35,14 @@ const Footer: FC = () => (
 					</Link>
 				</small>
 				<ul role='list' className='flex items-center gap-x-2'>
-					{socials.map(({ name, url, icon }, i) => (
+					{socials.map(({ name, url, icon: Icon }, i) => (
 						<li key={i}>
 							<a
 								title={name}
 								href={url}
-								className='grid aspect-square w-8 place-items-center text-gray-400 transition hover:text-gray-950 dark:text-gray-700 dark:hover:text-gray-50'
+								className='grid aspect-square w-8 place-items-center text-gray-500 transition hover:text-gray-700 dark:hover:text-gray-200'
 							>
-								{/* eslint-disable-next-line @next/next/no-img-element */}
-								<img
-									src={icon}
-									alt={`${name} icon`}
-									className='m-0 aspect-square w-5 transition-all dark:invert'
-									width={20}
-									height={20}
-								/>
+								<Icon />
 							</a>
 						</li>
 					))}

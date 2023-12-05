@@ -26,6 +26,7 @@
     "@react-email/components": "^0.0.10",
     "@react-email/font": "0.0.4",
     "@react-email/render": "^0.0.8",
+    "@svgr/webpack": "^8.1.0",
     "@tailwindcss/typography": "^0.5.10",
     "@vercel/analytics": "^1.1.1",
     "autoprefixer": "^10.4.16",
