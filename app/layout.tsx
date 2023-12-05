@@ -66,16 +66,16 @@ const RootLayout: FC<{ readonly children: ReactNode }> = ({ children }) => (
 			'touch-manipulation font-serif antialiased'
 		)}
 	>
-		<body className='min-h-screen bg-gray-50 text-gray-700 dark:bg-black dark:text-gray-400'>
+		<body className='min-h-screen bg-[#eee] text-gray-700 dark:bg-black dark:text-gray-400'>
 			<ThemeProvider attribute='class' defaultTheme='system' enableSystem disableTransitionOnChange>
 				{children}
 				<Footer />
 			</ThemeProvider>
-			<Analytics />
 			<div
 				aria-hidden='true'
-				className='pointer-events-none fixed inset-x-0 bottom-0 z-10 h-16 bg-gradient-to-b from-transparent to-gray-50 dark:bg-gradient-to-b dark:from-transparent dark:to-black'
+				className='pointer-events-none fixed inset-x-0 bottom-0 z-10 h-16 bg-gradient-to-b from-transparent to-[#eee] dark:bg-gradient-to-b dark:from-transparent dark:to-black'
 			/>
+			<Analytics />
 		</body>
 	</html>
 );

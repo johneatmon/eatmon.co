@@ -53,13 +53,6 @@ kbd {
 	}
 }
 
-.prose em {
-	font-style: normal;
-	font-weight: theme('fontWeight.medium');
-	letter-spacing: theme('letterSpacing.tight');
-	color: theme('colors.gray.50');
-}
-
 .prose .anchor:after {
 	@apply text-gray-300 dark:text-gray-700;
 	content: '#';

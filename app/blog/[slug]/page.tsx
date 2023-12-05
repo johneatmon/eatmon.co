@@ -91,7 +91,7 @@ const BlogPost: FC<BlogPostProps> = ({ params }) => {
 						<div aria-label='Previous post' className='w-1/2 font-sans'>
 							<span className='mb-0.5 inline-block text-gray-500'>Previous</span>
 							<Link
-								className='line-clamp-1 font-[450] text-gray-50'
+								className='line-clamp-1 font-[450] dark:text-gray-50'
 								title={prevPost.title}
 								href={prevPost.slug}
 							>
@@ -102,7 +102,7 @@ const BlogPost: FC<BlogPostProps> = ({ params }) => {
 					{nextPost && (
 						<div aria-label='Next post' className='w-1/2 text-right font-sans'>
 							<span className='mb-0.5 inline-block text-gray-500'>Next</span>
-							<Link className='line-clamp-1 font-[450] text-gray-50' href={nextPost.slug}>
+							<Link className='line-clamp-1 font-[450] dark:text-gray-50' href={nextPost.slug}>
 								{nextPost.title}
 							</Link>
 						</div>

@@ -37,7 +37,7 @@ const img: FC<HTMLProps<HTMLImageElement>> = (props) => {
 const dinkus: FC<HTMLProps<HTMLDivElement>> = (props) => (
 	<div
 		aria-hidden
-		className='flex w-full items-center justify-center gap-x-6 font-serif text-gray-900'
+		className='flex w-full items-center justify-center gap-x-6 font-serif text-gray-500 dark:text-gray-600'
 		{...props}
 	>
 		{Array.from({ length: 3 }).map((_, index) => (

@@ -6,7 +6,7 @@ The technologies, services, and inspiration that helped me build this website.
 
 Here's the tech stack:
 
-- Front-end: Next.js 14 + Radix UI
+- Front-end: Next.js 14 + Radix UI Toggle Group
 - Styling: Tailwind CSS
 - Email: [Resend](https://resend.com/home) + [React Email](https://react.email/)
 - Content: [Contentlayer](https://contentlayer.dev/) + MDX
@@ -31,9 +31,9 @@ The source code for this website is available on [GitHub](https://github.com/joh
 My website's design is a reflection of those who inspire me:
 
 - [Hayden Bleasel](https://www.haydenbleasel.com/)
-- [Rauno Freiberg](https://rauno.me)
 - [Frank Chimero](https://frankchimero.com)
-- [Lee Robinson](https://leerob.io)
 - [Josh Comeau](https://www.joshwcomeau.com)
-- [Pedro Duarte](https://ped.ro)
 - [Paco Coursey](https://pacocoursey.com)
+- [Pedro Duarte](https://ped.ro)
+- [Rauno Freiberg](https://rauno.me)
+- [Lee Robinson](https://leerob.io)

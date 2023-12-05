@@ -25,12 +25,12 @@ export const socials = [
 
 const Footer: FC = () => (
 	<footer className='border-t border-gray-300 dark:border-gray-800/80'>
-		<div className='mx-auto flex max-w-2xl flex-col gap-y-4 px-4 pb-16 pt-10 font-sans text-gray-600'>
+		<div className='mx-auto flex max-w-2xl flex-col gap-y-4 px-4 pb-16 pt-10 font-sans '>
 			<ThemeToggleGroup />
 			<div className='flex flex-col gap-8'>
 				<small>
-					&copy; 2023 John Eatmon &middot;{' '}
-					<Link href='/colophon' className='hover:text-gray-950 dark:hover:text-gray-50'>
+					<span className='text-gray-600'>&copy; 2023 John Eatmon&ensp;&middot;&ensp;</span>
+					<Link href='/colophon' className='text-gray-950 dark:text-gray-50'>
 						Colophon
 					</Link>
 				</small>

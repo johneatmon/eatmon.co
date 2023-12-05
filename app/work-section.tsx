@@ -13,28 +13,28 @@ const work = [
 	{
 		position: 'Creative Developer',
 		company: 'ProSource',
-		href: 'https://read.cv/johneatmon/npsVXnwnPLc03Cfs6863',
+		href: 'https://www.getprosource.com/',
 		startDate: '2020',
 		endDate: '2023',
 	},
 	{
 		position: 'IT Coordinator',
 		company: 'ProSource',
-		href: 'https://read.cv/johneatmon/npsVXnwnPLc03Cfs6863',
+		href: 'https://www.getprosource.com/',
 		startDate: '2016',
 		endDate: '2020',
 	},
 	{
 		position: 'Intern',
 		company: 'ProSource',
-		href: '#',
+		href: 'https://www.getprosource.com/',
 		startDate: '2014',
 		endDate: '2016',
 	},
 ];
 
 const WorkSection = () => {
-	const cvLink = socials.find(({ name }) => name === 'Read.CV')?.url;
+	const cvLink = socials.find(({ name }) => name === 'Read.CV')?.url ?? '#';
 
 	return (
 		<Section title='Work'>
@@ -60,7 +60,7 @@ const WorkSection = () => {
 				))}
 			</ul>
 			<Link
-				href={cvLink ?? '#'}
+				href={cvLink}
 				className='mt-8 inline-block max-w-max rounded-md px-3 py-1 font-sans text-sm leading-[2em] text-black no-underline shadow-border transition hover:shadow-border-hovered dark:bg-accent dark:shadow-none dark:hover:brightness-90'
 			>
 				Read my CV
