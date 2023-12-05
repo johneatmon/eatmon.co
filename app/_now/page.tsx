@@ -2,7 +2,7 @@ import { EyeOpenIcon } from '@radix-ui/react-icons';
 import { Metadata } from 'next';
 import Image from 'next/image';
 import { ReactNode, Suspense } from 'react';
-import Slider from '~/app/now/horizontal-scroll';
+import Slider from '~/app/_now/horizontal-scroll';
 import Header from '~/components/header';
 import Section from '~/components/section';
 import fetchMovies from '~/lib/letterboxd';
