@@ -6,6 +6,7 @@ import { HTMLProps } from 'react';
 import smartypants from 'smartypants';
 import { components } from '~/components/mdx';
 import Section from '~/components/section';
+import '~/styles/blog.css';
 
 const __dirname = dirname(fileURLToPath(import.meta.url));
 
