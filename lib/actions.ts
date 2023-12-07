@@ -4,6 +4,7 @@ import { render } from '@react-email/render';
 import { eq } from 'drizzle-orm';
 import { ReactElement } from 'react';
 import { Resend } from 'resend';
+import sanitize from 'sanitize-html';
 import { z } from 'zod';
 import { views } from '~/drizzle/schema';
 import { ContactTemplate as template } from '~/emails/contact';
@@ -30,7 +31,12 @@ const sendEmail = async (prevState: unknown, formData: FormData): Promise<{ erro
 	const schema = z.object({
 		email: z.string().email(),
 		name: z.string().min(1).max(100),
-		message: z.string().min(0).max(1000).optional(),
+		message: z
+			.string()
+			.min(0)
+			.max(1000)
+			.transform((value) => sanitize(value))
+			.optional(),
 	});
 
 	const { email, name, message } = schema.parse({
