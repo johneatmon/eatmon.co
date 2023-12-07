@@ -1,5 +1,6 @@
 import Link from 'next/link';
-import { FC } from 'react';
+import type { FC } from 'react';
+import ContactButton from '~/components/contact-button';
 import { ThemeToggleGroup } from '~/components/theme-toggle';
 import GitHubIcon from '~/public/icons/github.svg';
 import ReadCVIcon from '~/public/icons/readcv.svg';
@@ -46,6 +47,7 @@ const Footer: FC = () => (
 							</a>
 						</li>
 					))}
+					<ContactButton />
 				</ul>
 			</div>
 		</div>
