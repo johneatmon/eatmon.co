@@ -1,6 +1,6 @@
-import AboutSection from '~/app/about-section';
-import BlogSection from '~/app/blog-section';
-import WorkSection from '~/app/work-section';
+import AboutSection from '~/app/(home)/about-section';
+import BlogSection from '~/app/(home)/blog-section';
+import WorkSection from '~/app/(home)/work-section';
 import Header from '~/components/header';
 
 export default async function Home() {
