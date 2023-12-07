@@ -2,31 +2,33 @@ import { Analytics } from '@vercel/analytics/react';
 import { GeistMono } from 'geist/font/mono';
 import { GeistSans } from 'geist/font/sans';
 import type { Metadata } from 'next';
+import type { FC, ReactNode } from 'react';
+import { Person } from 'schema-dts';
 import ContactFormDialog from '~/components/contact-form-dialog';
 import Footer from '~/components/footer';
 import Gestura from '~/lib/fonts';
 import { ThemeProvider } from '~/lib/providers/theme-provider';
-import { cn } from '~/lib/utils';
+import { cn, toJsonLd } from '~/lib/utils';
 import '~/styles/globals.css';
 
 export const metadata: Metadata = {
-	metadataBase: new URL('https://eatmon.co'),
+	metadataBase: new URL(process.env.NEXT_PUBLIC_VERCEL_URL ?? '/'),
 	title: {
 		default: 'John Eatmon, Software Engineer · Seattle WA',
 		template: '%s · John Eatmon',
 	},
-	description: "It's a-me! John Eatmon!",
+	description: 'Seattle-based software engineer, mountain climber, and typography enthusiast.',
 	openGraph: {
 		title: 'John Eatmon, Software Engineer · Seattle WA',
-		description: "It's a-me! John Eatmon!",
-		url: 'https://eatmon.co',
+		description: 'Seattle-based software engineer, mountain climber, and typography enthusiast.',
+		url: new URL(process.env.NEXT_PUBLIC_VERCEL_URL ?? '/'),
 		siteName: 'John Eatmon',
 		locale: 'en_US',
 		type: 'website',
 	},
 	twitter: {
 		title: 'John Eatmon, Software Engineer · Seattle WA',
-		card: 'summary_large_image',
+		card: 'summary',
 	},
 	other: {
 		'color-scheme': 'dark light',
@@ -56,6 +58,33 @@ export const metadata: Metadata = {
 	],
 };
 
+const profileJsonLd = toJsonLd<Person>({
+	'@context': 'https://schema.org',
+	'@type': 'Person',
+	name: 'John Eatmon',
+	jobTitle: 'Software Engineer',
+	url: metadata.metadataBase?.href,
+	sameAs: [
+		'https://github.com/johneatmon',
+		'https://www.linkedin.com/in/johneatmon/',
+		'https://read.cv/johneatmon',
+		'https://twitter.com/johneatmon_',
+	],
+	image:
+		'https://eatmon.co/cdn-cgi/imagedelivery/le40TwFDWUdIvXckEp8FBw/ebab5e6e-2096-4954-3a37-b83bbea1b300/square',
+	birthPlace: {
+		'@type': 'Place',
+		name: 'Orlando, Florida',
+	},
+	alumniOf: 'University of Central Florida',
+	worksFor: {
+		'@type': 'Organization',
+		name: 'UnitedHealthcare',
+		url: 'https://www.uhc.com/',
+	},
+	knowsLanguage: ['English', 'French'],
+});
+
 const RootLayout: FC<{ readonly children: ReactNode }> = ({ children }) => (
 	<html
 		lang='en'
@@ -77,6 +106,7 @@ const RootLayout: FC<{ readonly children: ReactNode }> = ({ children }) => (
 			/>
 			<Analytics />
 			<ContactFormDialog />
+			<span dangerouslySetInnerHTML={{ __html: profileJsonLd }} />
 		</body>
 	</html>
 );

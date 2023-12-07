@@ -27,10 +27,24 @@ export const generateMetadata = ({ params }: BlogPostProps): Metadata => {
 		return {};
 	}
 
+	const { title, description, date, updated } = post;
+
 	return {
-		title: post.title,
-		description: post.description,
-		// path: `/blog/${post.slug}`,
+		title,
+		description,
+		openGraph: {
+			title,
+			description,
+			type: 'article',
+			publishedTime: new Date(date).toISOString(),
+			modifiedTime: updated ? new Date(updated).toISOString() : undefined,
+			url: new URL(`/blog/${currentPath}`, process.env.NEXT_PUBLIC_VERCEL_URL!),
+			authors: 'John Eatmon',
+		},
+		twitter: {
+			title,
+			description,
+		},
 	};
 };
 

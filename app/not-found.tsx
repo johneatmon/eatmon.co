@@ -1,6 +1,12 @@
+import type { Metadata } from 'next';
 import ReturnLink from '~/components/return-link';
 import Section from '~/components/section';
 import { Shine } from '~/components/shine';
+
+export const metadata: Metadata = {
+	title: 'Not Found',
+	description: "Something's missing...",
+};
 
 export default function NotFoundPage() {
 	return (

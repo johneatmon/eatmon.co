@@ -223,6 +223,9 @@ devDependencies:
   puppeteer:
     specifier: ^21.6.0
     version: 21.6.0(typescript@5.2.2)
+  schema-dts:
+    specifier: ^1.1.2
+    version: 1.1.2(typescript@5.2.2)
   typescript:
     specifier: ^5
     version: 5.2.2
@@ -11069,6 +11072,14 @@ packages:
     dependencies:
       loose-envify: 1.4.0
     dev: false
+
+  /schema-dts@1.1.2(typescript@5.2.2):
+    resolution: {integrity: sha512-MpNwH0dZJHinVxk9bT8XUdjKTxMYrA5bLtrrGmFA6PTLwlOKnhi67XoRd6/ty+Djt6ZC0slR57qFhZDNMI6DhQ==}
+    peerDependencies:
+      typescript: '>=4.1.0'
+    dependencies:
+      typescript: 5.2.2
+    dev: true
 
   /section-matter@1.0.0:
     resolution: {integrity: sha512-vfD3pmTzGpufjScBh50YHKzEu2lxBWhVEHsNGoEXmCmn2hKGfeNLYMzCJpe8cD7gqX7TJluOVpBkAequ6dgMmA==}

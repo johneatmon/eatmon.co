@@ -7,7 +7,7 @@ import { getTotalBlogViews } from '~/lib/planetscale';
 
 export const metadata: Metadata = {
 	title: 'Blog',
-	description: 'Read my thoughts on software development, design, and more.',
+	description: 'Read my thoughts on development, technology, and typography.',
 };
 
 export default async function BlogPage() {
