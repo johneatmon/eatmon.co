@@ -18,11 +18,11 @@ import smartypants from 'smartypants';
 type ContactTemplateProps = {
 	readonly name: string;
 	readonly email: string;
-	readonly avatar: string;
 	readonly message: string | undefined;
+	readonly avatar: string;
 };
 
-export const ContactTemplate: FC<ContactTemplateProps> = ({ name, email, avatar, message }) => (
+export const ContactTemplate: FC<ContactTemplateProps> = ({ name, email, message, avatar }) => (
 	<Html lang='en'>
 		<Head>
 			<Font
@@ -45,7 +45,7 @@ export const ContactTemplate: FC<ContactTemplateProps> = ({ name, email, avatar,
 							src={avatar}
 							width='40'
 							height='40'
-							alt={`Profile picture for ${name}`}
+							alt={`Gravatar for ${name}`}
 							className='my-0 overflow-hidden rounded-full'
 						/>
 					</Section>

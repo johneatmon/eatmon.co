@@ -73,10 +73,9 @@ const BlogPost: FC<BlogPostProps> = ({ params }) => {
 						day: 'numeric',
 					})}
 				</time>
-				{/* &#9585; */}
-				&middot;
 				<Suspense fallback={<span className='inline-block h-5' />}>
-					<Views slug={post.slug} /> views
+					&middot;
+					<Views slug={post.slug} />
 				</Suspense>
 			</small>
 			<Mdx code={post.body.code} />
@@ -114,20 +113,13 @@ const BlogPost: FC<BlogPostProps> = ({ params }) => {
 };
 
 async function Views({ slug }: { slug: string }) {
-	let views;
-	try {
-		views = await getViewsCount();
-	} catch (error) {
-		console.error(error);
-	}
+	const views = await getViewsCount();
 
 	if (!views) {
 		return null;
 	}
 
-	return (
-		<ViewCounter allViews={views} slug={slug} trackView={process.env.NODE_ENV === 'production'} />
-	);
+	return <ViewCounter views={views} slug={slug} track={process.env.NODE_ENV === 'production'} />;
 }
 
 export default BlogPost;

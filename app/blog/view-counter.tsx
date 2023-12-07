@@ -5,24 +5,24 @@ import { increment } from '~/lib/actions';
 
 export default function ViewCounter({
 	slug,
-	allViews,
-	trackView,
+	views,
+	track = false,
 }: {
 	slug: string;
-	allViews: {
+	views: {
 		slug: string;
 		count: number | null;
 	}[];
-	trackView?: boolean;
+	track?: boolean;
 }) {
-	const viewsForSlug = allViews && allViews.find((view) => view.slug === slug);
+	const viewsForSlug = views && views.find((view) => view.slug === slug);
 	const number = new Number(viewsForSlug?.count || 0);
 
 	useEffect(() => {
-		if (trackView) {
+		if (track) {
 			increment(slug);
 		}
-	}, []);
+	}, [track, slug]);
 
-	return <span>{number.toLocaleString()}</span>;
+	return <span>{number.toLocaleString()} views</span>;
 }

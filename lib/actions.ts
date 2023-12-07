@@ -18,6 +18,7 @@ export async function increment(slug: string) {
 		.insert(views)
 		.values({ slug, count: 1 })
 		.onDuplicateKeyUpdate({ set: { count: blogViews + 1 } });
+
 	return;
 }
 
@@ -39,12 +40,7 @@ const sendEmail = async (prevState: unknown, formData: FormData): Promise<{ erro
 			.optional(),
 	});
 
-	const { email, name, message } = schema.parse({
-		email: formData.get('email'),
-		name: formData.get('name'),
-		message: formData.get('message'),
-	});
-
+	const { email, name, message } = schema.parse(Object.fromEntries(formData.entries()));
 	const avatar = `https://www.gravatar.com/avatar/${Buffer.from(email).toString('hex')}?s=100&d=mp`;
 
 	const react = template({
@@ -67,10 +63,6 @@ const sendEmail = async (prevState: unknown, formData: FormData): Promise<{ erro
 
 		return {};
 	} catch (error: unknown) {
-		if (error instanceof Error) {
-			return { error: error.message };
-		} else {
-			return { error: 'Unknown error' };
-		}
+		return { error: error instanceof Error ? error.message : 'Unknown error' };
 	}
 };

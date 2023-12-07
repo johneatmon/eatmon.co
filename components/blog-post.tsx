@@ -25,9 +25,9 @@ export default function BlogPost({
 						day: 'numeric',
 					})}
 				</time>
-				&middot;
 				<Suspense fallback={<span className='inline-block h-5' />}>
-					<Views slug={slug} /> views
+					&middot;
+					<Views slug={slug} />
 				</Suspense>
 			</div>
 		</div>
@@ -46,5 +46,5 @@ async function Views({ slug }: { slug: string }) {
 		return null;
 	}
 
-	return <ViewCounter allViews={views} slug={slug} trackView={false} />;
+	return <ViewCounter views={views} slug={slug} />;
 }
