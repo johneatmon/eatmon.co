@@ -1,7 +1,7 @@
 import puppeteer from 'puppeteer';
 import 'server-only';
 
-export async function getTweets() {
+export async function getHikes() {
 	const browser = await puppeteer.launch({
 		headless: 'new',
 	});
