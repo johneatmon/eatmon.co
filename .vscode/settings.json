@@ -2,9 +2,9 @@
   "cSpell.ignorePaths": ["bun.lockb", ".git", "node_modules", ".vscode"],
   "cSpell.words": ["Eatmon", "Kysely", "planetscale"],
   "editor.codeActionsOnSave": {
-    "source.organizeImports": true,
-    "source.fixAll.esbenp.prettier-vscode": true,
-    "source.fixAll.eslint": true
+    "source.organizeImports": "explicit",
+    "source.fixAll.esbenp.prettier-vscode": "explicit",
+    "source.fixAll.eslint": "explicit"
   },
   "editor.defaultFormatter": "esbenp.prettier-vscode",
   "editor.formatOnPaste": true,
