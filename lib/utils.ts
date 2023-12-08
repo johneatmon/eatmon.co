@@ -2,8 +2,13 @@ import type { ClassValue } from 'clsx';
 import { clsx } from 'clsx';
 import type { Thing, WithContext } from 'schema-dts';
 import { twMerge } from 'tailwind-merge';
+import { allBlogs, type Blog } from '~/.contentlayer/generated';
 
 export const cn = (...inputs: ClassValue[]): string => twMerge(clsx(inputs));
+
+export const filteredPosts = allBlogs.filter((post: Blog) => {
+	return !post.draft || process.env.NODE_ENV !== 'development';
+});
 
 export const parseError = (error: unknown): string => {
 	const message = error instanceof Error ? error.message : String(error);

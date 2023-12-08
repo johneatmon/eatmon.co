@@ -1,4 +1,3 @@
-import { allBlogs } from 'contentlayer/generated';
 import type { Metadata } from 'next';
 import Link from 'next/link';
 import { notFound } from 'next/navigation';
@@ -8,7 +7,7 @@ import ViewCounter from '~/app/blog/view-counter';
 import { Mdx } from '~/components/mdx';
 import ReturnLink from '~/components/return-link';
 import { getViewsCount } from '~/lib/planetscale';
-import { cn } from '~/lib/utils';
+import { cn, filteredPosts } from '~/lib/utils';
 import '~/styles/blog.css';
 
 type BlogPostProps = {
@@ -19,9 +18,7 @@ type BlogPostProps = {
 
 export const generateMetadata = ({ params }: BlogPostProps): Metadata => {
 	const currentPath = params.slug;
-	const post = allBlogs
-		.filter((post) => (process.env.NODE_ENV === 'development' ? true : !post.draft))
-		.find(({ slugAsParams }) => slugAsParams === currentPath);
+	const post = filteredPosts.find(({ slugAsParams }) => slugAsParams === currentPath);
 
 	if (!post) {
 		return {};
@@ -49,24 +46,20 @@ export const generateMetadata = ({ params }: BlogPostProps): Metadata => {
 };
 
 export const generateStaticParams = (): BlogPostProps['params'][] =>
-	allBlogs
-		.filter((post) => (process.env.NODE_ENV === 'development' ? true : !post.draft))
-		.map((post) => ({
-			slug: post.slug,
-		}));
+	filteredPosts.map((post) => ({
+		slug: post.slug,
+	}));
 
 const BlogPost: FC<BlogPostProps> = ({ params }) => {
 	const currentPath = params.slug;
-	const post = allBlogs
-		.filter((post) => (process.env.NODE_ENV === 'development' ? true : !post.draft))
-		.find(({ slugAsParams }) => slugAsParams === currentPath);
+	const post = filteredPosts.find(({ slugAsParams }) => slugAsParams === currentPath);
 
 	if (!post) {
 		notFound();
 	}
 
-	const prevPost = allBlogs.at(allBlogs.indexOf(post) - 1) || null;
-	const nextPost = allBlogs.at(allBlogs.indexOf(post) + 1) || null;
+	const prevPost = filteredPosts.at(filteredPosts.indexOf(post) - 1) || null;
+	const nextPost = filteredPosts.at(filteredPosts.indexOf(post) + 1) || null;
 
 	return (
 		<main className='mx-auto flex max-w-2xl flex-col px-4 pb-24 pt-[128px]'>
@@ -133,7 +126,9 @@ async function Views({ slug }: { slug: string }) {
 		return null;
 	}
 
-	return <ViewCounter views={views} slug={slug} track={process.env.NODE_ENV === 'production'} />;
+	return (
+		<ViewCounter views={views} slug={slug} track={!(process.env.NODE_ENV === 'development')} />
+	);
 }
 
 export default BlogPost;
