@@ -1,4 +1,5 @@
 import { Analytics } from '@vercel/analytics/react';
+import { SpeedInsights } from '@vercel/speed-insights/next';
 import { GeistMono } from 'geist/font/mono';
 import { GeistSans } from 'geist/font/sans';
 import type { Metadata } from 'next';
@@ -105,6 +106,7 @@ const RootLayout: FC<{ readonly children: ReactNode }> = ({ children }) => (
 				className='pointer-events-none fixed inset-x-0 bottom-0 z-10 h-16 bg-gradient-to-b from-transparent to-[#eee] dark:bg-gradient-to-b dark:from-transparent dark:to-black'
 			/>
 			<Analytics />
+			<SpeedInsights />
 			<ContactFormDialog />
 			<span dangerouslySetInnerHTML={{ __html: profileJsonLd }} />
 		</body>

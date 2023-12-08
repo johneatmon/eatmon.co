@@ -31,6 +31,7 @@
     "@svgr/webpack": "^8.1.0",
     "@tailwindcss/typography": "^0.5.10",
     "@vercel/analytics": "^1.1.1",
+    "@vercel/speed-insights": "^1.0.0",
     "autoprefixer": "^10.4.16",
     "blaze-slider": "^1.9.3",
     "clsx": "^2.0.0",
