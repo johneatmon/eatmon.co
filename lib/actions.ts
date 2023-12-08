@@ -28,9 +28,15 @@ if (!process.env.RESEND_API_KEY) {
 
 const resend = new Resend(process.env.RESEND_API_KEY);
 
-const sendEmail = async (prevState: unknown, formData: FormData): Promise<{ error?: string }> => {
+export type SendEmailResponse = { success: string } | { error: string };
+
+export const sendEmail = async (data: {
+	name: string;
+	email: string;
+	message: string;
+}): Promise<SendEmailResponse> => {
 	const schema = z.object({
-		email: z.string().email(),
+		email: z.string().email().min(1),
 		name: z.string().min(1).max(100),
 		message: z
 			.string()
@@ -40,7 +46,7 @@ const sendEmail = async (prevState: unknown, formData: FormData): Promise<{ erro
 			.optional(),
 	});
 
-	const { email, name, message } = schema.parse(Object.fromEntries(formData.entries()));
+	const { email, name, message } = schema.parse({ ...data });
 	const avatar = `https://www.gravatar.com/avatar/${Buffer.from(email).toString('hex')}?s=100&d=mp`;
 
 	const react = template({
@@ -61,8 +67,9 @@ const sendEmail = async (prevState: unknown, formData: FormData): Promise<{ erro
 			text,
 		});
 
-		return {};
+		return { success: 'Message sent successfully' };
 	} catch (error: unknown) {
+		console.error(new Error(error instanceof Error ? error.message : 'Unknown error'));
 		return { error: error instanceof Error ? error.message : 'Unknown error' };
 	}
 };
