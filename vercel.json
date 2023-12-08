@@ -2,6 +2,6 @@
   "buildCommand": "next build",
   "cleanUrls": true,
   "framework": "nextjs",
-  "regions": ["us-west-1", "us-west-2"],
+  "regions": ["pdx1"],
   "trailingSlash": false
 }
