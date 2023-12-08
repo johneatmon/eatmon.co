@@ -1,6 +1,6 @@
 {
   "cSpell.ignorePaths": ["bun.lockb", ".git", "node_modules", ".vscode"],
-  "cSpell.words": ["Eatmon", "Kysely", "planetscale"],
+  "cSpell.words": ["Eatmon", "planetscale"],
   "editor.codeActionsOnSave": {
     "source.organizeImports": "explicit",
     "source.fixAll.esbenp.prettier-vscode": "explicit",
