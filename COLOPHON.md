@@ -6,7 +6,7 @@ The technologies, services, and inspiration that helped me build this website.
 
 Here's the tech stack:
 
-- Front-end: Next.js 14 + Radix UI Toggle Group
+- Front-end: Next.js 14 + [Radix UI](https://www.radix-ui.com/primitives/docs/overview/introduction)
 - Styling: Tailwind CSS
 - Email: [Resend](https://resend.com/home) + [React Email](https://react.email/)
 - Content: [Contentlayer](https://contentlayer.dev/) + MDX
