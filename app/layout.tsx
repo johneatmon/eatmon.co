@@ -90,10 +90,10 @@ const RootLayout: FC<{ readonly children: ReactNode }> = ({ children }) => (
 	<html
 		lang='en'
 		className={cn(
+			'touch-manipulation font-serif antialiased',
 			GeistSans.variable,
 			GeistMono.variable,
-			Gestura.variable,
-			'touch-manipulation font-serif antialiased'
+			Gestura.variable
 		)}
 	>
 		<body className='min-h-screen bg-[#eee] text-gray-700 dark:bg-black dark:text-gray-400'>
