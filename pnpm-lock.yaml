@@ -6,8 +6,8 @@ settings:
 
 dependencies:
   '@johneatmon/gestura-text':
-    specifier: ^1.0.1
-    version: 1.0.1
+    specifier: ^1.1.0
+    version: 1.1.0
   '@plaiceholder/next':
     specifier: ^3.0.0
     version: 3.0.0(next@14.0.2)(plaiceholder@3.0.0)(sharp@0.32.6)
@@ -3077,8 +3077,8 @@ packages:
       wrap-ansi-cjs: /wrap-ansi@7.0.0
     dev: false
 
-  /@johneatmon/gestura-text@1.0.1:
-    resolution: {integrity: sha512-ORlYPAzFyC46LgcOFxHKgCTWd6Sj7dK3b95xA+WTrooSGSq42jVm1CU60hlqRXx3gC3C4xk91ZoUhsjypmmqYA==, tarball: https://npm.pkg.github.com/download/@johneatmon/gestura-text/1.0.1/9500957acb843109513f1ba68c137b085354aa15}
+  /@johneatmon/gestura-text@1.1.0:
+    resolution: {integrity: sha512-KlQU9Y1ghqH/klWyIwVBzuMphvyISG9rgFENlbW60HSafe7eJ3cLYvrBprZSfbutFPSyB6KcBriiloQtIF5W1g==, tarball: https://npm.pkg.github.com/download/@johneatmon/gestura-text/1.1.0/0bfb5bd61691a5e5e3b33cef513b9e34765fab67}
     dev: false
 
   /@jridgewell/gen-mapping@0.3.3:

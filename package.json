@@ -18,7 +18,7 @@
     ]
   },
   "dependencies": {
-    "@johneatmon/gestura-text": "^1.0.1",
+    "@johneatmon/gestura-text": "^1.1.0",
     "@plaiceholder/next": "^3.0.0",
     "@planetscale/database": "^1.11.0",
     "@radix-ui/react-dialog": "^1.0.5",
