@@ -22,7 +22,7 @@ const ContactFormDialog: FC = () => {
 	return (
 		<Dialog.Root open={open} onOpenChange={setOpen}>
 			<Dialog.Portal>
-				<Dialog.Overlay className='fixed inset-0 bg-black/75 data-[state=open]:animate-overlayShow' />
+				<Dialog.Overlay className='fixed inset-0 bg-white/75 data-[state=open]:animate-overlayShow dark:bg-black/75' />
 				<Dialog.Content
 					className={cn(
 						'fixed left-1/2 top-[40vh] grid w-full max-w-md -translate-x-1/2 -translate-y-1/2 gap-4 sm:top-1/2',
@@ -78,7 +78,22 @@ const ContactForm: FC = () => {
 			setName('');
 			setEmail('');
 			setMessage('');
-			setResponse('success' in response ? response.success : response.error);
+
+			switch (true) {
+				case 'success' in response:
+					setResponse('Message sent successfully');
+					break;
+				case 'error' in response:
+					setResponse('Error sending message');
+					break;
+				default:
+					setResponse('Unknown error');
+					break;
+			}
+
+			setTimeout(() => {
+				setResponse('');
+			}, 5_000);
 		} catch (error) {
 			const errorMessage = parseError(error);
 			setResponse(errorMessage);
