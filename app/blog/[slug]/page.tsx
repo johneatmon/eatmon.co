@@ -27,6 +27,8 @@ export const generateMetadata = ({ params }: BlogPostProps): Metadata => {
 	}
 
 	const { title, description, date, updated } = post;
+	const ogImageUrlParams = new URLSearchParams({ title });
+	const ogImage = new URL(`/og?${ogImageUrlParams}`, process.env.NEXT_PUBLIC_VERCEL_URL).href;
 
 	return {
 		title,
@@ -37,12 +39,15 @@ export const generateMetadata = ({ params }: BlogPostProps): Metadata => {
 			type: 'article',
 			publishedTime: new Date(date).toISOString(),
 			modifiedTime: updated ? new Date(updated).toISOString() : undefined,
-			url: new URL(`/blog/${currentPath}`, process.env.NEXT_PUBLIC_VERCEL_URL!),
+			url: new URL(`/blog/${currentPath}`, process.env.NEXT_PUBLIC_VERCEL_URL),
 			authors: 'John Eatmon',
+			images: [{ url: ogImage }],
 		},
 		twitter: {
+			card: 'summary_large_image',
 			title,
 			description,
+			images: [ogImage],
 		},
 	};
 };
@@ -52,21 +57,25 @@ export const generateStaticParams = (): BlogPostProps['params'][] =>
 		slug: post.slug,
 	}));
 
-const generateJsonLd = (post: Blog) =>
-	toJsonLd<BlogPosting>({
+const generateJsonLd = (post: Blog) => {
+	const ogImageUrlParams = new URLSearchParams({ title: post.title });
+	const ogImage = new URL(`/og?${ogImageUrlParams}`, process.env.NEXT_PUBLIC_VERCEL_URL).href;
+
+	return toJsonLd<BlogPosting>({
 		'@context': 'https://schema.org',
 		'@type': 'BlogPosting',
 		headline: post.title,
 		datePublished: new Date(post.date).toISOString(),
 		dateModified: post.updated ? new Date(post.updated).toISOString() : undefined,
 		description: post.description,
-		image: new URL(`/og?title=${post.title}`, process.env.NEXT_PUBLIC_VERCEL_URL).href,
+		image: ogImage,
 		url: new URL(post.slug, process.env.NEXT_PUBLIC_VERCEL_URL).href,
 		author: {
 			'@type': 'Person',
 			name: 'John Eatmon',
 		},
 	});
+};
 
 const BlogPost: FC<BlogPostProps> = ({ params }) => {
 	const currentPath = params.slug;
