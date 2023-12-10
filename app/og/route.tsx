@@ -14,17 +14,26 @@ export async function GET(req: NextRequest) {
 	).then((res) => res.arrayBuffer());
 	const fontData = await font;
 
+	const background = () => {
+		if (process.env.NODE_ENV === 'production') {
+			return `url(${process.env.NEXT_PUBLIC_VERCEL_URL}/open-graph-background.png)`;
+		} else {
+			return 'linear-gradient(to right, #000, #111)';
+		}
+	};
+
 	return new ImageResponse(
 		(
 			<div
 				style={{
-					height: '100%',
-					width: '100%',
 					display: 'flex',
 					flexDirection: 'column',
 					alignItems: 'flex-start',
-					backgroundImage: 'url(/open-graph-background.png)',
-					// backgroundImage: 'linear-gradient(to right, #000, #111)',
+					color: 'white',
+					height: '100%',
+					width: '100%',
+					padding: 100,
+					backgroundImage: background(),
 				}}
 			>
 				<div
