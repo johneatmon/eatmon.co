@@ -7,7 +7,7 @@ import { allBlogs, type Blog } from '~/.contentlayer/generated';
 export const cn = (...inputs: ClassValue[]): string => twMerge(clsx(inputs));
 
 export const filteredPosts = allBlogs.filter((post: Blog) => {
-	return !post.draft || process.env.NODE_ENV !== 'development';
+	return process.env.NODE_ENV === 'development' || !post.draft;
 });
 
 export const parseError = (error: unknown): string => {
