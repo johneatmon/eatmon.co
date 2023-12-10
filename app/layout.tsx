@@ -89,6 +89,7 @@ const profileJsonLd = toJsonLd<Person>({
 const RootLayout: FC<{ readonly children: ReactNode }> = ({ children }) => (
 	<html
 		lang='en'
+		suppressHydrationWarning
 		className={cn(
 			'touch-manipulation font-serif antialiased',
 			GeistSans.variable,
