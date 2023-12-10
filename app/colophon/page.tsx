@@ -6,7 +6,7 @@ import '~/styles/blog.css';
 
 export default async function ColophonPage() {
 	const rawContent = await fetch(
-		`https://raw.githubusercontent.com/johneatmon/eatmon.co/v2/COLOPHON.md`
+		`https://raw.githubusercontent.com/johneatmon/eatmon.co/main/COLOPHON.md`
 	);
 	const content = smartypants(await rawContent.text(), 1).trim();
 
