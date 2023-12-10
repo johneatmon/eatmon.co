@@ -147,9 +147,7 @@ async function Views({ slug }: { slug: string }) {
 		return null;
 	}
 
-	return (
-		<ViewCounter views={views} slug={slug} track={!(process.env.NODE_ENV === 'development')} />
-	);
+	return <ViewCounter views={views} slug={slug} track={process.env.NODE_ENV === 'production'} />;
 }
 
 export default BlogPost;
