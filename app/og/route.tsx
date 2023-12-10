@@ -8,7 +8,7 @@ export async function GET(req: NextRequest) {
 	const title = searchParams.get('title');
 	const font = fetch(
 		new URL(
-			'../../node_modules/@johneatmon/gestura-text/files/ttf/Gestura-Text-Italic-VF.ttf',
+			'../../node_modules/@johneatmon/gestura-text/files/woff/Gestura-Text-Light.woff',
 			import.meta.url
 		)
 	).then((res) => res.arrayBuffer());
