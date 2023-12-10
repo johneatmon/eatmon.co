@@ -2,12 +2,14 @@ import type { Metadata } from 'next';
 import Link from 'next/link';
 import { notFound } from 'next/navigation';
 import { FC, Suspense } from 'react';
+import type { BlogPosting } from 'schema-dts';
 import smartypants from 'smartypants';
+import type { Blog } from '~/.contentlayer/generated';
 import ViewCounter from '~/app/blog/view-counter';
 import { Mdx } from '~/components/mdx';
 import ReturnLink from '~/components/return-link';
 import { getViewsCount } from '~/lib/planetscale';
-import { cn, filteredPosts } from '~/lib/utils';
+import { cn, filteredPosts, toJsonLd } from '~/lib/utils';
 import '~/styles/blog.css';
 
 type BlogPostProps = {
@@ -50,6 +52,22 @@ export const generateStaticParams = (): BlogPostProps['params'][] =>
 		slug: post.slug,
 	}));
 
+const generateJsonLd = (post: Blog) =>
+	toJsonLd<BlogPosting>({
+		'@context': 'https://schema.org',
+		'@type': 'BlogPosting',
+		headline: post.title,
+		datePublished: new Date(post.date).toISOString(),
+		dateModified: post.updated ? new Date(post.updated).toISOString() : undefined,
+		description: post.description,
+		image: new URL(`/og?title=${post.title}`, process.env.NEXT_PUBLIC_VERCEL_URL).href,
+		url: new URL(post.slug, process.env.NEXT_PUBLIC_VERCEL_URL).href,
+		author: {
+			'@type': 'Person',
+			name: 'John Eatmon',
+		},
+	});
+
 const BlogPost: FC<BlogPostProps> = ({ params }) => {
 	const currentPath = params.slug;
 	const post = filteredPosts.find(({ slugAsParams }) => slugAsParams === currentPath);
@@ -57,6 +75,8 @@ const BlogPost: FC<BlogPostProps> = ({ params }) => {
 	if (!post) {
 		notFound();
 	}
+
+	const blogPostJsonLd = generateJsonLd(post);
 
 	const prevPost = filteredPosts.at(filteredPosts.indexOf(post) - 1) || null;
 	const nextPost = filteredPosts.at(filteredPosts.indexOf(post) + 1) || null;
@@ -115,6 +135,7 @@ const BlogPost: FC<BlogPostProps> = ({ params }) => {
 					)}
 				</footer>
 			)}
+			<span dangerouslySetInnerHTML={{ __html: blogPostJsonLd }} />
 		</main>
 	);
 };
