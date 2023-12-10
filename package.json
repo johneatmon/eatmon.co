@@ -13,8 +13,10 @@
   },
   "lint-staged": {
     "*.{js,jsx,ts,tsx}": [
-      "eslint --quiet --fix",
-      "prettier --write"
+      "eslint --quiet --fix"
+    ],
+    "*": [
+      "prettier --write --ignore-unknown"
     ]
   },
   "dependencies": {
