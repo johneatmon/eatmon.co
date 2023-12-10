@@ -40,7 +40,10 @@ const WorkSection = () => {
 		<Section title='Work'>
 			<ul role='list' className='flex flex-col gap-y-4'>
 				{work.map(({ company, endDate, startDate, position, href }, index) => (
-					<li key={index} className='flex items-center justify-between gap-2'>
+					<li
+						key={index}
+						className='flex flex-col sm:flex-row sm:items-center sm:justify-between sm:gap-2'
+					>
 						<p className='font-sans'>
 							<a
 								href={href}
@@ -52,7 +55,7 @@ const WorkSection = () => {
 							</a>
 							, <span className='text-gray-700 dark:text-gray-500'>{company}</span>
 						</p>
-						<div className='h-px grow bg-gray-300 dark:bg-gray-800/80' />
+						<div className='hidden h-px grow bg-gray-300 dark:bg-gray-800/80 sm:flex' />
 						<p className='text-sm tabular-nums text-gray-700 dark:text-gray-500'>
 							{startDate}&ndash;{endDate ?? 'Now'}
 						</p>

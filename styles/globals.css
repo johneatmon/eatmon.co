@@ -2,6 +2,12 @@
 @tailwind components;
 @tailwind utilities;
 
+@media (prefers-color-scheme: dark) {
+	html {
+		color-scheme: dark;
+	}
+}
+
 body {
 	text-rendering: optimizeLegibility;
 	-webkit-text-size-adjust: 100%;
