@@ -1,5 +1,6 @@
 import withPlaiceholder from '@plaiceholder/next';
 import { createContentlayerPlugin } from 'next-contentlayer';
+import { createSecureHeaders } from 'next-secure-headers';
 
 /** @type {import('next').NextConfig} */
 const nextConfig = {
@@ -27,6 +28,16 @@ const nextConfig = {
 				pathname: '/**/*',
 			},
 		],
+	},
+	async headers() {
+		return [
+			{
+				source: '/(.*)',
+				headers: createSecureHeaders({
+					forceHTTPSRedirect: [true, { maxAge: 63072000, includeSubDomains: true, preload: true }],
+				}),
+			},
+		];
 	},
 	async redirects() {
 		return [
