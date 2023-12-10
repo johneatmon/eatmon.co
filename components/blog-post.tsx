@@ -25,7 +25,7 @@ export default function BlogPost({
 						day: 'numeric',
 					})}
 				</time>
-				<Suspense fallback={<span className='inline-block h-5' />}>
+				<Suspense fallback={<span className='inline-block h-[19px]' />}>
 					&middot;
 					<Views slug={slug} />
 				</Suspense>
