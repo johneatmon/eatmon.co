@@ -23,17 +23,16 @@ export async function increment(slug: string) {
 	return;
 }
 
-if (!process.env.RESEND_API_KEY) {
-	throw new Error('Missing RESEND_API_KEY environment variable');
-}
-
-const resend = new Resend(process.env.RESEND_API_KEY);
-
 export const sendEmail = async (data: {
 	name: string;
 	email: string;
 	message: string;
 }): Promise<string> => {
+	if (!process.env.RESEND_API_KEY) {
+		throw new Error('Missing RESEND_API_KEY environment variable');
+	}
+
+	const resend = new Resend(process.env.RESEND_API_KEY);
 	const schema = z.object({
 		email: z.string().email().min(1),
 		name: z.string().min(1).max(100),
@@ -44,7 +43,6 @@ export const sendEmail = async (data: {
 			.transform((value) => sanitize(value))
 			.optional(),
 	});
-
 	const { email, name, message } = schema.parse({ ...data });
 	const avatar = `https://www.gravatar.com/avatar/${Buffer.from(email).toString('hex')}?s=100&d=mp`;
 
@@ -69,6 +67,6 @@ export const sendEmail = async (data: {
 		return 'Message sent successfully';
 	} catch (error: unknown) {
 		const errorMessage = parseError(error);
-		throw new Error(errorMessage);
+		return errorMessage;
 	}
 };
