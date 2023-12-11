@@ -12,6 +12,8 @@ import {
 	type InputHTMLAttributes,
 	type TextareaHTMLAttributes,
 } from 'react';
+import sanitize from 'sanitize-html';
+import { z } from 'zod';
 import { sendEmail } from '~/lib/send-email';
 import useContactForm from '~/lib/use-contact-form';
 import { cn, parseError } from '~/lib/utils';
@@ -59,12 +61,39 @@ const ContactForm: FC = () => {
 	const [sending, setSending] = useState(false);
 	const [response, setResponse] = useState('');
 
+	const schema = z.object({
+		email: z.string().email().min(1),
+		name: z.string().min(1).max(100),
+		message: z
+			.string()
+			.min(0)
+			.max(1000)
+			.transform((value) => sanitize(value)),
+	});
+
 	const handleSubmit: FormEventHandler = async (event) => {
 		event.preventDefault();
 		setSending(true);
 
 		if (!name.trim() || !email.trim()) {
 			setResponse('Please fill out required fields');
+			setSending(false);
+			setTimeout(() => {
+				setResponse('');
+			}, 5_000);
+			return;
+		}
+
+		const validatedData = schema.safeParse({ name, email, message });
+
+		if (!validatedData.success) {
+			const errors = Object.values(validatedData.error.flatten().fieldErrors);
+			const errorMessage = errors.flatMap((error) => error).join(', ');
+			setResponse(errorMessage);
+			setSending(false);
+			setTimeout(() => {
+				setResponse('');
+			}, 5_000);
 			return;
 		}
 
@@ -78,10 +107,7 @@ const ContactForm: FC = () => {
 			setName('');
 			setEmail('');
 			setMessage('');
-
-			console.log('Email response:', response);
 			setResponse(response);
-
 			setTimeout(() => {
 				setResponse('');
 			}, 5_000);
@@ -96,8 +122,10 @@ const ContactForm: FC = () => {
 
 	return (
 		<Form.Root className='flex w-full flex-col gap-4' onSubmit={handleSubmit}>
-			{!!response && (
+			{response ? (
 				<p className={cn('text-sm font-medium text-gray-950 dark:text-gray-50')}>&gt; {response}</p>
+			) : (
+				<span className='inline-block h-5' />
 			)}
 			<Input
 				label='Name'
@@ -142,6 +170,7 @@ const ContactForm: FC = () => {
 					},
 				]}
 				rows={4}
+				maxLength={1000}
 				spellCheck
 			/>
 			<Form.Submit asChild>
