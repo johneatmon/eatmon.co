@@ -12,7 +12,7 @@ import {
 	type InputHTMLAttributes,
 	type TextareaHTMLAttributes,
 } from 'react';
-import { SendEmailResponse, sendEmail } from '~/lib/actions';
+import { sendEmail } from '~/lib/actions';
 import useContactForm from '~/lib/use-contact-form';
 import { cn, parseError } from '~/lib/utils';
 
@@ -73,28 +73,20 @@ const ContactForm: FC = () => {
 				name,
 				email,
 				message,
-			})) as SendEmailResponse;
+			})) as string;
 
 			setName('');
 			setEmail('');
 			setMessage('');
 
-			switch (true) {
-				case 'success' in response:
-					setResponse('Message sent successfully');
-					break;
-				case 'error' in response:
-					setResponse('Error sending message');
-					break;
-				default:
-					setResponse('Unknown error');
-					break;
-			}
+			console.log('Email response:', response);
+			setResponse(response);
 
 			setTimeout(() => {
 				setResponse('');
 			}, 5_000);
 		} catch (error) {
+			console.error('Error sending email:', error);
 			const errorMessage = parseError(error);
 			setResponse(errorMessage);
 		} finally {

@@ -9,6 +9,7 @@ import { z } from 'zod';
 import { views } from '~/drizzle/schema';
 import { ContactTemplate as template } from '~/emails/contact';
 import { db } from '~/lib/planetscale';
+import { parseError } from '~/lib/utils';
 
 export async function increment(slug: string) {
 	const data = await db.select({ count: views.count }).from(views).where(eq(views.slug, slug));
@@ -28,13 +29,11 @@ if (!process.env.RESEND_API_KEY) {
 
 const resend = new Resend(process.env.RESEND_API_KEY);
 
-export type SendEmailResponse = { success: string } | { error: string };
-
 export const sendEmail = async (data: {
 	name: string;
 	email: string;
 	message: string;
-}): Promise<SendEmailResponse> => {
+}): Promise<string> => {
 	const schema = z.object({
 		email: z.string().email().min(1),
 		name: z.string().min(1).max(100),
@@ -67,9 +66,9 @@ export const sendEmail = async (data: {
 			text,
 		});
 
-		return { success: 'Message sent successfully' };
+		return 'Message sent successfully';
 	} catch (error: unknown) {
-		console.error(new Error(error instanceof Error ? error.message : 'Unknown error'));
-		return { error: error instanceof Error ? error.message : 'Unknown error' };
+		const errorMessage = parseError(error);
+		throw new Error(errorMessage);
 	}
 };
