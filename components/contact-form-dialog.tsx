@@ -12,7 +12,6 @@ import {
 	type InputHTMLAttributes,
 	type TextareaHTMLAttributes,
 } from 'react';
-import { SendEmailResponse, sendEmail } from '~/lib/actions';
 import useContactForm from '~/lib/use-contact-form';
 import { cn, parseError } from '~/lib/utils';
 
@@ -22,7 +21,7 @@ const ContactFormDialog: FC = () => {
 	return (
 		<Dialog.Root open={open} onOpenChange={setOpen}>
 			<Dialog.Portal>
-				<Dialog.Overlay className='fixed inset-0 bg-black/75 data-[state=open]:animate-overlayShow' />
+				<Dialog.Overlay className='fixed inset-0 bg-white/75 data-[state=open]:animate-overlayShow dark:bg-black/75' />
 				<Dialog.Content
 					className={cn(
 						'fixed left-1/2 top-[40vh] grid w-full max-w-md -translate-x-1/2 -translate-y-1/2 gap-4 sm:top-1/2',
@@ -63,23 +62,39 @@ const ContactForm: FC = () => {
 		event.preventDefault();
 		setSending(true);
 
-		if (!name.trim() || !email.trim() || !message.trim()) {
-			setResponse('Please fill out all fields');
+		if (!name.trim() || !email.trim()) {
+			setResponse('Please fill out required fields');
+			setSending(false);
+			setTimeout(() => {
+				setResponse('');
+			}, 5_000);
 			return;
 		}
 
 		try {
-			const response = (await sendEmail({
-				name,
-				email,
-				message,
-			})) as SendEmailResponse;
+			const response = await fetch('/api/send', {
+				method: 'POST',
+				body: JSON.stringify({
+					name,
+					email,
+					message,
+				}),
+				cache: 'no-cache',
+			});
+
+			if (response.status !== 200) throw new Error('Error sending email');
+
+			const responseMessage = (await response.json()) as string;
 
 			setName('');
 			setEmail('');
 			setMessage('');
-			setResponse('success' in response ? response.success : response.error);
+			setResponse(responseMessage);
+			setTimeout(() => {
+				setResponse('');
+			}, 5_000);
 		} catch (error) {
+			console.error('Error sending email:', error);
 			const errorMessage = parseError(error);
 			setResponse(errorMessage);
 		} finally {
@@ -89,8 +104,10 @@ const ContactForm: FC = () => {
 
 	return (
 		<Form.Root className='flex w-full flex-col gap-4' onSubmit={handleSubmit}>
-			{!!response && (
+			{response ? (
 				<p className={cn('text-sm font-medium text-gray-950 dark:text-gray-50')}>&gt; {response}</p>
+			) : (
+				<span className='inline-block h-5' />
 			)}
 			<Input
 				label='Name'
@@ -135,6 +152,7 @@ const ContactForm: FC = () => {
 					},
 				]}
 				rows={4}
+				maxLength={1000}
 				spellCheck
 			/>
 			<Form.Submit asChild>

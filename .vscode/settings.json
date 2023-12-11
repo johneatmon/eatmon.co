@@ -9,6 +9,7 @@
   "editor.defaultFormatter": "esbenp.prettier-vscode",
   "editor.formatOnPaste": true,
   "editor.formatOnSave": true,
+  "editor.formatOnType": true,
   "editor.rulers": [100],
   "emmet.showExpandedAbbreviation": "inMarkupAndStylesheetFilesOnly",
   "files.exclude": {
@@ -20,5 +21,7 @@
   "search.exclude": {
     "**/.next": true
   },
-  "editor.formatOnType": true
+  "typescript.preferences.importModuleSpecifier": "non-relative",
+  "typescript.tsdk": "node_modules/typescript/lib",
+  "typescript.workspaceSymbols.excludeLibrarySymbols": true
 }

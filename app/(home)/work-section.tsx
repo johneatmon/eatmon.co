@@ -1,4 +1,3 @@
-import Link from 'next/link';
 import { socials } from '~/components/footer';
 import Section from '~/components/section';
 
@@ -62,12 +61,12 @@ const WorkSection = () => {
 					</li>
 				))}
 			</ul>
-			<Link
+			<a
 				href={cvLink}
 				className='mt-8 inline-block max-w-max rounded-md px-3 py-1 font-sans text-sm leading-[2em] text-black no-underline shadow-border transition hover:shadow-border-hovered dark:bg-accent dark:shadow-none dark:hover:brightness-90'
 			>
 				Read my CV
-			</Link>
+			</a>
 		</Section>
 	);
 };
