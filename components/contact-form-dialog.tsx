@@ -12,9 +12,6 @@ import {
 	type InputHTMLAttributes,
 	type TextareaHTMLAttributes,
 } from 'react';
-import sanitize from 'sanitize-html';
-import { z } from 'zod';
-import { sendEmail } from '~/lib/send-email';
 import useContactForm from '~/lib/use-contact-form';
 import { cn, parseError } from '~/lib/utils';
 
@@ -61,16 +58,6 @@ const ContactForm: FC = () => {
 	const [sending, setSending] = useState(false);
 	const [response, setResponse] = useState('');
 
-	const schema = z.object({
-		email: z.string().email().min(1),
-		name: z.string().min(1).max(100),
-		message: z
-			.string()
-			.min(0)
-			.max(1000)
-			.transform((value) => sanitize(value)),
-	});
-
 	const handleSubmit: FormEventHandler = async (event) => {
 		event.preventDefault();
 		setSending(true);
@@ -84,30 +71,25 @@ const ContactForm: FC = () => {
 			return;
 		}
 
-		const validatedData = schema.safeParse({ name, email, message });
-
-		if (!validatedData.success) {
-			const errors = Object.values(validatedData.error.flatten().fieldErrors);
-			const errorMessage = errors.flatMap((error) => error).join(', ');
-			setResponse(errorMessage);
-			setSending(false);
-			setTimeout(() => {
-				setResponse('');
-			}, 5_000);
-			return;
-		}
-
 		try {
-			const response = (await sendEmail({
-				name,
-				email,
-				message,
-			})) as string;
+			const response = await fetch('/api/send', {
+				method: 'POST',
+				body: JSON.stringify({
+					name,
+					email,
+					message,
+				}),
+				cache: 'no-cache',
+			});
+
+			if (response.status !== 200) throw new Error('Error sending email');
+
+			const responseMessage = (await response.json()) as string;
 
 			setName('');
 			setEmail('');
 			setMessage('');
-			setResponse(response);
+			setResponse(responseMessage);
 			setTimeout(() => {
 				setResponse('');
 			}, 5_000);
