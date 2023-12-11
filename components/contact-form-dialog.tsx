@@ -12,7 +12,7 @@ import {
 	type InputHTMLAttributes,
 	type TextareaHTMLAttributes,
 } from 'react';
-import { sendEmail } from '~/lib/actions';
+import { sendEmail } from '~/lib/send-email';
 import useContactForm from '~/lib/use-contact-form';
 import { cn, parseError } from '~/lib/utils';
 
@@ -63,8 +63,8 @@ const ContactForm: FC = () => {
 		event.preventDefault();
 		setSending(true);
 
-		if (!name.trim() || !email.trim() || !message.trim()) {
-			setResponse('Please fill out all fields');
+		if (!name.trim() || !email.trim()) {
+			setResponse('Please fill out required fields');
 			return;
 		}
 
