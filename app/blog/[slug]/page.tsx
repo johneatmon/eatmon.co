@@ -87,8 +87,14 @@ const BlogPost: FC<BlogPostProps> = ({ params }) => {
 
 	const blogPostJsonLd = generateJsonLd(post);
 
-	const prevPost = filteredPosts.at(filteredPosts.indexOf(post) - 1) || null;
-	const nextPost = filteredPosts.at(filteredPosts.indexOf(post) + 1) || null;
+	const prevPost =
+		filteredPosts
+			.sort((a, b) => new Date(b.date).valueOf() - new Date(a.date).valueOf())
+			.at(filteredPosts.indexOf(post) - 1) || null;
+	const nextPost =
+		filteredPosts
+			.sort((a, b) => new Date(b.date).valueOf() - new Date(a.date).valueOf())
+			.at(filteredPosts.indexOf(post) + 1) || null;
 
 	return (
 		<main className='mx-auto flex max-w-2xl flex-col px-4 pb-24 pt-[128px]'>

@@ -26,12 +26,7 @@ export default async function BlogPage() {
 				</p>
 				<ul role='list' className='flex flex-col gap-4'>
 					{filteredPosts
-						.sort((a, b) => {
-							if (new Date(a.date) > new Date(b.date)) {
-								return -1;
-							}
-							return 1;
-						})
+						.sort((a, b) => new Date(b.date).valueOf() - new Date(a.date).valueOf())
 						.map((post) => (
 							<li key={post.slug}>
 								<BlogPost {...post} />
