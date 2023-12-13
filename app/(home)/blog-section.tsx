@@ -8,7 +8,7 @@ const BlogSection = async ({ count = -1 }: { count?: number }) => {
 		<Section title='Writing'>
 			<ul role='list' className='flex flex-col gap-4'>
 				{filteredPosts
-					.sort((a, b) => new Date(a.date).valueOf() - new Date(b.date).valueOf())
+					.sort((a, b) => new Date(b.date).valueOf() - new Date(a.date).valueOf())
 					.slice(0, count)
 					.map((post) => (
 						<li key={post.slug}>
