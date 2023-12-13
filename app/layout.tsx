@@ -5,6 +5,7 @@ import { GeistSans } from 'geist/font/sans';
 import type { Metadata } from 'next';
 import type { FC, ReactNode } from 'react';
 import { Person } from 'schema-dts';
+import ContactFormDialog from '~/components/contact-form-dialog';
 import Footer from '~/components/footer';
 import Gestura from '~/lib/fonts';
 import { ThemeProvider } from '~/lib/providers/theme-provider';
@@ -107,7 +108,7 @@ const RootLayout: FC<{ readonly children: ReactNode }> = ({ children }) => (
 			/>
 			<Analytics />
 			<SpeedInsights />
-			{/* <ContactFormDialog /> */}
+			<ContactFormDialog />
 			<span dangerouslySetInnerHTML={{ __html: profileJsonLd }} />
 		</body>
 	</html>
