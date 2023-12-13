@@ -12,6 +12,7 @@ import {
 	type InputHTMLAttributes,
 	type TextareaHTMLAttributes,
 } from 'react';
+import { sendEmail } from '~/lib/actions';
 import useContactForm from '~/lib/use-contact-form';
 import { cn, parseError } from '~/lib/utils';
 
@@ -72,27 +73,19 @@ const ContactForm: FC = () => {
 		}
 
 		try {
-			const response = await fetch('/api/send', {
-				method: 'POST',
-				body: JSON.stringify({
-					name,
-					email,
-					message,
-				}),
-				cache: 'no-cache',
-			});
+			const response = await sendEmail({ name, email, message });
 
-			if (response.status !== 200) throw new Error('Error sending email');
-
-			const responseMessage = (await response.json()) as string;
-
-			setName('');
-			setEmail('');
-			setMessage('');
-			setResponse(responseMessage);
-			setTimeout(() => {
-				setResponse('');
-			}, 5_000);
+			if (!('success' in response)) {
+				throw new Error(response.error);
+			} else {
+				setName('');
+				setEmail('');
+				setMessage('');
+				setResponse(response.success);
+				setTimeout(() => {
+					setResponse('');
+				}, 5_000);
+			}
 		} catch (error) {
 			console.error('Error sending email:', error);
 			const errorMessage = parseError(error);
