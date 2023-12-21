@@ -2,7 +2,7 @@ import { filteredPosts } from '~/lib/utils';
 
 export default async function sitemap() {
 	const blogs = filteredPosts.map((post) => ({
-		url: new URL(`/blog/${post.slug}`, process.env.NEXT_PUBLIC_VERCEL_URL).href,
+		url: new URL(post.slug, process.env.NEXT_PUBLIC_VERCEL_URL).href,
 		lastModified: post.updated || post.date,
 	}));
 
