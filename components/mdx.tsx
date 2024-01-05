@@ -1,4 +1,5 @@
 import { getMDXComponent } from 'next-contentlayer/hooks';
+import Image from 'next/image';
 import type { FC, HTMLProps } from 'react';
 import BlurImage from '~/components/image';
 
@@ -17,19 +18,21 @@ const a: FC<HTMLProps<HTMLAnchorElement>> = ({ href, ...props }) => {
 	);
 };
 
-const img: FC<HTMLProps<HTMLImageElement>> = (props) => {
-	if (typeof props.src !== 'string' || typeof props.alt !== 'string') {
+const img: FC<HTMLProps<HTMLImageElement>> = ({ src, alt, width = 1240, height = 698 }) => {
+	if (typeof src !== 'string' || typeof alt !== 'string') {
 		throw new Error('Image src and alt are required');
 	}
 
 	return (
-		<BlurImage
-			src={props.src}
-			alt={props.alt}
-			width={1240}
-			height={698}
-			unoptimized={props.src.startsWith('http')}
-			className='overflow-hidden rounded'
+		<Image
+			src={src}
+			alt={alt}
+			unoptimized={src.startsWith('http')}
+			width={Number(width)}
+			height={Number(height)}
+			draggable={false}
+			loading='lazy'
+			className='overflow-hidden rounded-lg'
 		/>
 	);
 };
@@ -37,7 +40,7 @@ const img: FC<HTMLProps<HTMLImageElement>> = (props) => {
 const dinkus: FC<HTMLProps<HTMLDivElement>> = (props) => (
 	<div
 		aria-hidden
-		className='flex w-full items-center justify-center gap-x-6 font-serif text-gray-500 dark:text-gray-600'
+		className='my-[1.5em] flex w-full items-center justify-center gap-x-6 text-gray-500 dark:text-gray-600'
 		{...props}
 	>
 		{Array.from({ length: 3 }).map((_, index) => (
@@ -49,6 +52,7 @@ const dinkus: FC<HTMLProps<HTMLDivElement>> = (props) => (
 const components = {
 	a,
 	img,
+	Image: BlurImage,
 	hr: dinkus,
 };
 
@@ -56,7 +60,7 @@ export function Mdx({ code }: { code: string }) {
 	const Component = getMDXComponent(code);
 
 	return (
-		<div className='prose prose-neutral max-w-2xl dark:prose-invert'>
+		<div className='prose prose-neutral max-w-prose dark:prose-invert'>
 			<Component components={components} />
 		</div>
 	);

@@ -5,6 +5,10 @@ import { createSecureHeaders } from 'next-secure-headers';
 /** @type {import('next').NextConfig} */
 const nextConfig = {
 	reactStrictMode: true,
+	poweredByHeader: false,
+	env: {
+		NEXT_TELEMETRY_DISABLED: '1',
+	},
 	experimental: {
 		serverComponentsExternalPackages: ['linkedom'],
 	},
@@ -14,6 +18,11 @@ const nextConfig = {
 			{
 				protocol: 'https',
 				hostname: 'eatmon.co',
+				pathname: '/**/*',
+			},
+			{
+				protocol: 'https',
+				hostname: 'binsta.dev',
 				pathname: '/**/*',
 			},
 			{

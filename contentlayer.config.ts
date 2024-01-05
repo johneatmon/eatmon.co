@@ -1,5 +1,4 @@
 import { ComputedFields, defineDocumentType, makeSource } from 'contentlayer/source-files';
-import fs from 'node:fs';
 import readingTime from 'reading-time';
 import { rehypeAccessibleEmojis } from 'rehype-accessible-emojis';
 import type { Options as RehypeAutoLinkHeadingsOptions } from 'rehype-autolink-headings';
@@ -11,22 +10,12 @@ import remarkGfm from 'remark-gfm';
 import remarkSmartypants from 'remark-smartypants';
 import type { Pluggable } from 'unified';
 
-const vesper = JSON.parse(
-	fs.readFileSync(new URL('../../../theme/white-night.json', import.meta.url), 'utf-8')
-);
-
-const rehypePrettyCodeOptions: Partial<RehypePrettyCodeOptions> = {
+const rehypePrettyCodeOptions: RehypePrettyCodeOptions = {
 	theme: {
-		dark: vesper,
+		dark: 'github-dark',
 		light: 'github-light',
 	},
 	keepBackground: false,
-	onVisitLine(node) {
-		if (node.children.length === 0) {
-			node.children = [{ type: 'text', value: ' ' }];
-		}
-		node.properties.className?.push('syntax-line');
-	},
 };
 
 const rehypeAutolinkHeadingsOptions: RehypeAutoLinkHeadingsOptions = {
@@ -58,23 +47,6 @@ const computedBlogFields: ComputedFields = {
 	// 	// eslint-disable-next-line @typescript-eslint/no-unsafe-argument, @typescript-eslint/no-unsafe-member-access
 	// 	resolve: async (doc) => extractTocHeadings(doc.body.raw),
 	// },
-	// structuredData: {
-	// 	resolve: (doc) => ({
-	// 		'@context': 'https://schema.org',
-	// 		'@type': 'BlogPosting',
-	// 		author: {
-	// 			'@type': 'Person',
-	// 			name: 'Cristian Crețu',
-	// 		},
-	// 		dateModified: doc.publishedAt,
-	// 		datePublished: doc.publishedAt,
-	// 		description: doc.summary,
-	// 		headline: doc.title,
-	// 		image: doc.image ? `https://cretu.dev${doc.image}` : `https://cretu.dev/static/images/og.png`,
-	// 		url: `https://cretu.dev/writing/${doc._raw.flattenedPath}`,
-	// 	}),
-	// 	type: 'json',
-	// },
 };
 
 const Blog = defineDocumentType(() => ({
@@ -102,6 +74,7 @@ const source = makeSource({
 		rehypePlugins: [
 			rehypeAccessibleEmojis,
 			rehypeSlug,
+			// @ts-expect-error TS just be trippin'
 			[rehypePrettyCode, rehypePrettyCodeOptions],
 			[rehypeAutolinkHeadings, rehypeAutolinkHeadingsOptions],
 		],
