@@ -18,9 +18,8 @@ Here's the tech stack:
 
 I also wanted to include more than one typeface, I'm using:
 
-- Serif: [Gestura Text](https://www.socio-type.com/demo/gestura-text) from Sociotype
-- Sans serif: [Geist](https://vercel.com/font) from Vercel and Basement Studio
-- Monospace: Menlo
+- Sans serif: [Uncut Sans](https://uncut.wtf/sans-serif/uncut-sans/) from UNCUT.wtf
+- Monospace: [CommitMono](https://commitmono.com/) from Eigil Nikolajsen
 
 ## Source code
 

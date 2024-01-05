@@ -14,10 +14,7 @@ export default function NotFoundPage() {
 			<ReturnLink href='/'>Index</ReturnLink>
 			<Section>
 				<div>
-					<Shine
-						className='font-serif text-8xl font-bold tracking-tight text-[#0F0F0F]'
-						lightColor='#f7f7f7'
-					>
+					<Shine className='text-8xl font-bold tracking-tight text-[#0F0F0F]' lightColor='#f7f7f7'>
 						404
 					</Shine>
 				</div>

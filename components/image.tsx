@@ -1,5 +1,6 @@
 import Image, { ImageProps } from 'next/image';
 import fs from 'node:fs/promises';
+import path from 'node:path';
 import { getPlaiceholder } from 'plaiceholder';
 import { FC } from 'react';
 import { cn, parseError } from '~/lib/utils';
@@ -18,7 +19,7 @@ const remoteBlurHash = async (src: string) => {
 
 const localBlurHash = async (src: string) => {
 	try {
-		const file = await fs.readFile(src);
+		const file = await fs.readFile(path.join(process.cwd(), '/public', src));
 		const { base64 } = await getPlaiceholder(file);
 
 		return base64;
@@ -34,7 +35,8 @@ const BlurImage: FC<ImageProps> = async ({ src, alt, className = '', ...props }:
 	}
 
 	let blurHash;
-	if (src.startsWith('https')) {
+
+	if (src.startsWith('http')) {
 		blurHash = await remoteBlurHash(src);
 	} else {
 		blurHash = await localBlurHash(src);
@@ -46,11 +48,11 @@ const BlurImage: FC<ImageProps> = async ({ src, alt, className = '', ...props }:
 			alt={alt ?? ''}
 			width={1240}
 			height={698}
-			unoptimized={src.startsWith('http')}
 			draggable={false}
-			className={cn('overflow-hidden rounded italic', className)}
+			placeholder='blur'
 			blurDataURL={blurHash}
 			loading='lazy'
+			className={cn('overflow-hidden rounded-lg italic', className)}
 			{...props}
 		/>
 	);

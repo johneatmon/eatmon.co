@@ -1,13 +1,11 @@
 import { Analytics } from '@vercel/analytics/react';
 import { SpeedInsights } from '@vercel/speed-insights/next';
-import { GeistMono } from 'geist/font/mono';
-import { GeistSans } from 'geist/font/sans';
 import type { Metadata } from 'next';
 import type { FC, ReactNode } from 'react';
 import { Person } from 'schema-dts';
 import ContactFormDialog from '~/components/contact-form-dialog';
 import Footer from '~/components/footer';
-import Gestura from '~/lib/fonts';
+import { CommitMono, UncutSans } from '~/lib/fonts';
 import { ThemeProvider } from '~/lib/providers/theme-provider';
 import { cn, toJsonLd } from '~/lib/utils';
 import '~/styles/globals.css';
@@ -91,10 +89,9 @@ const RootLayout: FC<{ readonly children: ReactNode }> = ({ children }) => (
 		lang='en'
 		suppressHydrationWarning
 		className={cn(
-			'touch-manipulation font-serif antialiased',
-			GeistSans.variable,
-			GeistMono.variable,
-			Gestura.variable
+			'min-h-screen touch-manipulation antialiased',
+			UncutSans.variable,
+			CommitMono.variable
 		)}
 	>
 		<body className='min-h-screen bg-[#eee] text-gray-700 dark:bg-black dark:text-gray-400'>

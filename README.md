@@ -10,9 +10,6 @@ pnpm install
 
 Copy the `.env.example` file to `.env.local` and fill in the values.
 
-> [!IMPORTANT]
-> You will also need to remove the `@johneatmon/gestura-text` dependency from `package.json` because it's a [private GitHub NPM Registry package](https://eatmon.co/blog/font-files-github-npm-registry/).
-
 Start the local development server:
 
 ```bash

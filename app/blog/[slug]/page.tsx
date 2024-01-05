@@ -97,17 +97,18 @@ const BlogPost: FC<BlogPostProps> = ({ params }) => {
 			.at(filteredPosts.indexOf(post) + 1) || null;
 
 	return (
-		<main className='mx-auto flex max-w-2xl flex-col px-4 pb-24 pt-[128px]'>
+		<main className='relative mx-auto flex max-w-2xl flex-col px-4 pb-24 pt-[128px]'>
+			{/* <div className='pointer-events-none absolute -inset-x-8 bottom-0 top-8 z-[-1] bg-gray-50/5' /> */}
 			<ReturnLink href='/blog'>Back to Blog</ReturnLink>
 			<h1
-				className='mb-4 mt-16 scroll-m-20 font-sans text-4xl font-bold leading-[1.1em] tracking-tighter text-gray-950 dark:text-gray-50'
+				className='mb-4 mt-16 scroll-m-20 text-4xl font-bold leading-[1.1em] tracking-tighter text-gray-950 dark:text-gray-50'
 				dangerouslySetInnerHTML={{ __html: smartypants(post.title, 1) }}
 			/>
 			<p
-				className='mb-3 font-sans text-gray-500'
+				className='mb-3 text-gray-700 dark:text-gray-300'
 				dangerouslySetInnerHTML={{ __html: smartypants(post.description, 1) }}
 			/>
-			<small className='mb-8 flex items-center gap-x-1 tabular-nums text-gray-500'>
+			<small className='mb-8 flex items-center gap-x-1 text-gray-500'>
 				<time dateTime={new Date(post.date).toISOString()}>
 					{new Date(post.date).toLocaleDateString('en-US', {
 						year: 'numeric',
@@ -133,8 +134,8 @@ const BlogPost: FC<BlogPostProps> = ({ params }) => {
 							<span className='mb-0.5 inline-block text-gray-500'>Previous</span>
 							<Link
 								className='line-clamp-1 font-[450] dark:text-gray-50'
-								title={prevPost.title}
 								href={prevPost.slug}
+								title={prevPost.title}
 							>
 								{prevPost.title}
 							</Link>
@@ -143,7 +144,11 @@ const BlogPost: FC<BlogPostProps> = ({ params }) => {
 					{nextPost && (
 						<div aria-label='Next post' className='w-1/2 text-right font-sans'>
 							<span className='mb-0.5 inline-block text-gray-500'>Next</span>
-							<Link className='line-clamp-1 font-[450] dark:text-gray-50' href={nextPost.slug}>
+							<Link
+								className='line-clamp-1 font-[450] dark:text-gray-50'
+								href={nextPost.slug}
+								title={nextPost.title}
+							>
 								{nextPost.title}
 							</Link>
 						</div>

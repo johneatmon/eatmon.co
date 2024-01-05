@@ -1,19 +1,25 @@
 import localFont from 'next/font/local';
 
-const Gestura = localFont({
+const CommitMono = localFont({
 	preload: true,
+	weight: '200 700',
 	display: 'swap',
-	variable: '--font-gestura-text',
+	variable: '--font-commit-mono',
 	src: [
-		{
-			path: '../node_modules/@johneatmon/gestura-text/files/woff2/Gestura-Text-Roman-VF.woff2',
-			style: 'normal',
-		},
-		{
-			path: '../node_modules/@johneatmon/gestura-text/files/woff2/Gestura-Text-Italic-VF.woff2',
-			style: 'italic',
-		},
+		{ path: '../public/Commit-Mono-Variable.woff2', style: 'normal' },
+		{ path: '../public/Commit-Mono-Variable.woff2', style: 'italic' },
 	],
 });
 
-export default Gestura;
+const UncutSans = localFont({
+	preload: true,
+	weight: '300 700',
+	display: 'swap',
+	variable: '--font-uncut-sans',
+	src: [
+		{ path: '../public/Uncut-Sans-Variable.woff2', style: 'normal' },
+		{ path: '../public/Uncut-Sans-Variable.woff2', style: 'italic' },
+	],
+});
+
+export { CommitMono, UncutSans };

@@ -5,8 +5,13 @@ import { createSecureHeaders } from 'next-secure-headers';
 /** @type {import('next').NextConfig} */
 const nextConfig = {
 	reactStrictMode: true,
+	poweredByHeader: false,
+	env: {
+		NEXT_TELEMETRY_DISABLED: '1',
+	},
 	experimental: {
 		serverComponentsExternalPackages: ['linkedom'],
+		useLightningcss: true,
 	},
 	images: {
 		formats: ['image/avif', 'image/webp'],
@@ -105,9 +110,7 @@ const nextConfig = {
 		return config;
 	},
 };
-
 const withContentlayer = createContentlayerPlugin({});
-
 const config = withPlaiceholder(withContentlayer(nextConfig));
 
 export default config;

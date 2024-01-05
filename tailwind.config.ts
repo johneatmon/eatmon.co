@@ -9,7 +9,6 @@ const config: Config = {
 		'./app/**/*.{js,ts,jsx,tsx,mdx}',
 		'./components/**/*.{js,ts,jsx,tsx,mdx}',
 		'./content/**/*.{js,ts,jsx,tsx,mdx}',
-		'./node_modules/contentlayer-datapad/**/*.js',
 	],
 	future: {
 		hoverOnlyWhenSupported: true,
@@ -17,18 +16,19 @@ const config: Config = {
 	theme: {
 		fontFamily: {
 			sans: [
-				['var(--font-geist-sans)', ...defaultTheme.fontFamily.sans],
+				['var(--font-uncut-sans)', ...defaultTheme.fontFamily.sans],
 				{
-					fontFeatureSettings: '"kern", "dlig", "liga", "ss03" on',
+					fontFeatureSettings: '"kern", "liga", "ss02", "ss05"',
+					fontVariationSettings: '"slnt" 0',
 				},
 			],
-			serif: [
-				['var(--font-gestura-text)', ...defaultTheme.fontFamily.serif],
+			mono: [
+				['var(--font-commit-mono)', 'Menlo', ...defaultTheme.fontFamily.mono],
 				{
-					fontFeatureSettings: '"kern", "liga"',
+					fontFeatureSettings:
+						'"ss01", "ss02", "ss03", "ss04", "ss05", "cv02", "cv03", "cv07", "cv10", "cv11"',
 				},
 			],
-			mono: ['Menlo', ...defaultTheme.fontFamily.mono],
 		},
 		extend: {
 			animation: {
