@@ -22,7 +22,7 @@ export default function ColophonPage() {
 }
 
 const getMarkdown = cache(() => {
-	const rawContent = fs.readFileSync(path.join(process.cwd(), `./colophon.md`), 'utf-8');
+	const rawContent = fs.readFileSync(path.join(process.cwd(), `./COLOPHON.md`), 'utf-8');
 	const content = smartypants(rawContent, 1).trim();
 
 	return matter(content);
