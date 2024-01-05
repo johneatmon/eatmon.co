@@ -11,6 +11,7 @@ const nextConfig = {
 	},
 	experimental: {
 		serverComponentsExternalPackages: ['linkedom'],
+		useLightningcss: true,
 	},
 	images: {
 		formats: ['image/avif', 'image/webp'],
@@ -109,9 +110,7 @@ const nextConfig = {
 		return config;
 	},
 };
-
 const withContentlayer = createContentlayerPlugin({});
-
 const config = withPlaiceholder(withContentlayer(nextConfig));
 
 export default config;
