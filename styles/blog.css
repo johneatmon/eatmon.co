@@ -122,14 +122,17 @@ span[data-rehype-pretty-code-figure] {
 figure[data-rehype-pretty-code-figure] {
 	@apply -mx-4 my-0 border border-gray-200 sm:rounded-lg dark:border-gray-800/60;
 
+	&:has(figcaption) > pre {
+		@apply rounded-t-none;
+	}
+
 	& figcaption {
 		/* &::before {
 			content: '\003e';
 			margin-right: 0.5em;
 		} */
 
-		margin: 0;
-		padding: theme('spacing.4') theme('spacing.6');
+		@apply m-0 rounded-t-lg bg-gray-100 p-4 text-gray-600 dark:bg-transparent dark:text-gray-400;
 	}
 
 	/* Styling for line numbers */
@@ -154,4 +157,8 @@ figure[data-rehype-pretty-code-figure] {
 			width: 3rem;
 		}
 	}
+}
+
+span[data-highlighted-line] {
+	@apply -mx-4 bg-black/5 pl-4 brightness-90 dark:bg-gray-900 dark:brightness-125;
 }

@@ -2,7 +2,20 @@
 title: Use Hyphenopoly to insert better hyphenations in your Markdown content
 description: Automagically insert soft hyphens into your Markdown content using Frank Liang's LaTeX algorithm.
 date: 2023-03-31
-updated: 2023-04-02
+updated: 2023-01-04
+---
+
+**Update 2024-01-04:** The `hyphenate-limit-chars` property [has ~70% global support](https://caniuse.com/mdn-css_properties_hyphenate-limit-chars). The easiest solution would be to add the following to your CSS:
+
+```css
+@supports (hyphenate-limit-chars: 6 3) {
+  .prose :where(p, li, blockquote, dl /* etc. */) {
+    hyphens: auto;
+    hyphenate-limit-chars: 6 3;
+  }
+}
+```
+
 ---
 
 Adding on to my previous post, [Remove runts from your Astro Markdown files with ~15 lines of code](/blog/remove-runts-markdown), I wanted to share another quick tip for improving the layout of your Markdown prose.
@@ -27,7 +40,7 @@ Under the hood, I'm using the package `hyphenopoly` to insert these soft hyphens
 
 This time, we'll need two npm packages:
 
-```zsh
+```bash
 npm install unist-util-visit hyphenopoly
 ```
 
@@ -35,7 +48,7 @@ npm install unist-util-visit hyphenopoly
 
 Now, we'll create the JS file that will actually do the transformation. I like to store my custom plugins in a folder called `/remark-plugins` at the root of my project, but you're welcome to put them wherever.
 
-```js title="remark-plugins/remark-hyphenate.mjs" {18}
+```js title="remark-plugins/remark-hyphenate.mjs" showLineNumbers {18}
 import { readFileSync } from 'node:fs';
 import { dirname } from 'path';
 import { fileURLToPath } from 'url';
