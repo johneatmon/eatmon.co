@@ -6,12 +6,9 @@ export const runtime = 'edge';
 export async function GET(req: NextRequest) {
 	const { searchParams } = req.nextUrl;
 	const title = searchParams.get('title');
-	const font = fetch(
-		new URL(
-			'../../node_modules/@johneatmon/gestura-text/files/woff/Gestura-Text-Light.woff',
-			import.meta.url
-		)
-	).then((res) => res.arrayBuffer());
+	const font = fetch(new URL('../../public/Uncut-Sans-Bold.woff', import.meta.url)).then((res) =>
+		res.arrayBuffer()
+	);
 	const fontData = await font;
 
 	const background = () => {
@@ -42,8 +39,8 @@ export async function GET(req: NextRequest) {
 						marginInline: 100,
 						display: 'flex',
 						fontSize: 64,
-						fontFamily: 'Gestura Text',
-						fontWeight: 350,
+						fontFamily: 'Uncut Sans',
+						fontWeight: 700,
 						letterSpacing: '-0.05em',
 						fontStyle: 'normal',
 						color: 'white',
@@ -60,7 +57,7 @@ export async function GET(req: NextRequest) {
 			height: 627,
 			fonts: [
 				{
-					name: 'Gestura Text',
+					name: 'Uncut Sans',
 					data: fontData,
 					style: 'normal',
 				},
