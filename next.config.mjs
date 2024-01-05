@@ -22,11 +22,6 @@ const nextConfig = {
 			},
 			{
 				protocol: 'https',
-				hostname: 'binsta.dev',
-				pathname: '/**/*',
-			},
-			{
-				protocol: 'https',
 				hostname: 'a.ltrbxd.com',
 				pathname: '/resized/**/*',
 			},
