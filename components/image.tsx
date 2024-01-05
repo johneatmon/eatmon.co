@@ -52,7 +52,7 @@ const BlurImage: FC<ImageProps> = async ({ src, alt, className = '', ...props }:
 			placeholder='blur'
 			blurDataURL={blurHash}
 			loading='lazy'
-			className={cn('overflow-hidden rounded italic', className)}
+			className={cn('overflow-hidden rounded-lg italic', className)}
 			{...props}
 		/>
 	);
