@@ -19,6 +19,7 @@ const config: Config = {
 				['var(--font-uncut-sans)', ...defaultTheme.fontFamily.sans],
 				{
 					fontFeatureSettings: '"kern", "liga", "ss02", "ss05"',
+					fontVariationSettings: '"slnt" 0',
 				},
 			],
 			mono: [

@@ -94,7 +94,7 @@ const RootLayout: FC<{ readonly children: ReactNode }> = ({ children }) => (
 			CommitMono.variable
 		)}
 	>
-		<body className='min-h-screen bg-[#eee] font-sans font-sans text-gray-700 dark:bg-black dark:text-gray-400'>
+		<body className='min-h-screen bg-[#eee] text-gray-700 dark:bg-black dark:text-gray-400'>
 			<ThemeProvider attribute='class' defaultTheme='system' enableSystem disableTransitionOnChange>
 				{children}
 				<Footer />
