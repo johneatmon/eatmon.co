@@ -8,7 +8,7 @@ import type { Blog } from '~/.contentlayer/generated';
 import ViewCounter from '~/app/blog/view-counter';
 import { Mdx } from '~/components/mdx';
 import ReturnLink from '~/components/return-link';
-import { getViewsCount } from '~/lib/planetscale';
+import { getViewsCount } from '~/lib/db';
 import { cn, filteredPosts, toJsonLd } from '~/lib/utils';
 import '~/styles/blog.css';
 

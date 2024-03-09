@@ -1,7 +1,7 @@
 import Link from 'next/link';
 import { Suspense } from 'react';
 import ViewCounter from '~/app/blog/view-counter';
-import { getViewsCount } from '~/lib/planetscale';
+import { getViewsCount } from '~/lib/db';
 
 export default function BlogPost({
 	slug,

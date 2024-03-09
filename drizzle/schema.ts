@@ -1,6 +1,6 @@
-import { int, mysqlTable, varchar } from 'drizzle-orm/mysql-core';
+import { integer, pgTable, varchar } from 'drizzle-orm/pg-core';
 
-export const views = mysqlTable('views', {
+export const views = pgTable('views', {
 	slug: varchar('slug', { length: 255 }).primaryKey(),
-	count: int('count', { unsigned: true }).default(0),
+	count: integer('count').default(0),
 });

@@ -1,25 +1,16 @@
-import { connect } from '@planetscale/database';
 import { sum } from 'drizzle-orm';
-import { drizzle } from 'drizzle-orm/planetscale-serverless';
+import { drizzle } from 'drizzle-orm/postgres-js';
 import { unstable_cache as cache } from 'next/cache';
+import postgres from 'postgres';
 import 'server-only';
 import { views } from '~/drizzle/schema';
 
-const connection = connect({
-	host: process.env['DATABASE_HOST'],
-	username: process.env['DATABASE_USERNAME'],
-	password: process.env['DATABASE_PASSWORD'],
-});
-
-export const db = drizzle(connection);
+const pgClient = postgres(process.env.DATABASE_URL!);
+export const db = drizzle(pgClient);
 
 export const getTotalBlogViews = cache(
 	async () => {
-		if (
-			!process.env.DATABASE_HOST ||
-			!process.env.DATABASE_USERNAME ||
-			!process.env.DATABASE_PASSWORD
-		) {
+		if (!process.env.DATABASE_URL) {
 			return 0;
 		}
 
@@ -34,6 +25,10 @@ export const getTotalBlogViews = cache(
 
 export const getViewsCount = cache(
 	async () => {
+		if (!process.env.DATABASE_URL) {
+			return [];
+		}
+
 		return db.select({ slug: views.slug, count: views.count }).from(views);
 	},
 	['all-views'],
