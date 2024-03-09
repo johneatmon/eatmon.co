@@ -77,4 +77,5 @@ const ContactTemplateDemo: FC = () => (
 	/>
 );
 
+/** @public */
 export default ContactTemplateDemo;

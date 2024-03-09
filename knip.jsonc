@@ -1,0 +1,10 @@
+{
+	"$schema": "https://unpkg.com/knip@3/schema.json",
+	"entry": ["contentlayer.config.ts"],
+	"ignore": ["app/og/route.tsx"],
+	"ignoreDependencies": ["eslint-config-next", "postcss-nesting", "@svgr/webpack"],
+	"ignoreExportsUsedInFile": {
+		"interface": true,
+		"type": true
+	}
+}
