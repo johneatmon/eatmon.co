@@ -17,7 +17,7 @@ export async function increment(slug: string) {
 	await db
 		.insert(views)
 		.values({ slug, count: 1 })
-		.onConflictDoUpdate({ target: views.count, set: { count: blogViews + 1 } });
+		.onConflictDoUpdate({ target: views.slug, set: { count: blogViews + 1 } });
 
 	return;
 }
