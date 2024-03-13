@@ -10,7 +10,7 @@ Here's the tech stack:
 - Styling: Tailwind CSS
 - Email: [Resend](https://resend.com/home) + [React Email](https://react.email/)
 - Content: [Contentlayer](https://contentlayer.dev/) + MDX
-- Database: [PlanetScale](https://planetscale.com/) + [Drizzle ORM](https://drizzle.dev/)
+- Database: [Supabase](https://supabase.com) + [Drizzle ORM](https://drizzle.dev/)
 - Hosting: [Vercel](https://vercel.com/home)
 - Domain/DNS: [Cloudflare](https://www.cloudflare.com/)
 - Image CDN: [Cloudflare Images](https://developers.cloudflare.com/images/cloudflare-images/)

@@ -7,7 +7,7 @@ import sanitize from 'sanitize-html';
 import { z } from 'zod';
 import { views } from '~/drizzle/schema';
 import { ContactTemplate as template } from '~/emails/contact';
-import { db } from '~/lib/planetscale';
+import { db } from '~/lib/db';
 import { parseError } from '~/lib/utils';
 
 export async function increment(slug: string) {
@@ -17,7 +17,7 @@ export async function increment(slug: string) {
 	await db
 		.insert(views)
 		.values({ slug, count: 1 })
-		.onDuplicateKeyUpdate({ set: { count: blogViews + 1 } });
+		.onConflictDoUpdate({ target: views.count, set: { count: blogViews + 1 } });
 
 	return;
 }

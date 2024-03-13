@@ -3,7 +3,7 @@ import { Suspense, type FC } from 'react';
 import BlogPost from '~/components/blog-post';
 import ReturnLink from '~/components/return-link';
 import Section from '~/components/section';
-import { getTotalBlogViews } from '~/lib/planetscale';
+import { getTotalBlogViews } from '~/lib/db';
 import { filteredPosts } from '~/lib/utils';
 
 export const metadata: Metadata = {
