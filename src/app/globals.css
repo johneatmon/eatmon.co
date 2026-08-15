@@ -4,8 +4,8 @@
 @custom-variant dark (&:where(.dark, .dark *));
 
 @theme {
-  --font-sans: var(--font-uncut-sans), ui-sans-serif, system-ui, sans-serif;
-  --font-mono: var(--font-server-mono), ui-monospace, monospace;
+  --font-sans: var(--font-soehne), Helvetica, Arial, sans-serif;
+  --font-mono: var(--font-server-mono), ui-monospace, Menlo, Consolas, monospace;
 
   --color-canvas: #050505;
   --color-canvas-elevated: #0c0c0c;
@@ -59,7 +59,7 @@
     background: var(--background);
     color: var(--foreground);
     font-family: var(--font-sans);
-    font-feature-settings: "kern", "liga", "ss02", "ss05";
+    font-feature-settings: "kern", "liga";
     text-rendering: optimizeLegibility;
     -webkit-font-smoothing: antialiased;
     -moz-osx-font-smoothing: grayscale;

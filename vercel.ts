@@ -6,7 +6,7 @@ import { routes, type VercelConfig } from '@vercel/config/v1';
  */
 export const config: VercelConfig = {
   buildCommand: 'pnpm build',
-  installCommand: 'pnpm install',
+  installCommand: 'pnpm config set "//npm.pkg.github.com/:_authToken" "$GITHUB_PAT" && pnpm install',
   cleanUrls: true,
   framework: 'nextjs',
   regions: ['pdx1'],
