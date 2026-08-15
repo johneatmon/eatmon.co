@@ -1,7 +1,0 @@
-{
-  "buildCommand": "next build",
-  "cleanUrls": true,
-  "framework": "nextjs",
-  "regions": ["pdx1"],
-  "trailingSlash": false
-}

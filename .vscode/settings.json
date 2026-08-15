@@ -1,27 +1,53 @@
 {
-  "cSpell.ignorePaths": ["bun.lockb", ".git", "node_modules", ".vscode"],
-  "cSpell.words": ["Eatmon", "planetscale"],
+  "cSpell.ignorePaths": [
+    ".git",
+    ".next",
+    ".pnpm-store",
+    ".vscode",
+    "node_modules"
+  ],
+  "cSpell.words": [
+    "eatmon",
+    "nosniff",
+    "soundcloud",
+    "subline",
+    "supabase",
+    "synthesist",
+    "turbopack"
+  ],
   "editor.codeActionsOnSave": {
-    "source.organizeImports": "explicit",
-    "source.fixAll.esbenp.prettier-vscode": "explicit",
-    "source.fixAll.eslint": "explicit"
+    "source.fixAll.biome": "explicit",
   },
-  "editor.defaultFormatter": "esbenp.prettier-vscode",
+  "editor.defaultFormatter": "biomejs.biome",
   "editor.formatOnPaste": true,
   "editor.formatOnSave": true,
   "editor.formatOnType": true,
-  "editor.rulers": [100],
+  "editor.rulers": [
+    100
+  ],
   "emmet.showExpandedAbbreviation": "inMarkupAndStylesheetFilesOnly",
   "files.exclude": {
     "**/.next": true,
+    "**/.pnpm-store": true,
     "**/node_modules": true
   },
-  "prettier.configPath": "prettier.config.cjs",
-  "prettier.useEditorConfig": false,
   "search.exclude": {
-    "**/.next": true
+    "**/.next": true,
+    "**/node_modules": true
   },
-  "typescript.preferences.importModuleSpecifier": "non-relative",
-  "typescript.tsdk": "node_modules/typescript/lib",
-  "typescript.workspaceSymbols.excludeLibrarySymbols": true
+  "js/ts.preferences.importModuleSpecifier": "non-relative",
+  "js/ts.tsdk.path": "node_modules/typescript/lib",
+  "js/ts.workspaceSymbols.excludeLibrarySymbols": true,
+  "[typescript]": {
+    "editor.defaultFormatter": "biomejs.biome"
+  },
+  "[typescriptreact]": {
+    "editor.defaultFormatter": "biomejs.biome"
+  },
+  "[javascript]": {
+    "editor.defaultFormatter": "biomejs.biome"
+  },
+  "[json]": {
+    "editor.defaultFormatter": "biomejs.biome"
+  }
 }

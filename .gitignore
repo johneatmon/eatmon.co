@@ -2,6 +2,7 @@
 
 # dependencies
 /node_modules
+/.pnpm-store
 /.pnp
 .pnp.js
 
@@ -26,16 +27,18 @@ yarn-error.log*
 
 # local env files
 .env*.local
+.env
 
 # vercel
 .vercel
+
+# supabase CLI local link cache (project ref, pooler host, etc.)
+supabase/.temp/
 
 # typescript
 *.tsbuildinfo
 next-env.d.ts
 
-# react.email
-.react-email
-
-# contentlayer
-.contentlayer
+# fonts
+/public/fonts/*
+.env*

@@ -1,0 +1,242 @@
+@import "tailwindcss";
+@plugin "@tailwindcss/typography";
+
+@custom-variant dark (&:where(.dark, .dark *));
+
+@theme {
+  --font-sans: var(--font-uncut-sans), ui-sans-serif, system-ui, sans-serif;
+  --font-mono: var(--font-server-mono), ui-monospace, monospace;
+
+  --color-canvas: #050505;
+  --color-canvas-elevated: #0c0c0c;
+  --color-ink: #f0eee8;
+  --color-ink-muted: #8a8780;
+  --color-ink-faint: #55524c;
+  --color-line: #1a1a1a;
+  --color-line-strong: #2a2a2a;
+  --color-accent: #e8ff6a;
+
+  --ease-out-expo: cubic-bezier(0.16, 1, 0.3, 1);
+  --ease-out-quart: cubic-bezier(0.25, 1, 0.5, 1);
+}
+
+@layer base {
+  :root {
+    color-scheme: dark;
+    --background: var(--color-canvas);
+    --foreground: var(--color-ink);
+    --muted: var(--color-ink-muted);
+    --border: var(--color-line);
+  }
+
+  .light {
+    color-scheme: light;
+    --background: #f4f2ec;
+    --foreground: #12110f;
+    --muted: #6b6760;
+    --border: #ddd9d0;
+  }
+
+  html {
+    scroll-behavior: smooth;
+  }
+
+  @media (prefers-reduced-motion: reduce) {
+    html {
+      scroll-behavior: auto;
+    }
+
+    *,
+    *::before,
+    *::after {
+      animation-duration: 0.01ms !important;
+      animation-iteration-count: 1 !important;
+      transition-duration: 0.01ms !important;
+    }
+  }
+
+  body {
+    background: var(--background);
+    color: var(--foreground);
+    font-family: var(--font-sans);
+    font-feature-settings: "kern", "liga", "ss02", "ss05";
+    text-rendering: optimizeLegibility;
+    -webkit-font-smoothing: antialiased;
+    -moz-osx-font-smoothing: grayscale;
+  }
+
+  ::selection {
+    background: color-mix(in oklab, var(--color-accent) 70%, white);
+    color: #0a0a0a;
+  }
+
+  a {
+    color: inherit;
+    text-decoration-color: color-mix(in oklab, var(--foreground) 22%, transparent);
+    text-decoration-thickness: 1px;
+    text-underline-offset: 0.18em;
+    transition:
+      color 200ms var(--ease-out-quart),
+      text-decoration-color 200ms var(--ease-out-quart);
+  }
+
+  a:hover,
+  a:focus-visible {
+    text-decoration-color: color-mix(in oklab, var(--foreground) 70%, transparent);
+  }
+
+  :focus-visible {
+    outline: 1.5px solid var(--color-accent);
+    outline-offset: 3px;
+  }
+}
+
+@layer utilities {
+  .text-balance {
+    text-wrap: balance;
+  }
+
+  .reveal {
+    animation: reveal 700ms var(--ease-out-expo) both;
+  }
+
+  .reveal-delay-1 {
+    animation-delay: 60ms;
+  }
+
+  .reveal-delay-2 {
+    animation-delay: 120ms;
+  }
+
+  .reveal-delay-3 {
+    animation-delay: 180ms;
+  }
+
+  .reveal-delay-4 {
+    animation-delay: 240ms;
+  }
+
+  .link-fade {
+    transition: opacity 200ms var(--ease-out-quart);
+  }
+
+  .link-fade:hover {
+    opacity: 0.72;
+  }
+
+  .hairline {
+    background: var(--border);
+  }
+}
+
+@keyframes reveal {
+  from {
+    opacity: 0;
+    transform: translateY(10px);
+    filter: blur(4px);
+  }
+
+  to {
+    opacity: 1;
+    transform: translateY(0);
+    filter: blur(0);
+  }
+}
+
+/* Prose / MDX */
+.prose-site {
+  --tw-prose-body: color-mix(in oklab, var(--foreground) 78%, transparent);
+  --tw-prose-headings: var(--foreground);
+  --tw-prose-links: var(--foreground);
+  --tw-prose-bold: var(--foreground);
+  --tw-prose-counters: var(--muted);
+  --tw-prose-bullets: var(--muted);
+  --tw-prose-hr: var(--border);
+  --tw-prose-quotes: var(--foreground);
+  --tw-prose-quote-borders: var(--border);
+  --tw-prose-captions: var(--muted);
+  --tw-prose-code: var(--foreground);
+  --tw-prose-pre-code: var(--foreground);
+  --tw-prose-pre-bg: var(--color-canvas-elevated);
+  --tw-prose-th-borders: var(--border);
+  --tw-prose-td-borders: var(--border);
+
+  font-size: 1rem;
+  line-height: 1.75;
+  max-width: 65ch;
+}
+
+.prose-site :where(h1, h2, h3, h4) {
+  letter-spacing: -0.03em;
+  font-weight: 550;
+  scroll-margin-top: 6rem;
+}
+
+.prose-site :where(a) {
+  font-weight: 450;
+}
+
+.prose-site :where(pre) {
+  border: 1px solid var(--border);
+  border-radius: 0.75rem;
+  padding: 1rem 1.125rem;
+  overflow-x: auto;
+  font-family: var(--font-mono);
+  font-size: 0.875rem;
+  line-height: 1.7;
+}
+
+.prose-site :where(code) {
+  font-family: var(--font-mono);
+  font-feature-settings: "ss01", "ss02", "ss03", "ss04", "ss05";
+}
+
+.prose-site :where(:not(pre) > code) {
+  border: 1px solid var(--border);
+  border-radius: 0.35rem;
+  padding: 0.12em 0.35em;
+  font-size: 0.875em;
+  background: color-mix(in oklab, var(--foreground) 4%, transparent);
+}
+
+.prose-site :where(:not(pre) > code)::before,
+.prose-site :where(:not(pre) > code)::after {
+  content: none;
+}
+
+.prose-site :where(img) {
+  border-radius: 0.75rem;
+  border: 1px solid var(--border);
+}
+
+.prose-site :where(hr) {
+  border: 0;
+  height: 1px;
+  background: var(--border);
+  margin-block: 2.5rem;
+}
+
+/* sugar-high tokens */
+:root {
+  --sh-class: #e8ff6a;
+  --sh-identifier: #f0eee8;
+  --sh-sign: #8a8780;
+  --sh-property: #9ecbff;
+  --sh-entity: #ffd28a;
+  --sh-jsxliterals: #c4b5fd;
+  --sh-string: #b8e986;
+  --sh-keyword: #ff9eaa;
+  --sh-comment: #6b6760;
+}
+
+.light {
+  --sh-class: #5a6b00;
+  --sh-identifier: #1a1916;
+  --sh-sign: #6b6760;
+  --sh-property: #2563a8;
+  --sh-entity: #9a6700;
+  --sh-jsxliterals: #6d28d9;
+  --sh-string: #3f6b14;
+  --sh-keyword: #b42318;
+  --sh-comment: #8a8780;
+}
