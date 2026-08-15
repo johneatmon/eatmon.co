@@ -1,7 +1,3 @@
-# Colophon
-
-The technologies, services, and inspiration behind this site.
-
 ## How it's built
 
 - Front-end: Next.js + React
@@ -14,7 +10,7 @@ The technologies, services, and inspiration behind this site.
 
 **Typography**
 
-- Sans: [Uncut Sans](https://uncut.wtf/sans-serif/uncut-sans/) from UNCUT.wtf
+- Sans: [Söhne](https://klim.co.nz/retail-fonts/soehne/) from Klim Type Foundry
 - Mono: [Server Mono](https://servermono.com/) from Internet Development Studio
 
 ## Source code
