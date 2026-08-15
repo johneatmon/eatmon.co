@@ -29,11 +29,15 @@
   "files.exclude": {
     "**/.next": true,
     "**/.pnpm-store": true,
-    "**/node_modules": true
+    "**/.vercel": true,
+    "**/node_modules": true,
+    "**/tsconfig.tsbuildinfo": true,
   },
   "search.exclude": {
     "**/.next": true,
-    "**/node_modules": true
+    "**/.vercel": true,
+    "**/node_modules": true,
+    "**/tsconfig.tsbuildinfo": true,
   },
   "js/ts.preferences.importModuleSpecifier": "non-relative",
   "js/ts.tsdk.path": "node_modules/typescript/lib",
