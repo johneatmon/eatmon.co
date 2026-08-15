@@ -94,7 +94,7 @@ export default function HomePage() {
                 </a>
                 <span className="text-(--muted)"> · {item.company}</span>
               </p>
-              <p className="text-[11px] tracking-[0.04em] text-(--muted) tabular-nums">
+              <p className="text-sm tracking-tight text-(--muted) tabular-nums">
                 {item.start}&ndash;{item.end ?? 'Present'}
               </p>
             </li>

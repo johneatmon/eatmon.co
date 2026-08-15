@@ -5,20 +5,30 @@ import remarkGfm from 'remark-gfm';
 import { highlight } from 'sugar-high';
 import { BlurImage } from '~/components/image';
 import { remarkSmartypants } from '~/lib/remark-smartypants';
+import { cn } from '~/lib/utils';
 
-function Anchor({ href = '', children, ...props }: ComponentProps<'a'>) {
+const linkClassName =
+  'underline text-(--foreground) transition-opacity duration-200 hover:opacity-70';
+
+function Anchor({ href = '', className, children, ...props }: ComponentProps<'a'>) {
   const external = href.startsWith('http');
 
   if (external) {
     return (
-      <a href={href} target="_blank" rel="noopener noreferrer" {...props}>
+      <a
+        href={href}
+        target="_blank"
+        rel="noopener noreferrer"
+        className={cn(linkClassName, className)}
+        {...props}
+      >
         {children}
       </a>
     );
   }
 
   return (
-    <Link href={href} {...props}>
+    <Link href={href} className={cn(linkClassName, className)} {...props}>
       {children}
     </Link>
   );
