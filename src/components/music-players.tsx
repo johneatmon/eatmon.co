@@ -120,14 +120,15 @@ function drawWaveform(
 
     ctx.fillStyle = played ? accent : ink;
 
-    ctx.globalAlpha = played ? 1 : 0.26;
+    // Unplayed bars need enough alpha to read on the light canvas too.
+    ctx.globalAlpha = played ? 1 : 0.55;
     ctx.fillRect(x, baseline - topHeight, barWidth, topHeight);
 
-    ctx.globalAlpha = played ? 0.48 : 0.16;
+    ctx.globalAlpha = played ? 0.48 : 0.32;
     ctx.fillRect(x, baseline + 1, barWidth, reflectionHeight);
   }
 
-  ctx.globalAlpha = 0.14;
+  ctx.globalAlpha = 0.22;
   ctx.fillStyle = ink;
   ctx.fillRect(0, baseline, width, 1);
   ctx.globalAlpha = 1;
@@ -390,15 +391,29 @@ function TrackRow({
     if (!canvas) return;
 
     const paint = () => {
+      const styles = getComputedStyle(document.documentElement);
+      // Prefer muted so unplayed bars stay visible on both canvases; fall back to ink.
       const ink =
-        getComputedStyle(document.documentElement).getPropertyValue('--foreground').trim() ||
-        '#f0eee8';
+        styles.getPropertyValue('--muted').trim() ||
+        styles.getPropertyValue('--foreground').trim() ||
+        '#8a8780';
       drawWaveform(canvas, track.peaks, progress, gradient.accent, ink);
     };
 
     paint();
     window.addEventListener('resize', paint);
-    return () => window.removeEventListener('resize', paint);
+
+    // next-themes toggles class on <html>; repaint when light/dark switches.
+    const observer = new MutationObserver(paint);
+    observer.observe(document.documentElement, {
+      attributes: true,
+      attributeFilter: ['class', 'data-theme', 'style'],
+    });
+
+    return () => {
+      window.removeEventListener('resize', paint);
+      observer.disconnect();
+    };
   }, [progress, track.peaks, gradient.accent]);
 
   const seekFromClientX = useCallback(
