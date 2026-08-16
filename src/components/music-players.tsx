@@ -481,9 +481,10 @@ function TrackRow({
 
   return (
     <article className="flex gap-4 border-b border-(--border) py-6 sm:gap-6">
+      {/* Desktop: artwork left of the whole row (pre-change layout). */}
       <div
         aria-hidden="true"
-        className="aspect-square w-16 shrink-0 border border-(--border) sm:w-38"
+        className="hidden aspect-square w-38 shrink-0 self-start border border-(--border) sm:block"
         style={{ backgroundImage: gradient.backgroundImage }}
       />
 
@@ -519,20 +520,29 @@ function TrackRow({
           </span>
         </div>
 
-        <canvas
-          ref={canvasRef}
-          role="slider"
-          tabIndex={0}
-          aria-label={`${track.title} waveform`}
-          aria-valuemin={0}
-          aria-valuemax={Math.round(displayDuration)}
-          aria-valuenow={Math.round(active ? currentTime : 0)}
-          aria-valuetext={`${formatTime(active ? currentTime : 0)} of ${formatTime(displayDuration)}`}
-          className="mt-4 h-14 w-full cursor-pointer touch-none sm:mt-5 sm:h-16"
-          onPointerDown={onWavePointerDown}
-          onPointerMove={onWavePointerMove}
-          onKeyDown={onWaveKeyDown}
-        />
+        {/* Mobile: artwork beside the waveform. Desktop: full-width waveform only. */}
+        <div className="mt-4 flex items-center gap-4 sm:mt-5">
+          <div
+            aria-hidden="true"
+            className="aspect-square size-14 shrink-0 border border-(--border) sm:hidden"
+            style={{ backgroundImage: gradient.backgroundImage }}
+          />
+
+          <canvas
+            ref={canvasRef}
+            role="slider"
+            tabIndex={0}
+            aria-label={`${track.title} waveform`}
+            aria-valuemin={0}
+            aria-valuemax={Math.round(displayDuration)}
+            aria-valuenow={Math.round(active ? currentTime : 0)}
+            aria-valuetext={`${formatTime(active ? currentTime : 0)} of ${formatTime(displayDuration)}`}
+            className="h-14 min-w-0 flex-1 cursor-pointer touch-none sm:h-16"
+            onPointerDown={onWavePointerDown}
+            onPointerMove={onWavePointerMove}
+            onKeyDown={onWaveKeyDown}
+          />
+        </div>
 
         <div className="mt-4 flex flex-wrap items-center gap-x-5 gap-y-2">
           <button
