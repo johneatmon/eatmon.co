@@ -4,8 +4,8 @@
 @custom-variant dark (&:where(.dark, .dark *));
 
 @theme {
-  --font-sans: var(--font-uncut-sans), ui-sans-serif, system-ui, sans-serif;
-  --font-mono: var(--font-server-mono), ui-monospace, monospace;
+  --font-sans: var(--font-soehne), Helvetica, Arial, sans-serif;
+  --font-mono: var(--font-server-mono), ui-monospace, Menlo, Consolas, monospace;
 
   --color-canvas: #050505;
   --color-canvas-elevated: #0c0c0c;
@@ -59,7 +59,7 @@
     background: var(--background);
     color: var(--foreground);
     font-family: var(--font-sans);
-    font-feature-settings: "kern", "liga", "ss02", "ss05";
+    font-feature-settings: "kern", "liga";
     text-rendering: optimizeLegibility;
     -webkit-font-smoothing: antialiased;
     -moz-osx-font-smoothing: grayscale;
@@ -129,6 +129,52 @@
   }
 }
 
+.volume-slider {
+  --volume: 100%;
+  -webkit-appearance: none;
+  appearance: none;
+  height: 12px;
+  background: transparent;
+  cursor: pointer;
+}
+
+.volume-slider::-webkit-slider-runnable-track {
+  height: 1px;
+  background: linear-gradient(
+    to right,
+    var(--foreground) var(--volume),
+    color-mix(in oklab, var(--foreground) 22%, transparent) var(--volume)
+  );
+}
+
+.volume-slider::-webkit-slider-thumb {
+  -webkit-appearance: none;
+  appearance: none;
+  width: 9px;
+  height: 9px;
+  margin-top: -4px;
+  border-radius: 9999px;
+  background: var(--foreground);
+}
+
+.volume-slider::-moz-range-track {
+  height: 1px;
+  background: color-mix(in oklab, var(--foreground) 22%, transparent);
+}
+
+.volume-slider::-moz-range-progress {
+  height: 1px;
+  background: var(--foreground);
+}
+
+.volume-slider::-moz-range-thumb {
+  width: 9px;
+  height: 9px;
+  border: 0;
+  border-radius: 9999px;
+  background: var(--foreground);
+}
+
 @keyframes reveal {
   from {
     opacity: 0;
@@ -162,18 +208,33 @@
   --tw-prose-td-borders: var(--border);
 
   font-size: 1rem;
+  font-weight: 400;
   line-height: 1.75;
   max-width: 65ch;
 }
 
 .prose-site :where(h1, h2, h3, h4) {
   letter-spacing: -0.03em;
-  font-weight: 550;
+  font-weight: 500;
   scroll-margin-top: 6rem;
 }
 
 .prose-site :where(a) {
-  font-weight: 450;
+  font-weight: inherit;
+  color: var(--foreground);
+  text-decoration-line: underline;
+  text-decoration-thickness: 1px;
+  text-underline-offset: 0.18em;
+  text-decoration-color: color-mix(in oklab, var(--foreground) 22%, transparent);
+  transition:
+    opacity 200ms var(--ease-out-quart),
+    text-decoration-color 200ms var(--ease-out-quart);
+}
+
+.prose-site :where(a):hover,
+.prose-site :where(a):focus-visible {
+  opacity: 0.7;
+  text-decoration-color: color-mix(in oklab, var(--foreground) 70%, transparent);
 }
 
 .prose-site :where(pre) {
@@ -188,7 +249,6 @@
 
 .prose-site :where(code) {
   font-family: var(--font-mono);
-  font-feature-settings: "ss01", "ss02", "ss03", "ss04", "ss05";
 }
 
 .prose-site :where(:not(pre) > code) {

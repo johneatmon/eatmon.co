@@ -28,7 +28,7 @@ function entries(): SitemapEntry[] {
     lastModified: toDate(post.updated || post.date),
   }));
 
-  const routes = ['', '/blog', '/colophon', '/rss'].map((route) => ({
+  const routes = ['', '/blog', '/music', '/colophon', '/rss'].map((route) => ({
     url: siteUrl(route),
     lastModified: toDate(new Date()),
   }));

@@ -8,6 +8,9 @@ importers:
 
   .:
     dependencies:
+      '@johneatmon/soehne':
+        specifier: 0.0.3
+        version: 0.0.3
       '@tailwindcss/typography':
         specifier: ^0.5.20
         version: 0.5.20(tailwindcss@4.3.3)
@@ -388,6 +391,9 @@ packages:
     engines: {node: '>=20.9.0'}
     cpu: [x64]
     os: [win32]
+
+  '@johneatmon/soehne@0.0.3':
+    resolution: {integrity: sha512-F5NstPxCni6YOlsYq1ysG6dsdNlkGgdt+5phR4Fc6/JFQKrfhYy4rCDdrZ8jNR6EES65z9gJnLRUemyhBqJoTw==, tarball: https://npm.pkg.github.com/download/@johneatmon/soehne/0.0.3/6b1aea72cd63554ddf6133cdb0cef7a999a39d5c}
 
   '@jridgewell/gen-mapping@0.3.13':
     resolution: {integrity: sha512-2kkt/7niJ6MgEPxF0bYdQ6etZaA+fQvDcLKckhy1yIQOzaoKjBBjSj63/aLVjYE3qhRt5dvM+uUyfCg6UKCBbA==}
@@ -1708,6 +1714,8 @@ snapshots:
 
   '@img/sharp-win32-x64@0.35.3':
     optional: true
+
+  '@johneatmon/soehne@0.0.3': {}
 
   '@jridgewell/gen-mapping@0.3.13':
     dependencies:

@@ -9,21 +9,8 @@ type FontAsset = {
   sha256: string;
 };
 
-// Immutable commit pins + SHA-256 so installs don't silently trust mutable branch tips.
+// Open-licensed mono only. Söhne ships via @johneatmon/soehne (GitHub Packages).
 const fonts: FontAsset[] = [
-  {
-    name: 'uncut_sans',
-    format: 'woff2',
-    url: 'https://raw.githubusercontent.com/kaspernordkvist/uncut_sans/b3b42467781e3bd98c68f2d70eba325196e7d9c5/Webfonts/UncutSans-Variable.woff2',
-    sha256: '812463c29f859cefec66a0d3458603eb316e5293e14bbeedc674e78eb07552a6',
-  },
-  // next/og (Satori) only supports ttf/otf/woff — not woff2
-  {
-    name: 'uncut_sans_regular',
-    format: 'woff',
-    url: 'https://raw.githubusercontent.com/kaspernordkvist/uncut_sans/b3b42467781e3bd98c68f2d70eba325196e7d9c5/Webfonts/UncutSans-Regular.woff',
-    sha256: '9b02294cc0fddc2a768cf8f531e9ed3452029b642d16d6ea4672918b6202935e',
-  },
   {
     name: 'server_mono',
     format: 'woff2',

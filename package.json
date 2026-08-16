@@ -12,9 +12,13 @@
     "check": "biome check .",
     "format": "biome format --write .",
     "lint": "biome lint .",
-    "postinstall": "node scripts/download-fonts.ts"
+    "postinstall": "node scripts/download-fonts.ts",
+    "prebuild": "node scripts/download-fonts.ts",
+    "auth:github-packages": "node scripts/setup-github-packages-auth.ts",
+    "music:upload": "node scripts/upload-track.ts"
   },
   "dependencies": {
+    "@johneatmon/soehne": "0.0.3",
     "@tailwindcss/typography": "^0.5.20",
     "@vercel/analytics": "^1.6.1",
     "@vercel/speed-insights": "^1.3.1",

@@ -7,10 +7,10 @@ export const socials = [
     name: 'GitHub',
     href: '/github',
   },
-  {
-    name: 'SoundCloud',
-    href: '/soundcloud',
-  },
+  // {
+  //   name: 'SoundCloud',
+  //   href: '/soundcloud',
+  // },
   {
     name: 'X',
     href: '/x',

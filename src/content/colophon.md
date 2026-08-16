@@ -1,20 +1,16 @@
-# Colophon
-
-The technologies, services, and inspiration behind this site.
-
 ## How it's built
 
 - Front-end: Next.js + React
 - Styling: Tailwind CSS
 - Content: MDX with sugar-high for syntax highlighting
-- Database: Supabase
+- Database: Supabase (blog views + music catalog / Storage)
 - Hosting: Vercel
 - Domain/DNS: Cloudflare
 - Analytics: Vercel Analytics
 
 **Typography**
 
-- Sans: [Uncut Sans](https://uncut.wtf/sans-serif/uncut-sans/) from UNCUT.wtf
+- Sans: [Söhne](https://klim.co.nz/retail-fonts/soehne/) from Klim Type Foundry
 - Mono: [Server Mono](https://servermono.com/) from Internet Development Studio
 
 ## Source code

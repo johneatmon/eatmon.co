@@ -5,7 +5,7 @@ import type { ReactNode } from 'react';
 import type { Person } from 'schema-dts';
 import { SiteFooter } from '~/components/site-footer';
 import { ThemeProvider } from '~/components/theme-provider';
-import { serverMono, uncutSans } from '~/lib/fonts';
+import { serverMono, soehneSans } from '~/lib/fonts';
 import { cn, siteUrl, toJsonLd } from '~/lib/utils';
 import './globals.css';
 
@@ -63,7 +63,7 @@ export default function RootLayout({ children }: { children: ReactNode }) {
     <html
       lang="en"
       suppressHydrationWarning
-      className={cn('min-h-full antialiased', uncutSans.variable, serverMono.variable)}
+      className={cn('min-h-full antialiased', soehneSans.variable, serverMono.variable)}
       data-scroll-behavior="smooth"
     >
       <body className="flex min-h-dvh flex-col bg-(--background) text-(--foreground)">
