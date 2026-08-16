@@ -129,6 +129,52 @@
   }
 }
 
+.volume-slider {
+  --volume: 100%;
+  -webkit-appearance: none;
+  appearance: none;
+  height: 12px;
+  background: transparent;
+  cursor: pointer;
+}
+
+.volume-slider::-webkit-slider-runnable-track {
+  height: 1px;
+  background: linear-gradient(
+    to right,
+    var(--foreground) var(--volume),
+    color-mix(in oklab, var(--foreground) 22%, transparent) var(--volume)
+  );
+}
+
+.volume-slider::-webkit-slider-thumb {
+  -webkit-appearance: none;
+  appearance: none;
+  width: 9px;
+  height: 9px;
+  margin-top: -4px;
+  border-radius: 9999px;
+  background: var(--foreground);
+}
+
+.volume-slider::-moz-range-track {
+  height: 1px;
+  background: color-mix(in oklab, var(--foreground) 22%, transparent);
+}
+
+.volume-slider::-moz-range-progress {
+  height: 1px;
+  background: var(--foreground);
+}
+
+.volume-slider::-moz-range-thumb {
+  width: 9px;
+  height: 9px;
+  border: 0;
+  border-radius: 9999px;
+  background: var(--foreground);
+}
+
 @keyframes reveal {
   from {
     opacity: 0;

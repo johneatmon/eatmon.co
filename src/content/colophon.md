@@ -3,7 +3,7 @@
 - Front-end: Next.js + React
 - Styling: Tailwind CSS
 - Content: MDX with sugar-high for syntax highlighting
-- Database: Supabase
+- Database: Supabase (blog views + music catalog / Storage)
 - Hosting: Vercel
 - Domain/DNS: Cloudflare
 - Analytics: Vercel Analytics

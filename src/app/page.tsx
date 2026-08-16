@@ -57,7 +57,7 @@ export default function HomePage() {
             </a>
             , and{' '}
             <a
-              href="/soundcloud"
+              href="/music"
               className="underline text-(--foreground) transition-opacity duration-200 hover:opacity-70"
             >
               making music

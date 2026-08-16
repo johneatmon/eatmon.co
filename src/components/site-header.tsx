@@ -23,6 +23,12 @@ export function SiteHeader({ className }: { className?: string }) {
           Blog
         </Link>
         <Link
+          href="/music"
+          className="link-fade no-underline text-(--muted) hover:text-(--foreground)"
+        >
+          Music
+        </Link>
+        <Link
           href="/colophon"
           className="link-fade no-underline text-(--muted) hover:text-(--foreground)"
         >

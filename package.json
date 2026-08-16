@@ -13,7 +13,8 @@
     "format": "biome format --write .",
     "lint": "biome lint .",
     "postinstall": "node scripts/download-fonts.ts",
-    "auth:github-packages": "node scripts/setup-github-packages-auth.ts"
+    "auth:github-packages": "node scripts/setup-github-packages-auth.ts",
+    "music:upload": "node scripts/upload-track.ts"
   },
   "dependencies": {
     "@johneatmon/soehne": "0.0.3",
