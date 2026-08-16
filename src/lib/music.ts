@@ -15,6 +15,7 @@ export type Track = {
   sortOrder: number;
   status: TrackStatus;
   voteCount: number;
+  playCount: number;
   publishedAt: string;
 };
 
@@ -36,6 +37,7 @@ type TrackRow = {
   sort_order: number;
   status: string;
   vote_count: number | string;
+  play_count: number | string;
   published_at: string;
 };
 
@@ -79,6 +81,7 @@ function mapTrack(row: TrackRow): Track {
     sortOrder: Number(row.sort_order),
     status: mapStatus(row.status),
     voteCount: Number(row.vote_count) || 0,
+    playCount: Number(row.play_count) || 0,
     publishedAt: row.published_at,
   };
 }
@@ -93,7 +96,7 @@ export const getPublishedTracks = cache(async (): Promise<Track[]> => {
   try {
     const query = new URLSearchParams({
       select:
-        'id,slug,title,description,duration_sec,peaks,audio_path,sort_order,status,vote_count,published_at',
+        'id,slug,title,description,duration_sec,peaks,audio_path,sort_order,status,vote_count,play_count,published_at',
       published: 'eq.true',
       order: 'status.asc,sort_order.asc,published_at.desc',
     });
@@ -170,6 +173,28 @@ export async function upvoteUnfinishedTrack(
       previousSlug: typeof data.previousSlug === 'string' ? data.previousSlug : null,
       previousVoteCount: typeof data.previousVoteCount === 'number' ? data.previousVoteCount : null,
     };
+  } catch {
+    return null;
+  }
+}
+
+export async function incrementTrackPlay(slug: string): Promise<number | null> {
+  if (process.env.NODE_ENV !== 'production') return null;
+  if (!supabaseUrl || !supabaseSecretKey || !isValidSlug(slug)) return null;
+
+  try {
+    const response = await fetch(`${supabaseUrl}/rest/v1/rpc/increment_track_play`, {
+      method: 'POST',
+      headers: {
+        ...headers(supabaseSecretKey),
+        'Content-Type': 'application/json',
+      },
+      body: JSON.stringify({ track_slug: slug }),
+    });
+
+    if (!response.ok) return null;
+    const count = (await response.json()) as number;
+    return Number.isFinite(count) ? count : null;
   } catch {
     return null;
   }

@@ -30,5 +30,10 @@ export const config: VercelConfig = {
       methods: ['GET', 'HEAD', 'PUT', 'PATCH', 'DELETE'],
       mitigate: { action: 'deny' },
     },
+    {
+      src: '^/api/music/play/?$',
+      methods: ['GET', 'HEAD', 'PUT', 'PATCH', 'DELETE'],
+      mitigate: { action: 'deny' },
+    },
   ],
 };

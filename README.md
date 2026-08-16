@@ -55,7 +55,11 @@ pnpm music:upload -- --keep              # keep local sources after upload
 Non-MP3 sources are converted with `ffmpeg` (`libmp3lame -q:a 2`). After a successful
 upload the source under `./music` is deleted (override with `--keep`).
 `/music` splits **Finished** and **Unfinished** (both by `sort_order`, then publish date).
+
 Votes update tallies in place — they do not reorder the list.
+Play counts increment once per track per browser tab session in production
+(`POST /api/music/play`), mirroring blog views.
+
 Finished tracks take hearts (one per browser per track). Unfinished tracks take a
 single transferable upvote per browser — clicking another unfinished track moves the
 vote (`POST /api/music/vote` with optional `previousSlug`). Client state lives in

@@ -18,7 +18,9 @@ import { cn } from '~/lib/utils';
 const HEARTS_STORAGE_KEY = 'eatmon:music-hearts';
 const UPVOTE_STORAGE_KEY = 'eatmon:music-upvote';
 const VOLUME_STORAGE_KEY = 'eatmon:music-volume';
+const PLAY_SESSION_PREFIX = 'played:music:';
 const DEFAULT_VOLUME = 0.8;
+const TRACK_PLAYS = process.env.NODE_ENV === 'production';
 
 type MusicLibraryProps = {
   finished: Track[];
@@ -171,6 +173,14 @@ function UpvoteGlyph({ filled }: { filled: boolean }) {
     >
       <path d="M12 19V7" />
       <path d="m7 11 5-5 5 5" />
+    </svg>
+  );
+}
+
+function PlaysGlyph() {
+  return (
+    <svg viewBox="0 0 24 24" aria-hidden="true" className="size-3 fill-current">
+      <path d="M8.6 5.4v13.2a.5.5 0 0 0 .77.42l10.1-6.6a.5.5 0 0 0 0-.84L9.37 4.98a.5.5 0 0 0-.77.42Z" />
     </svg>
   );
 }
@@ -350,6 +360,7 @@ function TrackRow({
   reaction,
   reacted,
   voteCount,
+  playCount,
   previousUpvoteSlug,
   onReact,
 }: {
@@ -363,6 +374,7 @@ function TrackRow({
   reaction: ReactionMode;
   reacted: boolean;
   voteCount: number;
+  playCount: number;
   previousUpvoteSlug: string | null;
   onReact: (result: ReactionResult) => void;
 }) {
@@ -507,7 +519,7 @@ function TrackRow({
           onKeyDown={onWaveKeyDown}
         />
 
-        <div className="mt-4">
+        <div className="mt-4 flex flex-wrap items-center gap-x-5 gap-y-2">
           <button
             type="button"
             onClick={() => void castReaction()}
@@ -537,6 +549,14 @@ function TrackRow({
             )}
             {voteCount}
           </button>
+
+          <span
+            className="flex items-center gap-2 font-mono text-[11px] text-(--muted) tabular-nums"
+            title="Plays"
+          >
+            <PlaysGlyph />
+            {playCount.toLocaleString()}
+          </span>
         </div>
       </div>
     </article>
@@ -546,6 +566,7 @@ function TrackRow({
 export function MusicLibrary({ finished, unfinished }: MusicLibraryProps) {
   const audioRef = useRef<HTMLAudioElement | null>(null);
   const loadedIdRef = useRef<string | null>(null);
+  const activeSlugRef = useRef<string | null>(null);
   const [activeId, setActiveId] = useState<string | null>(null);
   const [playing, setPlaying] = useState(false);
   const [currentTime, setCurrentTime] = useState(0);
@@ -555,6 +576,9 @@ export function MusicLibrary({ finished, unfinished }: MusicLibraryProps) {
   const [dockReady, setDockReady] = useState(false);
   const [voteCounts, setVoteCounts] = useState<Record<string, number>>(() =>
     Object.fromEntries([...finished, ...unfinished].map((track) => [track.slug, track.voteCount])),
+  );
+  const [playCounts, setPlayCounts] = useState<Record<string, number>>(() =>
+    Object.fromEntries([...finished, ...unfinished].map((track) => [track.slug, track.playCount])),
   );
   const [volume, setVolume] = useState(DEFAULT_VOLUME);
   const [muted, setMuted] = useState(false);
@@ -575,6 +599,13 @@ export function MusicLibrary({ finished, unfinished }: MusicLibraryProps) {
       const next = { ...prev };
       for (const track of [...finished, ...unfinished]) {
         if (!(track.slug in next)) next[track.slug] = track.voteCount;
+      }
+      return next;
+    });
+    setPlayCounts((prev) => {
+      const next = { ...prev };
+      for (const track of [...finished, ...unfinished]) {
+        if (!(track.slug in next)) next[track.slug] = track.playCount;
       }
       return next;
     });
@@ -602,6 +633,7 @@ export function MusicLibrary({ finished, unfinished }: MusicLibraryProps) {
       if (!audio) return;
 
       setActiveId(track.id);
+      activeSlugRef.current = track.slug;
       loadTrack(track);
 
       try {
@@ -638,6 +670,7 @@ export function MusicLibrary({ finished, unfinished }: MusicLibraryProps) {
 
       const ensure = async () => {
         setActiveId(target.id);
+        activeSlugRef.current = target.slug;
         loadTrack(target);
 
         const total =
@@ -663,6 +696,30 @@ export function MusicLibrary({ finished, unfinished }: MusicLibraryProps) {
     },
     [activeTrack, loadTrack],
   );
+
+  const recordPlay = useCallback((slug: string) => {
+    if (!TRACK_PLAYS) return;
+
+    try {
+      const key = `${PLAY_SESSION_PREFIX}${slug}`;
+      if (sessionStorage.getItem(key)) return;
+      sessionStorage.setItem(key, '1');
+    } catch {
+      // sessionStorage may be unavailable; still attempt a single increment.
+    }
+
+    setPlayCounts((prev) => ({
+      ...prev,
+      [slug]: (prev[slug] ?? 0) + 1,
+    }));
+
+    void fetch('/api/music/play', {
+      method: 'POST',
+      headers: { 'Content-Type': 'application/json' },
+      body: JSON.stringify({ slug }),
+      keepalive: true,
+    });
+  }, []);
 
   const onVolumeChange = useCallback((value: number) => {
     const next = Math.min(1, Math.max(0, value));
@@ -737,6 +794,7 @@ export function MusicLibrary({ finished, unfinished }: MusicLibraryProps) {
                 reaction="upvote"
                 reacted={upvoteSlug === track.slug}
                 voteCount={voteCounts[track.slug] ?? track.voteCount}
+                playCount={playCounts[track.slug] ?? track.playCount}
                 previousUpvoteSlug={upvoteSlug}
                 onReact={onUpvote}
               />
@@ -770,6 +828,7 @@ export function MusicLibrary({ finished, unfinished }: MusicLibraryProps) {
                 reaction="heart"
                 reacted={heartedSlugs.has(track.slug)}
                 voteCount={voteCounts[track.slug] ?? track.voteCount}
+                playCount={playCounts[track.slug] ?? track.playCount}
                 previousUpvoteSlug={null}
                 onReact={onHeart}
               />
@@ -789,7 +848,10 @@ export function MusicLibrary({ finished, unfinished }: MusicLibraryProps) {
           }
         }}
         onTimeUpdate={(event) => setCurrentTime(event.currentTarget.currentTime)}
-        onPlay={() => setPlaying(true)}
+        onPlay={() => {
+          setPlaying(true);
+          if (activeSlugRef.current) recordPlay(activeSlugRef.current);
+        }}
         onPause={() => setPlaying(false)}
         onEnded={() => {
           setPlaying(false);
