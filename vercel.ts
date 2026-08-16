@@ -7,7 +7,7 @@ import { routes, type VercelConfig } from '@vercel/config/v1';
 export const config: VercelConfig = {
   buildCommand: 'pnpm build',
   installCommand:
-    'pnpm config set "//npm.pkg.github.com/:_authToken" "$GITHUB_PAT" && pnpm install',
+    'pnpm config set "//npm.pkg.github.com/:_authToken" "$GITHUB_PAT" && pnpm install && node scripts/download-fonts.ts',
   cleanUrls: true,
   framework: 'nextjs',
   regions: ['pdx1'],
